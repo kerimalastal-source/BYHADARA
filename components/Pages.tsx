@@ -5,6 +5,7 @@ import { Arrow, Button, Label, Photo, Businesses, Markets, FinalCTA, PageHero } 
 import { InquiryForm } from './InquiryForm';
 import { Insights } from './Insights';
 import { inquiriesEnabled } from '@/lib/inquiry-config';
+import { breadcrumbs } from '@/lib/seo';
 import { notFound } from 'next/navigation';
 export function About({ locale }: { locale: Locale }) {
   const d = dictionary(locale);
@@ -12,7 +13,7 @@ export function About({ locale }: { locale: Locale }) {
     <>
       <PageHero
         locale={locale}
-        trail={[{ name: d.nav[1] }]}
+        trail={breadcrumbs(locale, 'about')}
         label={d.nav[1]}
         title={d.aboutTitle}
         intro={d.aboutIntro}
@@ -84,7 +85,7 @@ export function BusinessIndex({ locale }: { locale: Locale }) {
     <>
       <PageHero
         locale={locale}
-        trail={[{ name: d.nav[2] }]}
+        trail={breadcrumbs(locale, 'businesses')}
         label={d.nav[2]}
         title={d.businessesTitle}
         intro={d.businessIntro}
@@ -114,7 +115,7 @@ export function BusinessDetail({ locale, id }: { locale: Locale; id: string }) {
     <>
       <PageHero
         locale={locale}
-        trail={[{ name: d.nav[2], href: `/${locale}/businesses` }, { name: b.name }]}
+        trail={breadcrumbs(locale, `businesses/${id}`)}
         label={b.sector}
         title={b.name}
         intro={b.desc}
@@ -164,7 +165,7 @@ export function MarketIndex({ locale }: { locale: Locale }) {
     <>
       <PageHero
         locale={locale}
-        trail={[{ name: d.nav[3] }]}
+        trail={breadcrumbs(locale, 'markets')}
         label={d.nav[3]}
         title={d.marketsTitle}
         intro={d.marketsIntro}
@@ -191,7 +192,7 @@ export function MarketDetail({ locale, id }: { locale: Locale; id: string }) {
     <>
       <PageHero
         locale={locale}
-        trail={[{ name: d.nav[3], href: `/${locale}/markets` }, { name: m.name }]}
+        trail={breadcrumbs(locale, `markets/${id}`)}
         label={m.status}
         title={m.name}
         intro={m.desc}
@@ -225,7 +226,7 @@ export function Partnerships({ locale }: { locale: Locale }) {
     <>
       <PageHero
         locale={locale}
-        trail={[{ name: d.nav[4] }]}
+        trail={breadcrumbs(locale, 'partnerships')}
         label={d.nav[4]}
         title={d.partnershipHero}
         intro={d.partnershipIntro}
@@ -258,7 +259,7 @@ export function Contact({ locale }: { locale: Locale }) {
     <>
       <PageHero
         locale={locale}
-        trail={[{ name: d.contact }]}
+        trail={breadcrumbs(locale, 'contact')}
         label={d.contact}
         title={d.contactTitle}
         intro={d.contactIntro}
@@ -327,10 +328,7 @@ export function InquiryPage({
     <>
       <PageHero
         locale={locale}
-        trail={[
-          { name: d.nav[4], href: `/${locale}/partnerships` },
-          { name: kind === 'investment' ? d.investmentCta : d.partnershipCta },
-        ]}
+        trail={breadcrumbs(locale, `inquiries/${kind}`)}
         label={d.partnerships}
         title={kind === 'investment' ? d.investmentTitle : d.partnershipFormTitle}
         intro={d.formIntro}
@@ -363,7 +361,7 @@ export function InsightIndex({ locale }: { locale: Locale }) {
     <>
       <PageHero
         locale={locale}
-        trail={[{ name: d.nav[5] }]}
+        trail={breadcrumbs(locale, 'insights')}
         label={d.insights}
         title={d.insightsTitle}
         intro={d.insightsIntro}
@@ -387,7 +385,7 @@ export function ArticlePage({ locale, slug }: { locale: Locale; slug: string }) 
     <>
       <PageHero
         locale={locale}
-        trail={[{ name: d.nav[5], href: `/${locale}/insights` }, { name: t.title }]}
+        trail={breadcrumbs(locale, `insights/${slug}`)}
         label={d.categories[categoryIds.indexOf(a.category)]}
         title={t.title}
         intro={t.description}
@@ -432,7 +430,7 @@ export function Legal({ locale, kind }: { locale: Locale; kind: 'privacy' | 'ter
     <>
       <PageHero
         locale={locale}
-        trail={[{ name: d[kind] }]}
+        trail={breadcrumbs(locale, kind)}
         label={d.legalUpdated}
         title={d[kind]}
         intro={kind === 'privacy' ? d.privacyIntro : d.termsIntro}

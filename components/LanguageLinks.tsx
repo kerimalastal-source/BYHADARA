@@ -6,7 +6,7 @@ export function LanguageLinks({ label }: { label: string }) {
   return (
     <nav aria-label={label}>
       {['en', 'ar', 'tr'].map((l) => (
-        <Link key={l} href={pathname.replace(/^\/(en|ar|tr)/, `/${l}`)} lang={l}>
+        <Link key={l} href={pathname.replace(/^\/(en|ar|tr)/, `/${l}`)} hrefLang={l} lang={l}>
           {l.toUpperCase()}
         </Link>
       ))}

@@ -19,6 +19,8 @@ const paths = [
 ];
 const pages = [];
 const links = new Set();
+const titles = new Set();
+let indexable = 0;
 for (const lang of ['en', 'ar', 'tr'])
   for (const p of paths) {
     const path = `/${lang}${p ? '/' + p : ''}`;
@@ -30,6 +32,12 @@ for (const lang of ['en', 'ar', 'tr'])
     assert.equal((html.match(/<h1[ >]/g) || []).length, 1, path);
     assert.ok(html.includes('rel="canonical"'), path);
     assert.ok(html.includes('hrefLang="x-default"'), path);
+    assert.ok(html.includes('property="og:image"'), path);
+    assert.ok(html.includes('application/ld+json'), path);
+    const title = html.match(/<title>([^<]*)<\/title>/)?.[1];
+    assert.ok(title && !titles.has(title), `${path} title is unique`);
+    titles.add(title);
+    if (!/<meta name="robots" content="[^"]*noindex/.test(html)) indexable++;
     for (const m of html.matchAll(/href="(\/(?:en|ar|tr)(?:\/[^"?#]*)?)(?:[?#][^"]*)?"/g))
       links.add(m[1]);
     pages.push(path);
@@ -42,16 +50,20 @@ assert.equal((await fetch('http://localhost:3000/ar/insights/not-published')).st
 assert.equal((await fetch('http://localhost:3000/de')).status, 404);
 assert.equal((await fetch('http://localhost:3000/api/inquiries', { method: 'POST' })).status, 503);
 const sitemap = await (await fetch('http://localhost:3000/sitemap.xml')).text();
-assert.equal((sitemap.match(/<loc>/g) || []).length, 48);
+assert.equal((sitemap.match(/<loc>/g) || []).length, indexable);
 const robots = await (await fetch('http://localhost:3000/robots.txt')).text();
 assert.ok(robots.includes('Disallow: /api/'));
+assert.equal((await fetch('http://localhost:3000/', { redirect: 'manual' })).status, 308);
+for (const asset of ['/manifest.webmanifest', '/icon-512.png', '/og/byhadara-ar.jpg'])
+  assert.equal((await fetch('http://localhost:3000' + asset)).status, 200, asset);
 console.log(
   JSON.stringify({
     pages: pages.length,
     internalLinks: links.size,
     metadata: 'passed',
     locales: 'passed',
-    sitemap: '48 URLs',
+    sitemap: `${indexable} URLs`,
+    seo: 'passed',
     notFound: 'passed',
     unconfiguredAPI: 503,
   }),

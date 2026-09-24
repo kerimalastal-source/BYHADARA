@@ -1,8 +1,10 @@
+import type { Viewport } from 'next';
 import { notFound } from 'next/navigation';
 import { isLocale, dictionary } from '@/content/site';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Site';
 import '@/styles/globals.css';
+export const viewport: Viewport = { themeColor: '#14283d' };
 export default async function Layout({
   children,
   params,

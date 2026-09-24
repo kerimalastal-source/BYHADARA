@@ -13,9 +13,9 @@ import {
   ArticlePage,
   Legal,
 } from '@/components/Pages';
-import { isLocale, locales, paths, site } from '@/content/site';
+import { isLocale, locales, paths, type Locale } from '@/content/site';
 import { publishedArticles } from '@/content/articles';
-import { metadataFor } from '@/lib/seo';
+import { metadataFor, structuredData } from '@/lib/seo';
 type Props = { params: Promise<{ locale: string; slug?: string[] }> };
 export function generateStaticParams() {
   return locales.flatMap((locale) =>
@@ -34,41 +34,21 @@ export default async function Page({ params }: Props) {
   const { locale, slug = [] } = await params;
   if (!isLocale(locale)) notFound();
   const path = slug.join('/');
-  if (!path) {
-    const data = {
-      '@context': 'https://schema.org',
-      '@graph': [
-        {
-          '@type': 'Organization',
-          '@id': `${site.origin}/#organization`,
-          name: 'BYHADARA Group',
-          url: site.origin,
-          description:
-            'Istanbul-based investment and business development group connecting independently registered companies.',
-          location: { '@type': 'Place', name: 'Istanbul, Türkiye' },
-          email: site.email,
-          telephone: site.phone,
-        },
-        {
-          '@type': 'WebSite',
-          '@id': `${site.origin}/#website`,
-          url: site.origin,
-          name: site.name,
-          inLanguage: ['en', 'ar', 'tr'],
-          publisher: { '@id': `${site.origin}/#organization` },
-        },
-      ],
-    };
-    return (
-      <>
+  const data = structuredData(locale, path);
+  return (
+    <>
+      {data && (
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(data).replace(/</g, '\\u003c') }}
         />
-        <Home locale={locale} />
-      </>
-    );
-  }
+      )}
+      {route(locale, path, slug)}
+    </>
+  );
+}
+function route(locale: Locale, path: string, slug: string[]) {
+  if (!path) return <Home locale={locale} />;
   if (path === 'about') return <About locale={locale} />;
   if (path === 'businesses') return <BusinessIndex locale={locale} />;
   if (slug[0] === 'businesses' && slug.length === 2)
