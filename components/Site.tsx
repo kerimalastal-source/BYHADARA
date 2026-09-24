@@ -3,6 +3,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { LanguageLinks } from './LanguageLinks';
 import { publishedArticles, categoryIds } from '@/content/articles';
+import { partners } from '@/content/partners';
 import { dictionary, navPaths, businessIds, marketIds, site, type Locale } from '@/content/site';
 export const Arrow = () => (
   <span className="arrow" aria-hidden="true">
@@ -188,6 +189,34 @@ export function HadaraMark({ className }: { className?: string }) {
     <Image src="/images/hadara-mark.png" alt="" width={196} height={240} className={className} />
   );
 }
+/** Success partners of the group companies, shown as a single calm row of logos. */
+export function Partners({ locale }: { locale: Locale }) {
+  const d = dictionary(locale);
+  return (
+    <section className="section partners-section">
+      <div className="container">
+        <div className="group-head">
+          <Label>{d.partnersLabel}</Label>
+          <h2>{d.partnersTitle}</h2>
+          <p>{d.partnersText}</p>
+        </div>
+        <ul className="partners-grid">
+          {partners.map((p) => (
+            <li key={p.name} className="partner-logo">
+              <Image
+                src={`/images/${p.logo}`}
+                alt={p.name}
+                width={p.width}
+                height={p.height}
+                sizes="(max-width: 640px) 45vw, 200px"
+              />
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  );
+}
 export function Markets({ locale, compact = false }: { locale: Locale; compact?: boolean }) {
   const d = dictionary(locale);
   return (
@@ -299,6 +328,7 @@ export function Home({ locale }: { locale: Locale }) {
           <Companies locale={locale} heading />
         </div>
       </section>
+      <Partners locale={locale} />
       <section className="container section">
         <div className="section-head">
           <div>
