@@ -24,7 +24,7 @@ export const businessIds = ['real-estate', 'hospitality'] as const;
 export const marketIds = ['turkiye', 'gcc', 'egypt'] as const;
 export const site = {
   name: 'BYHADARA Group',
-  origin: 'https://byhadara.com',
+  origin: (process.env.SITE_URL || 'https://byhadara.com').replace(/\/+$/, ''),
   hospitality: 'https://www.hadarahospitality.com',
   realEstate: process.env.REAL_ESTATE_URL || '',
   email: process.env.CONTACT_EMAIL || 'info@byhadara.com',

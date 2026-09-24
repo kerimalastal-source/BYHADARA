@@ -12,6 +12,8 @@ Photographs downloaded 2026-09-22 from verified Unsplash photo pages, under the 
 
 Images are hosted locally and served with Next Image sizing, AVIF/WebP support and reserved dimensions. Original downloaded assets retained for future crops.
 
-Typography: Inter and IBM Plex Sans Arabic, installed via Fontsource and served locally. Both use the SIL Open Font License, included in their installed packages. Brand wordmark is a replaceable text treatment, not an asserted official logo. Favicon is an original simple H monogram.
+Typography: Inter and IBM Plex Sans Arabic, installed via Fontsource and served locally. Both use the SIL Open Font License, included in their installed packages. Brand wordmark is a replaceable text treatment, not an asserted official logo. Favicon is an original simple H monogram; `public/apple-touch-icon.png`, `public/icon-192.png` and `public/icon-512.png` are full-bleed PNG renders of the same monogram.
+
+Share images `public/og/byhadara-{en,ar,tr}.jpg` (1200×630) are original compositions of the cropped `istanbul-bosphorus.jpg` photograph with the text wordmark and a localized tagline set in Inter and IBM Plex Sans Arabic.
 
 No third-party analytics, advertising trackers or remote font requests are included. Turnstile is only loaded if online inquiries are fully configured and enabled.
