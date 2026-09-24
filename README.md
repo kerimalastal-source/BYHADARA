@@ -33,7 +33,7 @@ If a sandbox limits file watching, use `WATCHPACK_POLLING=true pnpm dev --webpac
 
 ## Editorial publishing
 
-Add an `Article` in `content/articles.ts` with a stable slug, category, ISO publication date, complete EN/AR/TR title, description and paragraph body. Use licensed local images under `public/images` with translated alt text. Keep `status: 'draft'` and `approved: false` until approved. Set both to published/true and rebuild only after approval. Article pages, search, category filtering, latest three homepage items, related articles, metadata and sitemap update automatically. Text is rendered as React text, never raw HTML. There is no administrative login or external CMS in this version.
+Add an `Article` in `content/articles.ts` with a stable slug, category, ISO publication date, complete EN/AR/TR title, description and paragraph body. Use licensed local images under `public/images` with translated alt text. Keep `status: 'draft'` and `approved: false` until approved. Set both to published/true and rebuild only after approval. Article pages, search, category filtering, latest three homepage items (the homepage section stays hidden until the first article is published), related articles, metadata and sitemap update automatically. Text is rendered as React text, never raw HTML. There is no administrative login or external CMS in this version.
 
 ## Inquiry activation — deliberately disabled by default
 

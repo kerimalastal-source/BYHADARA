@@ -1,3 +1,4 @@
+import { Fragment } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { LanguageLinks } from './LanguageLinks';
@@ -178,27 +179,15 @@ export function Markets({ locale }: { locale: Locale }) {
     </div>
   );
 }
-export function EmptyInsights({ locale }: { locale: Locale }) {
-  const d = dictionary(locale);
-  return (
-    <div className="editorial-empty">
-      <span aria-hidden="true" className="editorial-mark">
-        ↳
-      </span>
-      <div>
-        <h3>{d.emptyTitle}</h3>
-        <p>{d.emptyText}</p>
-      </div>
-    </div>
-  );
-}
 export function PageHero({
   locale,
+  trail,
   label,
   title,
   intro,
 }: {
   locale: Locale;
+  trail: { name: string; href?: string }[];
   label: string;
   title: string;
   intro: string;
@@ -206,10 +195,18 @@ export function PageHero({
   const d = dictionary(locale);
   return (
     <section className="page-hero container">
-      <nav className="breadcrumb" aria-label={d.home}>
+      <nav className="breadcrumb" aria-label={d.breadcrumb}>
         <Link href={`/${locale}`}>{d.home}</Link>
-        <span>/</span>
-        <span>{label}</span>
+        {trail.map((c) => (
+          <Fragment key={c.name}>
+            <span aria-hidden="true">/</span>
+            {c.href ? (
+              <Link href={c.href}>{c.name}</Link>
+            ) : (
+              <span aria-current="page">{c.name}</span>
+            )}
+          </Fragment>
+        ))}
       </nav>
       <Label>{label}</Label>
       <h1>{title}</h1>
@@ -223,7 +220,7 @@ export function Home({ locale }: { locale: Locale }) {
     <>
       <section className="hero">
         <Photo
-          name="istanbul.jpg"
+          name="istanbul-bosphorus.jpg"
           alt={
             locale === 'ar'
               ? 'جسر فوق مضيق البوسفور في إسطنبول'
@@ -338,21 +335,23 @@ export function Home({ locale }: { locale: Locale }) {
           </div>
         </div>
       </section>
-      <section className="insights-section section">
-        <div className="container">
-          <div className="section-head">
-            <div>
-              <Label>{d.insights}</Label>
-              <h2>{d.insightsTitle}</h2>
+      {publishedArticles().length > 0 && (
+        <section className="insights-section section">
+          <div className="container">
+            <div className="section-head">
+              <div>
+                <Label>{d.insights}</Label>
+                <h2>{d.insightsTitle}</h2>
+              </div>
+              <Link className="text-link" href={`/${locale}/insights`}>
+                {d.allInsights}
+                <Arrow />
+              </Link>
             </div>
-            <Link className="text-link" href={`/${locale}/insights`}>
-              {d.allInsights}
-              <Arrow />
-            </Link>
+            <LatestInsights locale={locale} />
           </div>
-          <LatestInsights locale={locale} />
-        </div>
-      </section>
+        </section>
+      )}
       <FinalCTA locale={locale} />
     </>
   );
@@ -361,7 +360,6 @@ export function Home({ locale }: { locale: Locale }) {
 export function LatestInsights({ locale }: { locale: Locale }) {
   const articles = publishedArticles().slice(0, 3),
     d = dictionary(locale);
-  if (!articles.length) return <EmptyInsights locale={locale} />;
   return (
     <div className="article-list">
       {articles.map((a) => {
