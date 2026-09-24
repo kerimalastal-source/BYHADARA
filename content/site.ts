@@ -27,8 +27,8 @@ export const site = {
   origin: 'https://byhadara.com',
   hospitality: 'https://www.hadarahospitality.com',
   realEstate: process.env.REAL_ESTATE_URL || '',
-  email: process.env.CONTACT_EMAIL || '',
-  phone: process.env.CONTACT_PHONE || '',
+  email: process.env.CONTACT_EMAIL || 'info@byhadara.com',
+  phone: process.env.CONTACT_PHONE || '+90 531 930 92 14',
 };
 export const dictionaries = {
   en: {
