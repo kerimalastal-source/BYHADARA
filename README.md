@@ -31,6 +31,7 @@ If a sandbox limits file watching, use `WATCHPACK_POLLING=true pnpm dev --webpac
 - `styles/globals.css`: custom responsive CSS and locally hosted font imports.
 - `app/sitemap.ts`, `app/robots.ts`, `app/manifest.ts`, `lib/seo.ts`: canonical URLs, language alternates, metadata, share images and structured data.
 - `content/seo.ts`: EN/AR/TR search titles and descriptions for every route.
+- `content/companies.ts`: links to the group companies' own websites and the selected projects/products shown on their pages (sourced from hadararealestate.com and hadarahospitality.com; keep in sync with those sites).
 
 ## Editorial publishing
 
@@ -68,14 +69,14 @@ Verify domain ownership, existing DNS and production assignment in Vercel before
 
 ## Content that needs owner confirmation
 
-- Official HADARA Real Estate URL: unset, never guessed.
+- Company websites: `https://www.hadararealestate.com` (override with `REAL_ESTATE_URL`) and `https://www.hadarahospitality.com`, as used by those sites' own canonical URLs.
 - Group contact email (info@byhadara.com) and phone (+90 531 930 92 14): confirmed by the owner; defaults in `content/site.ts`, overridable with `CONTACT_EMAIL`/`CONTACT_PHONE`.
 - Responsible legal entity: unset, never invented.
 - Official logo: temporary replaceable typographic BYHADARA GROUP wordmark.
 - Approved articles: no articles published yet.
 - Inquiry receiver, private storage/scanning, CRM credentials and privacy details: pending configuration.
 
-No fund status, holding-company registration, regulated service, returns, directors, projects, office network or performance statistics are claimed. Market descriptions distinguish existing Türkiye activities from regional objectives.
+No fund status, holding-company registration, regulated service, returns, directors, office network or performance statistics are claimed. Company facts, projects and products shown on the company pages come from the group companies' own websites. Market descriptions distinguish existing Türkiye activities from regional objectives.
 
 See `docs/ASSETS.md` for photography and font licenses and `docs/QA.md` for validation evidence and remaining checks.
 

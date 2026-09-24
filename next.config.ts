@@ -1,7 +1,13 @@
 import type { NextConfig } from 'next';
 const config: NextConfig = {
   poweredByHeader: false,
-  images: { formats: ['image/avif', 'image/webp'] },
+  images: {
+    formats: ['image/avif', 'image/webp'],
+    // Project photography published by HADARA Real Estate on its own website.
+    remotePatterns: [
+      { protocol: 'https', hostname: 'static.wixstatic.com', pathname: '/media/**' },
+    ],
+  },
   async headers() {
     return [
       {

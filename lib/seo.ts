@@ -160,7 +160,17 @@ export function structuredData(locale: Locale, path: string) {
         telephone: site.phone,
         availableLanguage: ['English', 'Arabic', 'Turkish'],
       },
+      subOrganization: businessIds.map((id) => ({ '@id': `${site.origin}/#${id}` })),
     },
+    ...businessIds.map((id, i) => ({
+      '@type': 'Organization',
+      '@id': `${site.origin}/#${id}`,
+      name: dictionary('en').business[i].name,
+      alternateName: dictionary('ar').business[i].name,
+      url: id === 'real-estate' ? site.realEstate : site.hospitality,
+      logo: `${site.origin}/images/hadara-mark.png`,
+      parentOrganization: org,
+    })),
     {
       '@type': 'WebSite',
       ...website,
@@ -185,7 +195,11 @@ export function structuredData(locale: Locale, path: string) {
       description: page.description,
       inLanguage: locale,
       isPartOf: website,
-      ...(path === '' || path === 'about' ? { about: org } : {}),
+      ...(path === '' || path === 'about'
+        ? { about: org }
+        : path.startsWith('businesses/')
+          ? { about: { '@id': `${site.origin}/#${path.slice(11)}` } }
+          : {}),
       ...(crumbs.length ? { breadcrumb: { '@id': `${url}#breadcrumb` } } : {}),
     },
   ];

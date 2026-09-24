@@ -6,7 +6,18 @@ Photographs downloaded 2026-09-22 from verified Unsplash photo pages, under the 
 | -------------------------------------- | ------------------ | --------------------------------------------------------------------------------------- |
 | `public/images/istanbul-bosphorus.jpg` | Kaan Kosemen       | https://unsplash.com/photos/skyline-city-view-mm1bIXfNfaE                               |
 | `public/images/architecture.jpg`       | Sebastian Schuster | https://unsplash.com/photos/modern-skyscraper-with-reflective-glass-windows-rsABeBB2D8A |
-| `public/images/hospitality.jpg`        | Pranav Kumar Jain  | https://unsplash.com/photos/white-bed-linen-on-bed-pHcLOc_RzQ0                          |
+
+HADARA Hospitality product photographs, copied from that company's website repository (`public/assets/products/`) and resized to 1400 px. They are Unsplash-licensed stock stand-ins chosen by the owner until real product photography exists; the Unsplash photo IDs are recorded in that repository:
+
+| Local asset                                       | Unsplash photo ID |
+| ------------------------------------------------- | ----------------- |
+| `public/images/hospitality/rolled-towels.jpg`     | `0Qv4fUvlSrI`     |
+| `public/images/hospitality/hotel-bath-sheet.jpg`  | `7GCHCT-y1HI`     |
+| `public/images/hospitality/fitted-sheet.jpg`      | `lTrbjFd8Iwo`     |
+| `public/images/hospitality/pillow-protector.jpg`  | `LFMNXcFd0SA`     |
+| `public/images/hospitality/blackout-curtains.jpg` | `GbYmKICa4H4`     |
+
+`public/images/hadara-mark.png` is the gold HADARA monogram used by both group companies, trimmed and resized from the HADARA Real Estate website repository. HADARA Real Estate project photographs are not stored here: they load from that company's own image host (`static.wixstatic.com`, allowed in `next.config.ts`), exactly as on hadararealestate.com.
 
 `istanbul-bosphorus.jpg` is cropped to 2200×1300 (bottom 350 px removed) so that third-party developer signage and a construction site in the original frame are not shown.
 

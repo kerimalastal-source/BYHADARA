@@ -40,19 +40,22 @@ export function Photo({
   alt,
   className = '',
   priority = false,
+  sizes,
 }: {
+  /** A file under public/images, or an absolute URL from an allowed remote host. */
   name: string;
   alt: string;
   className?: string;
   priority?: boolean;
+  sizes?: string;
 }) {
   return (
     <div className={`photo ${className}`}>
       <Image
-        src={`/images/${name}`}
+        src={name.startsWith('https://') ? name : `/images/${name}`}
         alt={alt}
         fill
-        sizes={className.includes('hero') ? '100vw' : '(max-width: 720px) 100vw, 50vw'}
+        sizes={sizes ?? (className.includes('hero') ? '100vw' : '(max-width: 720px) 100vw, 50vw')}
         priority={priority}
       />
     </div>
@@ -132,39 +135,63 @@ export function Footer({ locale }: { locale: Locale }) {
     </footer>
   );
 }
-export function Businesses({ locale }: { locale: Locale }) {
-  const d = dictionary(locale);
+/** The group and its two companies: BYHADARA Group above large panels linking to each company. */
+export function Companies({ locale, heading = false }: { locale: Locale; heading?: boolean }) {
+  const d = dictionary(locale),
+    Title = heading ? 'h3' : 'h2';
   return (
-    <div className="business-grid">
-      {d.business.map((b, i) => (
-        <article className="business-card" key={b.name}>
-          <Link
-            href={`/${locale}/businesses/${businessIds[i]}`}
-            className="business-image"
-            tabIndex={-1}
-            aria-hidden="true"
-          >
-            <Photo name={b.image} alt={b.alt} />
-            <span className="business-index">0{i + 1} / BYHADARA</span>
-          </Link>
-          <div className="business-content">
-            <p className="sector">{b.sector}</p>
-            <h3>{b.name}</h3>
-            <p>{b.desc}</p>
-            <Link className="text-link" href={`/${locale}/businesses/${businessIds[i]}`}>
-              {d.learn}
-              <Arrow />
+    <>
+      {heading && (
+        <div className="group-head">
+          <Label>{d.groupLabel}</Label>
+          <h2>{d.groupTitle}</h2>
+          <p>{d.groupText}</p>
+        </div>
+      )}
+      <div className="group-tree" aria-hidden="true">
+        <span className="group-node">
+          <span>
+            BYHADARA<span className="brand-dot">.</span>
+          </span>
+          <small>G R O U P</small>
+        </span>
+      </div>
+      <div className="company-grid">
+        {d.business.map((b, i) => (
+          <div className="company-branch" key={b.name}>
+            <Link href={`/${locale}/businesses/${businessIds[i]}`} className="company-panel">
+              <Photo name={b.image} alt="" sizes="(max-width: 640px) 100vw, 50vw" />
+              <HadaraMark className="company-mark" />
+              <span className="company-index" aria-hidden="true">
+                0{i + 1}
+              </span>
+              <span className="company-body">
+                <span className="company-sector">{b.sector}</span>
+                <Title>{b.name}</Title>
+                <span className="company-desc">{b.desc}</span>
+                <span className="company-cta">
+                  {d.learn}
+                  <Arrow />
+                </span>
+              </span>
             </Link>
           </div>
-        </article>
-      ))}
-    </div>
+        ))}
+      </div>
+      <p className="image-note">{d.imageNote}</p>
+    </>
   );
 }
-export function Markets({ locale }: { locale: Locale }) {
+/** The gold HADARA monogram shared by the group companies. */
+export function HadaraMark({ className }: { className?: string }) {
+  return (
+    <Image src="/images/hadara-mark.png" alt="" width={196} height={240} className={className} />
+  );
+}
+export function Markets({ locale, compact = false }: { locale: Locale; compact?: boolean }) {
   const d = dictionary(locale);
   return (
-    <div className="markets-grid">
+    <div className={`markets-grid${compact ? ' compact' : ''}`}>
       {d.market.map((m, i) => (
         <Link key={m.name} href={`/${locale}/markets/${marketIds[i]}`} className="market-card">
           <span className="market-number">0{i + 1}</span>
@@ -173,10 +200,30 @@ export function Markets({ locale }: { locale: Locale }) {
             <Arrow />
           </div>
           <p className="market-status">{m.status}</p>
-          <p>{m.desc}</p>
+          {!compact && <p>{m.desc}</p>}
         </Link>
       ))}
     </div>
+  );
+}
+export function Breadcrumb({
+  locale,
+  trail,
+}: {
+  locale: Locale;
+  trail: { name: string; href?: string }[];
+}) {
+  const d = dictionary(locale);
+  return (
+    <nav className="breadcrumb" aria-label={d.breadcrumb}>
+      <Link href={`/${locale}`}>{d.home}</Link>
+      {trail.map((c) => (
+        <Fragment key={c.name}>
+          <span aria-hidden="true">/</span>
+          {c.href ? <Link href={c.href}>{c.name}</Link> : <span aria-current="page">{c.name}</span>}
+        </Fragment>
+      ))}
+    </nav>
   );
 }
 export function PageHero({
@@ -192,22 +239,9 @@ export function PageHero({
   title: string;
   intro: string;
 }) {
-  const d = dictionary(locale);
   return (
     <section className="page-hero container">
-      <nav className="breadcrumb" aria-label={d.breadcrumb}>
-        <Link href={`/${locale}`}>{d.home}</Link>
-        {trail.map((c) => (
-          <Fragment key={c.name}>
-            <span aria-hidden="true">/</span>
-            {c.href ? (
-              <Link href={c.href}>{c.name}</Link>
-            ) : (
-              <span aria-current="page">{c.name}</span>
-            )}
-          </Fragment>
-        ))}
-      </nav>
+      <Breadcrumb locale={locale} trail={trail} />
       <Label>{label}</Label>
       <h1>{title}</h1>
       <p>{intro}</p>
@@ -241,7 +275,7 @@ export function Home({ locale }: { locale: Locale }) {
           </h1>
           <p>{d.intro}</p>
           <div className="buttons">
-            <Button href={`/${locale}/businesses`} light>
+            <Button href="#companies" light>
               {d.explore}
             </Button>
             <Link className="hero-link" href={`/${locale}/about`}>
@@ -255,36 +289,14 @@ export function Home({ locale }: { locale: Locale }) {
           <span className="hero-coordinate" dir="ltr">
             41°00′ N &nbsp; 28°58′ E
           </span>
-          <a href="#introduction" aria-label={d.who} className="scroll-arrow">
+          <a href="#companies" aria-label={d.groupLabel} className="scroll-arrow">
             ↓
           </a>
         </div>
       </section>
-      <section className="container section intro-grid" id="introduction">
-        <Label>{d.who}</Label>
-        <div>
-          <h2>{d.whoTitle}</h2>
-          <div className="intro-copy">
-            <p className="lead">{d.whoText}</p>
-            <p>{d.whoMore}</p>
-          </div>
-          <Link className="text-link" href={`/${locale}/about`}>
-            {d.story}
-            <Arrow />
-          </Link>
-        </div>
-      </section>
-      <section className="section businesses-section">
+      <section className="section group-section" id="companies">
         <div className="container">
-          <div className="section-head">
-            <div>
-              <Label>{d.businesses}</Label>
-              <h2>{d.businessesTitle}</h2>
-            </div>
-            <p>{d.businessIntro}</p>
-          </div>
-          <Businesses locale={locale} />
-          <p className="image-note">{d.imageNote}</p>
+          <Companies locale={locale} heading />
         </div>
       </section>
       <section className="container section">
@@ -298,7 +310,7 @@ export function Home({ locale }: { locale: Locale }) {
             <Arrow />
           </Link>
         </div>
-        <Markets locale={locale} />
+        <Markets locale={locale} compact />
       </section>
       <section className="vision-section">
         <div className="container vision-inner">
@@ -314,25 +326,6 @@ export function Home({ locale }: { locale: Locale }) {
           <span className="vision-word" aria-hidden="true">
             B.
           </span>
-        </div>
-      </section>
-      <section className="container section partnership-home">
-        <div>
-          <Label>{d.partnerships}</Label>
-          <h2>{d.partnershipsTitle}</h2>
-        </div>
-        <div>
-          <p className="lead">{d.partnershipIntro}</p>
-          <div className="partner-links">
-            <Link href={`/${locale}/inquiries/investment`}>
-              {d.investmentCta}
-              <Arrow />
-            </Link>
-            <Link href={`/${locale}/inquiries/partnership`}>
-              {d.partnershipCta}
-              <Arrow />
-            </Link>
-          </div>
         </div>
       </section>
       {publishedArticles().length > 0 && (
