@@ -10,9 +10,15 @@ export function About({ locale }: { locale: Locale }) {
   const d = dictionary(locale);
   return (
     <>
-      <PageHero locale={locale} label={d.nav[1]} title={d.aboutTitle} intro={d.aboutIntro} />
+      <PageHero
+        locale={locale}
+        trail={[{ name: d.nav[1] }]}
+        label={d.nav[1]}
+        title={d.aboutTitle}
+        intro={d.aboutIntro}
+      />
       <div className="container">
-        <Photo name="istanbul.jpg" alt={d.based} className="detail-image" />
+        <Photo name="istanbul-bosphorus.jpg" alt={d.based} className="detail-image" />
       </div>
       <section className="container section prose-grid">
         <div>
@@ -78,6 +84,7 @@ export function BusinessIndex({ locale }: { locale: Locale }) {
     <>
       <PageHero
         locale={locale}
+        trail={[{ name: d.nav[2] }]}
         label={d.nav[2]}
         title={d.businessesTitle}
         intro={d.businessIntro}
@@ -105,7 +112,13 @@ export function BusinessDetail({ locale, id }: { locale: Locale; id: string }) {
     url = index === 1 ? site.hospitality : site.realEstate;
   return (
     <>
-      <PageHero locale={locale} label={b.sector} title={b.name} intro={b.desc} />
+      <PageHero
+        locale={locale}
+        trail={[{ name: d.nav[2], href: `/${locale}/businesses` }, { name: b.name }]}
+        label={b.sector}
+        title={b.name}
+        intro={b.desc}
+      />
       <div className="container">
         <Photo name={b.image} alt={b.alt} className="detail-image" />
         <p className="image-note">{d.imageNote}</p>
@@ -149,9 +162,15 @@ export function MarketIndex({ locale }: { locale: Locale }) {
   const d = dictionary(locale);
   return (
     <>
-      <PageHero locale={locale} label={d.nav[3]} title={d.marketsTitle} intro={d.marketsIntro} />
+      <PageHero
+        locale={locale}
+        trail={[{ name: d.nav[3] }]}
+        label={d.nav[3]}
+        title={d.marketsTitle}
+        intro={d.marketsIntro}
+      />
       <div className="container">
-        <Photo name="istanbul.jpg" alt={d.based} className="detail-image" />
+        <Photo name="istanbul-bosphorus.jpg" alt={d.based} className="detail-image" />
       </div>
       <section className="container body-section">
         <Markets locale={locale} />
@@ -170,7 +189,13 @@ export function MarketDetail({ locale, id }: { locale: Locale; id: string }) {
     m = d.market[i];
   return (
     <>
-      <PageHero locale={locale} label={m.status} title={m.name} intro={m.desc} />
+      <PageHero
+        locale={locale}
+        trail={[{ name: d.nav[3], href: `/${locale}/markets` }, { name: m.name }]}
+        label={m.status}
+        title={m.name}
+        intro={m.desc}
+      />
       <section className="container body-section prose-grid">
         <div>
           <Label>{d.markets}</Label>
@@ -200,6 +225,7 @@ export function Partnerships({ locale }: { locale: Locale }) {
     <>
       <PageHero
         locale={locale}
+        trail={[{ name: d.nav[4] }]}
         label={d.nav[4]}
         title={d.partnershipHero}
         intro={d.partnershipIntro}
@@ -230,7 +256,13 @@ export function Contact({ locale }: { locale: Locale }) {
   const d = dictionary(locale);
   return (
     <>
-      <PageHero locale={locale} label={d.contact} title={d.contactTitle} intro={d.contactIntro} />
+      <PageHero
+        locale={locale}
+        trail={[{ name: d.contact }]}
+        label={d.contact}
+        title={d.contactTitle}
+        intro={d.contactIntro}
+      />
       <section className="container body-section">
         <div className="contact-grid">
           <div className="contact-panel">
@@ -295,6 +327,10 @@ export function InquiryPage({
     <>
       <PageHero
         locale={locale}
+        trail={[
+          { name: d.nav[4], href: `/${locale}/partnerships` },
+          { name: kind === 'investment' ? d.investmentCta : d.partnershipCta },
+        ]}
         label={d.partnerships}
         title={kind === 'investment' ? d.investmentTitle : d.partnershipFormTitle}
         intro={d.formIntro}
@@ -327,6 +363,7 @@ export function InsightIndex({ locale }: { locale: Locale }) {
     <>
       <PageHero
         locale={locale}
+        trail={[{ name: d.nav[5] }]}
         label={d.insights}
         title={d.insightsTitle}
         intro={d.insightsIntro}
@@ -350,6 +387,7 @@ export function ArticlePage({ locale, slug }: { locale: Locale; slug: string }) 
     <>
       <PageHero
         locale={locale}
+        trail={[{ name: d.nav[5], href: `/${locale}/insights` }, { name: t.title }]}
         label={d.categories[categoryIds.indexOf(a.category)]}
         title={t.title}
         intro={t.description}
@@ -394,6 +432,7 @@ export function Legal({ locale, kind }: { locale: Locale; kind: 'privacy' | 'ter
     <>
       <PageHero
         locale={locale}
+        trail={[{ name: d[kind] }]}
         label={d.legalUpdated}
         title={d[kind]}
         intro={kind === 'privacy' ? d.privacyIntro : d.termsIntro}
