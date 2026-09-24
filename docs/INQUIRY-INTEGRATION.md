@@ -1,18 +1,17 @@
-# Receiving service contract
+# Contact form delivery
 
-The website POSTs JSON over HTTPS to the configured private receiver, with `Authorization: Bearer <secret>` and `Idempotency-Key: <requestId>`. Reject wrong secrets. The browser never receives the URL secret, Redis credentials or Turnstile secret.
+The contact form (`components/ContactForm.tsx`) posts JSON to `/api/inquiries`:
 
-Payload: `schemaVersion: 1`, UUID `requestId`, `kind`, `locale`, name, company, professional email, phone, country, proposal description, sector/opportunity OR industry/website/partnership, `consent: "yes"`, ISO `receivedAt`, `consentVersion`, and optional attachment `{name: "company-proposal.pdf", contentType: "application/pdf", base64, quarantine: true}`. Anti-bot tokens and raw client IPs are excluded.
+`topic` (`general`, `investment` or `partnership`, from the page it was sent on), `locale`, `name`, `company` (optional), `country` (ISO 3166-1 alpha-2 code whose calling code is prefixed to the number), `phone` (national number without the country code), `website` (optional; `company.com` is stored as `https://company.com/`), `message`, `startedAt`, and the hidden honeypot `websiteTrap`.
 
-Receiver requirements:
+The route (`app/api/inquiries/route.ts`):
 
-- Validate schema again, authenticate, deduplicate UUIDs and durably store before acknowledging. Do not return a success code for an unpersisted queue item or failed CRM write.
-- Store PDF bytes in private storage under a generated object key, outside a public web root. Never use the submitted filename. Block access pending malware scan; clean files require authenticated access with safe download headers. Delete infected files. File signatures at the website boundary are not a malware scanner.
-- Enforce the approved retention/deletion policy for inquiries, attachments, logs and backups. Restrict operator access. Never log proposal bodies or secrets.
-- Return HTTP 200/201 JSON `{ "accepted": true, "id": "opaque-reference" }`; ID must match `[A-Za-z0-9_-]{1,100}`. With a file, also return `"attachmentStatus": "quarantined"` only after private quarantine persistence succeeds.
-- A retry with the same requestId must return the same receipt without creating another inquiry. Subsequent CRM sync should also be idempotent.
-- For transient failure, return a non-2xx response. The site shows an error, retains entered information for retry, and never reports a successful submission without the expected acknowledgment.
+1. Returns 503 while `RESEND_API_KEY` is unset.
+2. Accepts only requests whose `Origin` is the site itself or listed in `INQUIRY_ALLOWED_ORIGINS`, with `Content-Type: application/json` and a body of at most 16 KB (read with a bounded stream).
+3. Silently drops a request with a filled honeypot (reports success to the bot, sends nothing).
+4. Validates every field with the same Zod schema the browser uses (`lib/inquiry-schema.ts`) and rejects forms completed in under 3 seconds or older than 24 hours; field errors are returned as `{ code: "validation", fields: [...] }` with status 422.
+5. Applies the shared Upstash rate limit (5 per IP per 15 minutes, HMAC-hashed IPs) when `UPSTASH_REDIS_REST_URL`, `UPSTASH_REDIS_REST_TOKEN` and `RATE_LIMIT_SALT` are set; a limiter failure blocks the request.
+6. Emails the request through the Resend API (`lib/inquiry-service.ts`) to `CONTACT_TO_EMAIL` (default `info@byhadara.com`) from `CONTACT_FROM_EMAIL`. The email contains every field, the full international phone number with `tel:` and WhatsApp links, the topic and the site language. All values are HTML-escaped.
+7. Returns 200 `{ accepted: true }` only after Resend confirms the message with an ID; any provider error returns 502 and the form keeps the visitor's input so they can retry.
 
-The route limits a multipart body to 2 MB + 64 KB while reading the stream. Attachments are PDF-only, at most 2 MB, checked for header and EOF signatures; privacy consent, minimum proposal length, enumerated categories, minimum completion time, honeypot, Turnstile hostname/action, and an atomic Redis 5 attempts / 15 minutes limit are verified. On Vercel, use the platform-overwritten IP header. On another host, configure a trusted proxy/IP policy before production; the current non-Vercel limiter deliberately shares a `local` bucket.
-
-The local tests use mocked services and synthetic records only. They validate boundaries, not real email delivery, CRM persistence or malware scanning. Real service validation is a deployment activation requirement.
+Tests in `tests/inquiries.test.ts` use a mocked provider and synthetic data only. Real delivery is verified after deployment by sending a test request.

@@ -24,11 +24,14 @@ test('language switch preserves a business detail route', async ({ page }) => {
   await expect(page.locator('html')).toHaveAttribute('dir', 'rtl');
 });
 test('unconfigured forms do not collect data or promise delivery', async ({ page }) => {
-  await page.goto('/en/inquiries/investment');
-  await expect(page.getByRole('button', { name: 'Submit inquiry' })).toBeDisabled();
-  await expect(
-    page.getByText('Online inquiries are not available yet.', { exact: false }),
-  ).toBeVisible();
+  for (const path of ['/en/contact', '/en/inquiries/investment']) {
+    await page.goto(path);
+    await expect(page.getByRole('button', { name: 'Send request' })).toBeDisabled();
+    await expect(page.getByLabel('Country code')).toBeDisabled();
+    await expect(
+      page.getByText('Online requests are not available at the moment.', { exact: false }),
+    ).toBeVisible();
+  }
 });
 test('mobile menu keyboard behavior', async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });

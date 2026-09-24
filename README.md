@@ -25,9 +25,11 @@ If a sandbox limits file watching, use `WATCHPACK_POLLING=true pnpm dev --webpac
 - `components/`: reusable corporate layouts and narrowly scoped interactive controls.
 - `content/site.ts`: complete EN/AR/TR copy, businesses and markets.
 - `content/articles.ts`: typed editorial records. Only approved, published, non-future records appear; all three translations are required. No starter news is published.
-- `content/forms.ts`: localized forms and validation feedback.
-- `lib/inquiry-*`: shared Zod validation, server configuration and delivery adapter.
-- `app/api/inquiries`: bounded multipart processing, origin validation, shared rate limiting, Turnstile and receiver acknowledgment.
+- `content/forms.ts`: localized contact-form labels and validation feedback.
+- `content/countries.ts`: calling codes for all 245 countries and territories, with localized names.
+- `components/ContactForm.tsx`: the one contact form used on the contact page and both inquiry pages.
+- `lib/inquiry-*`: shared Zod validation, configuration and the email delivery adapter (Resend).
+- `app/api/inquiries`: bounded JSON processing, same-origin check, honeypot and timing checks, optional shared rate limiting, and email delivery.
 - `styles/globals.css`: custom responsive CSS and locally hosted font imports.
 - `app/sitemap.ts`, `app/robots.ts`, `app/manifest.ts`, `lib/seo.ts`: canonical URLs, language alternates, metadata, share images and structured data.
 - `content/seo.ts`: EN/AR/TR search titles and descriptions for every route.
@@ -38,20 +40,19 @@ If a sandbox limits file watching, use `WATCHPACK_POLLING=true pnpm dev --webpac
 
 Add an `Article` in `content/articles.ts` with a stable slug, category, ISO publication date, complete EN/AR/TR title, description and paragraph body. Use licensed local images under `public/images` with translated alt text. Keep `status: 'draft'` and `approved: false` until approved. Set both to published/true and rebuild only after approval. Article pages, search, category filtering, latest three homepage items (the homepage section stays hidden until the first article is published), related articles, metadata and sitemap update automatically. Text is rendered as React text, never raw HTML. There is no administrative login or external CMS in this version.
 
-## Inquiry activation — deliberately disabled by default
+## Contact form
 
-The deployed corporate site can run without credentials. Both inquiry forms display an accurate unavailable notice and disable their fields/submission. The API returns 503; no data is stored or sent. No fake success responses or browser-local storage are used.
+The contact page and the investment and partnership pages share one form: full name, company name (optional), phone number with a country-code list covering all 245 countries and territories, company website (optional) and the request. Each request is emailed to `info@byhadara.com` (override with `CONTACT_TO_EMAIL`), with the page it came from, call and WhatsApp links and the site language.
 
-Before enabling:
+Delivery uses [Resend](https://resend.com), the same service as the HADARA Real Estate website. Until `RESEND_API_KEY` is set, the forms are disabled, show the email address and phone number instead, and the API returns 503; nothing is stored or sent, and no success is ever shown without the provider accepting the email.
 
-1. Confirm the responsible legal company, privacy contact, exact retention period, receiving providers and any international processing arrangements. Update all three privacy notices in `content/site.ts`. Set a verified `CONTACT_EMAIL` and only then `PRIVACY_REVIEWED=true`.
-2. Provision a private receiving endpoint (`INQUIRY_WEBHOOK_URL`) with bearer secret. Implement the contract in `docs/INQUIRY-INTEGRATION.md`, including durable storage, idempotency, private attachment quarantine and malware scanning. This repo implements the adapter, not the external service.
-3. Configure Upstash Redis REST credentials and a random `RATE_LIMIT_SALT`. Rate limiting is atomic and shared across server instances; failures block submissions. No in-memory fallback in production.
-4. Configure a Cloudflare Turnstile site for the actual domain, its public site key and server secret, with explicit `TURNSTILE_HOSTNAMES`.
-5. Set `INQUIRY_ALLOWED_ORIGINS` to exact trusted origins. Do not use a wildcard. Configure preview environments separately, if needed.
-6. Set `INQUIRIES_ENABLED=true`, rebuild/redeploy, and verify a synthetic inquiry through the real receiver and private attachment lifecycle. Only then accept personal data.
+To turn it on in the Vercel project `byhadara`:
 
-HubSpot assessment: the connected account can support operator-side CRM work, but a chat connector is not a deployed server credential. No contacts, pipelines or forms were created in HubSpot. The authenticated receiving adapter is intentionally CRM-neutral; a receiver can create HubSpot records with its own server-side authorization after approval.
+1. Add `RESEND_API_KEY` (the key used by the real estate site works).
+2. Set `CONTACT_FROM_EMAIL` to an address on a domain verified in Resend, for example `BYHADARA Website <website@byhadara.com>` after verifying `byhadara.com`. Resend's default `onboarding@resend.dev` sender only delivers to the Resend account owner's own address.
+3. Redeploy and send a test request from `/en/contact`.
+
+Protection: same-origin requests only, a 16 KB body limit, validation on both client and server, a hidden honeypot field, a minimum completion time, and an optional shared rate limit (5 requests per IP per 15 minutes) when Upstash Redis credentials and `RATE_LIMIT_SALT` are set. See `docs/INQUIRY-INTEGRATION.md`.
 
 ## Search engine optimization
 
@@ -64,7 +65,7 @@ HubSpot assessment: the connected account can support operator-side CRM work, bu
 
 ## Deployment on Vercel
 
-Import `kerimalastal-source/BYHADARA`, choose Next.js, repository root, `pnpm build`; use the checked-in lockfile. The code does not need secrets for corporate pages. Keep inquiry activation flags false until configured. Vercel preview environments are noindex. Canonicals refer to the supplied intended domain `https://byhadara.com`.
+Import `kerimalastal-source/BYHADARA`, choose Next.js, repository root, `pnpm build`; use the checked-in lockfile. The code does not need secrets for corporate pages. Set `RESEND_API_KEY` to turn on the contact form (see below). Vercel preview environments are noindex. Canonicals refer to the supplied intended domain `https://byhadara.com`.
 
 Verify domain ownership, existing DNS and production assignment in Vercel before changing them. The repository does not automatically modify DNS. Inspect the production deployment, all locales and API availability after deployment. Do not describe the custom domain as live until it resolves to the verified production build.
 
@@ -75,7 +76,7 @@ Verify domain ownership, existing DNS and production assignment in Vercel before
 - Responsible legal entity: unset, never invented.
 - Official logo: temporary replaceable typographic BYHADARA GROUP wordmark.
 - Approved articles: no articles published yet.
-- Inquiry receiver, private storage/scanning, CRM credentials and privacy details: pending configuration.
+- Contact form delivery: needs `RESEND_API_KEY` (and a verified sender domain) in the Vercel project; responsible legal entity for the privacy notice: pending.
 
 No fund status, holding-company registration, regulated service, returns, directors, office network or performance statistics are claimed. Company facts, projects and products shown on the company pages come from the group companies' own websites. Market descriptions distinguish existing Türkiye activities from regional objectives.
 

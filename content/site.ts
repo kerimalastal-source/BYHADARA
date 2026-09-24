@@ -248,9 +248,11 @@ export const dictionaries = {
     contactTitle: 'A conversation can\nopen new possibilities.',
     contactIntro:
       'Tell us where your ambitions meet ours. Choose the most relevant way to connect with the group or visit our specialized business platforms.',
-    direct: 'Business inquiries',
-    directText:
-      'For hospitality products and procurement, contact HADARA Hospitality through its official website.',
+    directContact: 'Direct contact',
+    emailLabel: 'Email',
+    phoneLabel: 'Phone',
+    locationLabel: 'Location',
+    companySites: 'Our companies online',
     specializations: 'Areas of specialization',
     targetMarkets: 'Market focus',
     strategicInterest: 'Strategic interests',
@@ -258,8 +260,7 @@ export const dictionaries = {
     partnershipFormTitle: 'Become a\nstrategic partner.',
     formIntro:
       'Share an introduction and a clear outline of your proposal. Please do not include sensitive financial information or proof of funds.',
-    formUnavailable:
-      'Online inquiries are not available yet. Please use the verified business website for hospitality inquiries. Group inquiry submissions will open once our secure receiving service is configured.',
+    formUnavailable: `Online requests are not available at the moment. Please email ${site.email} or call ${site.phone}.`,
     formDisclaimer:
       'An inquiry is an introduction only. It does not constitute an investment offer, acceptance, or agreement.',
     legalUpdated: 'Website information',
@@ -271,24 +272,20 @@ export const dictionaries = {
         'The website does not use advertising trackers or analytics. Hosting infrastructure may process standard request information for delivery and security. Fonts and photographs are served from the website itself.',
       ],
       [
-        'Inquiry information',
-        'When online inquiries are enabled, we request business contact details, country, proposal information, and explicit consent. An optional PDF company profile may be included. Do not submit sensitive personal or financial information.',
+        'Contact requests',
+        'The contact form asks for your full name, phone number with country code and your request, and optionally your company name and website. Please do not include sensitive personal or financial information.',
       ],
       [
-        'Availability and processing',
-        'When the inquiry service is unavailable, the form does not send or save your proposal. When enabled, information is sent to the configured private receiving service to review and respond to the inquiry. A confirmation appears only after that service acknowledges acceptance.',
+        'How requests are handled',
+        'Your request is sent by email to info@byhadara.com through our email delivery provider so that our team can review and answer it. It is not sold or used for advertising. A confirmation appears only after the email has been accepted for delivery.',
       ],
       [
-        'Attachments and protection',
-        'Only PDF files up to 2 MB are accepted. Attachments must be stored privately and quarantined for scanning by the receiving service before anyone opens them. We use validation, spam checks, and rate limits when submissions are enabled.',
+        'Protection',
+        'Requests travel over an encrypted connection. Submissions are validated and protected against spam.',
       ],
       [
         'Your choices',
-        'Submitting an inquiry is optional. You may request information about an inquiry, correction, or deletion through the group’s verified contact channel when published. Do not send personal data until that channel and the responsible company are identified.',
-      ],
-      [
-        'Before online inquiries open',
-        'The responsible legal entity, privacy contact, retention period, receiving providers, and any international processing arrangements must be confirmed and this notice updated before forms are enabled.',
+        'Sending a request is optional. To ask about, correct or delete the details you sent us, write to info@byhadara.com.',
       ],
     ],
     termsIntro:
@@ -535,8 +532,11 @@ export const dictionaries = {
     contactTitle: 'محادثة واحدة قد\nتفتح آفاقاً جديدة.',
     contactIntro:
       'أخبرنا أين تلتقي طموحاتك مع رؤيتنا. اختر وسيلة التواصل الأنسب، أو زر منصات شركاتنا المتخصصة.',
-    direct: 'استفسارات الأعمال',
-    directText: 'للاستفسار عن منتجات الضيافة والمشتريات، تواصل مع حضارة للضيافة عبر موقعها الرسمي.',
+    directContact: 'تواصل مباشر',
+    emailLabel: 'البريد الإلكتروني',
+    phoneLabel: 'الهاتف',
+    locationLabel: 'الموقع',
+    companySites: 'مواقع شركاتنا',
     specializations: 'مجالات التخصص',
     targetMarkets: 'الأسواق المستهدفة',
     strategicInterest: 'الاهتمامات الاستراتيجية',
@@ -544,8 +544,7 @@ export const dictionaries = {
     partnershipFormTitle: 'كن شريكاً\nاستراتيجياً.',
     formIntro:
       'عرّفنا بنفسك وقدّم وصفاً واضحاً لمقترحك. يرجى عدم إرفاق معلومات مالية حساسة أو إثباتات للأموال.',
-    formUnavailable:
-      'الاستفسارات الإلكترونية غير متاحة بعد. يرجى استخدام موقع الشركة المعتمد لاستفسارات الضيافة. سيتاح إرسال استفسارات المجموعة بعد تهيئة خدمة الاستقبال الآمنة.',
+    formUnavailable: `إرسال الطلبات عبر الموقع غير متاح حالياً. يرجى مراسلتنا على ${site.email} أو الاتصال على ${site.phone}.`,
     formDisclaimer: 'الاستفسار خطوة للتعارف فقط، ولا يشكّل عرضاً استثمارياً أو قبولاً أو اتفاقاً.',
     legalUpdated: 'معلومات الموقع',
     privacyIntro:
@@ -553,27 +552,23 @@ export const dictionaries = {
     privacySections: [
       [
         'تصفح الموقع',
-        'لا يستخدم الموقع أدوات تتبع إعلانية أو تحليلات. قد تعالج الاستضافة معلومات الطلبات المعتادة لتقديم الخدمة وحمايتها. تُقدَّم الخطوط والصور من الموقع نفسه.',
+        'لا يستخدم الموقع أدوات تتبع إعلانية أو تحليلات. قد تعالج الاستضافة معلومات الطلبات المعتادة لتقديم الخدمة وحمايتها. تُقدَّم الخطوط والصور من الموقع نفسه.',
       ],
       [
-        'بيانات الاستفسارات',
-        'عند تفعيل الاستفسارات، نطلب بيانات التواصل المهني والدولة ووصف المقترح والموافقة الصريحة. يمكن إرفاق ملف تعريفي اختياري بصيغة PDF. لا ترسل بيانات شخصية أو مالية حساسة.',
+        'طلبات التواصل',
+        'يطلب نموذج التواصل الاسم الكامل ورقم الهاتف مع رمز الدولة ونص الطلب، واسم الشركة وموقعها الإلكتروني اختيارياً. يرجى عدم إرسال بيانات شخصية أو مالية حساسة.',
       ],
       [
-        'الإتاحة والمعالجة',
-        'عندما تكون خدمة الاستفسارات غير متاحة، لا يرسل النموذج مقترحك ولا يحفظه. عند التفعيل، تُرسل البيانات إلى خدمة الاستقبال الخاصة المهيأة لمراجعتها والرد عليها. لا يظهر التأكيد إلا بعد إقرار الخدمة بقبول الاستفسار.',
+        'كيف نتعامل مع الطلبات',
+        'يُرسَل طلبك بالبريد الإلكتروني إلى info@byhadara.com عبر مزوّد خدمة إرسال البريد، ليراجعه فريقنا ويرد عليه. لا نبيع هذه البيانات ولا نستخدمها للإعلانات. لا يظهر تأكيد الإرسال إلا بعد قبول الرسالة للتسليم.',
       ],
       [
-        'المرفقات والحماية',
-        'تُقبل ملفات PDF حتى ٢ ميغابايت فقط. يجب حفظها بشكل خاص وعزلها للفحص لدى خدمة الاستقبال قبل فتحها. نستخدم التحقق من البيانات ومكافحة الرسائل المزعجة وتحديد معدل الطلبات عند تفعيل الإرسال.',
+        'الحماية',
+        'تنتقل الطلبات عبر اتصال مشفّر، ونتحقق من البيانات المرسلة ونحميها من الرسائل المزعجة.',
       ],
       [
         'خياراتك',
-        'تقديم الاستفسار اختياري. يمكنك طلب معلومات عن استفسارك أو تصحيحه أو حذفه عبر وسيلة التواصل المعتمدة للمجموعة عند نشرها. لا ترسل بيانات شخصية قبل تحديد هذه الوسيلة والشركة المسؤولة.',
-      ],
-      [
-        'قبل تفعيل الاستفسارات',
-        'يجب تأكيد الكيان القانوني المسؤول ووسيلة التواصل للخصوصية ومدة الاحتفاظ بالبيانات ومقدمي خدمة الاستقبال وأي ترتيبات لمعالجتها دولياً، وتحديث هذا الإشعار قبل تفعيل النماذج.',
+        'إرسال الطلب اختياري. للاستفسار عن البيانات التي أرسلتها أو تصحيحها أو حذفها، راسلنا على info@byhadara.com.',
       ],
     ],
     termsIntro: 'توضح هذه الشروط غرض الموقع المؤسسي لمجموعة باي حضارة وحدود استخدامه.',
@@ -830,9 +825,11 @@ export const dictionaries = {
     contactTitle: 'Bir görüşme, yeni\nolanaklar açabilir.',
     contactIntro:
       'Hedeflerinizin vizyonumuzla nerede buluştuğunu anlatın. Grubumuzla iletişim kurmanın uygun yolunu seçin veya uzman şirket platformlarımızı ziyaret edin.',
-    direct: 'Ticari talepler',
-    directText:
-      'Konaklama ürünleri ve satın alma talepleri için HADARA Hospitality ile resmi web sitesi üzerinden iletişime geçin.',
+    directContact: 'Doğrudan iletişim',
+    emailLabel: 'E-posta',
+    phoneLabel: 'Telefon',
+    locationLabel: 'Konum',
+    companySites: 'Şirketlerimizin web siteleri',
     specializations: 'Uzmanlık alanları',
     targetMarkets: 'Pazar odağı',
     strategicInterest: 'Stratejik ilgi alanları',
@@ -840,8 +837,7 @@ export const dictionaries = {
     partnershipFormTitle: 'Stratejik iş\nortağımız olun.',
     formIntro:
       'Kendinizi tanıtın ve önerinizi açıkça anlatın. Hassas finansal bilgi veya fon kanıtı paylaşmayın.',
-    formUnavailable:
-      'Çevrimiçi talepler henüz açık değildir. Konaklama talepleri için doğrulanmış şirket web sitesini kullanabilirsiniz. Güvenli alım hizmetimiz yapılandırıldığında grup talepleri açılacaktır.',
+    formUnavailable: `Site üzerinden talep gönderimi şu anda kullanılamıyor. Lütfen ${site.email} adresine yazın veya ${site.phone} numarasını arayın.`,
     formDisclaimer:
       'Talep yalnızca bir tanışma adımıdır; yatırım teklifi, kabulü veya sözleşmesi oluşturmaz.',
     legalUpdated: 'Web sitesi bilgileri',
@@ -853,24 +849,20 @@ export const dictionaries = {
         'Site reklam takipçisi veya analitik kullanmaz. Barındırma altyapısı, hizmet sunumu ve güvenlik için standart istek bilgilerini işleyebilir. Yazı tipleri ve fotoğraflar sitenin kendisinden sunulur.',
       ],
       [
-        'Talep bilgileri',
-        'Çevrimiçi talepler açıldığında iş iletişim bilgileri, ülke, öneri bilgisi ve açık onay istenir. İsteğe bağlı PDF şirket profili eklenebilir. Hassas kişisel veya finansal bilgi göndermeyin.',
+        'İletişim talepleri',
+        'İletişim formu ad soyad, ülke koduyla telefon numarası ve talebinizi; isteğe bağlı olarak şirket adı ve web sitesini ister. Lütfen hassas kişisel veya finansal bilgi göndermeyin.',
       ],
       [
-        'Kullanılabilirlik ve işleme',
-        'Talep hizmeti kapalıyken form önerinizi göndermez veya kaydetmez. Açıldığında bilgiler, inceleme ve yanıt için yapılandırılmış özel alım hizmetine iletilir. Onay yalnızca hizmet kabulü doğruladığında gösterilir.',
+        'Taleplerin işlenmesi',
+        'Talebiniz, ekibimizin inceleyip yanıtlayabilmesi için e-posta gönderim sağlayıcımız aracılığıyla info@byhadara.com adresine e-posta olarak iletilir. Bilgiler satılmaz ve reklam için kullanılmaz. Onay yalnızca e-posta teslim için kabul edildikten sonra gösterilir.',
       ],
       [
-        'Ekler ve koruma',
-        'En fazla 2 MB PDF dosyaları kabul edilir. Alım hizmeti dosyaları özel olarak saklamalı ve açılmadan önce tarama için karantinaya almalıdır. Gönderim açıkken doğrulama, spam kontrolü ve istek sınırlaması uygulanır.',
+        'Koruma',
+        'Talepler şifreli bağlantı üzerinden iletilir. Gönderimler doğrulanır ve spama karşı korunur.',
       ],
       [
         'Seçimleriniz',
-        'Talep göndermek isteğe bağlıdır. Doğrulanmış grup iletişim kanalı yayımlandığında talebinizle ilgili bilgi, düzeltme veya silme isteyebilirsiniz. Bu kanal ve sorumlu şirket belirlenmeden kişisel veri göndermeyin.',
-      ],
-      [
-        'Talepler açılmadan önce',
-        'Sorumlu tüzel kişi, gizlilik iletişim noktası, saklama süresi, hizmet sağlayıcıları ve uluslararası işleme düzenlemeleri doğrulanmalı; formlar açılmadan bu bildirim güncellenmelidir.',
+        'Talep göndermek isteğe bağlıdır. Gönderdiğiniz bilgiler hakkında bilgi almak, bunları düzeltmek veya silmek için info@byhadara.com adresine yazabilirsiniz.',
       ],
     ],
     termsIntro:
