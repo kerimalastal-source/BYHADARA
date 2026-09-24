@@ -59,7 +59,8 @@ Verify domain ownership, existing DNS and production assignment in Vercel before
 ## Content that needs owner confirmation
 
 - Official HADARA Real Estate URL: unset, never guessed.
-- Group contact email/phone and responsible legal entity: unset, never invented.
+- Group contact email (info@byhadara.com) and phone (+90 531 930 92 14): confirmed by the owner; defaults in `content/site.ts`, overridable with `CONTACT_EMAIL`/`CONTACT_PHONE`.
+- Responsible legal entity: unset, never invented.
 - Official logo: temporary replaceable typographic BYHADARA GROUP wordmark.
 - Approved articles: no articles published yet.
 - Inquiry receiver, private storage/scanning, CRM credentials and privacy details: pending configuration.

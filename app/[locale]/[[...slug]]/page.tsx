@@ -46,6 +46,8 @@ export default async function Page({ params }: Props) {
           description:
             'Istanbul-based investment and business development group connecting independently registered companies.',
           location: { '@type': 'Place', name: 'Istanbul, Türkiye' },
+          email: site.email,
+          telephone: site.phone,
         },
         {
           '@type': 'WebSite',

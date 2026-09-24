@@ -107,13 +107,13 @@ export function Footer({ locale }: { locale: Locale }) {
           ))}
           <Link href={`/${locale}/contact`}>{d.contact}</Link>
           {site.email && (
-            <a href={`mailto:${site.email}`} dir="ltr">
-              {site.email}
+            <a href={`mailto:${site.email}`}>
+              <span dir="ltr">{site.email}</span>
             </a>
           )}
           {site.phone && (
-            <a href={`tel:${site.phone.replace(/[^+\d]/g, '')}`} dir="ltr">
-              {site.phone}
+            <a href={`tel:${site.phone.replace(/[^+\d]/g, '')}`}>
+              <span dir="ltr">{site.phone}</span>
             </a>
           )}
         </div>
