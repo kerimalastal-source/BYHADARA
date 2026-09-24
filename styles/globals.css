@@ -683,21 +683,6 @@ html[dir='rtl'] .hero-shade {
 .notice a {
   text-decoration: underline;
 }
-.contact-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 35px;
-}
-.contact-panel {
-  padding: 36px;
-  border: 1px solid var(--line);
-}
-.contact-panel p {
-  margin: 22px 0;
-}
-.contact-panel h2 {
-  font-size: 30px;
-}
 .filter-bar {
   display: flex;
   gap: 20px;
@@ -766,32 +751,75 @@ html[dir='rtl'] .hero-shade {
   color: #a22323;
   font-size: 13px;
 }
-.consent {
-  display: flex;
-  gap: 12px;
-  align-items: flex-start;
-  margin: 25px 0;
-  font-size: 14px;
-}
-.consent input {
-  margin-top: 6px;
-  width: 18px;
-  height: 18px;
-  accent-color: var(--navy);
-  flex-shrink: 0;
-}
-.consent a {
-  text-decoration: underline;
-}
 .form-status {
   margin-top: 20px;
 }
 .form-status:focus {
   outline: none;
 }
+.form-submit {
+  margin-top: 30px;
+}
 .form-submit:disabled {
   opacity: 0.55;
   cursor: not-allowed;
+}
+.form-fieldset {
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.form-unavailable {
+  margin-bottom: 28px;
+}
+.field .optional {
+  font-weight: 400;
+  color: var(--muted);
+}
+.phone-row {
+  display: grid;
+  grid-template-columns: minmax(170px, 42%) 1fr;
+  gap: 12px;
+}
+.form-note {
+  margin-top: 18px;
+  font-size: 14px;
+}
+.form-note a {
+  text-decoration: underline;
+}
+.contact-list {
+  margin: 28px 0 36px;
+}
+.contact-list div {
+  padding: 16px 0;
+  border-bottom: 1px solid var(--line);
+}
+.contact-list dt {
+  font-size: 13px;
+  color: var(--muted);
+}
+.contact-list dd {
+  margin: 4px 0 0;
+  font-size: 18px;
+  color: var(--navy);
+}
+.form-aside h3 {
+  font-size: 20px;
+}
+.company-links {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+  margin-top: 10px;
+}
+@media (max-width: 640px) {
+  .phone-row {
+    grid-template-columns: 44% 1fr;
+    gap: 8px;
+  }
 }
 .hp {
   position: absolute;
@@ -1605,12 +1633,6 @@ html[lang='ar'] .showcase-tag {
   }
   .value h3 {
     font-size: 18px;
-  }
-  .contact-grid {
-    grid-template-columns: 1fr;
-  }
-  .contact-panel {
-    padding: 28px;
   }
   .form-grid {
     grid-template-columns: 1fr;

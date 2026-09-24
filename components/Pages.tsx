@@ -5,7 +5,6 @@ import { findArticle, publishedArticles, categoryIds } from '@/content/articles'
 import {
   Arrow,
   Breadcrumb,
-  Button,
   Companies,
   HadaraMark,
   Label,
@@ -14,7 +13,8 @@ import {
   FinalCTA,
   PageHero,
 } from './Site';
-import { InquiryForm } from './InquiryForm';
+import { ContactForm } from './ContactForm';
+import { countryOptions } from '@/content/countries';
 import { Insights } from './Insights';
 import { inquiriesEnabled } from '@/lib/inquiry-config';
 import { breadcrumbs } from '@/lib/seo';
@@ -334,54 +334,54 @@ export function Contact({ locale }: { locale: Locale }) {
         title={d.contactTitle}
         intro={d.contactIntro}
       />
-      <section className="container body-section">
-        <div className="contact-grid">
-          <div className="contact-panel">
-            <Label>{d.partnerships}</Label>
-            <h2>{d.investmentCta}</h2>
-            <p>{d.partnershipDescriptions[0]}</p>
-            <Button href={`/${locale}/inquiries/investment`}>{d.investmentCta}</Button>
-          </div>
-          <div className="contact-panel">
-            <Label>{d.partnerships}</Label>
-            <h2>{d.partnershipCta}</h2>
-            <p>{d.partnershipIntro}</p>
-            <Button href={`/${locale}/inquiries/partnership`}>{d.partnershipCta}</Button>
-          </div>
-        </div>
-      </section>
-      <section className="container body-section prose-grid">
-        <div>
-          <Label>{d.based}</Label>
-          <h2>{d.direct}</h2>
-          <p>{d.directText}</p>
-          <a
-            className="text-link"
-            href={site.hospitality}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            {d.business[1].name}
-            <Arrow />
-          </a>
-        </div>
-        <div>
-          {site.email && (
-            <p>
-              <a dir="ltr" href={`mailto:${site.email}`}>
-                {site.email}
+      <section className="container body-section form-shell">
+        <aside className="form-aside">
+          <h2>{d.directContact}</h2>
+          <dl className="contact-list">
+            <div>
+              <dt>{d.emailLabel}</dt>
+              <dd>
+                <a dir="ltr" href={`mailto:${site.email}`}>
+                  {site.email}
+                </a>
+              </dd>
+            </div>
+            <div>
+              <dt>{d.phoneLabel}</dt>
+              <dd>
+                <a dir="ltr" href={`tel:${site.phone.replace(/[^+\d]/g, '')}`}>
+                  {site.phone}
+                </a>
+              </dd>
+            </div>
+            <div>
+              <dt>{d.locationLabel}</dt>
+              <dd>{d.based}</dd>
+            </div>
+          </dl>
+          <h3>{d.companySites}</h3>
+          <div className="company-links">
+            {businessIds.map((id, i) => (
+              <a
+                key={id}
+                className="text-link"
+                href={companyUrl(id, locale)}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {d.business[i].name}
+                <Arrow />
+                <span className="sr-only"> {d.newTab}</span>
               </a>
-            </p>
-          )}
-          {site.phone && (
-            <p>
-              <a dir="ltr" href={`tel:${site.phone.replace(/[^+\d]/g, '')}`}>
-                {site.phone}
-              </a>
-            </p>
-          )}
-          <p>{d.legalIdentity}</p>
-        </div>
+            ))}
+          </div>
+        </aside>
+        <ContactForm
+          locale={locale}
+          topic="general"
+          enabled={inquiriesEnabled()}
+          countries={countryOptions(locale)}
+        />
       </section>
     </>
   );
@@ -415,11 +415,11 @@ export function InquiryPage({
             <Arrow />
           </Link>
         </aside>
-        <InquiryForm
+        <ContactForm
           locale={locale}
-          kind={kind}
+          topic={kind}
           enabled={inquiriesEnabled()}
-          siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || ''}
+          countries={countryOptions(locale)}
         />
       </section>
     </>
