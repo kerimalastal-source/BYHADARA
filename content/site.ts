@@ -70,6 +70,10 @@ export const dictionaries = {
     aboutCompany: 'About the company',
     alsoInGroup: 'Also in the group',
     newTab: '(opens in a new tab)',
+    partnersLabel: 'TRUSTED NETWORK',
+    partnersTitle: 'Our Success Partners',
+    partnersText:
+      'Our companies work alongside leading regional developers and holding groups to deliver projects our clients can rely on.',
     business: [
       {
         name: 'HADARA Real Estate',
@@ -357,6 +361,10 @@ export const dictionaries = {
     aboutCompany: 'نبذة عن الشركة',
     alsoInGroup: 'أيضاً ضمن المجموعة',
     newTab: '(يفتح في نافذة جديدة)',
+    partnersLabel: 'شبكة موثوقة',
+    partnersTitle: 'شركاء النجاح',
+    partnersText:
+      'تعمل شركات المجموعة إلى جانب شركات تطوير ومجموعات قابضة إقليمية رائدة لتسليم مشاريع يعتمد عليها عملاؤنا.',
     business: [
       {
         name: 'حضارة العقارية',
@@ -644,6 +652,10 @@ export const dictionaries = {
     aboutCompany: 'Şirket hakkında',
     alsoInGroup: 'Grubun diğer şirketi',
     newTab: '(yeni sekmede açılır)',
+    partnersLabel: 'GÜVENİLİR AĞ',
+    partnersTitle: 'Başarı Ortaklarımız',
+    partnersText:
+      'Grup şirketlerimiz, müşterilerimizin güvenebileceği projeler için bölgenin önde gelen geliştiricileri ve holding gruplarıyla birlikte çalışır.',
     business: [
       {
         name: 'HADARA Real Estate',

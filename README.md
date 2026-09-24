@@ -31,6 +31,7 @@ If a sandbox limits file watching, use `WATCHPACK_POLLING=true pnpm dev --webpac
 - `styles/globals.css`: custom responsive CSS and locally hosted font imports.
 - `app/sitemap.ts`, `app/robots.ts`, `app/manifest.ts`, `lib/seo.ts`: canonical URLs, language alternates, metadata, share images and structured data.
 - `content/seo.ts`: EN/AR/TR search titles and descriptions for every route.
+- `content/partners.ts`: success partner logos shown on the homepage, mirrored from the HADARA Real Estate website.
 - `content/companies.ts`: links to the group companies' own websites and the selected projects/products shown on their pages (sourced from hadararealestate.com and hadarahospitality.com; keep in sync with those sites).
 
 ## Editorial publishing

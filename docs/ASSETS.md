@@ -19,6 +19,8 @@ HADARA Hospitality product photographs, copied from that company's website repos
 
 `public/images/hadara-mark.png` is the gold HADARA monogram used by both group companies, trimmed and resized from the HADARA Real Estate website repository. HADARA Real Estate project photographs are not stored here: they load from that company's own image host (`static.wixstatic.com`, allowed in `next.config.ts`), exactly as on hadararealestate.com.
 
+Success partner logos in `public/images/partners/` (DTC, Faisal Holding, DAG Holding, WUJHA Development, Lotus, Studio Vertebra) are unmodified, byte-identical copies of `public/partners/` in the HADARA Real Estate website repository (`kerimalastal-source/-kinci_BYHADARA`, commit `5ce13a7`), where the same partners are shown. The logos remain the property of their respective companies; keep `content/partners.ts` in sync with that site.
+
 `istanbul-bosphorus.jpg` is cropped to 2200×1300 (bottom 350 px removed) so that third-party developer signage and a construction site in the original frame are not shown.
 
 Images are hosted locally and served with Next Image sizing, AVIF/WebP support and reserved dimensions. Original downloaded assets retained for future crops.
