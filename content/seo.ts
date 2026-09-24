@@ -12,7 +12,7 @@ export const seo: Record<Locale, Record<string, SeoEntry>> = {
     '': {
       title: 'BYHADARA Group | Istanbul Investment & Business Development',
       description:
-        'BYHADARA Group is an Istanbul-based investment and business development group connecting specialized companies in real estate and hospitality supply.',
+        'BYHADARA Group is the Istanbul-based group behind HADARA Real Estate and HADARA Hospitality, two specialized companies in property and hospitality supply.',
     },
     about: {
       title: 'About Us – Istanbul Investment Group | BYHADARA Group',
@@ -25,14 +25,14 @@ export const seo: Record<Locale, Record<string, SeoEntry>> = {
         'Discover the BYHADARA Group businesses: HADARA Real Estate for property development in Türkiye and HADARA Hospitality for hotel textiles and supplies.',
     },
     'businesses/real-estate': {
-      title: 'HADARA Real Estate – Property in Türkiye | BYHADARA Group',
+      title: 'HADARA Real Estate – Luxury Villas in Istanbul | BYHADARA Group',
       description:
-        'HADARA Real Estate focuses on residential and commercial real estate development and investment in Türkiye, particularly Istanbul. Part of BYHADARA Group.',
+        'HADARA Real Estate, a BYHADARA Group company, has developed luxury villas and residential projects in Istanbul since 2014, including Lotus Yaşam and Lotus Koru.',
     },
     'businesses/hospitality': {
       title: 'HADARA Hospitality – Hotel Textiles & Supplies | BYHADARA Group',
       description:
-        'HADARA Hospitality sources hotel bed linen, towels, bathrobes and guest room essentials from Türkiye for hotels, resorts and serviced apartments.',
+        'HADARA Hospitality, a BYHADARA Group company, supplies hotel linen, towels, bathrobes and guest essentials from Türkiye to 3★–5★ hotels in the GCC and Europe.',
     },
     markets: {
       title: 'Our Markets – Türkiye, GCC & Egypt | BYHADARA Group',
@@ -93,7 +93,7 @@ export const seo: Record<Locale, Record<string, SeoEntry>> = {
     '': {
       title: 'مجموعة باي حضارة BYHADARA | استثمار وتطوير أعمال في إسطنبول',
       description:
-        'مجموعة باي حضارة مجموعة للاستثمار وتطوير الأعمال مقرها إسطنبول، تجمع شركات متخصصة في التطوير العقاري وتوريد مستلزمات الضيافة.',
+        'مجموعة باي حضارة مجموعة للاستثمار وتطوير الأعمال مقرها إسطنبول، تضم شركتين متخصصتين: حضارة العقارية للتطوير العقاري وحضارة للضيافة لتوريد مستلزمات الفنادق.',
     },
     about: {
       title: 'عن مجموعة باي حضارة | مجموعة استثمار في إسطنبول',
@@ -106,14 +106,14 @@ export const seo: Record<Locale, Record<string, SeoEntry>> = {
         'اكتشف شركات مجموعة باي حضارة: حضارة العقارية للتطوير والاستثمار العقاري في تركيا، وحضارة للضيافة لتوريد المنسوجات الفندقية ومستلزمات الضيافة.',
     },
     'businesses/real-estate': {
-      title: 'حضارة العقارية | تطوير واستثمار عقاري في تركيا',
+      title: 'حضارة العقارية | فلل فاخرة ومشاريع سكنية في إسطنبول',
       description:
-        'تركّز حضارة العقارية على التطوير والاستثمار العقاري في تركيا وخاصة إسطنبول، مع الاهتمام بالعقارات السكنية والتجارية. إحدى شركات مجموعة باي حضارة.',
+        'حضارة العقارية، إحدى شركات مجموعة باي حضارة، تطوّر منذ 2014 فللاً فاخرة ومشاريع سكنية عالية الجودة في إسطنبول، منها Lotus Yaşam وLotus Koru.',
     },
     'businesses/hospitality': {
       title: 'حضارة للضيافة | منسوجات فندقية ومستلزمات ضيافة من تركيا',
       description:
-        'توفّر حضارة للضيافة من تركيا بياضات الأسرّة الفندقية والمناشف وأردية الحمام ومستلزمات غرف الضيوف للفنادق والمنتجعات والشقق الفندقية.',
+        'حضارة للضيافة، إحدى شركات مجموعة باي حضارة، تورّد من تركيا بياضات الفنادق والمناشف وأردية الحمام ومستلزمات الضيوف لفنادق 3 إلى 5 نجوم في الخليج وأوروبا.',
     },
     markets: {
       title: 'أسواقنا: تركيا والخليج ومصر | مجموعة باي حضارة',
@@ -174,7 +174,7 @@ export const seo: Record<Locale, Record<string, SeoEntry>> = {
     '': {
       title: 'BYHADARA Group | İstanbul Yatırım ve İş Geliştirme Grubu',
       description:
-        'BYHADARA Group, gayrimenkul geliştirme ve otel tedariki alanlarında uzman şirketleri bir araya getiren İstanbul merkezli bir yatırım ve iş geliştirme grubudur.',
+        'BYHADARA Group; HADARA Real Estate ve HADARA Hospitality’yi bünyesinde toplayan, İstanbul merkezli bir yatırım ve iş geliştirme grubudur.',
     },
     about: {
       title: 'Hakkımızda – İstanbul Merkezli Yatırım Grubu | BYHADARA Group',
@@ -187,14 +187,14 @@ export const seo: Record<Locale, Record<string, SeoEntry>> = {
         'BYHADARA Group şirketleri: Türkiye’de gayrimenkul geliştirme için HADARA Real Estate, otel tekstili ve konaklama ürünleri için HADARA Hospitality.',
     },
     'businesses/real-estate': {
-      title: 'HADARA Real Estate – Türkiye’de Gayrimenkul | BYHADARA Group',
+      title: 'HADARA Real Estate – İstanbul’da Lüks Villalar | BYHADARA Group',
       description:
-        'HADARA Real Estate, başta İstanbul olmak üzere Türkiye’de konut ve ticari gayrimenkul geliştirme ve yatırım faaliyetlerine odaklanan bir BYHADARA Group şirketidir.',
+        'Bir BYHADARA Group şirketi olan HADARA Real Estate, 2014’ten bu yana İstanbul’da lüks villalar ve Lotus Yaşam, Lotus Koru gibi konut projeleri geliştirir.',
     },
     'businesses/hospitality': {
       title: 'HADARA Hospitality – Otel Tekstili ve Tedarik | BYHADARA Group',
       description:
-        'HADARA Hospitality; oteller, tatil köyleri ve apart oteller için Türkiye’den otel yatak tekstili, havlu, bornoz ve misafir odası ihtiyaçları tedarik eder.',
+        'Bir BYHADARA Group şirketi olan HADARA Hospitality, Türkiye’den Körfez ve Avrupa’daki 3★–5★ otellere otel tekstili, havlu, bornoz ve misafir ürünleri tedarik eder.',
     },
     markets: {
       title: 'Pazarlarımız – Türkiye, Körfez ve Mısır | BYHADARA Group',

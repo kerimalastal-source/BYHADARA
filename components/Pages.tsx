@@ -1,7 +1,19 @@
 import Link from 'next/link';
 import { dictionary, businessIds, marketIds, site, type Locale } from '@/content/site';
+import { companyHost, companyUrl, showcase, showcaseUrl } from '@/content/companies';
 import { findArticle, publishedArticles, categoryIds } from '@/content/articles';
-import { Arrow, Button, Label, Photo, Businesses, Markets, FinalCTA, PageHero } from './Site';
+import {
+  Arrow,
+  Breadcrumb,
+  Button,
+  Companies,
+  HadaraMark,
+  Label,
+  Photo,
+  Markets,
+  FinalCTA,
+  PageHero,
+} from './Site';
 import { InquiryForm } from './InquiryForm';
 import { Insights } from './Insights';
 import { inquiriesEnabled } from '@/lib/inquiry-config';
@@ -69,11 +81,10 @@ export function About({ locale }: { locale: Locale }) {
           <p>{d.growthText}</p>
         </div>
       </section>
-      <section className="container body-section">
-        <div className="section-head">
-          <h2>{d.businessesTitle}</h2>
+      <section className="section group-section">
+        <div className="container">
+          <Companies locale={locale} heading />
         </div>
-        <Businesses locale={locale} />
       </section>
       <FinalCTA locale={locale} />
     </>
@@ -91,71 +102,130 @@ export function BusinessIndex({ locale }: { locale: Locale }) {
         intro={d.businessIntro}
       />
       <section className="container body-section">
-        <Businesses locale={locale} />
-        <p className="image-note">{d.imageNote}</p>
-      </section>
-      <section className="container body-section prose-grid">
-        <h2>{d.philosophy}</h2>
-        <div>
-          <p>{d.philosophyText}</p>
-          <p>{d.legalIdentity}</p>
-        </div>
+        <Companies locale={locale} />
       </section>
       <FinalCTA locale={locale} />
     </>
   );
 }
+const external = { target: '_blank', rel: 'noopener noreferrer' } as const;
 export function BusinessDetail({ locale, id }: { locale: Locale; id: string }) {
   const index = businessIds.indexOf(id as (typeof businessIds)[number]);
   if (index < 0) notFound();
   const d = dictionary(locale),
     b = d.business[index],
-    url = index === 1 ? site.hospitality : site.realEstate;
+    company = businessIds[index],
+    sibling = businessIds[1 - index],
+    other = d.business[1 - index],
+    url = companyUrl(company, locale),
+    newTab = <span className="sr-only"> {d.newTab}</span>;
   return (
     <>
-      <PageHero
-        locale={locale}
-        trail={breadcrumbs(locale, `businesses/${id}`)}
-        label={b.sector}
-        title={b.name}
-        intro={b.desc}
-      />
+      <section className="company-hero container">
+        <Breadcrumb locale={locale} trail={breadcrumbs(locale, `businesses/${id}`)} />
+        <p className="company-badge">
+          <HadaraMark />
+          {d.groupCompany}
+        </p>
+        <h1>{b.name}</h1>
+        <p className="company-sector">{b.sector}</p>
+        <p className="company-intro">{b.desc}</p>
+        <a className="text-link" href={url} {...external}>
+          {b.visit}
+          <Arrow />
+          {newTab}
+        </a>
+      </section>
       <div className="container">
-        <Photo name={b.image} alt={b.alt} className="detail-image" />
-        <p className="image-note">{d.imageNote}</p>
+        <Photo name={b.image} alt={b.alt} className="detail-image" sizes="100vw" priority />
+        {company === 'real-estate' && <p className="image-note">{d.imageNote}</p>}
       </div>
       <section className="container section prose-grid">
+        <h2 className="eyebrow">
+          <span aria-hidden="true" />
+          {d.aboutCompany}
+        </h2>
         <div>
-          <Label>{d.businesses}</Label>
-          <h2>{b.name}</h2>
-          <p>{b.detail}</p>
-          <div style={{ marginTop: 25 }}>
-            {url ? (
-              <a className="button" href={url} target="_blank" rel="noopener noreferrer">
-                {d.official}
-                <Arrow />
-              </a>
-            ) : (
-              <p className="notice">{d.officialPending}</p>
-            )}
-          </div>
-        </div>
-        <div>
-          <h3>{d.specializations}</h3>
-          <ul className="detail-list">
-            {b.areas.map((a) => (
-              <li key={a}>{a}</li>
+          <p className="lead">{b.detail}</p>
+          <dl className="company-facts">
+            {b.facts.map(([value, label]) => (
+              <div key={label}>
+                <dt>{label}</dt>
+                <dd dir="auto">{value}</dd>
+              </div>
             ))}
-          </ul>
-          <h3>{d.targetMarkets}</h3>
-          <p>{b.markets}</p>
-          <Link className="text-link" href={`/${locale}/inquiries/partnership`}>
-            {d.partnershipCta}
-            <Arrow />
-          </Link>
+          </dl>
         </div>
       </section>
-      <FinalCTA locale={locale} />
+      <section className="container body-section company-areas">
+        <h2>{d.specializations}</h2>
+        <ul className="area-list">
+          {b.areas.map((a, i) => (
+            <li key={a}>
+              <span aria-hidden="true">0{i + 1}</span>
+              {a}
+            </li>
+          ))}
+        </ul>
+      </section>
+      <section className="section showcase-section">
+        <div className="container">
+          <div className="section-head">
+            <h2>{b.showcaseTitle}</h2>
+            <a className="text-link" href={url} {...external}>
+              <bdi>{companyHost(company)}</bdi>
+              <Arrow />
+              {newTab}
+            </a>
+          </div>
+          <div className={`showcase-grid ${company}`}>
+            {showcase[company][locale].map((item) => (
+              <a
+                key={item.slug}
+                className="showcase-card"
+                href={showcaseUrl(company, locale, item.slug)}
+                {...external}
+              >
+                <Photo name={item.image} alt="" sizes="(max-width: 640px) 100vw, 33vw" />
+                <span className="showcase-tag">{item.tag}</span>
+                <h3>{item.name}</h3>
+                {item.facts.length > 0 && (
+                  <span className="showcase-facts">{item.facts.join(' · ')}</span>
+                )}
+                <span className="company-cta">
+                  {b.showcaseCta}
+                  <Arrow />
+                </span>
+                {newTab}
+              </a>
+            ))}
+          </div>
+          {company === 'hospitality' && <p className="image-note">{d.productImageNote}</p>}
+        </div>
+      </section>
+      <section className="visit-band">
+        <div className="container visit-inner">
+          <HadaraMark className="visit-mark" />
+          <h2>{b.visit}</h2>
+          <p>{b.visitText}</p>
+          <a className="button light" href={url} {...external}>
+            <bdi>{companyHost(company)}</bdi>
+            <Arrow />
+            {newTab}
+          </a>
+        </div>
+      </section>
+      <section className="container body-section">
+        <Label>{d.alsoInGroup}</Label>
+        <Link className="sibling-card" href={`/${locale}/businesses/${sibling}`}>
+          <HadaraMark />
+          <span>
+            <span className="company-sector">{other.sector}</span>
+            <h2>{other.name}</h2>
+          </span>
+          <Arrow />
+        </Link>
+      </section>
     </>
   );
 }
