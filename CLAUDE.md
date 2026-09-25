@@ -27,8 +27,8 @@ file's prose in English so it stays easy to scan. Last updated 2026-09-25.
 - **Live**: https://www.byhadara.com is the Vercel primary domain; `byhadara.com` 308-redirects
   to it (DNS on Wix nameservers pointing to Vercel). Also https://byhadara.vercel.app. Vercel project `byhadara`
   (`prj_bVxa8wH2w0Lo9KKyaRzgMvzFXIza`) in team `hadara1` (`team_QsY1Po5NrdwjnNTD0wqYTrNc`). The
-  session's Vercel connector has so far only seen the `hadarahospitality` project, so env vars and
-  deployments of `byhadara` must be handled by the owner in the Vercel dashboard. Every PR gets a
+  session's Vercel connector gets 403 on this team (it only sees `hadarahospitality`), so env vars
+  and deployments of `byhadara` are handled by the owner in the Vercel dashboard. Every PR gets a
   preview at `byhadara-git-<branch>-hadara1.vercel.app`.
 - **Locales**: `en`, `ar` (RTL), `tr`; 16 routes × 3 = 48 pages, all static. `/` 308-redirects to
   `/en`.
@@ -107,8 +107,10 @@ file's prose in English so it stays easy to scan. Last updated 2026-09-25.
 - The empty insights index is `noindex` and outside the sitemap (45 URLs) until an article exists.
 - Canonical origin is `https://www.byhadara.com` (default in `content/site.ts`, `SITE_URL`
   overrides), matching Vercel where the apex redirects to `www`. Keep the two in sync.
-- **Pending (owner)**: submit `https://www.byhadara.com/sitemap.xml` in Google Search Console
-  (`GOOGLE_SITE_VERIFICATION` supported).
+- Google Search Console: Domain property verified by a DNS TXT record
+  (`google-site-verification=…`) that the owner added in Wix DNS on 2026-09-25, and
+  `https://www.byhadara.com/sitemap.xml` submitted (owner-reported). No meta tag is needed;
+  `GOOGLE_SITE_VERIFICATION` stays unset. Never remove that TXT record when editing DNS.
 
 ## Images
 
