@@ -107,6 +107,17 @@ file's prose in English so it stays easy to scan. Last updated 2026-09-25.
   note. The session's HubSpot connector (read tools such as `search_crm_objects`,
   `search_properties`) can verify records directly. Vercel logs show `HubSpot sync saved contact
 <id>.` / `HubSpot sync failed. …` / `HubSpot custom properties unavailable. …`.
+- HubSpot companies (2026-09-25): 372 records imported by the owner, 370 of them HADARA
+  Hospitality research (343 hotel suppliers/distributors and hotels in the GCC, Georgia and the
+  Balkans; 27 Turkish textile manufacturers). Their research notes were moved from the description
+  into company properties (Arabic label + English): `hadara_group_company`,
+  `hadara_relationship_stage`, `hadara_priority`, `hadara_sample_status`, `hadara_next_follow_up`,
+  `hadara_last_contact`, `hadara_last_verified`, `hadara_business_type`, `hadara_hotel_brand`,
+  `hadara_cooperation_model`, `hadara_general_email`, `hadara_product_groups`, `hadara_next_step`,
+  `hadara_last_quotation`, `hadara_source_id`, `hadara_source_url`, `hadara_source_notes`. The
+  description itself was kept. Portal is on the free plan (no email sending domain, no campaigns);
+  the owner emails from Gmail (info@byhadara.com). Offered next: lifecycle fix for suppliers
+  (Other instead of Lead), contacts from the general emails, follow-up tasks, a deal pipeline.
 - The owner's Vercel team also has `kinci-byhadara` (the İkinci BYHADARA real estate site); make
   sure instructions and env vars target the `byhadara` project.
 - The project still has old env vars from an earlier version: `INQUIRIES_ENABLED`,
