@@ -5,6 +5,7 @@ import { findArticle, publishedArticles, categoryIds } from '@/content/articles'
 import {
   Arrow,
   Breadcrumb,
+  Button,
   Companies,
   HadaraMark,
   Label,
@@ -421,6 +422,104 @@ export function InquiryPage({
           enabled={inquiriesEnabled()}
           countries={countryOptions(locale)}
         />
+      </section>
+    </>
+  );
+}
+/** Shown after a request is sent from any of the site's forms; kept out of search results. */
+export function ThankYou({ locale }: { locale: Locale }) {
+  const d = dictionary(locale);
+  const requests = [
+    { href: `/${locale}/inquiries/investment`, label: d.investmentCta },
+    { href: `/${locale}/inquiries/partnership`, label: d.partnershipCta },
+    { href: `/${locale}/contact`, label: d.generalRequest },
+  ];
+  return (
+    <>
+      <section className="page-hero container thanks-hero">
+        <Breadcrumb locale={locale} trail={breadcrumbs(locale, 'contact/thank-you')} />
+        <span className="thanks-check" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="26" height="26">
+            <path d="M5 12.5l4.5 4.5L19 7.5" />
+          </svg>
+        </span>
+        <Label>{d.thanksLabel}</Label>
+        <h1>{d.thanksTitle}</h1>
+        <p>{d.thanksText}</p>
+        <div className="buttons thanks-actions">
+          <Button href={`/${locale}`}>{d.thanksHome}</Button>
+          <Link className="text-link" href="#companies">
+            {d.thanksCompanies}
+            <Arrow />
+          </Link>
+        </div>
+      </section>
+      <section className="section group-section" id="companies">
+        <div className="container">
+          <Companies locale={locale} heading />
+        </div>
+      </section>
+      <section className="container section">
+        <Label>{d.thanksMoreLabel}</Label>
+        <h2>{d.thanksMoreTitle}</h2>
+        <div className="thanks-grid">
+          <div className="thanks-card">
+            <span className="thanks-number">01</span>
+            <h3>{d.thanksAnother}</h3>
+            <ul className="thanks-links">
+              {requests.map((r) => (
+                <li key={r.href}>
+                  <Link className="text-link" href={r.href}>
+                    {r.label}
+                    <Arrow />
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div className="thanks-card">
+            <span className="thanks-number">02</span>
+            <h3>{d.directContact}</h3>
+            <dl className="contact-list">
+              <div>
+                <dt>{d.emailLabel}</dt>
+                <dd>
+                  <a dir="ltr" href={`mailto:${site.email}`}>
+                    {site.email}
+                  </a>
+                </dd>
+              </div>
+              <div>
+                <dt>{d.phoneLabel}</dt>
+                <dd>
+                  <a dir="ltr" href={`tel:${site.phone.replace(/[^+\d]/g, '')}`}>
+                    {site.phone}
+                  </a>
+                </dd>
+              </div>
+            </dl>
+          </div>
+          <div className="thanks-card">
+            <span className="thanks-number">03</span>
+            <h3>{d.companySites}</h3>
+            <ul className="thanks-links">
+              {businessIds.map((id, i) => (
+                <li key={id}>
+                  <a
+                    className="text-link"
+                    href={companyUrl(id, locale)}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {d.business[i].name}
+                    <Arrow />
+                    <span className="sr-only"> {d.newTab}</span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
       </section>
     </>
   );

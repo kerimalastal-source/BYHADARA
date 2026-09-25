@@ -12,6 +12,7 @@ const paths = [
   'partnerships',
   'insights',
   'contact',
+  'contact/thank-you',
   'inquiries/investment',
   'inquiries/partnership',
   'privacy',

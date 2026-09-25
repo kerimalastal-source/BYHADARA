@@ -1660,6 +1660,76 @@ html[lang='ar'] .showcase-tag {
     font-size: 45px;
   }
 }
+/* Thank-you page shown after a request is sent. */
+.thanks-check {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+  margin-bottom: 34px;
+  border: 1px solid var(--gold);
+  border-radius: 50%;
+  color: var(--gold-text);
+}
+.thanks-check svg {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.thanks-check path {
+  stroke-dasharray: 24;
+  animation: thanks-draw 0.7s 0.15s ease-out both;
+}
+@keyframes thanks-draw {
+  from {
+    stroke-dashoffset: 24;
+  }
+}
+.thanks-actions {
+  margin-top: 40px;
+}
+.thanks-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+  margin-top: 52px;
+}
+.thanks-card {
+  border-top: 1px solid var(--navy);
+  padding-top: 18px;
+}
+.thanks-number {
+  font-size: 12px;
+  color: var(--muted);
+}
+.thanks-card h3 {
+  margin: 30px 0 14px;
+  font-size: 22px;
+}
+.thanks-card .contact-list {
+  margin: 0;
+}
+.thanks-links {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.thanks-links .text-link {
+  display: flex;
+  justify-content: space-between;
+}
+@media (max-width: 960px) {
+  .thanks-grid {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+}
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
