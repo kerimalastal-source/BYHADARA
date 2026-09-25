@@ -116,8 +116,9 @@ file's prose in English so it stays easy to scan. Last updated 2026-09-25.
   `hadara_cooperation_model`, `hadara_general_email`, `hadara_product_groups`, `hadara_next_step`,
   `hadara_last_quotation`, `hadara_source_id`, `hadara_source_url`, `hadara_source_notes`. The
   description itself was kept. Portal is on the free plan (no email sending domain, no campaigns);
-  the owner emails from Gmail (info@byhadara.com). Offered next: lifecycle fix for suppliers
-  (Other instead of Lead), contacts from the general emails, follow-up tasks, a deal pipeline.
+  the owner emails from Gmail (info@byhadara.com). Lifecycle stage: the 27 suppliers are `other`,
+  the other 345 companies `lead`. The owner has no HubSpot tasks for now. Still on offer: contacts
+  from the general emails, a deal pipeline.
 - The owner's Vercel team also has `kinci-byhadara` (the İkinci BYHADARA real estate site); make
   sure instructions and env vars target the `byhadara` project.
 - The project still has old env vars from an earlier version: `INQUIRIES_ENABLED`,
@@ -187,3 +188,4 @@ file's prose in English so it stays easy to scan. Last updated 2026-09-25.
 - PR #7: this context file. PR #8: canonical origin switched to `https://www.byhadara.com`.
 - PR #9: Search Console notes. PR #10: thank-you page after a sent request.
 - PR #11: email field, email-updates consent, HubSpot sync, legal entity in privacy/terms.
+- PRs #12–#15: context file updates (HubSpot live, company properties, supplier lifecycle).
