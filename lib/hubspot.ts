@@ -66,26 +66,32 @@ async function createSchema() {
     name: group,
     label: 'BYHADARA website',
   });
-  if (!created(g.status)) return false;
+  if (!created(g.status))
+    throw new HubSpotError('Create property group', g.status, g.data.category);
   for (const property of customProperties) {
     const p = await call('/crm/v3/properties/contacts', 'POST', {
       ...property,
       groupName: group,
       description: 'Filled in by the contact forms on byhadara.com.',
     });
-    if (!created(p.status)) return false;
+    if (!created(p.status))
+      throw new HubSpotError(`Create property ${property.name}`, p.status, p.data.category);
   }
   return true;
 }
 let schema: Promise<boolean> | undefined;
-/** Checks the schema once per server instance, and again on the next request after a failure. */
+/**
+ * Checks the schema once per server instance, and again on the next request after a failure.
+ * Without it, contacts are still saved with the standard properties.
+ */
 function ensureSchema() {
-  schema ??= createSchema()
-    .catch(() => false)
-    .then((ok) => {
-      if (!ok) schema = undefined;
-      return ok;
-    });
+  schema ??= createSchema().catch((error) => {
+    console.warn(
+      `HubSpot custom properties unavailable. ${error instanceof Error ? error.message : ''}`,
+    );
+    schema = undefined;
+    return false;
+  });
   return schema;
 }
 /** Test hook: forget which properties were created. */

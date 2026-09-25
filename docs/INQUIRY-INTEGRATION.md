@@ -25,7 +25,7 @@ Each accepted request creates or updates a HubSpot contact, matched by email, an
 
 Setup: in HubSpot create a private app (Settings → Integrations → Private Apps; in newer accounts under Development → Legacy apps), give it the scopes `crm.objects.contacts.read`, `crm.objects.contacts.write`, `crm.schemas.contacts.read` and `crm.schemas.contacts.write`, copy its access token into the Vercel variable `HUBSPOT_ACCESS_TOKEN` (Production) and redeploy.
 
-If the schema scopes are missing, the contact and note are still saved with the standard properties only. If a HubSpot value is rejected, the contact is saved with the basic details. Any failure is logged in the Vercel function logs as `HubSpot sync failed. <step>: HubSpot responded <status> <category>`, without personal data; the email to the inbox is unaffected.
+If the schema scopes are missing, the contact and note are still saved with the standard properties only. If a HubSpot value is rejected, the contact is saved with the basic details. The Vercel function logs (search "HubSpot") show `HubSpot sync saved contact <id>.` for each saved request, `HubSpot sync failed. <step>: HubSpot responded <status> <category>` when saving fails, and `HubSpot custom properties unavailable. …` when only the standard properties could be used. No personal data is logged, and the email to the inbox is unaffected either way. No HubSpot line at all means the deployment does not have `HUBSPOT_ACCESS_TOKEN` (add it to Production and redeploy).
 
 For email campaigns, build a HubSpot list with "Agreed to email updates is Yes" (and, if needed, "Website language"). Only those contacts may receive marketing emails; in Türkiye, commercial electronic messages also require consent records in İYS.
 
