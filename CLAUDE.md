@@ -101,9 +101,14 @@ file's prose in English so it stays easy to scan. Last updated 2026-09-25.
   (`byhadara_request_types`, `byhadara_language`, `byhadara_email_consent`,
   `byhadara_email_consent_date`), created automatically. Consent is only ever set to Yes from the
   site. Failures are logged without personal data and never affect the visitor. The HubSpot API is
-  blocked in this sandbox, so it is covered by mocked unit tests only; details and the private
-  app scopes are in `docs/INQUIRY-INTEGRATION.md`. **Pending (owner)**: create the private app and
-  add the token in Vercel, then send a test request and check HubSpot.
+  blocked in this sandbox (details and scopes in `docs/INQUIRY-INTEGRATION.md`). **Live since
+  2026-09-25**: legacy private app "BYHADARA Website" in HubSpot portal 149408503 (EU1), token in
+  the `byhadara` Vercel project; a test request created the contact with all properties and the
+  note. The session's HubSpot connector (read tools such as `search_crm_objects`,
+  `search_properties`) can verify records directly. Vercel logs show `HubSpot sync saved contact
+<id>.` / `HubSpot sync failed. …` / `HubSpot custom properties unavailable. …`.
+- The owner's Vercel team also has `kinci-byhadara` (the İkinci BYHADARA real estate site); make
+  sure instructions and env vars target the `byhadara` project.
 - The project still has old env vars from an earlier version: `INQUIRIES_ENABLED`,
   `PRIVACY_REVIEWED`, `INQUIRY_WEBHOOK_URL` (unused, safe to delete) and `CONTACT_EMAIL`,
   `CONTACT_PHONE`, `REAL_ESTATE_URL` (these override the defaults in `content/site.ts`; values
