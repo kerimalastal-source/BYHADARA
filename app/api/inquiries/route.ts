@@ -101,7 +101,10 @@ export async function POST(request: Request) {
     }
     await sendInquiry(parsed.data);
     const inquiry = parsed.data;
-    if (hubspotConfigured()) afterResponse(() => saveToHubspot(inquiry));
+    if (hubspotConfigured())
+      afterResponse(async () =>
+        console.info(`HubSpot sync saved contact ${await saveToHubspot(inquiry)}.`),
+      );
     return reply(200, 'accepted', { accepted: true });
   } catch {
     return reply(502, 'send_failed');
