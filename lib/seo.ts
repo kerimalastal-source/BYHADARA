@@ -151,6 +151,7 @@ export function structuredData(locale: Locale, path: string) {
       '@type': 'Organization',
       ...org,
       name: site.name,
+      legalName: site.legalName,
       alternateName: ['BYHADARA', 'مجموعة باي حضارة'],
       url: site.origin,
       logo: { '@type': 'ImageObject', url: `${site.origin}/icon-512.png`, width: 512, height: 512 },

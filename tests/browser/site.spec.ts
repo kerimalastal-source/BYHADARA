@@ -28,6 +28,7 @@ test('unconfigured forms do not collect data or promise delivery', async ({ page
     await page.goto(path);
     await expect(page.getByRole('button', { name: 'Send request' })).toBeDisabled();
     await expect(page.getByLabel('Country code')).toBeDisabled();
+    await expect(page.getByLabel('Email address')).toBeDisabled();
     await expect(
       page.getByText('Online requests are not available at the moment.', { exact: false }),
     ).toBeVisible();

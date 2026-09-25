@@ -39,11 +39,13 @@ export function ContactForm({
   const errorText = (field: string) =>
     field === 'phone' || field === 'country'
       ? t.phoneError
-      : field === 'website'
-        ? t.websiteError
-        : field === 'message'
-          ? t.messageError
-          : t.required;
+      : field === 'email'
+        ? t.emailError
+        : field === 'website'
+          ? t.websiteError
+          : field === 'message'
+            ? t.messageError
+            : t.required;
   function showErrors(fields: string[]) {
     // One message covers the country code and the number, shown under the phone row.
     const next = Object.fromEntries(
@@ -130,19 +132,20 @@ export function ContactForm({
             {error('name')}
           </div>
           <div className="field">
-            <label htmlFor="company">
-              {t.company}
-              {optional}
-            </label>
+            <label htmlFor="email">{t.email}</label>
             <input
-              id="company"
-              name="company"
-              maxLength={180}
-              autoComplete="organization"
-              aria-invalid={!!errors.company}
-              aria-describedby={described('company')}
+              id="email"
+              name="email"
+              type="email"
+              inputMode="email"
+              required
+              maxLength={254}
+              autoComplete="email"
+              dir="ltr"
+              aria-invalid={!!errors.email}
+              aria-describedby={described('email')}
             />
-            {error('company')}
+            {error('email')}
           </div>
           <div className="field wide" role="group" aria-labelledby="phone-label">
             <label id="phone-label" htmlFor="phone">
@@ -184,7 +187,22 @@ export function ContactForm({
             </div>
             {error('phone')}
           </div>
-          <div className="field wide">
+          <div className="field">
+            <label htmlFor="company">
+              {t.company}
+              {optional}
+            </label>
+            <input
+              id="company"
+              name="company"
+              maxLength={180}
+              autoComplete="organization"
+              aria-invalid={!!errors.company}
+              aria-describedby={described('company')}
+            />
+            {error('company')}
+          </div>
+          <div className="field">
             <label htmlFor="website">
               {t.website}
               {optional}
@@ -215,6 +233,13 @@ export function ContactForm({
               aria-describedby={described('message')}
             />
             {error('message')}
+          </div>
+          <div className="field wide consent">
+            <input id="marketing" name="marketing" type="checkbox" value="yes" />
+            <label htmlFor="marketing">
+              {t.marketing}
+              {optional}
+            </label>
           </div>
         </div>
         <div className="hp" aria-hidden="true">

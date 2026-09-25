@@ -26,6 +26,7 @@ export const inquirySchema = z.object({
   topic: z.enum(topics),
   locale: z.enum(['en', 'ar', 'tr']),
   name: text(2, 120),
+  email: z.string().trim().toLowerCase().max(254).pipe(z.email()),
   company: z.string().trim().max(180).refine(clean),
   country: z.string().refine((v) => dialCode(v) !== undefined),
   // National number without the country code: digits, spaces and common separators only.
@@ -41,6 +42,11 @@ export const inquirySchema = z.object({
     .refine((v) => normalizeWebsite(v) !== null)
     .transform((v) => normalizeWebsite(v) as string),
   message: text(10, 3000),
+  // Optional opt-in to email updates: the checkbox sends "yes" only when ticked.
+  marketing: z
+    .literal('yes')
+    .optional()
+    .transform((v) => v === 'yes'),
   startedAt: z.coerce.number().int().positive(),
 });
 export type Inquiry = z.infer<typeof inquirySchema>;

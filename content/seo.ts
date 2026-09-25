@@ -71,7 +71,7 @@ export const seo: Record<Locale, Record<string, SeoEntry>> = {
     'contact/thank-you': {
       title: 'Thank You – Request Received | BYHADARA Group',
       description:
-        'Thank you for contacting BYHADARA Group. Your request has reached our team in Istanbul, and we will get back to you on the phone number you provided.',
+        'Thank you for contacting BYHADARA Group. Your request has reached our team in Istanbul, and we will get back to you by phone or email.',
     },
     'inquiries/investment': {
       title: 'Investment Opportunities Inquiry | BYHADARA Group',
@@ -157,7 +157,7 @@ export const seo: Record<Locale, Record<string, SeoEntry>> = {
     'contact/thank-you': {
       title: 'شكراً لتواصلكم – تم استلام الطلب | مجموعة باي حضارة',
       description:
-        'شكراً لتواصلكم مع مجموعة باي حضارة. وصل طلبكم إلى فريقنا في إسطنبول، وسنتواصل معكم على رقم الهاتف الذي زودتمونا به بعد دراسة الطلب بعناية.',
+        'شكراً لتواصلكم مع مجموعة باي حضارة. وصل طلبكم إلى فريقنا في إسطنبول، وسنتواصل معكم عبر الهاتف أو البريد الإلكتروني بعد دراسة الطلب بعناية.',
     },
     'inquiries/investment': {
       title: 'استفسار عن فرص الاستثمار | مجموعة باي حضارة',
@@ -243,7 +243,7 @@ export const seo: Record<Locale, Record<string, SeoEntry>> = {
     'contact/thank-you': {
       title: 'Teşekkürler – Talebiniz Alındı | BYHADARA Group',
       description:
-        'BYHADARA Group ile iletişime geçtiğiniz için teşekkür ederiz. Talebiniz İstanbul’daki ekibimize ulaştı; ilettiğiniz telefon numarasından size dönüş yapacağız.',
+        'BYHADARA Group ile iletişime geçtiğiniz için teşekkür ederiz. Talebiniz İstanbul’daki ekibimize ulaştı; size telefon veya e-posta ile dönüş yapacağız.',
     },
     'inquiries/investment': {
       title: 'Yatırım Fırsatları Başvurusu | BYHADARA Group',

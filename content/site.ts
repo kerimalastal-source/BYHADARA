@@ -28,6 +28,8 @@ export const site = {
   origin: (process.env.SITE_URL || 'https://www.byhadara.com').replace(/\/+$/, ''),
   hospitality: 'https://www.hadarahospitality.com',
   realEstate: process.env.REAL_ESTATE_URL || 'https://www.hadararealestate.com',
+  /** Registered company that operates the website and manages the requests sent through it. */
+  legalName: 'Hadara Investment İnşaat Sanayi ve Ticaret Anonim Şirketi',
   email: process.env.CONTACT_EMAIL || 'info@byhadara.com',
   phone: process.env.CONTACT_PHONE || '+90 531 930 92 14',
 };
@@ -257,7 +259,7 @@ export const dictionaries = {
     thanksLabel: 'Request received',
     thanksTitle: 'Thank you for contacting BYHADARA Group.',
     thanksText:
-      'Your request has reached our team in Istanbul. We will review it carefully and get back to you on the phone number you provided.',
+      'Your request has reached our team in Istanbul. We will review it carefully and get back to you by phone or email.',
     thanksHome: 'Back to home',
     thanksCompanies: 'Explore our companies',
     thanksMoreLabel: 'More options',
@@ -279,24 +281,36 @@ export const dictionaries = {
       'This notice explains how this website handles information. It covers the corporate website only; independently operated business websites have their own privacy practices.',
     privacySections: [
       [
+        'Data controller',
+        `This website and the requests sent through it are managed by ${site.legalName}, Istanbul, Türkiye, which operates under the BYHADARA Group name. Contact: ${site.email}.`,
+      ],
+      [
         'Browsing the website',
         'The website does not use advertising trackers or analytics. Hosting infrastructure may process standard request information for delivery and security. Fonts and photographs are served from the website itself.',
       ],
       [
         'Contact requests',
-        'The contact form asks for your full name, phone number with country code and your request, and optionally your company name and website. Please do not include sensitive personal or financial information.',
+        'The contact form asks for your full name, email address, phone number with country code and your request, and optionally your company name and website. Please do not include sensitive personal or financial information.',
       ],
       [
         'How requests are handled',
-        'Your request is sent by email to info@byhadara.com through our email delivery provider so that our team can review and answer it. It is not sold or used for advertising. A confirmation appears only after the email has been accepted for delivery.',
+        `Your request is emailed to ${site.email} through our email delivery provider (Resend) and saved in our customer relationship management system (HubSpot), so that our team and, where relevant, the group company concerned can answer and follow it up. These providers may store data on servers outside Türkiye. Your details are never sold.`,
+      ],
+      [
+        'Email updates',
+        `We send news and updates by email only if you tick the optional box in the form. Every such email includes an unsubscribe link, and you can also withdraw your consent by writing to ${site.email}.`,
+      ],
+      [
+        'Retention',
+        'We keep your details for as long as needed to answer your request and maintain our business relationship, or until you ask us to delete them, unless the law requires us to keep them longer.',
       ],
       [
         'Protection',
         'Requests travel over an encrypted connection. Submissions are validated and protected against spam.',
       ],
       [
-        'Your choices',
-        'Sending a request is optional. To ask about, correct or delete the details you sent us, write to info@byhadara.com.',
+        'Your rights',
+        `Under applicable data protection law, including Türkiye’s Law No. 6698 on the Protection of Personal Data (KVKK), you may ask what data we hold about you, have it corrected or deleted, object to its processing or withdraw your consent. Write to ${site.email}.`,
       ],
     ],
     termsIntro:
@@ -304,7 +318,7 @@ export const dictionaries = {
     termsSections: [
       [
         'Corporate identity',
-        'BYHADARA Group is a commercial identity connecting independently registered companies. This website does not represent the group as a registered holding company, investment fund, or licensed financial advisory institution.',
+        `BYHADARA Group is a commercial identity connecting independently registered companies. This website does not represent the group as a registered holding company, investment fund, or licensed financial advisory institution. The website is operated by ${site.legalName}, Istanbul, Türkiye.`,
       ],
       [
         'Information and inquiries',
@@ -551,7 +565,7 @@ export const dictionaries = {
     thanksLabel: 'تم استلام طلبكم',
     thanksTitle: 'شكراً لتواصلكم مع مجموعة باي حضارة.',
     thanksText:
-      'وصل طلبكم إلى فريقنا في إسطنبول، وسندرسه بعناية ونتواصل معكم على رقم الهاتف الذي زودتمونا به.',
+      'وصل طلبكم إلى فريقنا في إسطنبول، وسندرسه بعناية ونتواصل معكم عبر الهاتف أو البريد الإلكتروني.',
     thanksHome: 'العودة إلى الرئيسية',
     thanksCompanies: 'تعرّف على شركاتنا',
     thanksMoreLabel: 'خيارات أخرى',
@@ -572,31 +586,43 @@ export const dictionaries = {
       'يوضح هذا الإشعار كيفية التعامل مع المعلومات في الموقع المؤسسي فقط. وللمواقع المستقلة لشركات المجموعة ممارسات خصوصية خاصة بها.',
     privacySections: [
       [
+        'المسؤول عن البيانات',
+        `تتولى إدارة هذا الموقع والطلبات المرسلة عبره شركة ${site.legalName}، إسطنبول، تركيا، التي تعمل تحت اسم مجموعة باي حضارة. للتواصل: ${site.email}.`,
+      ],
+      [
         'تصفح الموقع',
         'لا يستخدم الموقع أدوات تتبع إعلانية أو تحليلات. قد تعالج الاستضافة معلومات الطلبات المعتادة لتقديم الخدمة وحمايتها. تُقدَّم الخطوط والصور من الموقع نفسه.',
       ],
       [
         'طلبات التواصل',
-        'يطلب نموذج التواصل الاسم الكامل ورقم الهاتف مع رمز الدولة ونص الطلب، واسم الشركة وموقعها الإلكتروني اختيارياً. يرجى عدم إرسال بيانات شخصية أو مالية حساسة.',
+        'يطلب نموذج التواصل الاسم الكامل والبريد الإلكتروني ورقم الهاتف مع رمز الدولة ونص الطلب، واسم الشركة وموقعها الإلكتروني اختيارياً. يرجى عدم إرسال بيانات شخصية أو مالية حساسة.',
       ],
       [
         'كيف نتعامل مع الطلبات',
-        'يُرسَل طلبك بالبريد الإلكتروني إلى info@byhadara.com عبر مزوّد خدمة إرسال البريد، ليراجعه فريقنا ويرد عليه. لا نبيع هذه البيانات ولا نستخدمها للإعلانات. لا يظهر تأكيد الإرسال إلا بعد قبول الرسالة للتسليم.',
+        `يُرسَل طلبك بالبريد الإلكتروني إلى ${site.email} عبر مزوّد خدمة إرسال البريد (Resend)، ويُحفَظ في نظام إدارة علاقات العملاء لدينا (HubSpot)، ليتمكن فريقنا، وشركة المجموعة المعنية عند الحاجة، من الرد عليه ومتابعته. قد يخزّن هؤلاء المزوّدون البيانات على خوادم خارج تركيا. لا نبيع بياناتك أبداً.`,
+      ],
+      [
+        'الرسائل الإخبارية',
+        `لا نرسل الأخبار والمستجدات بالبريد الإلكتروني إلا إذا حدّدت المربع الاختياري في النموذج. تتضمن كل رسالة رابطاً لإلغاء الاشتراك، ويمكنك أيضاً سحب موافقتك بمراسلتنا على ${site.email}.`,
+      ],
+      [
+        'مدة الاحتفاظ',
+        'نحتفظ ببياناتك طوال المدة اللازمة للرد على طلبك واستمرار علاقتنا التجارية، أو إلى أن تطلب حذفها، ما لم يُلزمنا القانون بالاحتفاظ بها مدة أطول.',
       ],
       [
         'الحماية',
         'تنتقل الطلبات عبر اتصال مشفّر، ونتحقق من البيانات المرسلة ونحميها من الرسائل المزعجة.',
       ],
       [
-        'خياراتك',
-        'إرسال الطلب اختياري. للاستفسار عن البيانات التي أرسلتها أو تصحيحها أو حذفها، راسلنا على info@byhadara.com.',
+        'حقوقك',
+        `وفق قوانين حماية البيانات المعمول بها، ومنها قانون حماية البيانات الشخصية التركي رقم 6698 (KVKK)، يحق لك معرفة البيانات التي نحتفظ بها عنك وطلب تصحيحها أو حذفها، والاعتراض على معالجتها أو سحب موافقتك. راسلنا على ${site.email}.`,
       ],
     ],
     termsIntro: 'توضح هذه الشروط غرض الموقع المؤسسي لمجموعة باي حضارة وحدود استخدامه.',
     termsSections: [
       [
         'الهوية المؤسسية',
-        'مجموعة باي حضارة هوية تجارية تجمع شركات مسجلة بشكل مستقل. لا يقدم الموقع المجموعة باعتبارها شركة قابضة مسجلة أو صندوقاً استثمارياً أو جهة استشارات مالية مرخصة.',
+        `مجموعة باي حضارة هوية تجارية تجمع شركات مسجلة بشكل مستقل. لا يقدم الموقع المجموعة باعتبارها شركة قابضة مسجلة أو صندوقاً استثمارياً أو جهة استشارات مالية مرخصة. يُدار الموقع من قبل شركة ${site.legalName}، إسطنبول، تركيا.`,
       ],
       [
         'المعلومات والاستفسارات',
@@ -854,7 +880,7 @@ export const dictionaries = {
     thanksLabel: 'Talebiniz alındı',
     thanksTitle: 'BYHADARA Group ile iletişime geçtiğiniz için teşekkür ederiz.',
     thanksText:
-      'Talebiniz İstanbul’daki ekibimize ulaştı. Dikkatle inceleyip ilettiğiniz telefon numarası üzerinden size dönüş yapacağız.',
+      'Talebiniz İstanbul’daki ekibimize ulaştı. Dikkatle inceleyip size telefon veya e-posta ile dönüş yapacağız.',
     thanksHome: 'Ana sayfaya dön',
     thanksCompanies: 'Şirketlerimizi keşfedin',
     thanksMoreLabel: 'Diğer seçenekler',
@@ -876,24 +902,36 @@ export const dictionaries = {
       'Bu bildirim yalnızca kurumsal web sitesindeki bilgi işleme uygulamalarını açıklar. Bağımsız şirket web sitelerinin kendi gizlilik uygulamaları vardır.',
     privacySections: [
       [
+        'Veri sorumlusu',
+        `Bu web sitesi ve site üzerinden gönderilen talepler, BYHADARA Group adıyla faaliyet gösteren ${site.legalName} (İstanbul, Türkiye) tarafından yönetilir. İletişim: ${site.email}.`,
+      ],
+      [
         'Web sitesini ziyaret etmek',
         'Site reklam takipçisi veya analitik kullanmaz. Barındırma altyapısı, hizmet sunumu ve güvenlik için standart istek bilgilerini işleyebilir. Yazı tipleri ve fotoğraflar sitenin kendisinden sunulur.',
       ],
       [
         'İletişim talepleri',
-        'İletişim formu ad soyad, ülke koduyla telefon numarası ve talebinizi; isteğe bağlı olarak şirket adı ve web sitesini ister. Lütfen hassas kişisel veya finansal bilgi göndermeyin.',
+        'İletişim formu ad soyad, e-posta adresi, ülke koduyla telefon numarası ve talebinizi; isteğe bağlı olarak şirket adı ve web sitesini ister. Lütfen hassas kişisel veya finansal bilgi göndermeyin.',
       ],
       [
         'Taleplerin işlenmesi',
-        'Talebiniz, ekibimizin inceleyip yanıtlayabilmesi için e-posta gönderim sağlayıcımız aracılığıyla info@byhadara.com adresine e-posta olarak iletilir. Bilgiler satılmaz ve reklam için kullanılmaz. Onay yalnızca e-posta teslim için kabul edildikten sonra gösterilir.',
+        `Talebiniz, e-posta gönderim sağlayıcımız (Resend) aracılığıyla ${site.email} adresine iletilir ve müşteri ilişkileri yönetim sistemimize (HubSpot) kaydedilir; böylece ekibimiz ve gerektiğinde ilgili grup şirketi talebinizi yanıtlayıp takip edebilir. Bu sağlayıcılar verileri Türkiye dışındaki sunucularda saklayabilir. Bilgileriniz hiçbir zaman satılmaz.`,
+      ],
+      [
+        'E-posta ile haber ve duyurular',
+        `Haber ve duyuruları yalnızca formdaki isteğe bağlı kutuyu işaretlemeniz hâlinde e-posta ile göndeririz. Her e-postada abonelikten çıkma bağlantısı bulunur; onayınızı ${site.email} adresine yazarak da geri alabilirsiniz.`,
+      ],
+      [
+        'Saklama süresi',
+        'Bilgilerinizi, kanunen daha uzun süre saklamamız gerekmedikçe, talebinizi yanıtlamak ve ticari ilişkimizi sürdürmek için gerekli olduğu sürece ya da silinmesini isteyene kadar saklarız.',
       ],
       [
         'Koruma',
         'Talepler şifreli bağlantı üzerinden iletilir. Gönderimler doğrulanır ve spama karşı korunur.',
       ],
       [
-        'Seçimleriniz',
-        'Talep göndermek isteğe bağlıdır. Gönderdiğiniz bilgiler hakkında bilgi almak, bunları düzeltmek veya silmek için info@byhadara.com adresine yazabilirsiniz.',
+        'Haklarınız',
+        `6698 sayılı Kişisel Verilerin Korunması Kanunu (KVKK) dahil yürürlükteki veri koruma mevzuatı kapsamında, hakkınızda hangi verileri tuttuğumuzu öğrenme, bunların düzeltilmesini veya silinmesini isteme, işlenmesine itiraz etme ve onayınızı geri alma haklarına sahipsiniz. ${site.email} adresine yazabilirsiniz.`,
       ],
     ],
     termsIntro:
@@ -901,7 +939,7 @@ export const dictionaries = {
     termsSections: [
       [
         'Kurumsal kimlik',
-        'BYHADARA Group, bağımsız tescilli şirketleri bir araya getiren ticari kimliktir. Site grubu tescilli holding, yatırım fonu veya lisanslı finansal danışmanlık kurumu olarak sunmaz.',
+        `BYHADARA Group, bağımsız tescilli şirketleri bir araya getiren ticari kimliktir. Site grubu tescilli holding, yatırım fonu veya lisanslı finansal danışmanlık kurumu olarak sunmaz. Web sitesi ${site.legalName} (İstanbul, Türkiye) tarafından işletilmektedir.`,
       ],
       [
         'Bilgi ve talepler',
