@@ -24,8 +24,8 @@ file's prose in English so it stays easy to scan. Last updated 2026-09-25.
 - **Repo**: `kerimalastal-source/BYHADARA` (public). Next.js 16.3.5 App Router, React 19.3,
   TypeScript, custom CSS (`styles/globals.css`), zod, pnpm 11.19. Read
   `node_modules/next/dist/docs/` before using Next APIs (see AGENTS.md).
-- **Live**: https://byhadara.com (domain verified in the Vercel team, DNS on Wix nameservers
-  pointing to Vercel) and https://byhadara.vercel.app. Vercel project `byhadara`
+- **Live**: https://www.byhadara.com is the Vercel primary domain; `byhadara.com` 308-redirects
+  to it (DNS on Wix nameservers pointing to Vercel). Also https://byhadara.vercel.app. Vercel project `byhadara`
   (`prj_bVxa8wH2w0Lo9KKyaRzgMvzFXIza`) in team `hadara1` (`team_QsY1Po5NrdwjnNTD0wqYTrNc`). The
   session's Vercel connector has so far only seen the `hadarahospitality` project, so env vars and
   deployments of `byhadara` must be handled by the owner in the Vercel dashboard. Every PR gets a
@@ -84,10 +84,15 @@ file's prose in English so it stays easy to scan. Last updated 2026-09-25.
 - Requests are emailed through Resend to `CONTACT_TO_EMAIL` (default `info@byhadara.com`) with
   tel: and WhatsApp links. Without `RESEND_API_KEY` the forms are disabled and show the email and
   phone, and the API returns 503. Pages are static, so env changes need a redeploy.
-- **Pending (owner)**: add `RESEND_API_KEY` (same key as the real estate site) and
-  `CONTACT_FROM_EMAIL` on a Resend-verified domain (e.g. `BYHADARA Website <website@byhadara.com>`)
-  to the `byhadara` Vercel project, redeploy, send a test request. Resend's default
-  `onboarding@resend.dev` only delivers to the Resend account owner.
+- 2026-09-25: the owner added `RESEND_API_KEY` (Secret) and
+  `CONTACT_FROM_EMAIL=BYHADARA Website <website@byhadara.com>` to Production in the `byhadara`
+  Vercel project and redeployed. **Pending (owner)**: `byhadara.com` verified under Resend →
+  Domains (DNS records go in Wix), then a test request reaching info@byhadara.com. Sending fails
+  until the domain is verified; Resend → Emails/Logs shows why.
+- The project still has old env vars from an earlier version: `INQUIRIES_ENABLED`,
+  `PRIVACY_REVIEWED`, `INQUIRY_WEBHOOK_URL` (unused, safe to delete) and `CONTACT_EMAIL`,
+  `CONTACT_PHONE`, `REAL_ESTATE_URL` (these override the defaults in `content/site.ts`; values
+  unknown to us, so check the live contact page if the email, phone or link looks wrong).
 - In RTL, never wrap option text in Unicode isolate characters: Chromium then renders "+966" as
   "966+" in a closed `<select>`. Plain `"+966 name"` renders correctly.
 
@@ -100,9 +105,10 @@ file's prose in English so it stays easy to scan. Last updated 2026-09-25.
   rendered with Playwright from an HTML file opened via `file://` (so local fonts and the photo
   load); re-render them the same way if the brand changes.
 - The empty insights index is `noindex` and outside the sitemap (45 URLs) until an article exists.
-- **Pending (owner)**: submit `https://byhadara.com/sitemap.xml` in Google Search Console
-  (`GOOGLE_SITE_VERIFICATION` supported); confirm `byhadara.com` does not redirect to `www`
-  (canonicals use the apex; otherwise set `SITE_URL` or make the apex primary in Vercel).
+- Canonical origin is `https://www.byhadara.com` (default in `content/site.ts`, `SITE_URL`
+  overrides), matching Vercel where the apex redirects to `www`. Keep the two in sync.
+- **Pending (owner)**: submit `https://www.byhadara.com/sitemap.xml` in Google Search Console
+  (`GOOGLE_SITE_VERIFICATION` supported).
 
 ## Images
 
@@ -145,3 +151,4 @@ file's prose in English so it stays easy to scan. Last updated 2026-09-25.
 - PR #4: group presentation on the homepage and dedicated company pages.
 - PR #5: Success Partners section (logos from İkinci BYHADARA).
 - PR #6: unified contact form emailed via Resend, country codes for all countries.
+- PR #7: this context file. PR #8: canonical origin switched to `https://www.byhadara.com`.
