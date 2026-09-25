@@ -60,12 +60,12 @@ Protection: same-origin requests only, a 16 KB body limit, validation on both cl
 - Each page publishes a self-referencing canonical, `hreflang` alternates for EN/AR/TR plus `x-default` (English), Open Graph and Twitter tags with a localized 1200×630 share image (`public/og/`), and `max-image-preview:large` for Google.
 - JSON-LD on every page: `Organization` (contact email/phone, Istanbul address, languages), `WebSite`, a typed `WebPage` (`AboutPage`, `ContactPage`, `CollectionPage`), a `BreadcrumbList` built from the same trail as the visible breadcrumbs, and `Article` for published insights.
 - `/` redirects permanently (308) to `/en`. The insights index is `noindex, follow` and left out of the sitemap until the first article is published; unknown routes return 404 with `noindex`.
-- Optional environment variables: `SITE_URL` if the primary domain ever changes (for example to `www`), and `GOOGLE_SITE_VERIFICATION`, `BING_SITE_VERIFICATION`, `YANDEX_VERIFICATION` for the meta-tag ownership method. After deployment, submit `https://byhadara.com/sitemap.xml` in Google Search Console and Bing Webmaster Tools.
-- Canonicals must point at the address that serves pages directly. If `byhadara.com` redirects to `www.byhadara.com` in Vercel, either make the apex the primary domain there or set `SITE_URL=https://www.byhadara.com`.
+- Optional environment variables: `SITE_URL` if the primary domain ever changes, and `GOOGLE_SITE_VERIFICATION`, `BING_SITE_VERIFICATION`, `YANDEX_VERIFICATION` for the meta-tag ownership method. After deployment, submit `https://www.byhadara.com/sitemap.xml` in Google Search Console and Bing Webmaster Tools.
+- Canonicals must point at the address that serves pages directly. In Vercel, `www.byhadara.com` is the primary domain and `byhadara.com` redirects to it (308), so the canonical origin is `https://www.byhadara.com`. If that ever changes in Vercel, change the default in `content/site.ts` (or set `SITE_URL`) to match.
 
 ## Deployment on Vercel
 
-Import `kerimalastal-source/BYHADARA`, choose Next.js, repository root, `pnpm build`; use the checked-in lockfile. The code does not need secrets for corporate pages. Set `RESEND_API_KEY` to turn on the contact form (see below). Vercel preview environments are noindex. Canonicals refer to the supplied intended domain `https://byhadara.com`.
+Import `kerimalastal-source/BYHADARA`, choose Next.js, repository root, `pnpm build`; use the checked-in lockfile. The code does not need secrets for corporate pages. Set `RESEND_API_KEY` to turn on the contact form (see below). Vercel preview environments are noindex. Canonicals refer to the primary domain `https://www.byhadara.com`.
 
 Verify domain ownership, existing DNS and production assignment in Vercel before changing them. The repository does not automatically modify DNS. Inspect the production deployment, all locales and API availability after deployment. Do not describe the custom domain as live until it resolves to the verified production build.
 
