@@ -21,7 +21,7 @@ If a sandbox limits file watching, use `WATCHPACK_POLLING=true pnpm dev --webpac
 
 ## Architecture
 
-- `app/[locale]/[[...slug]]`: server-rendered localized pages; 16 routes × 3 languages.
+- `app/[locale]/[[...slug]]`: server-rendered localized pages; 17 routes × 3 languages.
 - `components/`: reusable corporate layouts and narrowly scoped interactive controls.
 - `content/site.ts`: complete EN/AR/TR copy, businesses and markets.
 - `content/articles.ts`: typed editorial records. Only approved, published, non-future records appear; all three translations are required. No starter news is published.
@@ -42,7 +42,7 @@ Add an `Article` in `content/articles.ts` with a stable slug, category, ISO publ
 
 ## Contact form
 
-The contact page and the investment and partnership pages share one form: full name, company name (optional), phone number with a country-code list covering all 245 countries and territories, company website (optional) and the request. Each request is emailed to `info@byhadara.com` (override with `CONTACT_TO_EMAIL`), with the page it came from, call and WhatsApp links and the site language.
+The contact page and the investment and partnership pages share one form: full name, company name (optional), phone number with a country-code list covering all 245 countries and territories, company website (optional) and the request. Each request is emailed to `info@byhadara.com` (override with `CONTACT_TO_EMAIL`), with the page it came from, call and WhatsApp links and the site language. Once the provider accepts the email, the visitor is taken to `/{locale}/contact/thank-you`, which offers the group companies, the other request forms, direct contact details and the company websites. That page is `noindex` and left out of the sitemap; its fixed URL can also serve as a conversion goal in analytics or advertising tools.
 
 Delivery uses [Resend](https://resend.com), the same service as the HADARA Real Estate website. Until `RESEND_API_KEY` is set, the forms are disabled, show the email address and phone number instead, and the API returns 503; nothing is stored or sent, and no success is ever shown without the provider accepting the email.
 

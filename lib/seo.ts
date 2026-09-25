@@ -23,8 +23,12 @@ export function pageSeo(locale: Locale, path: string) {
   return seo[locale][path];
 }
 
-/** The insights index stays out of search results until it has something to list. */
-export const isIndexable = (path: string) => path !== 'insights' || publishedArticles().length > 0;
+/**
+ * The insights index stays out of search results until it has something to list, and the
+ * thank-you page shown after a sent request never appears in them.
+ */
+export const isIndexable = (path: string) =>
+  path === 'insights' ? publishedArticles().length > 0 : path !== 'contact/thank-you';
 
 export type Crumb = { name: string; href?: string };
 /** Breadcrumb trail after "Home" for an existing route; the last item is the current page. */
@@ -54,6 +58,7 @@ export function breadcrumbs(locale: Locale, path: string): Crumb[] {
     name = d.market[marketIds.indexOf(id as (typeof marketIds)[number])].name;
   else if (section === 'inquiries') name = id === 'investment' ? d.investmentCta : d.partnershipCta;
   else if (section === 'insights') name = findArticle(id)?.translations[locale].title || '';
+  else if (section === 'contact') name = d.thanksLabel;
   return [parent, { name }];
 }
 

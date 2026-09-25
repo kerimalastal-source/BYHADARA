@@ -44,7 +44,7 @@ test('mobile menu keyboard behavior', async ({ page }) => {
   await expect(button).toBeFocused();
 });
 test('representative pages meet automated WCAG checks', async ({ page }) => {
-  for (const path of ['/en', '/ar/inquiries/investment', '/tr/insights']) {
+  for (const path of ['/en', '/ar/inquiries/investment', '/tr/insights', '/ar/contact/thank-you']) {
     await page.goto(path);
     const result = await new AxeBuilder({ page })
       .withTags(['wcag2a', 'wcag2aa', 'wcag21aa', 'wcag22aa'])

@@ -68,6 +68,11 @@ export const seo: Record<Locale, Record<string, SeoEntry>> = {
       title: 'Contact BYHADARA Group | Istanbul, Türkiye',
       description: `Contact BYHADARA Group in Istanbul at ${site.email} or ${site.phone} to discuss investment opportunities and strategic partnerships.`,
     },
+    'contact/thank-you': {
+      title: 'Thank You – Request Received | BYHADARA Group',
+      description:
+        'Thank you for contacting BYHADARA Group. Your request has reached our team in Istanbul, and we will get back to you on the phone number you provided.',
+    },
     'inquiries/investment': {
       title: 'Investment Opportunities Inquiry | BYHADARA Group',
       description:
@@ -149,6 +154,11 @@ export const seo: Record<Locale, Record<string, SeoEntry>> = {
       title: 'تواصل مع مجموعة باي حضارة | إسطنبول، تركيا',
       description: `تواصل مع مجموعة باي حضارة في إسطنبول عبر ${site.email} أو ${site.phone} لمناقشة فرص الاستثمار والشراكات الاستراتيجية.`,
     },
+    'contact/thank-you': {
+      title: 'شكراً لتواصلكم – تم استلام الطلب | مجموعة باي حضارة',
+      description:
+        'شكراً لتواصلكم مع مجموعة باي حضارة. وصل طلبكم إلى فريقنا في إسطنبول، وسنتواصل معكم على رقم الهاتف الذي زودتمونا به بعد دراسة الطلب بعناية.',
+    },
     'inquiries/investment': {
       title: 'استفسار عن فرص الاستثمار | مجموعة باي حضارة',
       description:
@@ -229,6 +239,11 @@ export const seo: Record<Locale, Record<string, SeoEntry>> = {
     contact: {
       title: 'İletişim – BYHADARA Group, İstanbul',
       description: `Yatırım fırsatları ve stratejik ortaklıklar için İstanbul’daki BYHADARA Group ile ${site.email} veya ${site.phone} üzerinden iletişime geçin.`,
+    },
+    'contact/thank-you': {
+      title: 'Teşekkürler – Talebiniz Alındı | BYHADARA Group',
+      description:
+        'BYHADARA Group ile iletişime geçtiğiniz için teşekkür ederiz. Talebiniz İstanbul’daki ekibimize ulaştı; ilettiğiniz telefon numarasından size dönüş yapacağız.',
     },
     'inquiries/investment': {
       title: 'Yatırım Fırsatları Başvurusu | BYHADARA Group',

@@ -1,11 +1,15 @@
 'use client';
 import { useEffect, useRef, useState, type FormEvent } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { dictionary, site, type Locale } from '@/content/site';
 import { getFormText } from '@/content/forms';
 import { priorityCountries, type CountryOption } from '@/content/countries';
 import { inquirySchema, type Topic } from '@/lib/inquiry-schema';
-/** The site's one contact form, used on the contact page and both inquiry pages. */
+/**
+ * The site's one contact form, used on the contact page and both inquiry pages. A request the
+ * provider accepted leads to the thank-you page.
+ */
 export function ContactForm({
   locale,
   topic,
@@ -19,15 +23,19 @@ export function ContactForm({
 }) {
   const t = getFormText(locale),
     d = dictionary(locale),
+    router = useRouter(),
+    thanks = `/${locale}/contact/thank-you`,
     form = useRef<HTMLFormElement>(null),
     status = useRef<HTMLDivElement>(null),
-    started = useRef(0);
+    started = useRef(0),
+    pendingFocus = useRef<string | null>(null);
   const [errors, setErrors] = useState<Record<string, string>>({}),
-    [state, setState] = useState<'idle' | 'loading' | 'success' | 'error'>('idle'),
+    [state, setState] = useState<'idle' | 'loading' | 'error'>('idle'),
     [message, setMessage] = useState('');
   useEffect(() => {
     started.current = Date.now();
-  }, []);
+    if (enabled) router.prefetch(thanks);
+  }, [enabled, router, thanks]);
   const errorText = (field: string) =>
     field === 'phone' || field === 'country'
       ? t.phoneError
@@ -44,9 +52,14 @@ export function ContactForm({
     setErrors(next);
     setState('error');
     setMessage(t.invalid);
-    const first = fields[0] === 'country' ? 'country' : fields[0];
-    form.current?.querySelector<HTMLElement>(`[name="${first}"]`)?.focus();
+    pendingFocus.current = fields[0];
   }
+  // Move focus once the fields are enabled again, which after a server reply is a later render.
+  useEffect(() => {
+    if (state !== 'error' || !pendingFocus.current) return;
+    form.current?.querySelector<HTMLElement>(`[name="${pendingFocus.current}"]`)?.focus();
+    pendingFocus.current = null;
+  }, [state, errors]);
   async function submit(e: FormEvent) {
     e.preventDefault();
     if (!enabled || state === 'loading') return;
@@ -69,22 +82,18 @@ export function ContactForm({
         body: JSON.stringify(values),
       });
       const data = await res.json();
-      if (res.ok && data.accepted === true) {
-        setState('success');
-        setMessage(t.success);
-        form.current?.reset();
-      } else if (res.status === 422 && Array.isArray(data.fields)) {
-        showErrors(data.fields);
-      } else {
-        setState('error');
-        setMessage(res.status === 429 ? t.rate : `${t.error} ${site.email}`);
-      }
+      // The form stays in its sending state until the thank-you page replaces it.
+      if (res.ok && data.accepted === true) return router.push(thanks);
+      if (res.status === 422 && Array.isArray(data.fields)) return showErrors(data.fields);
+      fail(res.status === 429 ? t.rate : `${t.error} ${site.email}`);
     } catch {
-      setState('error');
-      setMessage(`${t.error} ${site.email}`);
-    } finally {
-      setTimeout(() => status.current?.focus(), 0);
+      fail(`${t.error} ${site.email}`);
     }
+  }
+  function fail(text: string) {
+    setState('error');
+    setMessage(text);
+    setTimeout(() => status.current?.focus(), 0);
   }
   const described = (name: string, hint?: boolean) =>
     [hint && `${name}-hint`, errors[name] && `${name}-error`].filter(Boolean).join(' ') ||
@@ -101,12 +110,6 @@ export function ContactForm({
       {`${c.dial} ${c.name}`}
     </option>
   );
-  if (state === 'success')
-    return (
-      <div ref={status} role="status" tabIndex={-1} className="notice form-status">
-        {message}
-      </div>
-    );
   return (
     <form ref={form} onSubmit={submit} noValidate aria-label={t.submit}>
       <p className="form-required">{t.requiredNote}</p>

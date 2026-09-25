@@ -9,6 +9,7 @@ import {
   Partnerships,
   Contact,
   InquiryPage,
+  ThankYou,
   InsightIndex,
   ArticlePage,
   Legal,
@@ -58,6 +59,7 @@ function route(locale: Locale, path: string, slug: string[]) {
     return <MarketDetail locale={locale} id={slug[1]} />;
   if (path === 'partnerships') return <Partnerships locale={locale} />;
   if (path === 'contact') return <Contact locale={locale} />;
+  if (path === 'contact/thank-you') return <ThankYou locale={locale} />;
   if (path === 'insights') return <InsightIndex locale={locale} />;
   if (slug[0] === 'insights' && slug.length === 2)
     return <ArticlePage locale={locale} slug={slug[1]} />;

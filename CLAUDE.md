@@ -30,7 +30,7 @@ file's prose in English so it stays easy to scan. Last updated 2026-09-25.
   session's Vercel connector gets 403 on this team (it only sees `hadarahospitality`), so env vars
   and deployments of `byhadara` are handled by the owner in the Vercel dashboard. Every PR gets a
   preview at `byhadara-git-<branch>-hadara1.vercel.app`.
-- **Locales**: `en`, `ar` (RTL), `tr`; 16 routes × 3 = 48 pages, all static. `/` 308-redirects to
+- **Locales**: `en`, `ar` (RTL), `tr`; 17 routes × 3 = 51 pages, all static. `/` 308-redirects to
   `/en`.
 - **Key files**
   - `content/site.ts`: all EN/AR/TR copy (one dictionary per locale; unit tests require identical
@@ -81,14 +81,16 @@ file's prose in English so it stays easy to scan. Last updated 2026-09-25.
   recorded as `general`/`investment`/`partnership`). Fields, as specified by the owner: full name,
   company name (optional), country code beside the phone number, company website (optional), the
   request. No email field (owner's spec; offered to add it on request).
+- An accepted request sends the visitor to `/{locale}/contact/thank-you` (owner asked for a
+  professional thank-you page instead of the inline message): check mark, thanks, the two company
+  panels, then other request forms, direct contact and company websites. It is `noindex`.
 - Requests are emailed through Resend to `CONTACT_TO_EMAIL` (default `info@byhadara.com`) with
   tel: and WhatsApp links. Without `RESEND_API_KEY` the forms are disabled and show the email and
   phone, and the API returns 503. Pages are static, so env changes need a redeploy.
 - 2026-09-25: the owner added `RESEND_API_KEY` (Secret) and
   `CONTACT_FROM_EMAIL=BYHADARA Website <website@byhadara.com>` to Production in the `byhadara`
-  Vercel project and redeployed. **Pending (owner)**: `byhadara.com` verified under Resend →
-  Domains (DNS records go in Wix), then a test request reaching info@byhadara.com. Sending fails
-  until the domain is verified; Resend → Emails/Logs shows why.
+  Vercel project; a test request reached info@byhadara.com, so delivery works. If sending ever
+  fails, Resend → Emails/Logs shows why.
 - The project still has old env vars from an earlier version: `INQUIRIES_ENABLED`,
   `PRIVACY_REVIEWED`, `INQUIRY_WEBHOOK_URL` (unused, safe to delete) and `CONTACT_EMAIL`,
   `CONTACT_PHONE`, `REAL_ESTATE_URL` (these override the defaults in `content/site.ts`; values
@@ -98,13 +100,14 @@ file's prose in English so it stays easy to scan. Last updated 2026-09-25.
 
 ## SEO
 
-- Titles ≤65 characters and descriptions 110–165, unique across all 48 pages (enforced by
+- Titles ≤65 characters and descriptions 110–165, unique across all 51 pages (enforced by
   `tests/content.test.ts`); Arabic titles use «مجموعة باي حضارة».
 - JSON-LD on every page: Organization (with both companies as `subOrganization`), WebSite, typed
   WebPage, BreadcrumbList, Article. Localized share images `public/og/byhadara-{en,ar,tr}.jpg` were
   rendered with Playwright from an HTML file opened via `file://` (so local fonts and the photo
   load); re-render them the same way if the brand changes.
-- The empty insights index is `noindex` and outside the sitemap (45 URLs) until an article exists.
+- The empty insights index is `noindex` and outside the sitemap (45 URLs) until an article exists;
+  the thank-you page is always `noindex` and outside it.
 - Canonical origin is `https://www.byhadara.com` (default in `content/site.ts`, `SITE_URL`
   overrides), matching Vercel where the apex redirects to `www`. Keep the two in sync.
 - Google Search Console: Domain property verified by a DNS TXT record
@@ -124,8 +127,8 @@ file's prose in English so it stays easy to scan. Last updated 2026-09-25.
 
 ## Validation and sandbox notes
 
-- Checks: `pnpm typecheck`, `pnpm test` (16 tests), `pnpm build`, then `pnpm start` +
-  `node scripts/check-routes.mjs` (48 pages, links, SEO assertions, 503 while the form is
+- Checks: `pnpm typecheck`, `pnpm test` (17 tests), `pnpm build`, then `pnpm start` +
+  `node scripts/check-routes.mjs` (51 pages, links, SEO assertions, 503 while the form is
   unconfigured) and the Playwright suite (14 tests incl. axe). Prettier:
   `pnpm exec prettier --check components content lib app styles tests scripts docs *.md`.
 - The installed `@playwright/test` expects a newer browser than the sandbox has: run with a
@@ -154,3 +157,4 @@ file's prose in English so it stays easy to scan. Last updated 2026-09-25.
 - PR #5: Success Partners section (logos from İkinci BYHADARA).
 - PR #6: unified contact form emailed via Resend, country codes for all countries.
 - PR #7: this context file. PR #8: canonical origin switched to `https://www.byhadara.com`.
+- PR #9: Search Console notes. PR #10: thank-you page after a sent request.

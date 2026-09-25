@@ -4,7 +4,7 @@ import { locales, dictionary, paths } from '../content/site';
 import { articles, publishedArticles } from '../content/articles';
 import { metadataFor, structuredData, breadcrumbs } from '../lib/seo';
 import { seo } from '../content/seo';
-test('all 48 corporate pages have localized metadata and equivalent alternates', () => {
+test('all 51 corporate pages have localized metadata and equivalent alternates', () => {
   for (const locale of locales)
     for (const path of paths) {
       const m = metadataFor(locale, path);
@@ -13,7 +13,7 @@ test('all 48 corporate pages have localized metadata and equivalent alternates',
       assert.ok(String(m.alternates?.canonical).includes(`/${locale}`));
       assert.equal(Object.keys(m.alternates?.languages || {}).length, 4);
     }
-  assert.equal(locales.length * paths.length, 48);
+  assert.equal(locales.length * paths.length, 51);
 });
 test('translations preserve the complete dictionary structure', () => {
   const keys = Object.keys(dictionary('en')).sort();
@@ -66,4 +66,14 @@ test('structured data matches the visible breadcrumbs and skips unknown routes',
 test('the insights index is indexable only once it lists articles', () => {
   const robots = metadataFor('en', 'insights').robots as { index: boolean };
   assert.equal(robots.index, publishedArticles().length > 0);
+});
+test('the thank-you page stays out of search results and sits under Contact', () => {
+  for (const locale of locales) {
+    const robots = metadataFor(locale, 'contact/thank-you').robots as { index: boolean };
+    assert.equal(robots.index, false);
+  }
+  assert.deepEqual(
+    breadcrumbs('ar', 'contact/thank-you').map((c) => c.name),
+    [dictionary('ar').contact, dictionary('ar').thanksLabel],
+  );
 });
