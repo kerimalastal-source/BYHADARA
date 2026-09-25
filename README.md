@@ -42,7 +42,9 @@ Add an `Article` in `content/articles.ts` with a stable slug, category, ISO publ
 
 ## Contact form
 
-The contact page and the investment and partnership pages share one form: full name, company name (optional), phone number with a country-code list covering all 245 countries and territories, company website (optional) and the request. Each request is emailed to `info@byhadara.com` (override with `CONTACT_TO_EMAIL`), with the page it came from, call and WhatsApp links and the site language. Once the provider accepts the email, the visitor is taken to `/{locale}/contact/thank-you`, which offers the group companies, the other request forms, direct contact details and the company websites. That page is `noindex` and left out of the sitemap; its fixed URL can also serve as a conversion goal in analytics or advertising tools.
+The contact page and the investment and partnership pages share one form: full name, email address, phone number with a country-code list covering all 245 countries and territories, company name and website (both optional), the request, and an optional, unticked box to agree to email updates. Each request is emailed to `info@byhadara.com` (override with `CONTACT_TO_EMAIL`), with the page it came from, call and WhatsApp links and the site language. Once the provider accepts the email, the visitor is taken to `/{locale}/contact/thank-you`, which offers the group companies, the other request forms, direct contact details and the company websites. That page is `noindex` and left out of the sitemap; its fixed URL can also serve as a conversion goal in analytics or advertising tools.
+
+With `HUBSPOT_ACCESS_TOKEN` set, every accepted request is also saved in HubSpot as a contact (matched by email, new ones as leads) with the request as a note, plus request types, site language and email-updates consent as filterable properties. This runs after the response, so HubSpot can never delay or block a request. Setup and details: `docs/INQUIRY-INTEGRATION.md`.
 
 Delivery uses [Resend](https://resend.com), the same service as the HADARA Real Estate website. Until `RESEND_API_KEY` is set, the forms are disabled, show the email address and phone number instead, and the API returns 503; nothing is stored or sent, and no success is ever shown without the provider accepting the email.
 
@@ -73,10 +75,10 @@ Verify domain ownership, existing DNS and production assignment in Vercel before
 
 - Company websites: `https://www.hadararealestate.com` (override with `REAL_ESTATE_URL`) and `https://www.hadarahospitality.com`, as used by those sites' own canonical URLs.
 - Group contact email (info@byhadara.com) and phone (+90 531 930 92 14): confirmed by the owner; defaults in `content/site.ts`, overridable with `CONTACT_EMAIL`/`CONTACT_PHONE`.
-- Responsible legal entity: unset, never invented.
+- Responsible legal entity: Hadara Investment İnşaat Sanayi ve Ticaret Anonim Şirketi (provided by the owner), named as data controller in the privacy notice, as operator in the terms, and as `legalName` in the structured data.
 - Official logo: temporary replaceable typographic BYHADARA GROUP wordmark.
 - Approved articles: no articles published yet.
-- Contact form delivery: needs `RESEND_API_KEY` (and a verified sender domain) in the Vercel project; responsible legal entity for the privacy notice: pending.
+- Contact form delivery: live through Resend. HubSpot storage needs `HUBSPOT_ACCESS_TOKEN` in the Vercel project.
 
 No fund status, holding-company registration, regulated service, returns, directors, office network or performance statistics are claimed. Company facts, projects and products shown on the company pages come from the group companies' own websites. Market descriptions distinguish existing Türkiye activities from regional objectives.
 

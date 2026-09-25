@@ -48,6 +48,9 @@ file's prose in English so it stays easy to scan. Last updated 2026-09-25.
 
 ## Group, brand and sister sites
 
+- Legal entity (provided by the owner): **Hadara Investment İnşaat Sanayi ve Ticaret Anonim
+  Şirketi**, Istanbul (`site.legalName`): data controller in the privacy notice, operator in the
+  terms, `legalName` in the Organization JSON-LD.
 - Arabic names: group «مجموعة باي حضارة», companies «حضارة العقارية» and «حضارة للضيافة».
 - Brand: parent is navy `#14283d` with the text wordmark "BYHADARA. GROUP" (no official logo yet);
   both companies share the gold H monogram (`public/images/hadara-mark.png`, gold `#c5a35d`,
@@ -79,18 +82,28 @@ file's prose in English so it stays easy to scan. Last updated 2026-09-25.
 
 - One `ContactForm` on `/contact`, `/inquiries/investment` and `/inquiries/partnership` (topic
   recorded as `general`/`investment`/`partnership`). Fields, as specified by the owner: full name,
-  company name (optional), country code beside the phone number, company website (optional), the
-  request. No email field (owner's spec; offered to add it on request).
+  email (required, added 2026-09-25 for HubSpot and campaigns), country code beside the phone
+  number, company name and website (optional), the request, and an unticked, optional box to agree
+  to email updates (consent is needed for marketing emails under KVKK/İYS and GDPR).
 - An accepted request sends the visitor to `/{locale}/contact/thank-you` (owner asked for a
   professional thank-you page instead of the inline message): check mark, thanks, the two company
   panels, then other request forms, direct contact and company websites. It is `noindex`.
 - Requests are emailed through Resend to `CONTACT_TO_EMAIL` (default `info@byhadara.com`) with
-  tel: and WhatsApp links. Without `RESEND_API_KEY` the forms are disabled and show the email and
+  tel: and WhatsApp links; reply-to is the visitor's email. Without `RESEND_API_KEY` the forms are disabled and show the email and
   phone, and the API returns 503. Pages are static, so env changes need a redeploy.
 - 2026-09-25: the owner added `RESEND_API_KEY` (Secret) and
   `CONTACT_FROM_EMAIL=BYHADARA Website <website@byhadara.com>` to Production in the `byhadara`
   Vercel project; a test request reached info@byhadara.com, so delivery works. If sending ever
   fails, Resend → Emails/Logs shows why.
+- **HubSpot** (owner's CRM, chosen 2026-09-25): with `HUBSPOT_ACCESS_TOKEN` set, `lib/hubspot.ts`
+  saves each accepted request after the response (`after`): contact matched by email (new ones as
+  `lead`), a note with the request, and custom properties in the group "BYHADARA website"
+  (`byhadara_request_types`, `byhadara_language`, `byhadara_email_consent`,
+  `byhadara_email_consent_date`), created automatically. Consent is only ever set to Yes from the
+  site. Failures are logged without personal data and never affect the visitor. The HubSpot API is
+  blocked in this sandbox, so it is covered by mocked unit tests only; details and the private
+  app scopes are in `docs/INQUIRY-INTEGRATION.md`. **Pending (owner)**: create the private app and
+  add the token in Vercel, then send a test request and check HubSpot.
 - The project still has old env vars from an earlier version: `INQUIRIES_ENABLED`,
   `PRIVACY_REVIEWED`, `INQUIRY_WEBHOOK_URL` (unused, safe to delete) and `CONTACT_EMAIL`,
   `CONTACT_PHONE`, `REAL_ESTATE_URL` (these override the defaults in `content/site.ts`; values
@@ -127,7 +140,7 @@ file's prose in English so it stays easy to scan. Last updated 2026-09-25.
 
 ## Validation and sandbox notes
 
-- Checks: `pnpm typecheck`, `pnpm test` (17 tests), `pnpm build`, then `pnpm start` +
+- Checks: `pnpm typecheck`, `pnpm test` (21 tests), `pnpm build`, then `pnpm start` +
   `node scripts/check-routes.mjs` (51 pages, links, SEO assertions, 503 while the form is
   unconfigured) and the Playwright suite (14 tests incl. axe). Prettier:
   `pnpm exec prettier --check components content lib app styles tests scripts docs *.md`.
@@ -144,8 +157,7 @@ file's prose in English so it stays easy to scan. Last updated 2026-09-25.
 ## Open items to offer the owner
 
 - Real product photography for HADARA Hospitality; an official BYHADARA logo.
-- The responsible legal entity for the privacy notice.
-- A WhatsApp button on the contact page; an email field in the form.
+- A WhatsApp button on the contact page.
 - Self-hosting the project photos (needs `static.wixstatic.com` allowed in the environment).
 
 ## History
@@ -158,3 +170,4 @@ file's prose in English so it stays easy to scan. Last updated 2026-09-25.
 - PR #6: unified contact form emailed via Resend, country codes for all countries.
 - PR #7: this context file. PR #8: canonical origin switched to `https://www.byhadara.com`.
 - PR #9: Search Console notes. PR #10: thank-you page after a sent request.
+- PR #11: email field, email-updates consent, HubSpot sync, legal entity in privacy/terms.

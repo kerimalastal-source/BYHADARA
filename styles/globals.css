@@ -777,6 +777,24 @@ html[dir='rtl'] .hero-shade {
   font-weight: 400;
   color: var(--muted);
 }
+.field.consent {
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 12px;
+}
+.field.consent input {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  min-height: 0;
+  margin: 3px 0 0;
+  padding: 0;
+  accent-color: var(--navy);
+}
+.field.consent label {
+  font-weight: 400;
+  line-height: 1.6;
+}
 .phone-row {
   display: grid;
   grid-template-columns: minmax(170px, 42%) 1fr;

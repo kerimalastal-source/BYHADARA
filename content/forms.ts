@@ -2,6 +2,10 @@ import type { Locale } from './site';
 export const formText = {
   en: {
     name: 'Full name',
+    email: 'Email address',
+    emailError: 'Enter a valid email address, for example name@company.com.',
+    marketing:
+      'I agree to receive news and updates from BYHADARA Group and its companies by email. I can unsubscribe at any time.',
     company: 'Company name',
     phone: 'Phone number',
     countryCode: 'Country code',
@@ -26,6 +30,10 @@ export const formText = {
   },
   ar: {
     name: 'الاسم الكامل',
+    email: 'البريد الإلكتروني',
+    emailError: 'أدخل بريداً إلكترونياً صحيحاً، مثل name@company.com.',
+    marketing:
+      'أوافق على تلقي أخبار ومستجدات مجموعة باي حضارة وشركاتها عبر البريد الإلكتروني، ويمكنني إلغاء الاشتراك في أي وقت.',
     company: 'اسم الشركة',
     phone: 'رقم الهاتف',
     countryCode: 'رمز الدولة',
@@ -49,6 +57,10 @@ export const formText = {
   },
   tr: {
     name: 'Ad soyad',
+    email: 'E-posta adresi',
+    emailError: 'Geçerli bir e-posta adresi girin, örneğin ad@sirket.com.',
+    marketing:
+      'BYHADARA Group ve şirketlerinden e-posta ile haber ve duyurular almayı kabul ediyorum. Dilediğim zaman abonelikten çıkabilirim.',
     company: 'Şirket adı',
     phone: 'Telefon numarası',
     countryCode: 'Ülke kodu',

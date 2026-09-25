@@ -32,30 +32,39 @@ export async function rateLimit(ip: string) {
   if (typeof result.result !== 'number') throw new Error('Invalid limiter response');
   return result.result <= 5;
 }
-const topicLabels = {
+export const topicLabels = {
   general: 'General inquiry',
   investment: 'Investment opportunity',
   partnership: 'Strategic partnership',
 } as const;
-const escapeHtml = (value: string) =>
+export const escapeHtml = (value: string) =>
   value.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+/**
+ * Dialable international number without "+": the national trunk prefix 0 is dropped (Italian
+ * numbering keeps it).
+ */
+export function internationalNumber(inquiry: Pick<Inquiry, 'country' | 'phone'>) {
+  const code = dialCode(inquiry.country)!;
+  const digits = inquiry.phone.replace(/\D/g, '');
+  return `${code.slice(1)}${code === '+39' ? digits : digits.replace(/^0/, '')}`;
+}
 /** The email the team receives for one request, as a subject with HTML and plain-text bodies. */
 export function composeEmail(inquiry: Inquiry) {
   const code = dialCode(inquiry.country)!;
   const country = new Intl.DisplayNames(['en'], { type: 'region' }).of(inquiry.country);
   const phone = `${code} ${inquiry.phone}`;
-  // Dialable international number: drop the national trunk prefix 0 (Italian numbering keeps it).
-  const digits = inquiry.phone.replace(/\D/g, '');
-  const international = `${code.slice(1)}${code === '+39' ? digits : digits.replace(/^0/, '')}`;
+  const international = internationalNumber(inquiry);
   const whatsapp = `https://wa.me/${international}`;
   const rows: [string, string, string?][] = [
     ['Full name', inquiry.name],
+    ['Email', inquiry.email, `mailto:${inquiry.email}`],
     ['Company', inquiry.company || '—'],
     ['Phone', `${phone} (${country})`, `tel:+${international}`],
     ['WhatsApp', whatsapp.slice(8), whatsapp],
     ['Company website', inquiry.website || '—', inquiry.website || undefined],
     ['Topic', topicLabels[inquiry.topic]],
     ['Site language', inquiry.locale.toUpperCase()],
+    ['Email updates', inquiry.marketing ? 'Agreed to receive them' : 'Not requested'],
   ];
   const subject = `New request: ${topicLabels[inquiry.topic]} from ${inquiry.name}${
     inquiry.company ? ` (${inquiry.company})` : ''
@@ -83,7 +92,15 @@ export async function sendInquiry(inquiry: Inquiry) {
       Authorization: `Bearer ${process.env.RESEND_API_KEY}`,
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify({ from: inquirySender(), to: [inquiryRecipient()], subject, html, text }),
+    // Replying to the notification answers the visitor directly.
+    body: JSON.stringify({
+      from: inquirySender(),
+      to: [inquiryRecipient()],
+      reply_to: inquiry.email,
+      subject,
+      html,
+      text,
+    }),
     cache: 'no-store',
     redirect: 'error',
     signal: AbortSignal.timeout(10000),

@@ -1,4 +1,6 @@
+import { after } from 'next/server';
 import { inquiriesEnabled, rateLimitConfigured } from '@/lib/inquiry-config';
+import { hubspotConfigured, saveToHubspot } from '@/lib/hubspot';
 import { inquirySchema, MAX_BODY_BYTES } from '@/lib/inquiry-schema';
 import { rateLimit, sendInquiry } from '@/lib/inquiry-service';
 export const runtime = 'nodejs';
@@ -29,6 +31,19 @@ function allowedOrigin(request: Request) {
   ];
   const extra = (process.env.INQUIRY_ALLOWED_ORIGINS || '').split(',').map((x) => host(x.trim()));
   return Boolean(origin) && (own.includes(origin) || extra.includes(origin));
+}
+/** Runs work after the response, so a slow or failing CRM never delays or blocks a request. */
+function afterResponse(task: () => Promise<unknown>) {
+  const run = () =>
+    task().catch((error) =>
+      console.error(`HubSpot sync failed. ${error instanceof Error ? error.message : ''}`),
+    );
+  try {
+    after(run);
+  } catch {
+    // Outside a Next.js request (unit tests call the handler directly).
+    void run();
+  }
 }
 /** Reads at most `limit` bytes of the body, or returns null when it is larger. */
 async function readBody(request: Request, limit: number) {
@@ -85,6 +100,8 @@ export async function POST(request: Request) {
       if (!(await rateLimit(ip))) return reply(429, 'rate_limited');
     }
     await sendInquiry(parsed.data);
+    const inquiry = parsed.data;
+    if (hubspotConfigured()) afterResponse(() => saveToHubspot(inquiry));
     return reply(200, 'accepted', { accepted: true });
   } catch {
     return reply(502, 'send_failed');
