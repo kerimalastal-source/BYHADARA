@@ -59,3 +59,20 @@ test('representative pages meet automated WCAG checks', async ({ page }) => {
     expect(result.violations).toEqual([]);
   }
 });
+test('wordmark stays English and pinned left in every locale', async ({ page }) => {
+  for (const width of [1440, 390]) {
+    await page.setViewportSize({ width, height: 900 });
+    const seen: string[] = [];
+    for (const locale of locales) {
+      await page.goto(`/${locale}`);
+      for (const brand of [page.locator('header .brand'), page.locator('footer .brand')]) {
+        await expect(brand).toHaveText('BYHADARA.G R O U P');
+        await expect(brand).toHaveAttribute('translate', 'no');
+        const box = await brand.boundingBox();
+        seen.push(`${Math.round(box!.x)}×${Math.round(box!.width)}`);
+      }
+    }
+    expect(new Set(seen.filter((_, i) => i % 2 === 0)).size, `header at ${width}px`).toBe(1);
+    expect(new Set(seen.filter((_, i) => i % 2 === 1)).size, `footer at ${width}px`).toBe(1);
+  }
+});
