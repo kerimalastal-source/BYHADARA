@@ -2,10 +2,9 @@
 
 Photographs downloaded 2026-09-22 from verified Unsplash photo pages, under the [Unsplash License](https://unsplash.com/license), which permits commercial website use and cropping. These are illustrative images, not BYHADARA-owned properties or projects.
 
-| Local asset                            | Photographer       | Source                                                                                  |
-| -------------------------------------- | ------------------ | --------------------------------------------------------------------------------------- |
-| `public/images/istanbul-bosphorus.jpg` | Kaan Kosemen       | https://unsplash.com/photos/skyline-city-view-mm1bIXfNfaE                               |
-| `public/images/architecture.jpg`       | Sebastian Schuster | https://unsplash.com/photos/modern-skyscraper-with-reflective-glass-windows-rsABeBB2D8A |
+| Local asset                            | Photographer | Source                                                    |
+| -------------------------------------- | ------------ | --------------------------------------------------------- |
+| `public/images/istanbul-bosphorus.jpg` | Kaan Kosemen | https://unsplash.com/photos/skyline-city-view-mm1bIXfNfaE |
 
 HADARA Hospitality product photographs, copied from that company's website repository (`public/assets/products/`) and resized to 1400 px. They are Unsplash-licensed stock stand-ins chosen by the owner until real product photography exists; the Unsplash photo IDs are recorded in that repository:
 
@@ -31,6 +30,8 @@ Insights and news visuals in `public/images/insights/` are unmodified copies of 
 | `diamond-marin-facade.jpg`         | `diamond-marin/facade.jpg`                | Yıltaş × Lotus Yapı |
 | `diamond-marin-living-room.jpg`    | `diamond-marin/living-room.jpg`           | Yıltaş × Lotus Yapı |
 | `diamond-marin-master-bedroom.jpg` | `diamond-marin/master-bedroom.jpg`        | Yıltaş × Lotus Yapı |
+
+HADARA Real Estate imagery (2026-09-26, replacing an Unsplash office tower): the homepage panel uses `public/images/real-estate/lotus-manzara-villa.jpg`, an unmodified copy of `lotus-manzara-beylikduzu/villa-type-a.jpg` from the same repository (Lotus Manzara Beylikdüzü, visualisation by Lotus Yapı Proje), and the company page reuses `insights/lotus-yasam-courtyard.jpg`. Both are credited under the image as visualisations by Lotus Yapı Proje.
 
 `diamond-marin/aerial-sea-view.jpg` in that repository was not used: its lower corner carries what looks like an AI image tool's watermark.
 

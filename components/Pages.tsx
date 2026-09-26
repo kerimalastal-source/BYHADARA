@@ -242,14 +242,8 @@ export function MarketIndex({ locale }: { locale: Locale }) {
         title={d.marketsTitle}
         intro={d.marketsIntro}
       />
-      <div className="container">
-        <Photo name="istanbul-bosphorus.jpg" alt={d.based} className="detail-image" />
-      </div>
       <section className="container body-section">
         <Markets locale={locale} />
-        <p className="notice" style={{ marginTop: 45 }}>
-          {d.marketNote}
-        </p>
       </section>
       <FinalCTA locale={locale} />
     </>
@@ -278,7 +272,6 @@ export function MarketDetail({ locale, id }: { locale: Locale; id: string }) {
         <div>
           <h3>{d.targetMarkets}</h3>
           <p>{m.sectors}</p>
-          <p className="notice">{d.marketNote}</p>
           <Link className="text-link" href={`/${locale}/inquiries/partnership`}>
             {d.partnershipCta}
             <Arrow />
