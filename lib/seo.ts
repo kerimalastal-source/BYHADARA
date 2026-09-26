@@ -9,6 +9,8 @@ const shareAlt = {
   ar: 'مجموعة باي حضارة – مجموعة للاستثمار وتطوير الأعمال في إسطنبول',
   tr: 'BYHADARA Group – İstanbul merkezli yatırım ve iş geliştirme grubu',
 } as const;
+/** Group name at the end of search titles, as in content/seo.ts. */
+const groupName = { en: site.name, ar: 'مجموعة باي حضارة', tr: site.name } as const;
 const pageUrl = (locale: Locale, path: string) =>
   `${site.origin}/${locale}${path ? '/' + path : ''}`;
 
@@ -18,7 +20,7 @@ export function pageSeo(locale: Locale, path: string) {
     const a = findArticle(path.slice(9));
     if (!a) return undefined;
     const t = a.translations[locale];
-    return { title: `${t.title} | ${site.name}`, description: t.description };
+    return { title: `${t.seoTitle ?? t.title} | ${groupName[locale]}`, description: t.description };
   }
   return seo[locale][path];
 }

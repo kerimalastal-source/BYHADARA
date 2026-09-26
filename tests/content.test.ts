@@ -2,7 +2,8 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { locales, dictionary, paths } from '../content/site';
 import { articles, publishedArticles } from '../content/articles';
-import { metadataFor, structuredData, breadcrumbs } from '../lib/seo';
+import { existsSync } from 'node:fs';
+import { metadataFor, pageSeo, structuredData, breadcrumbs } from '../lib/seo';
 import { seo } from '../content/seo';
 test('all 51 corporate pages have localized metadata and equivalent alternates', () => {
   for (const locale of locales)
@@ -20,7 +21,8 @@ test('translations preserve the complete dictionary structure', () => {
   for (const l of locales) assert.deepEqual(Object.keys(dictionary(l)).sort(), keys);
 });
 test('no unapproved or future articles are published', () => {
-  assert.equal(publishedArticles().length, 0);
+  const published = publishedArticles().length;
+  assert.equal(published, articles.filter((a) => a.status === 'published' && a.approved).length);
   articles.push({
     slug: 'test-draft',
     status: 'draft',
@@ -33,7 +35,7 @@ test('no unapproved or future articles are published', () => {
       tr: { title: 'Test', description: 'Test', body: [] },
     },
   });
-  assert.equal(publishedArticles().length, 0);
+  assert.equal(publishedArticles().length, published);
   articles.pop();
 });
 test('search titles and descriptions are complete, unique and within result limits', () => {
@@ -48,6 +50,26 @@ test('search titles and descriptions are complete, unique and within result limi
       );
       assert.ok(!titles.has(title), `${locale}/${path} title is unique`);
       titles.add(title);
+    }
+});
+test('articles are complete in every language, within search limits and use existing images', () => {
+  const titles = new Set(locales.flatMap((l) => paths.map((p) => seo[l][p].title)));
+  for (const a of publishedArticles())
+    for (const locale of locales) {
+      const t = a.translations[locale];
+      const page = pageSeo(locale, `insights/${a.slug}`)!;
+      assert.ok([...page.title].length <= 65, `${locale}/${a.slug} title length`);
+      assert.ok(
+        [...page.description].length >= 110 && [...page.description].length <= 165,
+        `${locale}/${a.slug} description length`,
+      );
+      assert.ok(!titles.has(page.title), `${locale}/${a.slug} title is unique`);
+      titles.add(page.title);
+      assert.equal(t.body.length, a.translations.en.body.length, `${locale}/${a.slug} paragraphs`);
+      assert.equal(t.facts?.length, a.translations.en.facts?.length, `${locale}/${a.slug} facts`);
+      for (const src of [t.image, ...(t.gallery ?? []).map((g) => g.src)].filter(Boolean))
+        assert.ok(existsSync(`public${src}`), `${src} exists`);
+      if (t.cta?.href.startsWith('/')) assert.ok(t.cta.href.startsWith(`/${locale}/`));
     }
 });
 test('structured data matches the visible breadcrumbs and skips unknown routes', () => {

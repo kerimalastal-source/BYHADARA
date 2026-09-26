@@ -24,7 +24,7 @@ If a sandbox limits file watching, use `WATCHPACK_POLLING=true pnpm dev --webpac
 - `app/[locale]/[[...slug]]`: server-rendered localized pages; 17 routes × 3 languages.
 - `components/`: reusable corporate layouts and narrowly scoped interactive controls.
 - `content/site.ts`: complete EN/AR/TR copy, businesses and markets.
-- `content/articles.ts`: typed editorial records. Only approved, published, non-future records appear; all three translations are required. No starter news is published.
+- `content/articles.ts`: typed editorial records. Only approved, published, non-future records appear; all three translations are required. No starter news: every fact comes from the group companies' own project pages.
 - `content/forms.ts`: localized contact-form labels and validation feedback.
 - `content/countries.ts`: calling codes for all 245 countries and territories, with localized names.
 - `components/ContactForm.tsx`: the one contact form used on the contact page and both inquiry pages.
@@ -38,7 +38,7 @@ If a sandbox limits file watching, use `WATCHPACK_POLLING=true pnpm dev --webpac
 
 ## Editorial publishing
 
-Add an `Article` in `content/articles.ts` with a stable slug, category, ISO publication date, complete EN/AR/TR title, description and paragraph body. Use licensed local images under `public/images` with translated alt text. Keep `status: 'draft'` and `approved: false` until approved. Set both to published/true and rebuild only after approval. Article pages, search, category filtering, latest three homepage items (the homepage section stays hidden until the first article is published), related articles, metadata and sitemap update automatically. Text is rendered as React text, never raw HTML. There is no administrative login or external CMS in this version.
+Add an `Article` in `content/articles.ts` with a stable slug, category, ISO publication date, complete EN/AR/TR title (plus an optional shorter `seoTitle`), description and paragraph body (the first paragraph is the lead). Optional: main image with credit, key figures (`facts`), a two-image `gallery`, a closing call to action (`cta`) and the group `company` introduced at the end. Use licensed local images under `public/images/insights` with translated alt text and record them in `docs/ASSETS.md`. In Arabic, write number ranges in words ("بين 100 و109") or wrap them in U+2066/U+2069 isolates, or they render reversed. Keep `status: 'draft'` and `approved: false` until approved. Set both to published/true and rebuild only after approval. Article pages, search, category filtering, latest three homepage items (the homepage section stays hidden until the first article is published), related articles, metadata and sitemap update automatically. Text is rendered as React text, never raw HTML. There is no administrative login or external CMS in this version.
 
 ## Contact form
 
@@ -61,7 +61,7 @@ Protection: same-origin requests only, a 16 KB body limit, validation on both cl
 - Every route has a hand-written search title (≤65 characters) and description (110–165 characters) per language in `content/seo.ts`; Arabic entries use the Arabic brand name «مجموعة باي حضارة». Unit tests enforce length and uniqueness.
 - Each page publishes a self-referencing canonical, `hreflang` alternates for EN/AR/TR plus `x-default` (English), Open Graph and Twitter tags with a localized 1200×630 share image (`public/og/`), and `max-image-preview:large` for Google.
 - JSON-LD on every page: `Organization` (contact email/phone, Istanbul address, languages), `WebSite`, a typed `WebPage` (`AboutPage`, `ContactPage`, `CollectionPage`), a `BreadcrumbList` built from the same trail as the visible breadcrumbs, and `Article` for published insights.
-- `/` redirects permanently (308) to `/en`. The insights index is `noindex, follow` and left out of the sitemap until the first article is published; unknown routes return 404 with `noindex`.
+- `/` redirects permanently (308) to `/en`. The insights index is `noindex, follow` and left out of the sitemap whenever no article is published; unknown routes return 404 with `noindex`.
 - Optional environment variables: `SITE_URL` if the primary domain ever changes, and `GOOGLE_SITE_VERIFICATION`, `BING_SITE_VERIFICATION`, `YANDEX_VERIFICATION` for the meta-tag ownership method. After deployment, submit `https://www.byhadara.com/sitemap.xml` in Google Search Console and Bing Webmaster Tools.
 - Canonicals must point at the address that serves pages directly. In Vercel, `www.byhadara.com` is the primary domain and `byhadara.com` redirects to it (308), so the canonical origin is `https://www.byhadara.com`. If that ever changes in Vercel, change the default in `content/site.ts` (or set `SITE_URL`) to match.
 
@@ -77,7 +77,7 @@ Verify domain ownership, existing DNS and production assignment in Vercel before
 - Group contact email (info@byhadara.com) and phone (+90 531 930 92 14): confirmed by the owner; defaults in `content/site.ts`, overridable with `CONTACT_EMAIL`/`CONTACT_PHONE`.
 - Responsible legal entity: Hadara Investment İnşaat Sanayi ve Ticaret Anonim Şirketi (provided by the owner), named as data controller in the privacy notice, as operator in the terms, and as `legalName` in the structured data.
 - Official logo: temporary replaceable typographic BYHADARA GROUP wordmark.
-- Approved articles: no articles published yet.
+- Approved articles: the launches of Lotus Yaşam and Diamond Marin (2026-09-26), requested by the owner.
 - Contact form delivery: live through Resend. HubSpot storage needs `HUBSPOT_ACCESS_TOKEN` in the Vercel project.
 
 No fund status, holding-company registration, regulated service, returns, directors, office network or performance statistics are claimed. Company facts, projects and products shown on the company pages come from the group companies' own websites. Market descriptions distinguish existing Türkiye activities from regional objectives.

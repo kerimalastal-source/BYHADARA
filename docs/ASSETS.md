@@ -21,6 +21,19 @@ HADARA Hospitality product photographs, copied from that company's website repos
 
 Success partner logos in `public/images/partners/` (DTC, Faisal Holding, DAG Holding, WUJHA Development, Lotus, Studio Vertebra) are unmodified, byte-identical copies of `public/partners/` in the HADARA Real Estate website repository (`kerimalastal-source/-kinci_BYHADARA`, commit `5ce13a7`), where the same partners are shown. The logos remain the property of their respective companies; keep `content/partners.ts` in sync with that site.
 
+Insights and news visuals in `public/images/insights/` are unmodified copies of the project visuals on the HADARA Real Estate website repository (`kerimalastal-source/-kinci_BYHADARA`, `public/images/projects/`), taken there from the developers' own project catalogues. Each article credits the developer under its main image:
+
+| Local asset                        | Source in that repository                 | Developer           |
+| ---------------------------------- | ----------------------------------------- | ------------------- |
+| `lotus-yasam-courtyard.jpg`        | `beylikduzu-living/courtyard-gardens.jpg` | Lotus Yapı Proje    |
+| `lotus-yasam-garden-terrace.jpg`   | `beylikduzu-living/garden-terrace.jpg`    | Lotus Yapı Proje    |
+| `lotus-yasam-living-room.jpg`      | `beylikduzu-living/living-room.jpg`       | Lotus Yapı Proje    |
+| `diamond-marin-facade.jpg`         | `diamond-marin/facade.jpg`                | Yıltaş × Lotus Yapı |
+| `diamond-marin-living-room.jpg`    | `diamond-marin/living-room.jpg`           | Yıltaş × Lotus Yapı |
+| `diamond-marin-master-bedroom.jpg` | `diamond-marin/master-bedroom.jpg`        | Yıltaş × Lotus Yapı |
+
+`diamond-marin/aerial-sea-view.jpg` in that repository was not used: its lower corner carries what looks like an AI image tool's watermark.
+
 `istanbul-bosphorus.jpg` is cropped to 2200×1300 (bottom 350 px removed) so that third-party developer signage and a construction site in the original frame are not shown.
 
 Images are hosted locally and served with Next Image sizing, AVIF/WebP support and reserved dimensions. Original downloaded assets retained for future crops.
