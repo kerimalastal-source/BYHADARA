@@ -159,6 +159,10 @@ file's prose in English so it stays easy to scan. Last updated 2026-09-25.
   Guides follow the facts in the companies' own guides (İkinci `blogData`, hadarahospitality
   `src/data/blog.ts`), rewritten, never copied. `check-routes.mjs` now reads article slugs from the
   insights index (90 pages, 87 sitemap URLs with 13 articles).
+- Added 2026-09-26: news **HADARA Real Estate visits Cityscape Qatar 2026** (also as visitors, same
+  rule; 27–29 October 2026, DECC Doha, theme "Where Vision Meets Investment", 400+ projects, some
+  16,000 visitors, 4th Qatar Real Estate Forum, from The Peninsula Qatar of 9 September 2026 and
+  Cityscape Qatar's posts; some listings show older dates, ignore them). 14 articles, 93 pages.
 - In Arabic text, number ranges render reversed ("100–109" shows as "109–100"): write them in
   words («بين 100 و109») or wrap them in U+2066/U+2069 isolates (fine outside `<select>`).
 
@@ -171,7 +175,7 @@ file's prose in English so it stays easy to scan. Last updated 2026-09-25.
   rendered with Playwright from an HTML file opened via `file://` (so local fonts and the photo
   load); re-render them the same way if the brand changes.
 - The insights index is `noindex` and outside the sitemap only while no article is published; the
-  thank-you page is always `noindex` and outside it. Sitemap: 87 URLs with 13 articles.
+  thank-you page is always `noindex` and outside it. Sitemap: 90 URLs with 14 articles.
 - Canonical origin is `https://www.byhadara.com` (default in `content/site.ts`, `SITE_URL`
   overrides), matching Vercel where the apex redirects to `www`. Keep the two in sync.
 - Google Search Console: Domain property verified by a DNS TXT record
@@ -197,7 +201,7 @@ file's prose in English so it stays easy to scan. Last updated 2026-09-25.
 ## Validation and sandbox notes
 
 - Checks: `pnpm typecheck`, `pnpm test` (22 tests), `pnpm build`, then `pnpm start` +
-  `node scripts/check-routes.mjs` (90 pages incl. the articles, links, SEO assertions, 503 while
+  `node scripts/check-routes.mjs` (93 pages incl. the articles, links, SEO assertions, 503 while
   the form is unconfigured) and the Playwright suite (16 tests incl. axe). Prettier:
   `pnpm exec prettier --check components content lib app styles tests scripts docs *.md`.
 - The installed `@playwright/test` expects a newer browser than the sandbox has: run with a
@@ -235,3 +239,4 @@ file's prose in English so it stays easy to scan. Last updated 2026-09-25.
 - PR #19: light headings (option B of the typography previews).
 - PR #20: Hospitality Qatar 2026 news and ten real estate and hospitality guides.
 - PR #21: the Hospitality Qatar news reworded: the team visits, it does not exhibit.
+- PR #22: news of the HADARA Real Estate team visiting Cityscape Qatar 2026.

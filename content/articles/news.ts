@@ -4,6 +4,102 @@ const image = (file: string) => `/images/insights/${file}.jpg`;
 /** Group and company news. Facts come from the companies' own pages and verified event sources. */
 export const news: Article[] = [
   {
+    // Event facts (27–29 October 2026, DECC Doha, theme "Where Vision Meets Investment", 400+ live
+    // projects, some 16,000 visitors expected, 4th Qatar Real Estate Forum) from The Peninsula
+    // Qatar (9 September 2026) and Cityscape Qatar's own posts. The team attends as visitors, not
+    // as an exhibitor (owner, 2026-09-26): never mention a stand.
+    slug: 'cityscape-qatar-2026',
+    category: 'corporate',
+    status: 'published',
+    approved: true,
+    publishedAt: '2026-09-26',
+    company: 'real-estate',
+    translations: {
+      en: {
+        title: 'HADARA Real Estate to visit Cityscape Qatar 2026 in Doha',
+        seoTitle: 'HADARA Real Estate visits Cityscape Qatar 2026',
+        description:
+          'The HADARA Real Estate team will visit Cityscape Qatar 2026 at the Doha Exhibition and Convention Center on 27–29 October to meet investors and partners.',
+        body: [
+          'The team of HADARA Real Estate, a BYHADARA Group company, will visit Cityscape Qatar 2026, which returns to the Doha Exhibition and Convention Center (DECC) from 27 to 29 October 2026.',
+          'Held under the theme “Where Vision Meets Investment”, the exhibition brings together developers from Qatar and international markets with more than 400 live projects, alongside the 4th Qatar Real Estate Forum. Some 16,000 visitors are expected.',
+          'During the visit, the team will follow the latest developments in Qatar’s property market and meet investors, developers and partners to introduce HADARA Real Estate’s residential projects in Istanbul, from Lotus Yaşam and Diamond Marin in Beylikdüzü to Marmara Haven Villa in Büyükçekmece.',
+          'For investors in Qatar and across the Gulf, it is a chance to talk face to face about owning property in Istanbul: choosing the right project, the purchase process through to the title deed, and the route to Turkish citizenship through real estate investment.',
+          'Investors and partners who would like to meet the team in Doha during the exhibition are invited to get in touch in advance to arrange a time.',
+        ],
+        image: image('lotus-manzara-sea-view'),
+        imageAlt: 'Lotus Manzara Beylikdüzü villas above the Sea of Marmara, Istanbul',
+        imageCredit: 'Architectural visualisation: Lotus Yapı Proje.',
+        facts: [
+          ['27–29 Oct 2026', 'Exhibition dates'],
+          ['DECC, Doha', 'Venue'],
+          ['400+', 'Live projects on show'],
+        ],
+        cta: {
+          title: 'Meet us in Doha',
+          text: 'Arrange a meeting with the HADARA Real Estate team in Doha during Cityscape Qatar 2026.',
+          label: 'Request a meeting',
+          href: '/en/contact',
+        },
+      },
+      ar: {
+        title: 'فريق حضارة العقارية يزور معرض سيتي سكيب قطر 2026 في الدوحة',
+        seoTitle: 'حضارة العقارية تزور سيتي سكيب قطر 2026',
+        description:
+          'يزور فريق حضارة العقارية معرض سيتي سكيب قطر 2026 (Cityscape Qatar) في مركز الدوحة للمعارض والمؤتمرات من 27 إلى 29 أكتوبر، للقاء المستثمرين والشركاء.',
+        body: [
+          'يزور فريق حضارة العقارية، إحدى شركات مجموعة باي حضارة، معرض سيتي سكيب قطر 2026 (Cityscape Qatar)، الذي يعود إلى مركز الدوحة للمعارض والمؤتمرات من 27 إلى 29 أكتوبر 2026.',
+          'ويجمع المعرض، الذي يُقام هذا العام تحت شعار «حيث تلتقي الرؤية بالاستثمار»، مطوّرين من قطر والأسواق الدولية يعرضون أكثر من 400 مشروع، إلى جانب النسخة الرابعة من منتدى قطر للعقارات، ويُتوقع أن يستقطب نحو 16 ألف زائر.',
+          'وخلال الزيارة، يطّلع الفريق على أحدث تطورات السوق العقارية في قطر، ويلتقي بالمستثمرين والمطوّرين والشركاء لتعريفهم بمشاريع حضارة العقارية السكنية في إسطنبول، من لوتس ياشام ودايموند مارين في بيليكدوزو إلى فيلا مرمرة هيفن في بيوكجكمجة.',
+          'وتمثل الزيارة للمستثمرين في قطر والخليج فرصة للحديث وجهاً لوجه عن تملّك العقار في إسطنبول: من اختيار المشروع المناسب، إلى خطوات الشراء حتى استلام سند الملكية، ومسار الحصول على الجنسية التركية عبر الاستثمار العقاري.',
+          'ندعو المستثمرين والشركاء الراغبين في لقاء الفريق في الدوحة خلال المعرض إلى التواصل معنا مسبقاً لتحديد موعد.',
+        ],
+        image: image('lotus-manzara-sea-view'),
+        imageAlt: 'فلل لوتس مانزارا بيليكدوزو المطلة على بحر مرمرة في إسطنبول',
+        imageCredit: 'تصميم معماري: لوتس يابي بروجي.',
+        facts: [
+          // The isolate keeps the date range in reading order inside right-to-left text.
+          ['\u206627–29\u2069 أكتوبر 2026', 'موعد المعرض'],
+          ['الدوحة', 'مركز الدوحة للمعارض والمؤتمرات'],
+          ['+400', 'مشروع معروض'],
+        ],
+        cta: {
+          title: 'نلتقي في الدوحة',
+          text: 'حدد موعداً مع فريق حضارة العقارية في الدوحة خلال معرض سيتي سكيب قطر 2026.',
+          label: 'اطلب موعداً',
+          href: '/ar/contact',
+        },
+      },
+      tr: {
+        title: 'HADARA Real Estate ekibi Cityscape Qatar 2026’yı ziyaret ediyor',
+        seoTitle: 'HADARA Real Estate, Cityscape Qatar 2026’da',
+        description:
+          'HADARA Real Estate ekibi, 27–29 Ekim’de Doha Sergi ve Kongre Merkezi’ndeki Cityscape Qatar 2026’yı yatırımcılar ve iş ortaklarıyla görüşmek için ziyaret ediyor.',
+        body: [
+          'BYHADARA Group şirketlerinden HADARA Real Estate’in ekibi, 27–29 Ekim 2026 tarihlerinde Doha Sergi ve Kongre Merkezi’nde (DECC) düzenlenecek Cityscape Qatar 2026’yı ziyaret ediyor.',
+          'Bu yıl “Where Vision Meets Investment” temasıyla düzenlenen fuar, Katar’dan ve uluslararası pazarlardan geliştiricileri 400’ü aşkın projeyle bir araya getiriyor; 4. Katar Gayrimenkul Forumu da fuar kapsamında yapılıyor. Yaklaşık 16.000 ziyaretçi bekleniyor.',
+          'Ekip ziyaret boyunca Katar gayrimenkul piyasasındaki gelişmeleri takip edecek; yatırımcılar, geliştiriciler ve iş ortaklarıyla görüşerek HADARA Real Estate’in İstanbul’daki konut projelerini, Beylikdüzü’ndeki Lotus Yaşam ve Diamond Marin’den Büyükçekmece’deki Marmara Haven Villa’ya kadar tanıtacak.',
+          'Katar ve Körfez’deki yatırımcılar için bu, İstanbul’da gayrimenkul sahibi olmayı yüz yüze konuşmak için bir fırsat: doğru projeyi seçmekten tapuya kadar satın alma sürecine ve gayrimenkul yatırımıyla Türk vatandaşlığı yoluna kadar.',
+          'Fuar süresince ekiple Doha’da görüşmek isteyen yatırımcılar ve iş ortakları, randevu için önceden iletişime geçebilir.',
+        ],
+        image: image('lotus-manzara-sea-view'),
+        imageAlt: 'İstanbul’da Marmara Denizi’ne bakan Lotus Manzara Beylikdüzü villaları',
+        imageCredit: 'Mimari görselleştirme: Lotus Yapı Proje.',
+        facts: [
+          ['27–29 Ekim 2026', 'Fuar tarihleri'],
+          ['DECC, Doha', 'Mekân'],
+          ['400+', 'Sergilenen proje'],
+        ],
+        cta: {
+          title: 'Doha’da görüşelim',
+          text: 'Cityscape Qatar 2026 süresince HADARA Real Estate ekibiyle Doha’da bir görüşme planlayın.',
+          label: 'Görüşme talep edin',
+          href: '/tr/contact',
+        },
+      },
+    },
+  },
+  {
     // Event facts (11th edition, 12–14 October 2026, DECC Doha, trade-only, hotel design and guest
     // technology on show) from the organiser's announcements as reported by marhaba.qa, Qatar
     // Living and the Canadian Trade Commissioner. The team attends as visitors, not as an exhibitor
