@@ -136,7 +136,8 @@ file's prose in English so it stays easy to scan. Last updated 2026-09-25.
 
 ## Insights & News
 
-- Articles live in `content/articles.ts` (all three languages, `approved` + `published`); pages,
+- Articles live in `content/articles/{news,real-estate,hospitality}.ts`, combined in
+  `content/articles.ts` (all three languages, `approved` + `published`); pages,
   cards, homepage section, metadata, JSON-LD and sitemap follow automatically. An article can have
   a shorter `seoTitle` (search title ≤65 with the group suffix; tested), a lead (first paragraph),
   main image with credit, three key `facts`, a two-image `gallery`, a `cta` (external or `/locale/…`)
@@ -147,6 +148,16 @@ file's prose in English so it stays easy to scan. Last updated 2026-09-25.
   HADARA Real Estate is described as "presenting" them; the owner has not stated its exact role
   (marketer, partner…). Diamond Marin is not on hadararealestate.com yet, so its call to action
   leads to Contact; point it to the project page once that site lists it.
+- Added 2026-09-26 at the owner's request: news **HADARA Hospitality at Hospitality Qatar 2026**
+  (owner confirmed participation; event facts: 11th edition, 12–14 October 2026, DECC Doha,
+  trade-only, from marhaba.qa / Qatar Living / Canadian Trade Commissioner search results, since
+  the organiser's site is blocked here; no stand number yet: add it when the owner has one), five
+  real estate guides (buying in Türkiye, citizenship via real estate without quoting the threshold,
+  western Istanbul, what buyers expect, off-plan vs ready) and five hospitality guides (textiles
+  guests remember, bed linen beyond thread count, towel GSM, Türkiye as a textile hub, durability).
+  Guides follow the facts in the companies' own guides (İkinci `blogData`, hadarahospitality
+  `src/data/blog.ts`), rewritten, never copied. `check-routes.mjs` now reads article slugs from the
+  insights index (90 pages, 87 sitemap URLs with 13 articles).
 - In Arabic text, number ranges render reversed ("100–109" shows as "109–100"): write them in
   words («بين 100 و109») or wrap them in U+2066/U+2069 isolates (fine outside `<select>`).
 
@@ -159,7 +170,7 @@ file's prose in English so it stays easy to scan. Last updated 2026-09-25.
   rendered with Playwright from an HTML file opened via `file://` (so local fonts and the photo
   load); re-render them the same way if the brand changes.
 - The insights index is `noindex` and outside the sitemap only while no article is published; the
-  thank-you page is always `noindex` and outside it. Sitemap: 54 URLs with the two articles.
+  thank-you page is always `noindex` and outside it. Sitemap: 87 URLs with 13 articles.
 - Canonical origin is `https://www.byhadara.com` (default in `content/site.ts`, `SITE_URL`
   overrides), matching Vercel where the apex redirects to `www`. Keep the two in sync.
 - Google Search Console: Domain property verified by a DNS TXT record
@@ -185,7 +196,7 @@ file's prose in English so it stays easy to scan. Last updated 2026-09-25.
 ## Validation and sandbox notes
 
 - Checks: `pnpm typecheck`, `pnpm test` (22 tests), `pnpm build`, then `pnpm start` +
-  `node scripts/check-routes.mjs` (57 pages incl. the articles, links, SEO assertions, 503 while
+  `node scripts/check-routes.mjs` (90 pages incl. the articles, links, SEO assertions, 503 while
   the form is unconfigured) and the Playwright suite (16 tests incl. axe). Prettier:
   `pnpm exec prettier --check components content lib app styles tests scripts docs *.md`.
 - The installed `@playwright/test` expects a newer browser than the sandbox has: run with a
@@ -221,3 +232,4 @@ file's prose in English so it stays easy to scan. Last updated 2026-09-25.
 - PR #18: confident copy (disclaimers moved to Terms, legal name in the footer), real project
   visuals for HADARA Real Estate, no repeated Bosphorus photo on Markets, Egypt reworded.
 - PR #19: light headings (option B of the typography previews).
+- PR #20: Hospitality Qatar 2026 news and ten real estate and hospitality guides.
