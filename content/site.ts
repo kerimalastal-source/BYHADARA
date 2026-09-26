@@ -48,14 +48,14 @@ export const dictionaries = {
     location: 'ISTANBUL, TÜRKİYE · INTERNATIONAL PERSPECTIVE',
     hero: ['Building Value.', 'Connecting Markets.'],
     intro:
-      'An Istanbul-based investment and business development group. Building specialized businesses and meaningful connections across regional and international markets.',
+      'The Istanbul-based group behind HADARA Real Estate, developing residences in Istanbul since 2014, and HADARA Hospitality, supplying hotels across the Gulf and Europe from Türkiye.',
     explore: 'Explore our businesses',
     discover: 'Discover our group',
     scroll: 'A shared vision. A world of opportunity.',
     who: 'WHO WE ARE',
     whoTitle: 'Rooted in Istanbul.\nLooking beyond borders.',
     whoText:
-      'BYHADARA Group brings together independently registered companies with a shared commitment to sustainable growth. Our current activities span real estate development and hospitality supply.',
+      'BYHADARA Group brings together two specialized companies with a shared commitment to sustainable growth: HADARA Real Estate, developing residences in Istanbul, and HADARA Hospitality, supplying hotels in the Gulf and Europe.',
     whoMore:
       'We combine local market understanding with an international perspective to develop our businesses, explore new opportunities, and build lasting commercial relationships.',
     businesses: 'OUR BUSINESSES',
@@ -63,7 +63,7 @@ export const dictionaries = {
     businessIntro:
       'Focused expertise in distinct industries, connected by a common ambition to build lasting value.',
     learn: 'Discover the company',
-    imageNote: 'Illustrative photography. Not a BYHADARA property or facility.',
+    imageNote: 'Real estate imagery: architectural visualisations by Lotus Yapı Proje.',
     productImageNote: 'Product photography is illustrative.',
     groupLabel: 'THE GROUP',
     groupTitle: 'One group.\nTwo specialized companies.',
@@ -100,8 +100,9 @@ export const dictionaries = {
         visit: 'Visit the HADARA Real Estate website',
         visitText:
           'Every project, availability and viewings are on the dedicated HADARA Real Estate platform.',
-        image: 'architecture.jpg',
-        alt: 'Reflective glass facade of a contemporary building',
+        image: 'insights/lotus-yasam-courtyard.jpg',
+        panelImage: 'real-estate/lotus-manzara-villa.jpg',
+        alt: 'Landscaped courtyard of the Lotus Yaşam residences in Beylikdüzü',
       },
       {
         name: 'HADARA Hospitality',
@@ -129,6 +130,7 @@ export const dictionaries = {
         visitText:
           'The full collection, specifications and quotations are on the dedicated HADARA Hospitality platform.',
         image: 'hospitality/rolled-towels.jpg',
+        panelImage: 'hospitality/rolled-towels.jpg',
         alt: 'Rolled white hotel towels',
       },
     ],
@@ -156,15 +158,13 @@ export const dictionaries = {
       },
       {
         name: 'Egypt',
-        status: 'FUTURE OPPORTUNITIES',
-        desc: 'A market of interest for business development, commercial relationships, and future opportunities.',
+        status: 'MARKET OF INTEREST',
+        desc: 'A large regional market we follow closely for commercial relationships and partnerships that fit our businesses.',
         interest:
           'Explore market knowledge, potential partners, and opportunities that align with the group’s growth direction.',
-        sectors: 'Commercial relationships · Future business development',
+        sectors: 'Commercial relationships · Business development',
       },
     ],
-    marketNote:
-      'Regional interests do not imply local offices, registered entities, or confirmed investment projects.',
     vision: 'OUR VISION',
     visionTitle: 'Creating value\nfor the long term.',
     visionText:
@@ -188,7 +188,7 @@ export const dictionaries = {
       'We believe lasting businesses are built through clear priorities, specialized expertise, and trusted relationships. We approach new opportunities with care, guided by their fit with our businesses and long-term direction.',
     growth: 'Our growth direction',
     growthText:
-      'Our ambition is to strengthen our current businesses, explore new companies and projects, and develop international partnerships. These are objectives for future development, rather than claims of established operations.',
+      'We aim to strengthen our current companies, add new companies and projects where they fit, and develop international partnerships.',
     partnerships: 'PARTNERSHIPS',
     partnershipsTitle: 'Let’s grow\ntogether.',
     partnershipIntro:
@@ -240,14 +240,13 @@ export const dictionaries = {
       'An Istanbul-based investment and business development group, connecting specialized businesses with a shared vision.',
     quickLinks: 'Explore',
     based: 'Istanbul, Türkiye',
-    legalIdentity:
-      'BYHADARA Group is a commercial identity connecting independently registered companies.',
+    legalIdentity: `Operated by ${site.legalName}, Istanbul.`,
     privacy: 'Privacy Policy',
     terms: 'Terms of Use',
     rights: 'All rights reserved.',
     aboutTitle: 'A shared ambition.\nA considered direction.',
     aboutIntro:
-      'BYHADARA Group is an Istanbul-based investment and business development group bringing together independently registered companies operating across specialized industries.',
+      'BYHADARA Group is an Istanbul-based investment and business development group, home to HADARA Real Estate and HADARA Hospitality.',
     contactTitle: 'A conversation can\nopen new possibilities.',
     contactIntro:
       'Tell us where your ambitions meet ours. Choose the most relevant way to connect with the group or visit our specialized business platforms.',
@@ -326,7 +325,7 @@ export const dictionaries = {
       ],
       [
         'Businesses and markets',
-        'Business descriptions distinguish existing activities from future objectives. References to regional markets do not imply local offices, legal entities, or completed projects.',
+        'Business descriptions distinguish existing activities from future objectives. References to regional markets do not imply local offices, legal entities, or completed projects. Project images are architectural visualisations by their developers; other photography is illustrative.',
       ],
       [
         'External websites',
@@ -359,21 +358,21 @@ export const dictionaries = {
     location: 'إسطنبول، تركيا · رؤية دولية',
     hero: ['نبني القيمة.', 'نربط الأسواق.'],
     intro:
-      'مجموعة للاستثمار وتطوير الأعمال تنطلق من إسطنبول، لتطوير شركات متخصصة وبناء روابط تجارية ذات قيمة عبر الأسواق الإقليمية والدولية.',
+      'مجموعة مقرها إسطنبول تضم حضارة العقارية، التي تطوّر المشاريع السكنية في إسطنبول منذ 2014، وحضارة للضيافة، التي تورّد مستلزمات الفنادق من تركيا إلى الخليج وأوروبا.',
     explore: 'اكتشف شركاتنا',
     discover: 'تعرّف على المجموعة',
     scroll: 'رؤية مشتركة. وآفاق واسعة.',
     who: 'من نحن',
     whoTitle: 'من إسطنبول.\nإلى آفاق أوسع.',
     whoText:
-      'تجمع مجموعة باي حضارة شركات مسجلة بشكل مستقل، يوحّدها الالتزام بالنمو المستدام. وتشمل أنشطتنا الحالية التطوير العقاري وتوريد مستلزمات الضيافة.',
+      'تجمع مجموعة باي حضارة شركتين متخصصتين يوحّدهما الالتزام بالنمو المستدام: حضارة العقارية للتطوير العقاري في إسطنبول، وحضارة للضيافة لتوريد مستلزمات الفنادق في الخليج وأوروبا.',
     whoMore:
       'نجمع بين فهم السوق المحلي والرؤية الدولية لتطوير أعمالنا، واستكشاف الفرص، وبناء علاقات تجارية طويلة الأمد.',
     businesses: 'شركاتنا',
     businessesTitle: 'شركات متخصصة.\nورؤية واحدة.',
     businessIntro: 'خبرات متخصصة في قطاعات مختلفة، تجمعها الرغبة في بناء قيمة مستدامة.',
     learn: 'تعرّف على الشركة',
-    imageNote: 'صور توضيحية لا تمثل عقارات أو مرافق تابعة للمجموعة.',
+    imageNote: 'صور العقارات: تصاميم معمارية من لوتس يابي بروجي.',
     productImageNote: 'صور المنتجات توضيحية.',
     groupLabel: 'المجموعة',
     groupTitle: 'مجموعة واحدة.\nوشركتان متخصصتان.',
@@ -410,8 +409,9 @@ export const dictionaries = {
         visit: 'انتقل إلى موقع حضارة العقارية',
         visitText:
           'جميع المشاريع وتفاصيل التوفر ومواعيد المعاينة على المنصة المتخصصة لحضارة العقارية.',
-        image: 'architecture.jpg',
-        alt: 'واجهة زجاجية عاكسة لمبنى معاصر',
+        image: 'insights/lotus-yasam-courtyard.jpg',
+        panelImage: 'real-estate/lotus-manzara-villa.jpg',
+        alt: 'ساحة خضراء منسّقة في مشروع لوتس ياشام السكني في بيليكدوزو',
       },
       {
         name: 'حضارة للضيافة',
@@ -439,6 +439,7 @@ export const dictionaries = {
         visitText:
           'المجموعة الكاملة والمواصفات وطلبات عروض الأسعار على المنصة المتخصصة لحضارة للضيافة.',
         image: 'hospitality/rolled-towels.jpg',
+        panelImage: 'hospitality/rolled-towels.jpg',
         alt: 'مناشف فندقية بيضاء ملفوفة',
       },
     ],
@@ -465,15 +466,13 @@ export const dictionaries = {
       },
       {
         name: 'مصر',
-        status: 'فرص مستقبلية',
-        desc: 'سوق نهتم فيه باستكشاف تطوير الأعمال والعلاقات التجارية والفرص المستقبلية.',
+        status: 'سوق محل اهتمام',
+        desc: 'سوق إقليمية كبيرة نتابعها عن قرب، بهدف بناء علاقات تجارية وشراكات تنسجم مع أعمالنا.',
         interest:
           'تعميق المعرفة بالسوق واستكشاف الشركاء المحتملين والفرص المتوافقة مع توجه المجموعة.',
-        sectors: 'العلاقات التجارية · تطوير الأعمال المستقبلي',
+        sectors: 'العلاقات التجارية · تطوير الأعمال',
       },
     ],
-    marketNote:
-      'لا تعني الاهتمامات الإقليمية وجود مكاتب محلية أو كيانات مسجلة أو مشاريع استثمارية مؤكدة.',
     vision: 'رؤيتنا',
     visionTitle: 'نبني القيمة\nللمدى الطويل.',
     visionText:
@@ -497,7 +496,7 @@ export const dictionaries = {
       'نؤمن بأن الأعمال المستدامة تُبنى على أولويات واضحة وخبرات متخصصة وعلاقات موثوقة. ندرس الفرص الجديدة بعناية وفق انسجامها مع أعمالنا وتوجهنا طويل الأمد.',
     growth: 'اتجاه نمونا',
     growthText:
-      'نطمح إلى تعزيز شركاتنا الحالية واستكشاف شركات ومشاريع جديدة وتطوير شراكات دولية. وهذه أهداف للتطوير المستقبلي، وليست ادعاءات بعمليات قائمة.',
+      'نطمح إلى تعزيز شركاتنا الحالية، وإضافة شركات ومشاريع جديدة حين تنسجم مع توجهنا، وتطوير شراكات دولية.',
     partnerships: 'الشراكات',
     partnershipsTitle: 'لننمُ\nمعاً.',
     partnershipIntro:
@@ -547,13 +546,13 @@ export const dictionaries = {
     footer: 'مجموعة للاستثمار وتطوير الأعمال مقرها إسطنبول، تجمع شركات متخصصة برؤية مشتركة.',
     quickLinks: 'اكتشف',
     based: 'إسطنبول، تركيا',
-    legalIdentity: 'مجموعة باي حضارة هوية تجارية تجمع شركات مسجلة بشكل مستقل.',
+    legalIdentity: `يُدار الموقع من قبل شركة ${site.legalName}، إسطنبول.`,
     privacy: 'سياسة الخصوصية',
     terms: 'شروط الاستخدام',
     rights: 'جميع الحقوق محفوظة.',
     aboutTitle: 'طموح مشترك.\nواتجاه مدروس.',
     aboutIntro:
-      'مجموعة باي حضارة مجموعة للاستثمار وتطوير الأعمال مقرها إسطنبول، تجمع شركات مسجلة بشكل مستقل تعمل في قطاعات متخصصة.',
+      'مجموعة باي حضارة مجموعة للاستثمار وتطوير الأعمال مقرها إسطنبول، تضم حضارة العقارية وحضارة للضيافة.',
     contactTitle: 'محادثة واحدة قد\nتفتح آفاقاً جديدة.',
     contactIntro:
       'أخبرنا أين تلتقي طموحاتك مع رؤيتنا. اختر وسيلة التواصل الأنسب، أو زر منصات شركاتنا المتخصصة.',
@@ -630,7 +629,7 @@ export const dictionaries = {
       ],
       [
         'الشركات والأسواق',
-        'تميز أوصاف الأعمال بين الأنشطة الحالية والأهداف المستقبلية. لا تعني الإشارة إلى الأسواق الإقليمية وجود مكاتب أو كيانات قانونية أو مشاريع منجزة فيها.',
+        'تميز أوصاف الأعمال بين الأنشطة الحالية والأهداف المستقبلية. لا تعني الإشارة إلى الأسواق الإقليمية وجود مكاتب أو كيانات قانونية أو مشاريع منجزة فيها. صور المشاريع تصاميم معمارية من مطوّريها، وباقي الصور توضيحية.',
       ],
       [
         'المواقع الخارجية',
@@ -670,21 +669,21 @@ export const dictionaries = {
     location: 'İSTANBUL, TÜRKİYE · ULUSLARARASI BAKIŞ',
     hero: ['Değer İnşa Ediyoruz.', 'Pazarları Buluşturuyoruz.'],
     intro:
-      'İstanbul merkezli bir yatırım ve iş geliştirme grubu. Uzmanlaşmış işletmeler geliştiriyor, bölgesel ve uluslararası pazarlar arasında anlamlı ticari bağlar kuruyoruz.',
+      'İstanbul merkezli grubumuz, 2014’ten bu yana İstanbul’da konut projeleri geliştiren HADARA Real Estate’i ve Türkiye’den Körfez ile Avrupa’daki otellere tedarik sağlayan HADARA Hospitality’yi bir araya getirir.',
     explore: 'Şirketlerimizi keşfedin',
     discover: 'Grubumuzu tanıyın',
     scroll: 'Ortak bir vizyon. Yeni fırsatlar.',
     who: 'BİZ KİMİZ',
     whoTitle: 'İstanbul’dan güç alıyor.\nSınırların ötesine bakıyoruz.',
     whoText:
-      'BYHADARA Group, sürdürülebilir büyüme anlayışıyla bağımsız olarak tescil edilmiş şirketleri bir araya getirir. Mevcut faaliyetlerimiz gayrimenkul geliştirme ve konaklama tedarikini kapsar.',
+      'BYHADARA Group, sürdürülebilir büyüme anlayışını paylaşan iki uzman şirketi bir araya getirir: İstanbul’da konut geliştiren HADARA Real Estate ve Körfez ile Avrupa’daki otellere tedarik sağlayan HADARA Hospitality.',
     whoMore:
       'İşletmelerimizi geliştirmek, yeni fırsatları değerlendirmek ve kalıcı ticari ilişkiler kurmak için yerel pazar bilgisini uluslararası bir bakış açısıyla birleştiriyoruz.',
     businesses: 'ŞİRKETLERİMİZ',
     businessesTitle: 'Uzmanlaşmış işletmeler.\nOrtak bir vizyon.',
     businessIntro: 'Farklı sektörlerde uzmanlık, kalıcı değer yaratma hedefinde buluşuyor.',
     learn: 'Şirketi keşfedin',
-    imageNote: 'Fotoğraflar temsilidir; BYHADARA mülk veya tesislerini göstermez.',
+    imageNote: 'Gayrimenkul görselleri: Lotus Yapı Proje mimari görselleştirmeleri.',
     productImageNote: 'Ürün fotoğrafları temsilidir.',
     groupLabel: 'GRUP',
     groupTitle: 'Tek grup.\nİki uzman şirket.',
@@ -721,8 +720,9 @@ export const dictionaries = {
         visit: 'HADARA Real Estate web sitesine gidin',
         visitText:
           'Tüm projeler, müsaitlik ve ziyaret bilgileri HADARA Real Estate’in kendi platformunda.',
-        image: 'architecture.jpg',
-        alt: 'Çağdaş bir binanın yansıtıcı cam cephesi',
+        image: 'insights/lotus-yasam-courtyard.jpg',
+        panelImage: 'real-estate/lotus-manzara-villa.jpg',
+        alt: 'Beylikdüzü’ndeki Lotus Yaşam konutlarının peyzajlı avlusu',
       },
       {
         name: 'HADARA Hospitality',
@@ -750,6 +750,7 @@ export const dictionaries = {
         visitText:
           'Tüm koleksiyon, teknik özellikler ve teklif talepleri HADARA Hospitality’nin kendi platformunda.',
         image: 'hospitality/rolled-towels.jpg',
+        panelImage: 'hospitality/rolled-towels.jpg',
         alt: 'Rulo yapılmış beyaz otel havluları',
       },
     ],
@@ -777,15 +778,13 @@ export const dictionaries = {
       },
       {
         name: 'Mısır',
-        status: 'GELECEĞE YÖNELİK FIRSATLAR',
-        desc: 'İş geliştirme, ticari ilişkiler ve gelecekteki fırsatlar açısından ilgi duyduğumuz bir pazar.',
+        status: 'İLGİ DUYDUĞUMUZ PAZAR',
+        desc: 'Ticari ilişkiler ve işlerimize uygun ortaklıklar için yakından takip ettiğimiz büyük bir bölgesel pazar.',
         interest:
           'Pazar bilgisini, potansiyel ortakları ve grubun büyüme yönüyle uyumlu fırsatları araştırmak.',
-        sectors: 'Ticari ilişkiler · Geleceğe yönelik iş geliştirme',
+        sectors: 'Ticari ilişkiler · İş geliştirme',
       },
     ],
-    marketNote:
-      'Bölgesel ilgi alanları; yerel ofis, tescilli şirket veya kesinleşmiş yatırım projesi bulunduğu anlamına gelmez.',
     vision: 'VİZYONUMUZ',
     visionTitle: 'Uzun vadeli\ndeğer yaratmak.',
     visionText:
@@ -809,7 +808,7 @@ export const dictionaries = {
       'Kalıcı işletmelerin net öncelikler, uzmanlık ve güvenilir ilişkilerle kurulduğuna inanıyoruz. Yeni fırsatları, mevcut işlerimiz ve uzun vadeli yönümüzle uyumları açısından dikkatle değerlendiriyoruz.',
     growth: 'Büyüme yönümüz',
     growthText:
-      'Mevcut işletmelerimizi güçlendirmeyi, yeni şirket ve proje fırsatlarını araştırmayı ve uluslararası ortaklıklar geliştirmeyi amaçlıyoruz. Bunlar geleceğe yönelik hedeflerdir; mevcut faaliyetlere ilişkin iddialar değildir.',
+      'Mevcut şirketlerimizi güçlendirmeyi, uygun olduğunda yeni şirket ve projeler eklemeyi ve uluslararası ortaklıklar geliştirmeyi amaçlıyoruz.',
     partnerships: 'İŞ ORTAKLIKLARI',
     partnershipsTitle: 'Birlikte\nbüyüyelim.',
     partnershipIntro:
@@ -861,14 +860,13 @@ export const dictionaries = {
       'İstanbul merkezli, uzmanlaşmış işletmeleri ortak bir vizyonda buluşturan yatırım ve iş geliştirme grubu.',
     quickLinks: 'Keşfedin',
     based: 'İstanbul, Türkiye',
-    legalIdentity:
-      'BYHADARA Group, bağımsız olarak tescil edilmiş şirketleri bir araya getiren ticari bir kimliktir.',
+    legalIdentity: `Web sitesi ${site.legalName} (İstanbul) tarafından işletilmektedir.`,
     privacy: 'Gizlilik Politikası',
     terms: 'Kullanım Koşulları',
     rights: 'Tüm hakları saklıdır.',
     aboutTitle: 'Ortak bir hedef.\nBilinçli bir yön.',
     aboutIntro:
-      'BYHADARA Group, uzmanlaşmış sektörlerde faaliyet gösteren bağımsız tescilli şirketleri bir araya getiren İstanbul merkezli bir yatırım ve iş geliştirme grubudur.',
+      'BYHADARA Group, HADARA Real Estate ve HADARA Hospitality’yi bünyesinde barındıran İstanbul merkezli bir yatırım ve iş geliştirme grubudur.',
     contactTitle: 'Bir görüşme, yeni\nolanaklar açabilir.',
     contactIntro:
       'Hedeflerinizin vizyonumuzla nerede buluştuğunu anlatın. Grubumuzla iletişim kurmanın uygun yolunu seçin veya uzman şirket platformlarımızı ziyaret edin.',
@@ -947,7 +945,7 @@ export const dictionaries = {
       ],
       [
         'Şirketler ve pazarlar',
-        'İş tanımları mevcut faaliyetleri gelecekteki hedeflerden ayırır. Bölgesel pazarlara yapılan atıflar yerel ofis, tüzel kişi veya tamamlanmış proje bulunduğu anlamına gelmez.',
+        'İş tanımları mevcut faaliyetleri gelecekteki hedeflerden ayırır. Bölgesel pazarlara yapılan atıflar yerel ofis, tüzel kişi veya tamamlanmış proje bulunduğu anlamına gelmez. Proje görselleri geliştiricilerinin mimari görselleştirmeleridir; diğer fotoğraflar temsilidir.',
       ],
       [
         'Harici web siteleri',

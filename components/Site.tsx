@@ -156,7 +156,7 @@ export function Companies({ locale, heading = false }: { locale: Locale; heading
         {d.business.map((b, i) => (
           <div className="company-branch" key={b.name}>
             <Link href={`/${locale}/businesses/${businessIds[i]}`} className="company-panel">
-              <Photo name={b.image} alt="" sizes="(max-width: 640px) 100vw, 50vw" />
+              <Photo name={b.panelImage} alt="" sizes="(max-width: 640px) 100vw, 50vw" />
               <HadaraMark className="company-mark" />
               <span className="company-index" aria-hidden="true">
                 0{i + 1}

@@ -14,7 +14,9 @@ file's prose in English so it stays easy to scan. Last updated 2026-09-25.
   `origin/main` and push it so the branch is not left behind. Tell the owner in Arabic what
   changed and anything they must do.
 - The site should feel like a **calm, restrained holding-group site**: little text, clear
-  gestures, details left to the subsidiary websites. The two companies must stay prominent on the
+  gestures, details left to the subsidiary websites. No defensive disclaimers on visible pages
+  ("not a BYHADARA property", "objectives rather than claims"…): they live in the Terms; visible
+  copy states facts confidently and names the two companies. The two companies must stay prominent on the
   homepage.
 - Never invent facts. Company facts, projects, products and partners come from the group
   companies' own websites/repos (see "Sister sites"). Ask the owner for anything else.
@@ -165,6 +167,11 @@ file's prose in English so it stays easy to scan. Last updated 2026-09-25.
 
 ## Images
 
+- HADARA Real Estate imagery (since 2026-09-26) is real project visuals by Lotus Yapı Proje:
+  homepage panel `real-estate/lotus-manzara-villa.jpg`, company page
+  `insights/lotus-yasam-courtyard.jpg`, credited by `imageNote`. The panels read `panelImage`, the
+  company page `image`. Egypt is shown as a "market of interest" (no activity there yet).
+
 - Next's image optimizer cache cannot be invalidated: when an image's content changes, give it a
   new file name (why `istanbul.jpg` became `istanbul-bosphorus.jpg`).
 - The hero photo is cropped to remove third-party developer signage (EMLAK KONUT). Check stock
@@ -191,6 +198,10 @@ file's prose in English so it stays easy to scan. Last updated 2026-09-25.
 
 ## Open items to offer the owner
 
+- Headline typography: previews sent 2026-09-26 (A current Inter 500, B Inter Light 300, C
+  Cormorant Garamond for Latin headings). İkinci BYHADARA dropped Playfair/Noto Naskh to match this
+  site's Inter, so a change should cover the family of sites. Awaiting the owner's choice.
+
 - Real product photography for HADARA Hospitality; an official BYHADARA logo.
 - A WhatsApp button on the contact page.
 - Self-hosting the project photos (needs `static.wixstatic.com` allowed in the environment).
@@ -209,3 +220,5 @@ file's prose in English so it stays easy to scan. Last updated 2026-09-25.
 - PRs #12–#15: context file updates (HubSpot live, company properties, supplier lifecycle).
 - PR #16: wordmark fixed in English at the far left in all locales (header and footer).
 - PR #17: first news articles (Lotus Yaşam, Diamond Marin) and a fuller article page.
+- PR #18: confident copy (disclaimers moved to Terms, legal name in the footer), real project
+  visuals for HADARA Real Estate, no repeated Bosphorus photo on Markets, Egypt reworded.

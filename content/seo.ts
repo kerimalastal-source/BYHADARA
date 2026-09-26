@@ -50,7 +50,7 @@ export const seo: Record<Locale, Record<string, SeoEntry>> = {
         'The GCC is a key region for BYHADARA Group’s hospitality supply relationships and regional business development, focused on long-term collaboration.',
     },
     'markets/egypt': {
-      title: 'Egypt – Future Business Opportunities | BYHADARA Group',
+      title: 'Egypt – A Market of Interest | BYHADARA Group',
       description:
         'Egypt is a market of interest for BYHADARA Group: exploring business development, commercial relationships and partners aligned with its growth direction.',
     },
@@ -136,7 +136,7 @@ export const seo: Record<Locale, Record<string, SeoEntry>> = {
         'دول الخليج منطقة رئيسية لعلاقات توريد مستلزمات الضيافة وتطوير الأعمال الإقليمي لدى مجموعة باي حضارة، مع التركيز على التعاون التجاري طويل الأمد.',
     },
     'markets/egypt': {
-      title: 'مصر: فرص أعمال مستقبلية | مجموعة باي حضارة',
+      title: 'مصر: سوق محل اهتمام | مجموعة باي حضارة',
       description:
         'مصر سوق تهتم به مجموعة باي حضارة لاستكشاف فرص تطوير الأعمال والعلاقات التجارية والشركاء المتوافقين مع توجه نمو المجموعة.',
     },
@@ -222,7 +222,7 @@ export const seo: Record<Locale, Record<string, SeoEntry>> = {
         'Körfez bölgesi, BYHADARA Group için otel tedariki ilişkileri ve bölgesel iş geliştirmede uzun vadeli ticari işbirliğine odaklanan kilit bir bölgedir.',
     },
     'markets/egypt': {
-      title: 'Mısır – Gelecekteki İş Fırsatları | BYHADARA Group',
+      title: 'Mısır – İlgi Duyduğumuz Pazar | BYHADARA Group',
       description:
         'Mısır, BYHADARA Group’un iş geliştirme, ticari ilişkiler ve büyüme yönüyle uyumlu iş ortaklıkları açısından ilgilendiği bir pazardır.',
     },
