@@ -84,4 +84,5 @@ export const formText = {
       'Bu formu göndererek bilgilerinizin şu metinde açıklandığı şekilde işlenmesini kabul edersiniz:',
   },
 };
-export const getFormText = (locale: Locale) => formText[locale];
+export type FormText = (typeof formText)['en'];
+export const getFormText = (locale: Locale): FormText => formText[locale];

@@ -1,6 +1,7 @@
 import test, { afterEach } from 'node:test';
 import assert from 'node:assert/strict';
 import { inquirySchema, normalizeWebsite } from '../lib/inquiry-schema';
+import { invalidFields } from '../lib/inquiry-rules';
 import { POST } from '../app/api/inquiries/route';
 import { composeEmail, rateLimit, sendInquiry } from '../lib/inquiry-service';
 import { resetHubspotSchema, saveToHubspot } from '../lib/hubspot';
@@ -297,4 +298,36 @@ test('a HubSpot failure never affects the visitor and is logged without personal
     logged[0],
     /^HubSpot sync failed\. Find contact: HubSpot responded 403 MISSING_SCOPES$/,
   );
+});
+test('the browser check flags exactly the fields the server rejects', () => {
+  const cases: Record<string, string>[] = [
+    {},
+    { name: 'A' },
+    { name: 'x'.repeat(121) },
+    { name: 'Bad\u0007name' },
+    { email: 'name@company' },
+    { email: 'a..b@example.com' },
+    { email: `${'a'.repeat(250)}@example.com` },
+    { email: '  NAME@Example.COM ' },
+    { country: '' },
+    { phone: '+90 555 000 0000' },
+    { phone: '12' },
+    { phone: '1'.repeat(15) },
+    { phone: '(212) 555-01.23' },
+    { company: 'x'.repeat(181) },
+    { website: 'not a site' },
+    { website: 'https://user:pass@example.com' },
+    { website: 'example.co.uk/path' },
+    { message: 'too short' },
+    { message: '   Ten chars  ' },
+    { message: 'x'.repeat(3001) },
+  ];
+  for (const change of cases) {
+    const values = { ...valid, ...change };
+    const parsed = inquirySchema.safeParse(values);
+    const server = parsed.success
+      ? []
+      : [...new Set(parsed.error.issues.map((i) => String(i.path[0])))];
+    assert.deepEqual(invalidFields(values).sort(), server.sort(), JSON.stringify(change));
+  }
 });

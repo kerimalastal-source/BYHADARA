@@ -16,7 +16,8 @@ import {
   PageHero,
 } from './Site';
 import { LazyContactForm as ContactForm } from './LazyContactForm';
-import { countryOptions } from '@/content/countries';
+import { countryOptions, popularCountries } from '@/content/countries';
+import { getFormText } from '@/content/forms';
 import { Insights } from './Insights';
 import { inquiriesEnabled } from '@/lib/inquiry-config';
 import { breadcrumbs } from '@/lib/seo';
@@ -318,6 +319,21 @@ export function Partnerships({ locale }: { locale: Locale }) {
     </>
   );
 }
+/** Everything the contact form needs, in the visitor's language only. */
+function formProps(locale: Locale) {
+  const d = dictionary(locale),
+    countries = countryOptions(locale);
+  return {
+    countries,
+    popular: popularCountries(countries),
+    text: {
+      ...getFormText(locale),
+      unavailable: d.formUnavailable,
+      privacy: d.privacy,
+      contactEmail: site.email,
+    },
+  };
+}
 export function Contact({ locale }: { locale: Locale }) {
   const d = dictionary(locale);
   return (
@@ -375,7 +391,7 @@ export function Contact({ locale }: { locale: Locale }) {
           locale={locale}
           topic="general"
           enabled={inquiriesEnabled()}
-          countries={countryOptions(locale)}
+          {...formProps(locale)}
         />
       </section>
     </>
@@ -414,7 +430,7 @@ export function InquiryPage({
           locale={locale}
           topic={kind}
           enabled={inquiriesEnabled()}
-          countries={countryOptions(locale)}
+          {...formProps(locale)}
         />
       </section>
     </>

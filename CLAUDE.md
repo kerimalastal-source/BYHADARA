@@ -197,9 +197,15 @@ file's prose in English so it stays easy to scan. Last updated 2026-09-25.
   the article list gets `ArticleCard`s from `articleCard()`, categories live in
   `content/article-categories.ts`, and the contact form loads through `LazyContactForm`
   (`next/dynamic` inside a client component, since a server component cannot code-split). Never
-  import `content/site.ts` or `content/articles.ts` in a `'use client'` file.
-- Result at 390 px: JavaScript 292 → 150 KB compressed on every page without a form (form pages
-  ~263 KB), language prefetch 31 → 15 KB, the insights index HTML 41 → 12 KB. Tap targets: language
+  import `content/site.ts`, `content/articles.ts`, `content/forms.ts` or zod in a `'use client'`
+  file (type-only imports are fine).
+- The form gets its copy in one language as props (`formProps()` in `Pages.tsx`: `text` with
+  `contactEmail`, not `email`, which is the field label) and checks fields with
+  `lib/inquiry-rules.ts` (no library). The server's zod schema uses the same rules; a unit test
+  asserts both flag the same fields. The browser only checks that a country is chosen; the server
+  also checks it against the calling codes.
+- Result at 390 px: JavaScript 292 → 150 KB compressed on every page, form pages 263 → 153 KB
+  (the form itself is 2 KB), language prefetch 31 → 15 KB, the insights index HTML 41 → 12 KB. Tap targets: language
   links ≥30×40, breadcrumb/footer/contact links padded to ≥41 px tall, consent box 24 px. Small
   text raised to 12 px (hero eyebrow/caption/coordinates); only the wordmark's "GROUP" is smaller.
 
@@ -220,7 +226,7 @@ file's prose in English so it stays easy to scan. Last updated 2026-09-25.
 
 ## Validation and sandbox notes
 
-- Checks: `pnpm typecheck`, `pnpm test` (22 tests), `pnpm build`, then `pnpm start` +
+- Checks: `pnpm typecheck`, `pnpm test` (23 tests), `pnpm build`, then `pnpm start` +
   `node scripts/check-routes.mjs` (93 pages incl. the articles, links, SEO assertions, 503 while
   the form is unconfigured) and the Playwright suite (18 tests incl. axe and the phone/tablet test). Prettier:
   `pnpm exec prettier --check components content lib app styles tests scripts docs *.md`.
@@ -261,3 +267,4 @@ file's prose in English so it stays easy to scan. Last updated 2026-09-25.
 - PR #21: the Hospitality Qatar news reworded: the team visits, it does not exhibit.
 - PR #22: news of the HADARA Real Estate team visiting Cityscape Qatar 2026.
 - PR #23: mobile-first pass: half the JavaScript, larger tap targets, tablet menu, phone/tablet test.
+- PR #24: lighter form pages: validation without zod in the browser, copy in one language.
