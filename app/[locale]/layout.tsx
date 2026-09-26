@@ -14,13 +14,23 @@ export default async function Layout({
 }) {
   const { locale } = await params;
   if (!isLocale(locale)) notFound();
+  const d = dictionary(locale);
   return (
     <html lang={locale} dir={locale === 'ar' ? 'rtl' : 'ltr'}>
       <body>
         <a className="skip-link" href="#main">
-          {dictionary(locale).skip}
+          {d.skip}
         </a>
-        <Header locale={locale} />
+        <Header
+          locale={locale}
+          labels={{
+            nav: d.nav,
+            contact: d.contact,
+            menu: d.menu,
+            close: d.close,
+            language: d.language,
+          }}
+        />
         <main id="main">{children}</main>
         <Footer locale={locale} />
       </body>

@@ -2,11 +2,18 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
-import { dictionary, locales, navPaths, type Locale } from '@/content/site';
+import { locales, navPaths, type Locale } from '@/content/locales';
 import { Brand } from './Brand';
-export function Header({ locale }: { locale: Locale }) {
-  const d = dictionary(locale),
-    path = usePathname(),
+/** Labels the header needs, passed from the server so the dictionaries stay out of the browser. */
+export type HeaderLabels = {
+  nav: string[];
+  contact: string;
+  menu: string;
+  close: string;
+  language: string;
+};
+export function Header({ locale, labels: d }: { locale: Locale; labels: HeaderLabels }) {
+  const path = usePathname(),
     suffix = path.replace(/^\/(en|ar|tr)/, '');
   const [open, setOpen] = useState(false);
   const button = useRef<HTMLButtonElement>(null);
@@ -55,6 +62,7 @@ export function Header({ locale }: { locale: Locale }) {
           href={`/${l}${suffix}`}
           hrefLang={l}
           lang={l}
+          prefetch={false}
           aria-current={l === locale ? 'true' : undefined}
           aria-label={{ en: 'English', ar: 'العربية', tr: 'Türkçe' }[l]}
         >
@@ -106,7 +114,6 @@ export function Header({ locale }: { locale: Locale }) {
             </Link>
           ))}
           <Link href={`/${locale}/contact`}>{d.contact}</Link>
-          {languages}
         </nav>
       )}
     </header>

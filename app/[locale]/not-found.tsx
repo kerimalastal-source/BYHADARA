@@ -1,11 +1,12 @@
 'use client';
 import { useParams } from 'next/navigation';
 import Link from 'next/link';
-import { dictionary, isLocale } from '@/content/site';
+import { isLocale } from '@/content/locales';
+import { notFoundCopy } from '@/content/not-found';
 export default function NotFound() {
   const p = useParams();
   const l = typeof p.locale === 'string' && isLocale(p.locale) ? p.locale : 'en';
-  const d = dictionary(l);
+  const d = notFoundCopy[l];
   return (
     <section className="container section">
       <p>404</p>

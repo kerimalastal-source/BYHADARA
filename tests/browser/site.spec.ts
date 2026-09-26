@@ -76,3 +76,44 @@ test('wordmark stays English and pinned left in every locale', async ({ page }) 
     expect(new Set(seen.filter((_, i) => i % 2 === 1)).size, `footer at ${width}px`).toBe(1);
   }
 });
+test('phones and tablets: no sideways scroll, Contact reachable, comfortable tap targets', async ({
+  page,
+}) => {
+  // Mobile first: 320–430 px phones, then 768–1180 px tablets in portrait and landscape.
+  for (const width of [320, 375, 390, 430, 768, 820, 1024, 1180]) {
+    await page.setViewportSize({ width, height: width < 700 ? 800 : 1000 });
+    for (const path of [
+      '/en',
+      '/ar/contact',
+      '/tr/insights',
+      '/ar/insights/cityscape-qatar-2026',
+    ]) {
+      await page.goto(path);
+      const check = await page.evaluate(() => {
+        const small = [
+          ...document.querySelectorAll<HTMLElement>('header a, header button, footer a'),
+        ]
+          .filter((e) => e.offsetParent && !e.closest('.sr-only'))
+          .map((e) => ({ text: e.textContent?.trim(), box: e.getBoundingClientRect() }))
+          .filter(({ box }) => box.width < 24 || box.height < 24)
+          .map(({ text, box }) => `${text} ${Math.round(box.width)}×${Math.round(box.height)}`);
+        return {
+          overflow: document.documentElement.scrollWidth - document.documentElement.clientWidth,
+          small,
+        };
+      });
+      expect(check.overflow, `${width}px ${path} sideways scroll`).toBeLessThanOrEqual(1);
+      expect(check.small, `${width}px ${path} small tap targets`).toEqual([]);
+      // Contact is either in the header or one tap away in the menu.
+      const contact = page.locator('.header-contact');
+      if (!(await contact.isVisible())) {
+        await page.locator('.menu-button').click();
+        await expect(page.locator('#mobile-navigation a').last()).toHaveAttribute(
+          'href',
+          new RegExp(`^/${path.slice(1, 3)}/contact$`),
+        );
+        await page.keyboard.press('Escape');
+      }
+    }
+  }
+});

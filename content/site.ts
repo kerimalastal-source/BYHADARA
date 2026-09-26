@@ -1,6 +1,6 @@
-export const locales = ['en', 'ar', 'tr'] as const;
-export type Locale = (typeof locales)[number];
-export const isLocale = (v: string): v is Locale => locales.includes(v as Locale);
+import { locales, navPaths, type Locale } from './locales';
+import { notFoundCopy } from './not-found';
+export { locales, isLocale, navPaths, type Locale } from './locales';
 export const paths = [
   '',
   'about',
@@ -20,7 +20,6 @@ export const paths = [
   'privacy',
   'terms',
 ] as const;
-export const navPaths = ['', 'about', 'businesses', 'markets', 'partnerships', 'insights'];
 export const businessIds = ['real-estate', 'hospitality'] as const;
 export const marketIds = ['turkiye', 'gcc', 'egypt'] as const;
 export const site = {
@@ -340,9 +339,7 @@ export const dictionaries = {
         'Do not misuse inquiry forms, attempt unauthorized access, or submit unlawful, malicious, or misleading material. Business relationships require separate, mutually agreed arrangements.',
       ],
     ],
-    notFound: 'Page not found',
-    notFoundText: 'The page you are looking for is not available in this language.',
-    returnHome: 'Return to homepage',
+    ...notFoundCopy.en,
   },
   ar: {
     nav: ['الرئيسية', 'عن المجموعة', 'شركاتنا', 'أسواقنا', 'الشراكات', 'الرؤى والأخبار'],
@@ -644,9 +641,7 @@ export const dictionaries = {
         'يُمنع إساءة استخدام النماذج أو محاولة الوصول غير المصرح به أو إرسال مواد غير قانونية أو ضارة أو مضللة. تتطلب العلاقات التجارية ترتيبات منفصلة متفقاً عليها.',
       ],
     ],
-    notFound: 'الصفحة غير موجودة',
-    notFoundText: 'الصفحة المطلوبة غير متاحة بهذه اللغة.',
-    returnHome: 'العودة إلى الرئيسية',
+    ...notFoundCopy.ar,
   },
   tr: {
     nav: [
@@ -960,9 +955,7 @@ export const dictionaries = {
         'Formları kötüye kullanmayın, yetkisiz erişim girişiminde bulunmayın; hukuka aykırı, zararlı veya yanıltıcı materyal göndermeyin. Ticari ilişkiler ayrıca mutabık kalınmış düzenlemeler gerektirir.',
       ],
     ],
-    notFound: 'Sayfa bulunamadı',
-    notFoundText: 'Aradığınız sayfa bu dilde mevcut değil.',
-    returnHome: 'Ana sayfaya dön',
+    ...notFoundCopy.tr,
   },
 };
 export type Dictionary = typeof dictionaries.en;

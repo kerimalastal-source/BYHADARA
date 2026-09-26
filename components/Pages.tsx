@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { dictionary, businessIds, marketIds, site, type Locale } from '@/content/site';
 import { companyHost, companyUrl, showcase, showcaseUrl } from '@/content/companies';
-import { findArticle, publishedArticles, categoryIds } from '@/content/articles';
+import { articleCard, findArticle, publishedArticles, categoryIds } from '@/content/articles';
 import {
   Arrow,
   ArticleCards,
@@ -15,7 +15,7 @@ import {
   FinalCTA,
   PageHero,
 } from './Site';
-import { ContactForm } from './ContactForm';
+import { LazyContactForm as ContactForm } from './LazyContactForm';
 import { countryOptions } from '@/content/countries';
 import { Insights } from './Insights';
 import { inquiriesEnabled } from '@/lib/inquiry-config';
@@ -530,7 +530,19 @@ export function InsightIndex({ locale }: { locale: Locale }) {
         intro={d.insightsIntro}
       />
       <section className="container body-section">
-        <Insights locale={locale} articles={publishedArticles()} />
+        <Insights
+          locale={locale}
+          articles={publishedArticles().map((a) => articleCard(a, locale))}
+          labels={{
+            search: d.search,
+            allCategories: d.allCategories,
+            categories: d.categories,
+            read: d.read,
+            emptyTitle: d.emptyTitle,
+            emptyText: d.emptyText,
+            noResults: d.noResults,
+          }}
+        />
       </section>
       <FinalCTA locale={locale} />
     </>
