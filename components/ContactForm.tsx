@@ -2,28 +2,40 @@
 import { useEffect, useRef, useState, type FormEvent } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { dictionary, site, type Locale } from '@/content/site';
-import { getFormText } from '@/content/forms';
-import { priorityCountries, type CountryOption } from '@/content/countries';
-import { inquirySchema, type Topic } from '@/lib/inquiry-schema';
+import type { Locale } from '@/content/locales';
+import type { FormText } from '@/content/forms';
+import type { CountryOption } from '@/content/countries';
+import type { Topic } from '@/lib/inquiry-schema';
+import { invalidFields } from '@/lib/inquiry-rules';
+/** The form's copy in the visitor's language, plus the direct contact details. */
+export type ContactFormText = FormText & {
+  unavailable: string;
+  privacy: string;
+  contactEmail: string;
+};
 /**
  * The site's one contact form, used on the contact page and both inquiry pages. A request the
- * provider accepted leads to the thank-you page.
+ * provider accepted leads to the thank-you page. It receives only the visitor's language and
+ * checks fields without a validation library, to keep the page light on phones; the server
+ * applies the same rules (`lib/inquiry-rules.ts`) and has the final word.
  */
 export function ContactForm({
   locale,
   topic,
   enabled,
   countries,
+  popular,
+  text: t,
 }: {
   locale: Locale;
   topic: Topic;
   enabled: boolean;
   countries: CountryOption[];
+  /** Shown first in the country-code list. */
+  popular: CountryOption[];
+  text: ContactFormText;
 }) {
-  const t = getFormText(locale),
-    d = dictionary(locale),
-    router = useRouter(),
+  const router = useRouter(),
     thanks = `/${locale}/contact/thank-you`,
     form = useRef<HTMLFormElement>(null),
     status = useRef<HTMLDivElement>(null),
@@ -71,9 +83,8 @@ export function ContactForm({
       locale,
       startedAt: started.current,
     };
-    const parsed = inquirySchema.safeParse(values);
-    if (!parsed.success)
-      return showErrors([...new Set(parsed.error.issues.map((i) => String(i.path[0])))]);
+    const invalid = invalidFields(values);
+    if (invalid.length) return showErrors(invalid);
     setErrors({});
     setState('loading');
     setMessage('');
@@ -87,9 +98,9 @@ export function ContactForm({
       // The form stays in its sending state until the thank-you page replaces it.
       if (res.ok && data.accepted === true) return router.push(thanks);
       if (res.status === 422 && Array.isArray(data.fields)) return showErrors(data.fields);
-      fail(res.status === 429 ? t.rate : `${t.error} ${site.email}`);
+      fail(res.status === 429 ? t.rate : `${t.error} ${t.contactEmail}`);
     } catch {
-      fail(`${t.error} ${site.email}`);
+      fail(`${t.error} ${t.contactEmail}`);
     }
   }
   function fail(text: string) {
@@ -115,7 +126,7 @@ export function ContactForm({
   return (
     <form ref={form} onSubmit={submit} noValidate aria-label={t.submit}>
       <p className="form-required">{t.requiredNote}</p>
-      {!enabled && <div className="notice form-unavailable">{d.formUnavailable}</div>}
+      {!enabled && <div className="notice form-unavailable">{t.unavailable}</div>}
       <fieldset disabled={!enabled || state === 'loading'} className="form-fieldset">
         <div className="form-grid">
           <div className="field">
@@ -167,9 +178,7 @@ export function ContactForm({
                 <option value="" disabled>
                   {t.countryCode}
                 </option>
-                <optgroup label={t.popular}>
-                  {priorityCountries.map((iso2) => option(countries.find((c) => c.iso2 === iso2)!))}
-                </optgroup>
+                <optgroup label={t.popular}>{popular.map(option)}</optgroup>
                 <optgroup label={t.allCountries}>{countries.map(option)}</optgroup>
               </select>
               <input
@@ -253,7 +262,7 @@ export function ContactForm({
           </span>
         </button>
         <p className="form-note">
-          {t.privacyNote} <Link href={`/${locale}/privacy`}>{d.privacy}</Link>.
+          {t.privacyNote} <Link href={`/${locale}/privacy`}>{t.privacy}</Link>.
         </p>
       </fieldset>
       <div className="form-status" role="status" ref={status} tabIndex={-1}>

@@ -276,3 +276,6 @@ export function countryOptions(locale: Locale): CountryOption[] {
     }))
     .sort((a, b) => collator.compare(a.name, b.name));
 }
+/** The priority countries' options, in their fixed order, for the top of the list. */
+export const popularCountries = (options: CountryOption[]) =>
+  priorityCountries.map((iso2) => options.find((c) => c.iso2 === iso2)!);
