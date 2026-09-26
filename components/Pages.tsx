@@ -4,6 +4,7 @@ import { companyHost, companyUrl, showcase, showcaseUrl } from '@/content/compan
 import { findArticle, publishedArticles, categoryIds } from '@/content/articles';
 import {
   Arrow,
+  ArticleCards,
   Breadcrumb,
   Button,
   Companies,
@@ -547,6 +548,8 @@ export function ArticlePage({ locale, slug }: { locale: Locale; slug: string }) 
   if (!a) notFound();
   const d = dictionary(locale),
     t = a.translations[locale],
+    [lead, ...body] = t.body,
+    company = a.company && d.business[businessIds.indexOf(a.company)],
     related = publishedArticles()
       .filter((b) => b.slug !== slug && b.category === a.category)
       .slice(0, 3);
@@ -559,9 +562,21 @@ export function ArticlePage({ locale, slug }: { locale: Locale; slug: string }) 
         title={t.title}
         intro={t.description}
       />
+      {t.image && (
+        <div className="container">
+          <Photo
+            name={t.image.replace('/images/', '')}
+            alt={t.imageAlt || t.title}
+            className="detail-image"
+            sizes="100vw"
+            priority
+          />
+          {t.imageCredit && <p className="image-note">{t.imageCredit}</p>}
+        </div>
+      )}
       <article className="container body-section article-body">
         <p className="article-meta">
-          <bdi>BYHADARA Group</bdi> ·{' '}
+          <bdi>{site.name}</bdi> ·{' '}
           <time dateTime={a.publishedAt}>
             {new Date(a.publishedAt).toLocaleDateString(locale, {
               dateStyle: 'long',
@@ -569,27 +584,77 @@ export function ArticlePage({ locale, slug }: { locale: Locale; slug: string }) 
             })}
           </time>
         </p>
-        {t.image && (
-          <Photo
-            name={t.image.replace('/images/', '')}
-            alt={t.imageAlt || t.title}
-            className="detail-image"
-          />
+        {lead && <p className="lead">{lead}</p>}
+        {t.facts && (
+          <dl className="company-facts article-facts">
+            {t.facts.map(([value, label]) => (
+              <div key={label}>
+                <dt>{label}</dt>
+                <dd dir="auto">{value}</dd>
+              </div>
+            ))}
+          </dl>
         )}
-        {t.body.map((p, i) => (
+        {body.map((p, i) => (
           <p key={i}>{p}</p>
         ))}
-        <Link className="text-link" href={`/${locale}/insights`}>
+        {t.gallery && (
+          <div className="article-gallery">
+            {t.gallery.map((g) => (
+              <Photo
+                key={g.src}
+                name={g.src.replace('/images/', '')}
+                alt={g.alt}
+                sizes="(max-width: 720px) 100vw, 410px"
+              />
+            ))}
+          </div>
+        )}
+        {company && (
+          <section className="article-about">
+            <Label>{d.aboutCompany}</Label>
+            <h2>{company.name}</h2>
+            <p>{company.detail}</p>
+            <Link className="text-link" href={`/${locale}/businesses/${a.company}`}>
+              {d.learn}
+              <Arrow />
+            </Link>
+          </section>
+        )}
+      </article>
+      {t.cta && (
+        <section className="visit-band">
+          <div className="container visit-inner">
+            <HadaraMark className="visit-mark" />
+            <h2>{t.cta.title}</h2>
+            <p>{t.cta.text}</p>
+            {t.cta.href.startsWith('/') ? (
+              <Link className="button light" href={t.cta.href}>
+                {t.cta.label}
+                <Arrow />
+              </Link>
+            ) : (
+              <a className="button light" href={t.cta.href} {...external}>
+                {t.cta.label}
+                <Arrow />
+                <span className="sr-only"> {d.newTab}</span>
+              </a>
+            )}
+          </div>
+        </section>
+      )}
+      <section className="container body-section">
+        {related.length > 0 && (
+          <>
+            <h2 className="related-title">{d.related}</h2>
+            <ArticleCards locale={locale} articles={related} />
+          </>
+        )}
+        <Link className="text-link all-insights" href={`/${locale}/insights`}>
           {d.allInsights}
           <Arrow />
         </Link>
-      </article>
-      {related.length > 0 && (
-        <section className="container body-section">
-          <h2>{d.related}</h2>
-          <Insights locale={locale} articles={related} />
-        </section>
-      )}
+      </section>
     </>
   );
 }

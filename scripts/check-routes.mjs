@@ -11,6 +11,8 @@ const paths = [
   'markets/egypt',
   'partnerships',
   'insights',
+  'insights/lotus-yasam-launch',
+  'insights/diamond-marin-launch',
   'contact',
   'contact/thank-you',
   'inquiries/investment',

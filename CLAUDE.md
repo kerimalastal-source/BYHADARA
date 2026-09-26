@@ -30,8 +30,8 @@ file's prose in English so it stays easy to scan. Last updated 2026-09-25.
   session's Vercel connector gets 403 on this team (it only sees `hadarahospitality`), so env vars
   and deployments of `byhadara` are handled by the owner in the Vercel dashboard. Every PR gets a
   preview at `byhadara-git-<branch>-hadara1.vercel.app`.
-- **Locales**: `en`, `ar` (RTL), `tr`; 17 routes × 3 = 51 pages, all static. `/` 308-redirects to
-  `/en`.
+- **Locales**: `en`, `ar` (RTL), `tr`; 17 routes × 3 = 51 pages plus 3 per published article, all
+  static. `/` 308-redirects to `/en`.
 - **Key files**
   - `content/site.ts`: all EN/AR/TR copy (one dictionary per locale; unit tests require identical
     keys), `site` (origin, company URLs, contact email/phone).
@@ -71,8 +71,7 @@ file's prose in English so it stays easy to scan. Last updated 2026-09-25.
 
 - Home: hero (Bosphorus) → group section ("One group. Two specialized companies." with the
   BYHADARA GROUP node and gold branch lines to two large company panels) → Success Partners →
-  compact markets → vision → final CTA. The insights section appears only once an article is
-  published.
+  compact markets → vision → latest insights (hidden when no article is published) → final CTA.
 - `/businesses/{real-estate|hospitality}`: badge "A BYHADARA Group company", intro, image, about
   with three facts, areas of work, selected projects/products (each linking to its page on the
   company site in the visitor's language), a navy band leading to the company website, and a link
@@ -128,6 +127,22 @@ file's prose in English so it stays easy to scan. Last updated 2026-09-25.
 - In RTL, never wrap option text in Unicode isolate characters: Chromium then renders "+966" as
   "966+" in a closed `<select>`. Plain `"+966 name"` renders correctly.
 
+## Insights & News
+
+- Articles live in `content/articles.ts` (all three languages, `approved` + `published`); pages,
+  cards, homepage section, metadata, JSON-LD and sitemap follow automatically. An article can have
+  a shorter `seoTitle` (search title ≤65 with the group suffix; tested), a lead (first paragraph),
+  main image with credit, three key `facts`, a two-image `gallery`, a `cta` (external or `/locale/…`)
+  and a `company` whose "About the company" note closes the article.
+- Published 2026-09-26 at the owner's request: the launches of **Lotus Yaşam** (Lotus Yapı Proje)
+  and **Diamond Marin** (Yıltaş × Lotus Yapı), both Beylikdüzü, facts and visuals from İkinci
+  BYHADARA (`src/data/projects.ts`, `src/i18n/*.json`; Lotus Yaşam is "beylikduzu-living" there).
+  HADARA Real Estate is described as "presenting" them; the owner has not stated its exact role
+  (marketer, partner…). Diamond Marin is not on hadararealestate.com yet, so its call to action
+  leads to Contact; point it to the project page once that site lists it.
+- In Arabic text, number ranges render reversed ("100–109" shows as "109–100"): write them in
+  words («بين 100 و109») or wrap them in U+2066/U+2069 isolates (fine outside `<select>`).
+
 ## SEO
 
 - Titles ≤65 characters and descriptions 110–165, unique across all 51 pages (enforced by
@@ -136,8 +151,8 @@ file's prose in English so it stays easy to scan. Last updated 2026-09-25.
   WebPage, BreadcrumbList, Article. Localized share images `public/og/byhadara-{en,ar,tr}.jpg` were
   rendered with Playwright from an HTML file opened via `file://` (so local fonts and the photo
   load); re-render them the same way if the brand changes.
-- The empty insights index is `noindex` and outside the sitemap (45 URLs) until an article exists;
-  the thank-you page is always `noindex` and outside it.
+- The insights index is `noindex` and outside the sitemap only while no article is published; the
+  thank-you page is always `noindex` and outside it. Sitemap: 54 URLs with the two articles.
 - Canonical origin is `https://www.byhadara.com` (default in `content/site.ts`, `SITE_URL`
   overrides), matching Vercel where the apex redirects to `www`. Keep the two in sync.
 - Google Search Console: Domain property verified by a DNS TXT record
@@ -157,9 +172,9 @@ file's prose in English so it stays easy to scan. Last updated 2026-09-25.
 
 ## Validation and sandbox notes
 
-- Checks: `pnpm typecheck`, `pnpm test` (21 tests), `pnpm build`, then `pnpm start` +
-  `node scripts/check-routes.mjs` (51 pages, links, SEO assertions, 503 while the form is
-  unconfigured) and the Playwright suite (14 tests incl. axe). Prettier:
+- Checks: `pnpm typecheck`, `pnpm test` (22 tests), `pnpm build`, then `pnpm start` +
+  `node scripts/check-routes.mjs` (57 pages incl. the articles, links, SEO assertions, 503 while
+  the form is unconfigured) and the Playwright suite (14 tests incl. axe). Prettier:
   `pnpm exec prettier --check components content lib app styles tests scripts docs *.md`.
 - The installed `@playwright/test` expects a newer browser than the sandbox has: run with a
   temporary config that sets `launchOptions.executablePath: '/opt/pw-browsers/chromium'` and
@@ -189,3 +204,4 @@ file's prose in English so it stays easy to scan. Last updated 2026-09-25.
 - PR #9: Search Console notes. PR #10: thank-you page after a sent request.
 - PR #11: email field, email-updates consent, HubSpot sync, legal entity in privacy/terms.
 - PRs #12–#15: context file updates (HubSpot live, company properties, supplier lifecycle).
+- PR #16: first news articles (Lotus Yaşam, Diamond Marin) and a fuller article page.

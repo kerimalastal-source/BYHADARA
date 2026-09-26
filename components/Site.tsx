@@ -2,7 +2,7 @@ import { Fragment } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { LanguageLinks } from './LanguageLinks';
-import { publishedArticles, categoryIds } from '@/content/articles';
+import { publishedArticles, categoryIds, type Article } from '@/content/articles';
 import { partners } from '@/content/partners';
 import { dictionary, navPaths, businessIds, marketIds, site, type Locale } from '@/content/site';
 export const Arrow = () => (
@@ -381,8 +381,11 @@ export function Home({ locale }: { locale: Locale }) {
 }
 
 export function LatestInsights({ locale }: { locale: Locale }) {
-  const articles = publishedArticles().slice(0, 3),
-    d = dictionary(locale);
+  return <ArticleCards locale={locale} articles={publishedArticles().slice(0, 3)} />;
+}
+/** Article cards without search or filters, for the homepage and related articles. */
+export function ArticleCards({ locale, articles }: { locale: Locale; articles: Article[] }) {
+  const d = dictionary(locale);
   return (
     <div className="article-list">
       {articles.map((a) => {
@@ -390,7 +393,11 @@ export function LatestInsights({ locale }: { locale: Locale }) {
         return (
           <article className="article-card" key={a.slug}>
             {t.image && (
-              <Photo name={t.image.replace('/images/', '')} alt={t.imageAlt || t.title} />
+              <Photo
+                name={t.image.replace('/images/', '')}
+                alt={t.imageAlt || t.title}
+                sizes="(max-width: 640px) 100vw, 33vw"
+              />
             )}
             <p className="article-meta">
               {d.categories[categoryIds.indexOf(a.category)]} ·{' '}
@@ -401,9 +408,15 @@ export function LatestInsights({ locale }: { locale: Locale }) {
                 })}
               </time>
             </p>
-            <h3>{t.title}</h3>
+            <h3>
+              <Link href={`/${locale}/insights/${a.slug}`}>{t.title}</Link>
+            </h3>
             <p>{t.description}</p>
-            <Link className="text-link" href={`/${locale}/insights/${a.slug}`}>
+            <Link
+              className="text-link"
+              href={`/${locale}/insights/${a.slug}`}
+              aria-label={`${d.read}: ${t.title}`}
+            >
               {d.read}
               <Arrow />
             </Link>
