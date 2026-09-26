@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
 import { dictionary, locales, navPaths, type Locale } from '@/content/site';
+import { Brand } from './Brand';
 export function Header({ locale }: { locale: Locale }) {
   const d = dictionary(locale),
     path = usePathname(),
@@ -65,12 +66,7 @@ export function Header({ locale }: { locale: Locale }) {
   return (
     <header className="header">
       <div className="header-inner">
-        <Link href={`/${locale}`} className="brand" aria-label="BYHADARA Group">
-          <span>
-            BYHADARA<span className="brand-dot">.</span>
-          </span>
-          <small>G R O U P</small>
-        </Link>
+        <Brand locale={locale} />
         <nav className="desktop-nav" aria-label={d.menu}>
           {navPaths.map((p, i) => (
             <Link
