@@ -53,6 +53,9 @@ file's prose in English so it stays easy to scan. Last updated 2026-09-25.
   terms, `legalName` in the Organization JSON-LD.
 - Arabic names: group «مجموعة باي حضارة», companies «حضارة العقارية» and «حضارة للضيافة».
 - Brand: parent is navy `#14283d` with the text wordmark "BYHADARA. GROUP" (no official logo yet);
+  owner's rule (2026-09-26): the wordmark (`components/Brand.tsx`) is never translated, always in
+  Inter, reads left to right, and sits at the far left of the header and footer in every locale,
+  Arabic included; only the rest of the header/footer mirrors in RTL (a browser test checks it);
   both companies share the gold H monogram (`public/images/hadara-mark.png`, gold `#c5a35d`,
   gold text on light backgrounds `#80632a` for contrast).
 - **HADARA Real Estate**: https://www.hadararealestate.com (repo
@@ -159,7 +162,7 @@ file's prose in English so it stays easy to scan. Last updated 2026-09-25.
 
 - Checks: `pnpm typecheck`, `pnpm test` (21 tests), `pnpm build`, then `pnpm start` +
   `node scripts/check-routes.mjs` (51 pages, links, SEO assertions, 503 while the form is
-  unconfigured) and the Playwright suite (14 tests incl. axe). Prettier:
+  unconfigured) and the Playwright suite (16 tests incl. axe). Prettier:
   `pnpm exec prettier --check components content lib app styles tests scripts docs *.md`.
 - The installed `@playwright/test` expects a newer browser than the sandbox has: run with a
   temporary config that sets `launchOptions.executablePath: '/opt/pw-browsers/chromium'` and
@@ -189,3 +192,4 @@ file's prose in English so it stays easy to scan. Last updated 2026-09-25.
 - PR #9: Search Console notes. PR #10: thank-you page after a sent request.
 - PR #11: email field, email-updates consent, HubSpot sync, legal entity in privacy/terms.
 - PRs #12–#15: context file updates (HubSpot live, company properties, supplier lifecycle).
+- PR #16: wordmark fixed in English at the far left in all locales (header and footer).

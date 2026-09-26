@@ -1,6 +1,7 @@
 import { Fragment } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { Brand, Wordmark } from './Brand';
 import { LanguageLinks } from './LanguageLinks';
 import { publishedArticles, categoryIds } from '@/content/articles';
 import { partners } from '@/content/partners';
@@ -87,10 +88,7 @@ export function Footer({ locale }: { locale: Locale }) {
     <footer className="footer container">
       <div className="footer-top">
         <div>
-          <Link href={`/${locale}`} className="brand">
-            <span>BYHADARA.</span>
-            <small>G R O U P</small>
-          </Link>
+          <Brand locale={locale} />
           <p>{d.footer}</p>
           <span className="footer-location">{d.based}</span>
         </div>
@@ -150,11 +148,8 @@ export function Companies({ locale, heading = false }: { locale: Locale; heading
         </div>
       )}
       <div className="group-tree" aria-hidden="true">
-        <span className="group-node">
-          <span>
-            BYHADARA<span className="brand-dot">.</span>
-          </span>
-          <small>G R O U P</small>
+        <span className="group-node" lang="en" translate="no">
+          <Wordmark />
         </span>
       </div>
       <div className="company-grid">

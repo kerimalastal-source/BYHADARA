@@ -151,13 +151,25 @@ html[lang='ar'] .eyebrow {
   justify-content: space-between;
   gap: 30px;
 }
+/* The wordmark is the same in every locale: English, left to right, in Inter (the Arabic font
+   has no Latin letters), and pinned to the far left of the header and footer even in RTL. */
+.brand,
+.group-node {
+  font-family: Inter, Arial, sans-serif;
+  direction: ltr;
+  unicode-bidi: isolate;
+}
 .brand {
   display: inline-flex;
   flex-direction: column;
   line-height: 1;
-  direction: ltr;
   color: var(--navy);
   flex-shrink: 0;
+}
+/* Physical margin: logical ones resolve against the wordmark's own LTR direction. */
+html[dir='rtl'] .header-inner > .brand {
+  order: 1;
+  margin-right: auto;
 }
 .brand > span {
   font-size: 27px;
@@ -542,6 +554,18 @@ html[dir='rtl'] .hero-shade {
   font-size: 13px;
   margin-top: 18px;
 }
+html[dir='rtl'] .footer-top {
+  grid-template-columns: 1fr 1.2fr 2fr;
+}
+html[dir='rtl'] .footer-top > div:first-child {
+  order: 1;
+  justify-self: left;
+}
+.footer .brand {
+  display: flex;
+  width: fit-content;
+  margin-right: auto;
+}
 .footer-bottom {
   border-top: 1px solid var(--line);
   padding-top: 23px;
@@ -902,7 +926,6 @@ html[dir='rtl'] .hero-shade {
   display: inline-flex;
   flex-direction: column;
   align-items: center;
-  direction: ltr;
   line-height: 1;
   color: var(--navy);
   background: white;
@@ -1372,7 +1395,7 @@ html[lang='ar'] .showcase-tag {
     height: 82px;
     padding-inline: var(--gutter);
   }
-  .header-actions {
+  html:not([dir='rtl']) .header-actions {
     margin-inline-start: auto;
   }
   .menu-button {
@@ -1589,8 +1612,13 @@ html[lang='ar'] .showcase-tag {
     gap: 40px 25px;
     padding-bottom: 35px;
   }
-  .footer-top > div:first-child {
+  .footer-top > div:first-child,
+  html[dir='rtl'] .footer-top > div:first-child {
     grid-column: 1/-1;
+    order: 0;
+  }
+  html[dir='rtl'] .footer-top {
+    grid-template-columns: 1fr 1fr;
   }
   .footer-top p {
     max-width: 380px;
