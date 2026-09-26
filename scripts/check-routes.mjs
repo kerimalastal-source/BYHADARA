@@ -11,8 +11,6 @@ const paths = [
   'markets/egypt',
   'partnerships',
   'insights',
-  'insights/lotus-yasam-launch',
-  'insights/diamond-marin-launch',
   'contact',
   'contact/thank-you',
   'inquiries/investment',
@@ -20,6 +18,10 @@ const paths = [
   'privacy',
   'terms',
 ];
+// Every published article, as listed on the insights index.
+const index = await (await fetch('http://localhost:3000/en/insights')).text();
+for (const [, slug] of index.matchAll(/href="\/en\/insights\/([^"/?#]+)"/g))
+  if (!paths.includes(`insights/${slug}`)) paths.push(`insights/${slug}`);
 const pages = [];
 const links = new Set();
 const titles = new Set();

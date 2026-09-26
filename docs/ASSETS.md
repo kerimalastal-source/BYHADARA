@@ -33,6 +33,21 @@ Insights and news visuals in `public/images/insights/` are unmodified copies of 
 
 HADARA Real Estate imagery (2026-09-26, replacing an Unsplash office tower): the homepage panel uses `public/images/real-estate/lotus-manzara-villa.jpg`, an unmodified copy of `lotus-manzara-beylikduzu/villa-type-a.jpg` from the same repository (Lotus Manzara Beylikdüzü, visualisation by Lotus Yapı Proje), and the company page reuses `insights/lotus-yasam-courtyard.jpg`. Both are credited under the image as visualisations by Lotus Yapı Proje.
 
+Further insights visuals (2026-09-26), unmodified unless noted:
+
+| Local asset                     | Source                                                                                                                           | Credit shown     |
+| ------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- | ---------------- |
+| `lotus-yasam-street.jpg`        | İkinci BYHADARA `beylikduzu-living/street-facade.jpg`                                                                            | Lotus Yapı Proje |
+| `western-istanbul-villas.jpg`   | İkinci BYHADARA `lotus-manzara-guzelce/aerial-villas.jpg`, bottom 44 px (catalogue page number) cropped                          | Lotus Yapı Proje |
+| `lotus-manzara-living-room.jpg` | İkinci BYHADARA `lotus-manzara-beylikduzu/living-room.jpg`                                                                       | Lotus Yapı Proje |
+| `cadde-ispartakule-tower.jpg`   | İkinci BYHADARA `cadde-ispartakule/tower-park.jpg`                                                                               | MH Grup İnşaat   |
+| `hotel-guest-room.jpg`          | HADARA Hospitality repository `products/hotel-blackout-curtains/2.jpg` (Unsplash `aI6Su7Mu9Ro`), left 120 px (desk card) cropped | Unsplash         |
+| `hotel-bed-linen.jpg`           | HADARA Hospitality repository `products/luxury-hotel-fitted-sheet-250-tc/2.jpg` (Unsplash `PPDtGDYC_S8`)                         | Unsplash         |
+| `hotel-bed-blanket.jpg`         | HADARA Hospitality repository `products/luxury-hotel-bed-blanket/1.jpg` (Unsplash `8X5dbIEakwE`)                                 | Unsplash         |
+| `quilted-pillow-protector.jpg`  | HADARA Hospitality repository `products/waterproof-pillow-protector/2.jpg` (Unsplash `_0xZUyAz8j4`)                              | Unsplash         |
+
+Articles also reuse `istanbul-bosphorus.jpg`, `hospitality/fitted-sheet.jpg` and `hospitality/hotel-bath-sheet.jpg`. The Unsplash IDs follow the mapping in the HADARA Hospitality repository's CLAUDE.md.
+
 `diamond-marin/aerial-sea-view.jpg` in that repository was not used: its lower corner carries what looks like an AI image tool's watermark.
 
 `istanbul-bosphorus.jpg` is cropped to 2200×1300 (bottom 350 px removed) so that third-party developer signage and a construction site in the original frame are not shown.
