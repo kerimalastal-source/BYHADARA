@@ -149,9 +149,10 @@ file's prose in English so it stays easy to scan. Last updated 2026-09-25.
   (marketer, partner…). Diamond Marin is not on hadararealestate.com yet, so its call to action
   leads to Contact; point it to the project page once that site lists it.
 - Added 2026-09-26 at the owner's request: news **HADARA Hospitality at Hospitality Qatar 2026**
-  (owner confirmed participation; event facts: 11th edition, 12–14 October 2026, DECC Doha,
+  (the team attends **as visitors, not exhibitors**, per the owner: the article says "visit",
+  never "take part" or a stand; event facts: 11th edition, 12–14 October 2026, DECC Doha,
   trade-only, from marhaba.qa / Qatar Living / Canadian Trade Commissioner search results, since
-  the organiser's site is blocked here; no stand number yet: add it when the owner has one), five
+  the organiser's site is blocked here), five
   real estate guides (buying in Türkiye, citizenship via real estate without quoting the threshold,
   western Istanbul, what buyers expect, off-plan vs ready) and five hospitality guides (textiles
   guests remember, bed linen beyond thread count, towel GSM, Türkiye as a textile hub, durability).
@@ -233,3 +234,4 @@ file's prose in English so it stays easy to scan. Last updated 2026-09-25.
   visuals for HADARA Real Estate, no repeated Bosphorus photo on Markets, Egypt reworded.
 - PR #19: light headings (option B of the typography previews).
 - PR #20: Hospitality Qatar 2026 news and ten real estate and hospitality guides.
+- PR #21: the Hospitality Qatar news reworded: the team visits, it does not exhibit.

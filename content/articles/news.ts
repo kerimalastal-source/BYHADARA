@@ -4,9 +4,10 @@ const image = (file: string) => `/images/insights/${file}.jpg`;
 /** Group and company news. Facts come from the companies' own pages and verified event sources. */
 export const news: Article[] = [
   {
-    // Event facts (11th edition, 12–14 October 2026, DECC Doha, trade-only) from the organiser's
-    // announcements as reported by marhaba.qa, Qatar Living and the Canadian Trade Commissioner.
-    // The owner confirmed the participation; no stand number yet.
+    // Event facts (11th edition, 12–14 October 2026, DECC Doha, trade-only, hotel design and guest
+    // technology on show) from the organiser's announcements as reported by marhaba.qa, Qatar
+    // Living and the Canadian Trade Commissioner. The team attends as visitors, not as an exhibitor
+    // (owner, 2026-09-26): never mention a stand.
     slug: 'hospitality-qatar-2026',
     category: 'corporate',
     status: 'published',
@@ -15,16 +16,16 @@ export const news: Article[] = [
     company: 'hospitality',
     translations: {
       en: {
-        title: 'HADARA Hospitality heads to Hospitality Qatar 2026 in Doha',
-        seoTitle: 'HADARA Hospitality at Hospitality Qatar 2026',
+        title: 'HADARA Hospitality to visit Hospitality Qatar 2026 in Doha',
+        seoTitle: 'HADARA Hospitality visits Hospitality Qatar 2026',
         description:
-          'HADARA Hospitality will take part in Hospitality Qatar 2026, the 11th edition of the trade exhibition, at the Doha Exhibition and Convention Center on 12–14 October.',
+          'The HADARA Hospitality team will visit Hospitality Qatar 2026, the 11th edition of the trade exhibition, at Doha Exhibition and Convention Center on 12–14 October.',
         body: [
-          'HADARA Hospitality, a BYHADARA Group company, will take part in Hospitality Qatar 2026, which returns for its 11th edition to the Doha Exhibition and Convention Center (DECC) from 12 to 14 October 2026.',
+          'The team of HADARA Hospitality, a BYHADARA Group company, will visit Hospitality Qatar 2026, which returns for its 11th edition to the Doha Exhibition and Convention Center (DECC) from 12 to 14 October 2026.',
           'The trade-only exhibition brings together hotel groups, buyers, procurement teams and suppliers from across Qatar’s hospitality and food and beverage sectors, making it a natural meeting point for a company that supplies hotels throughout the Gulf.',
-          'In Doha, the team will meet hotel owners, operators and procurement managers to discuss bed linen, towels, bathrobes, pillows and duvets, protectors, curtains and guest amenities, sourced from trusted manufacturing partners across Türkiye.',
+          'During the visit, the team will follow the latest in hotel design and guest technology, and meet hotel owners, operators and procurement managers to discuss bed linen, towels, bathrobes, pillows and duvets, protectors, curtains and guest amenities, sourced from trusted manufacturing partners across Türkiye.',
           'For HADARA Hospitality, the three days are a chance to talk through specifications, samples and supply programmes face to face, and to strengthen relationships with hotels in Qatar and the wider region.',
-          'Hotels and partners who would like to meet during the exhibition are invited to contact the team in advance to arrange a time.',
+          'Hotels and partners who would like to meet the team in Doha during the exhibition are invited to get in touch in advance to arrange a time.',
         ],
         image: image('hotel-guest-room'),
         imageAlt: 'Hotel guest room with a made bed, curtains and a sofa',
@@ -36,22 +37,22 @@ export const news: Article[] = [
         ],
         cta: {
           title: 'Meet us in Doha',
-          text: 'Arrange a meeting with the HADARA Hospitality team during Hospitality Qatar 2026.',
+          text: 'Arrange a meeting with the HADARA Hospitality team in Doha during Hospitality Qatar 2026.',
           label: 'Request a meeting',
           href: '/en/contact',
         },
       },
       ar: {
-        title: 'حضارة للضيافة تشارك في معرض الضيافة قطر 2026 في الدوحة',
-        seoTitle: 'حضارة للضيافة في معرض الضيافة قطر 2026',
+        title: 'فريق حضارة للضيافة يزور معرض الضيافة قطر 2026 في الدوحة',
+        seoTitle: 'حضارة للضيافة تزور معرض الضيافة قطر 2026',
         description:
-          'تشارك حضارة للضيافة في معرض الضيافة قطر 2026 (Hospitality Qatar) بدورته الحادية عشرة، في مركز الدوحة للمعارض والمؤتمرات من 12 إلى 14 أكتوبر.',
+          'يزور فريق حضارة للضيافة معرض الضيافة قطر 2026 (Hospitality Qatar) بدورته الحادية عشرة، في مركز الدوحة للمعارض والمؤتمرات من 12 إلى 14 أكتوبر.',
         body: [
-          'تشارك حضارة للضيافة، إحدى شركات مجموعة باي حضارة، في معرض الضيافة قطر 2026 (Hospitality Qatar)، الذي يعود في دورته الحادية عشرة إلى مركز الدوحة للمعارض والمؤتمرات من 12 إلى 14 أكتوبر 2026.',
+          'يزور فريق حضارة للضيافة، إحدى شركات مجموعة باي حضارة، معرض الضيافة قطر 2026 (Hospitality Qatar)، الذي يعود في دورته الحادية عشرة إلى مركز الدوحة للمعارض والمؤتمرات من 12 إلى 14 أكتوبر 2026.',
           'يجمع المعرض، المخصص للمهنيين، مجموعات الفنادق والمشترين وفرق المشتريات والموردين من قطاعي الضيافة والأغذية والمشروبات في قطر، ما يجعله ملتقى طبيعياً لشركة تورّد مستلزمات الفنادق في أنحاء الخليج.',
-          'وفي الدوحة، يلتقي فريق الشركة بملاك الفنادق ومشغليها ومديري المشتريات لبحث البياضات والمناشف وأرواب الحمام والوسائد والألحفة والواقيات والستائر ومستلزمات الضيوف، التي تورّدها الشركة من شركاء تصنيع موثوقين في أنحاء تركيا.',
+          'وخلال الزيارة، يطّلع الفريق على أحدث ما يقدمه القطاع في تصميم الفنادق وتقنيات خدمة الضيوف، ويلتقي بملاك الفنادق ومشغليها ومديري المشتريات لبحث البياضات والمناشف وأرواب الحمام والوسائد والألحفة والواقيات والستائر ومستلزمات الضيوف، التي تورّدها الشركة من شركاء تصنيع موثوقين في أنحاء تركيا.',
           'وتمثل أيام المعرض الثلاثة فرصة لمناقشة المواصفات والعينات وبرامج التوريد وجهاً لوجه، وتعزيز العلاقات مع الفنادق في قطر والمنطقة.',
-          'ندعو الفنادق والشركاء الراغبين في اللقاء خلال المعرض إلى التواصل مع الفريق مسبقاً لتحديد موعد.',
+          'ندعو الفنادق والشركاء الراغبين في لقاء الفريق في الدوحة خلال المعرض إلى التواصل معنا مسبقاً لتحديد موعد.',
         ],
         image: image('hotel-guest-room'),
         imageAlt: 'غرفة فندقية بسرير مرتب وستائر وأريكة',
@@ -64,22 +65,22 @@ export const news: Article[] = [
         ],
         cta: {
           title: 'نلتقي في الدوحة',
-          text: 'حدد موعداً مع فريق حضارة للضيافة خلال معرض الضيافة قطر 2026.',
+          text: 'حدد موعداً مع فريق حضارة للضيافة في الدوحة خلال معرض الضيافة قطر 2026.',
           label: 'اطلب موعداً',
           href: '/ar/contact',
         },
       },
       tr: {
-        title: 'HADARA Hospitality, Hospitality Qatar 2026 için Doha’da',
+        title: 'HADARA Hospitality ekibi Hospitality Qatar 2026’yı ziyaret ediyor',
         seoTitle: 'HADARA Hospitality, Hospitality Qatar 2026’da',
         description:
-          'HADARA Hospitality, 12–14 Ekim tarihlerinde Doha Sergi ve Kongre Merkezi’nde düzenlenecek ticari fuar Hospitality Qatar 2026’nın 11. edisyonuna katılıyor.',
+          'HADARA Hospitality ekibi, 12–14 Ekim’de Doha Sergi ve Kongre Merkezi’nde düzenlenecek ticari fuar Hospitality Qatar 2026’nın 11. edisyonunu ziyaret ediyor.',
         body: [
-          'BYHADARA Group şirketlerinden HADARA Hospitality, 11. edisyonuyla 12–14 Ekim 2026 tarihlerinde Doha Sergi ve Kongre Merkezi’nde (DECC) düzenlenecek Hospitality Qatar 2026’ya katılıyor.',
+          'BYHADARA Group şirketlerinden HADARA Hospitality’nin ekibi, 11. edisyonuyla 12–14 Ekim 2026 tarihlerinde Doha Sergi ve Kongre Merkezi’nde (DECC) düzenlenecek Hospitality Qatar 2026’yı ziyaret ediyor.',
           'Yalnızca sektör profesyonellerine açık olan fuar, Katar’ın konaklama ile yiyecek ve içecek sektörlerinden otel gruplarını, alıcıları, satın alma ekiplerini ve tedarikçileri bir araya getiriyor; bu da Körfez genelindeki otellere tedarik sağlayan bir şirket için doğal bir buluşma noktası.',
-          'Ekip, Doha’da otel sahipleri, işletmecileri ve satın alma yöneticileriyle; Türkiye’deki güvenilir üretim ortaklarından tedarik edilen nevresim ve çarşaflar, havlular, bornozlar, yastık ve yorganlar, alezler, perdeler ve misafir ürünleri üzerine görüşecek.',
+          'Ekip ziyaret boyunca otel tasarımı ve misafir teknolojilerindeki yenilikleri takip edecek; otel sahipleri, işletmecileri ve satın alma yöneticileriyle Türkiye’deki güvenilir üretim ortaklarından tedarik edilen nevresim ve çarşaflar, havlular, bornozlar, yastık ve yorganlar, alezler, perdeler ve misafir ürünleri üzerine görüşecek.',
           'HADARA Hospitality için üç gün; ürün özelliklerini, numuneleri ve tedarik programlarını yüz yüze konuşmak ve Katar ile bölgedeki otellerle ilişkileri güçlendirmek için bir fırsat.',
-          'Fuar süresince görüşmek isteyen oteller ve iş ortakları, randevu için ekiple önceden iletişime geçebilir.',
+          'Fuar süresince ekiple Doha’da görüşmek isteyen oteller ve iş ortakları, randevu için önceden iletişime geçebilir.',
         ],
         image: image('hotel-guest-room'),
         imageAlt: 'Yatağı hazırlanmış, perdeli ve kanepeli bir otel odası',
@@ -91,7 +92,7 @@ export const news: Article[] = [
         ],
         cta: {
           title: 'Doha’da görüşelim',
-          text: 'Hospitality Qatar 2026 süresince HADARA Hospitality ekibiyle bir görüşme planlayın.',
+          text: 'Hospitality Qatar 2026 süresince HADARA Hospitality ekibiyle Doha’da bir görüşme planlayın.',
           label: 'Görüşme talep edin',
           href: '/tr/contact',
         },
