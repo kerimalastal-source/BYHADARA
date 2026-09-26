@@ -3,16 +3,8 @@ import type { CompanyId } from './companies';
 import { news } from './articles/news';
 import { realEstate } from './articles/real-estate';
 import { hospitality } from './articles/hospitality';
-export const categoryIds = [
-  'corporate',
-  'investment',
-  'real-estate',
-  'hospitality',
-  'turkiye',
-  'gcc',
-  'egypt',
-  'trade',
-] as const;
+import { categoryIds, type ArticleCard } from './article-categories';
+export { categoryIds, type ArticleCard };
 export type ArticleImage = { src: string; alt: string };
 export type ArticleTranslation = {
   /** Headline shown on the page and on article cards. */
@@ -57,4 +49,17 @@ export function publishedArticles() {
 }
 export function findArticle(slug: string) {
   return publishedArticles().find((a) => a.slug === slug);
+}
+/** Card data for one article in one language, the only article data sent to the browser. */
+export function articleCard(a: Article, locale: Locale): ArticleCard {
+  const { title, description, image, imageAlt } = a.translations[locale];
+  return {
+    slug: a.slug,
+    category: a.category,
+    publishedAt: a.publishedAt,
+    title,
+    description,
+    image,
+    imageAlt,
+  };
 }

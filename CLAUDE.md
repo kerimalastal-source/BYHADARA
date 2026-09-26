@@ -20,6 +20,10 @@ file's prose in English so it stays easy to scan. Last updated 2026-09-25.
   homepage.
 - Never invent facts. Company facts, projects, products and partners come from the group
   companies' own websites/repos (see "Sister sites"). Ask the owner for anything else.
+- **Mobile first** (owner, 2026-09-26): design and check every change on phones (320–430 px)
+  first, then tablets (768–1180 px, portrait and landscape), then desktop. A change that is fine on
+  desktop but poor on a phone is not done. The browser test "phones and tablets" checks no
+  sideways scroll, tap targets ≥24 px in header/footer and a reachable Contact at 8 widths.
 
 ## Where things live
 
@@ -183,6 +187,22 @@ file's prose in English so it stays easy to scan. Last updated 2026-09-25.
   `https://www.byhadara.com/sitemap.xml` submitted (owner-reported). No meta tag is needed;
   `GOOGLE_SITE_VERIFICATION` stays unset. Never remove that TXT record when editing DNS.
 
+## Mobile and performance (2026-09-26)
+
+- Header: full menu and Contact button above 1200 px; at ≤1200 px (all iPads, incl. landscape) the
+  menu button, with Contact as its last item. Language links stay in the header at every width
+  (no duplicate in the menu) and do not prefetch.
+- Keep dictionaries and article text out of the browser: client components get only the labels
+  they need as props (`HeaderLabels`, `InsightsLabels`), the 404 page reads `content/not-found.ts`,
+  the article list gets `ArticleCard`s from `articleCard()`, categories live in
+  `content/article-categories.ts`, and the contact form loads through `LazyContactForm`
+  (`next/dynamic` inside a client component, since a server component cannot code-split). Never
+  import `content/site.ts` or `content/articles.ts` in a `'use client'` file.
+- Result at 390 px: JavaScript 292 → 150 KB compressed on every page without a form (form pages
+  ~263 KB), language prefetch 31 → 15 KB, the insights index HTML 41 → 12 KB. Tap targets: language
+  links ≥30×40, breadcrumb/footer/contact links padded to ≥41 px tall, consent box 24 px. Small
+  text raised to 12 px (hero eyebrow/caption/coordinates); only the wordmark's "GROUP" is smaller.
+
 ## Images
 
 - HADARA Real Estate imagery (since 2026-09-26) is real project visuals by Lotus Yapı Proje:
@@ -202,7 +222,7 @@ file's prose in English so it stays easy to scan. Last updated 2026-09-25.
 
 - Checks: `pnpm typecheck`, `pnpm test` (22 tests), `pnpm build`, then `pnpm start` +
   `node scripts/check-routes.mjs` (93 pages incl. the articles, links, SEO assertions, 503 while
-  the form is unconfigured) and the Playwright suite (16 tests incl. axe). Prettier:
+  the form is unconfigured) and the Playwright suite (18 tests incl. axe and the phone/tablet test). Prettier:
   `pnpm exec prettier --check components content lib app styles tests scripts docs *.md`.
 - The installed `@playwright/test` expects a newer browser than the sandbox has: run with a
   temporary config that sets `launchOptions.executablePath: '/opt/pw-browsers/chromium'` and
@@ -240,3 +260,4 @@ file's prose in English so it stays easy to scan. Last updated 2026-09-25.
 - PR #20: Hospitality Qatar 2026 news and ten real estate and hospitality guides.
 - PR #21: the Hospitality Qatar news reworded: the team visits, it does not exhibit.
 - PR #22: news of the HADARA Real Estate team visiting Cityscape Qatar 2026.
+- PR #23: mobile-first pass: half the JavaScript, larger tap targets, tablet menu, phone/tablet test.

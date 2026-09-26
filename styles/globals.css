@@ -219,19 +219,23 @@ html[dir='rtl'] .header-inner > .brand {
 }
 .languages {
   display: flex;
-  gap: 11px;
   direction: ltr;
   align-items: center;
 }
+/* Each language is a comfortable tap target; the underline stays under the letters. */
 .languages a {
   font-size: 12px;
   color: #536174;
-  padding: 8px 0;
+  padding: 10px 6px;
+  min-width: 30px;
+  text-align: center;
 }
 .languages a[aria-current] {
   color: var(--navy);
   font-weight: 600;
-  border-bottom: 1px solid var(--navy);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 9px;
 }
 .header-contact {
   display: flex;
@@ -388,7 +392,7 @@ html[dir='rtl'] .hero-shade {
 }
 .hero-coordinate {
   margin-inline-start: auto;
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.1em;
 }
 .scroll-arrow {
@@ -580,6 +584,14 @@ html[dir='rtl'] .footer-top > div:first-child {
 .footer-bottom p,
 .footer-bottom a {
   font-size: 12px;
+}
+/* Larger tap areas for small inline links, without changing the layout. */
+.footer-bottom a,
+.breadcrumb a,
+.contact-list a {
+  display: inline-block;
+  padding: 10px 6px;
+  margin: -10px -6px;
 }
 .footer-bottom > div,
 .footer-bottom nav {
@@ -812,10 +824,10 @@ html[dir='rtl'] .footer-top > div:first-child {
 }
 .field.consent input {
   flex-shrink: 0;
-  width: 20px;
-  height: 20px;
+  width: 24px;
+  height: 24px;
   min-height: 0;
-  margin: 3px 0 0;
+  margin: 1px 0 0;
   padding: 0;
   accent-color: var(--navy);
 }
@@ -1417,6 +1429,30 @@ html[lang='ar'] .showcase-tag {
   .header-contact {
     display: none;
   }
+  /* Tablets (including iPad landscape) use the menu, so Contact is always one tap away. */
+  .desktop-nav {
+    display: none;
+  }
+  html:not([dir='rtl']) .header-actions {
+    margin-inline-start: auto;
+  }
+  .menu-button {
+    display: block;
+  }
+  .mobile-nav {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    inset: 86px 0 0;
+    background: white;
+    padding: 25px var(--gutter);
+    overflow-y: auto;
+  }
+  .mobile-nav > a {
+    font-size: 22px;
+    padding: 11px 0;
+    border-bottom: 1px solid var(--line);
+  }
   .brand > span {
     font-size: 25px;
   }
@@ -1431,39 +1467,12 @@ html[lang='ar'] .showcase-tag {
   }
 }
 @media (max-width: 960px) {
-  .desktop-nav {
-    display: none;
-  }
   .header-inner {
     height: 82px;
     padding-inline: var(--gutter);
   }
-  html:not([dir='rtl']) .header-actions {
-    margin-inline-start: auto;
-  }
-  .menu-button {
-    display: block;
-  }
   .mobile-nav {
-    display: flex;
-    flex-direction: column;
-    position: fixed;
-    inset: 82px 0 0;
-    background: white;
-    padding: 25px var(--gutter);
-    overflow-y: auto;
-  }
-  .mobile-nav > a {
-    font-size: 22px;
-    padding: 11px 0;
-    border-bottom: 1px solid var(--line);
-  }
-  .mobile-nav > .languages {
-    margin-top: 20px;
-  }
-  .mobile-nav .languages a {
-    padding: 12px;
-    font-size: 14px;
+    top: 82px;
   }
   .hero h1 {
     font-size: 60px;
@@ -1517,9 +1526,6 @@ html[lang='ar'] .showcase-tag {
     font-size: 8px;
     margin-top: 8px;
   }
-  .header-actions .languages {
-    gap: 10px;
-  }
   .languages a {
     font-size: 12px;
   }
@@ -1544,8 +1550,8 @@ html[lang='ar'] .showcase-tag {
     line-height: 1.12;
   }
   .hero .eyebrow {
-    font-size: 11px;
-    letter-spacing: 0.09em;
+    font-size: 12px;
+    letter-spacing: 0.08em;
     max-width: 270px;
     margin-bottom: 30px;
   }
@@ -1563,7 +1569,7 @@ html[lang='ar'] .showcase-tag {
   .hero-bottom {
     bottom: 22px;
     gap: 10px;
-    font-size: 11px;
+    font-size: 12px;
   }
   .hero-coordinate {
     display: none;

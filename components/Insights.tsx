@@ -2,16 +2,34 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { dictionary, type Locale } from '@/content/site';
-import { categoryIds, type Article } from '@/content/articles';
-export function Insights({ locale, articles }: { locale: Locale; articles: Article[] }) {
-  const d = dictionary(locale);
+import type { Locale } from '@/content/locales';
+import { categoryIds, type ArticleCard } from '@/content/article-categories';
+/** Labels the list needs, passed from the server so the dictionaries stay out of the browser. */
+export type InsightsLabels = {
+  search: string;
+  allCategories: string;
+  categories: string[];
+  read: string;
+  emptyTitle: string;
+  emptyText: string;
+  noResults: string;
+};
+/** Searchable, filterable list of article cards; receives only the visitor's language. */
+export function Insights({
+  locale,
+  articles,
+  labels: d,
+}: {
+  locale: Locale;
+  articles: ArticleCard[];
+  labels: InsightsLabels;
+}) {
   const [query, setQuery] = useState(''),
     [category, setCategory] = useState('');
   const filtered = articles.filter(
     (a) =>
       (!category || a.category === category) &&
-      `${a.translations[locale].title} ${a.translations[locale].description}`
+      `${a.title} ${a.description}`
         .toLocaleLowerCase(locale)
         .includes(query.toLocaleLowerCase(locale)),
   );
@@ -42,10 +60,9 @@ export function Insights({ locale, articles }: { locale: Locale; articles: Artic
       </div>
       {filtered.length ? (
         <div className="article-list">
-          {filtered.map((a) => {
-            const t = a.translations[locale];
+          {filtered.map((t) => {
             return (
-              <article key={a.slug} className="article-card">
+              <article key={t.slug} className="article-card">
                 {t.image && (
                   <div className="photo">
                     <Image
@@ -57,19 +74,23 @@ export function Insights({ locale, articles }: { locale: Locale; articles: Artic
                   </div>
                 )}
                 <p className="article-meta">
-                  {d.categories[categoryIds.indexOf(a.category)]} ·{' '}
-                  <time dateTime={a.publishedAt}>
-                    {new Date(a.publishedAt).toLocaleDateString(locale, {
+                  {d.categories[categoryIds.indexOf(t.category)]} ·{' '}
+                  <time dateTime={t.publishedAt}>
+                    {new Date(t.publishedAt).toLocaleDateString(locale, {
                       dateStyle: 'long',
                       timeZone: 'UTC',
                     })}
                   </time>
                 </p>
                 <h2>
-                  <Link href={`/${locale}/insights/${a.slug}`}>{t.title}</Link>
+                  <Link href={`/${locale}/insights/${t.slug}`}>{t.title}</Link>
                 </h2>
                 <p>{t.description}</p>
-                <Link className="text-link" href={`/${locale}/insights/${a.slug}`}>
+                <Link
+                  className="text-link"
+                  href={`/${locale}/insights/${t.slug}`}
+                  aria-label={`${d.read}: ${t.title}`}
+                >
                   {d.read}
                   <span aria-hidden="true">↗</span>
                 </Link>
