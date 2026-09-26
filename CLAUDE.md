@@ -54,6 +54,8 @@ file's prose in English so it stays easy to scan. Last updated 2026-09-25.
   Şirketi**, Istanbul (`site.legalName`): data controller in the privacy notice, operator in the
   terms, `legalName` in the Organization JSON-LD.
 - Arabic names: group «مجموعة باي حضارة», companies «حضارة العقارية» and «حضارة للضيافة».
+- Typography (owner's choice, 2026-09-26): Inter + IBM Plex Sans Arabic as on the sister sites,
+  with light headings (h1–h3 weight 300, letter-spacing -0.035em; small labels keep their weights).
 - Brand: parent is navy `#14283d` with the text wordmark "BYHADARA. GROUP" (no official logo yet);
   owner's rule (2026-09-26): the wordmark (`components/Brand.tsx`) is never translated, always in
   Inter, reads left to right, and sits at the far left of the header and footer in every locale,
@@ -198,10 +200,6 @@ file's prose in English so it stays easy to scan. Last updated 2026-09-25.
 
 ## Open items to offer the owner
 
-- Headline typography: previews sent 2026-09-26 (A current Inter 500, B Inter Light 300, C
-  Cormorant Garamond for Latin headings). İkinci BYHADARA dropped Playfair/Noto Naskh to match this
-  site's Inter, so a change should cover the family of sites. Awaiting the owner's choice.
-
 - Real product photography for HADARA Hospitality; an official BYHADARA logo.
 - A WhatsApp button on the contact page.
 - Self-hosting the project photos (needs `static.wixstatic.com` allowed in the environment).
@@ -222,3 +220,4 @@ file's prose in English so it stays easy to scan. Last updated 2026-09-25.
 - PR #17: first news articles (Lotus Yaşam, Diamond Marin) and a fuller article page.
 - PR #18: confident copy (disclaimers moved to Terms, legal name in the footer), real project
   visuals for HADARA Real Estate, no repeated Bosphorus photo on Markets, Egypt reworded.
+- PR #19: light headings (option B of the typography previews).
