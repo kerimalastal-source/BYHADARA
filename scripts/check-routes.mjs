@@ -54,6 +54,7 @@ assert.equal((await fetch('http://localhost:3000/en/not-real')).status, 404);
 assert.equal((await fetch('http://localhost:3000/ar/insights/not-published')).status, 404);
 assert.equal((await fetch('http://localhost:3000/de')).status, 404);
 assert.equal((await fetch('http://localhost:3000/api/inquiries', { method: 'POST' })).status, 503);
+assert.equal((await fetch('http://localhost:3000/api/visit', { method: 'POST' })).status, 503);
 const sitemap = await (await fetch('http://localhost:3000/sitemap.xml')).text();
 assert.equal((sitemap.match(/<loc>/g) || []).length, indexable);
 const robots = await (await fetch('http://localhost:3000/robots.txt')).text();
@@ -70,6 +71,6 @@ console.log(
     sitemap: `${indexable} URLs`,
     seo: 'passed',
     notFound: 'passed',
-    unconfiguredAPI: 503,
+    unconfiguredAPIs: 503,
   }),
 );

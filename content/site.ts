@@ -327,7 +327,11 @@ export const dictionaries = {
       ],
       [
         'Browsing the website',
-        'The website does not use advertising trackers or analytics. Hosting infrastructure may process standard request information for delivery and security. Fonts and photographs are served from the website itself.',
+        'The website uses no cookies, advertising trackers or third-party analytics. Hosting infrastructure may process standard request information for delivery and security. Fonts and photographs are served from the website itself.',
+      ],
+      [
+        'Anonymous visit statistics',
+        'To see which pages interest visitors, the website records each page viewed, its language, the website you came from and your approximate country and city, which our hosting provider (Vercel) derives from the connection. The pages of one visit are linked by a random code kept in your browser’s session storage, not in a cookie, and erased when you close the tab. Your IP address and anything that identifies you are never stored. When a visit begins, our team receives a short notice with these details through Telegram. The records are kept in our database (Neon) and deleted after 30 days.',
       ],
       [
         'Contact requests',
@@ -667,7 +671,11 @@ export const dictionaries = {
       ],
       [
         'تصفح الموقع',
-        'لا يستخدم الموقع أدوات تتبع إعلانية أو تحليلات. قد تعالج الاستضافة معلومات الطلبات المعتادة لتقديم الخدمة وحمايتها. تُقدَّم الخطوط والصور من الموقع نفسه.',
+        'لا يستخدم الموقع ملفات تعريف الارتباط (الكوكيز) ولا أدوات تتبع إعلانية أو تحليلات من جهات خارجية. قد تعالج الاستضافة معلومات الطلبات المعتادة لتقديم الخدمة وحمايتها. تُقدَّم الخطوط والصور من الموقع نفسه.',
+      ],
+      [
+        'إحصاءات الزيارات المجهولة',
+        'لمعرفة الصفحات التي تهم الزوار، يسجّل الموقع كل صفحة تُفتح ولغتها، والموقع الذي جئت منه، وبلدك ومدينتك على وجه التقريب كما يستنتجهما مزوّد الاستضافة (Vercel) من الاتصال. تُربط صفحات الزيارة الواحدة برمز عشوائي يُحفظ في ذاكرة الجلسة في متصفحك، لا في ملف تعريف ارتباط، ويُمحى عند إغلاق التبويب. لا نخزّن عنوان IP الخاص بك ولا أي بيانات تحدد هويتك. عند بدء زيارة جديدة يصل إلى فريقنا إشعار مختصر بهذه التفاصيل عبر Telegram. تُحفظ السجلات في قاعدة بياناتنا (Neon) وتُحذف بعد 30 يوماً.',
       ],
       [
         'طلبات التواصل',
@@ -1023,7 +1031,11 @@ export const dictionaries = {
       ],
       [
         'Web sitesini ziyaret etmek',
-        'Site reklam takipçisi veya analitik kullanmaz. Barındırma altyapısı, hizmet sunumu ve güvenlik için standart istek bilgilerini işleyebilir. Yazı tipleri ve fotoğraflar sitenin kendisinden sunulur.',
+        'Site çerez, reklam takipçisi veya üçüncü taraf analitik kullanmaz. Barındırma altyapısı, hizmet sunumu ve güvenlik için standart istek bilgilerini işleyebilir. Yazı tipleri ve fotoğraflar sitenin kendisinden sunulur.',
+      ],
+      [
+        'Anonim ziyaret istatistikleri',
+        'Ziyaretçilerin hangi sayfalarla ilgilendiğini görmek için site; görüntülenen her sayfayı, sayfanın dilini, geldiğiniz web sitesini ve barındırma sağlayıcımızın (Vercel) bağlantıdan çıkardığı yaklaşık ülke ve şehrinizi kaydeder. Bir ziyaretin sayfaları, tarayıcınızın oturum depolamasında (çerezde değil) tutulan ve sekmeyi kapattığınızda silinen rastgele bir kodla ilişkilendirilir. IP adresiniz ve kimliğinizi belirleyen hiçbir bilgi saklanmaz. Yeni bir ziyaret başladığında ekibimize bu bilgileri içeren kısa bir bildirim Telegram üzerinden gönderilir. Kayıtlar veritabanımızda (Neon) tutulur ve 30 gün sonra silinir.',
       ],
       [
         'İletişim talepleri',

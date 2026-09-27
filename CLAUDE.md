@@ -50,6 +50,8 @@ file's prose in English so it stays easy to scan. Last updated 2026-09-25.
     `components/Pages.tsx` (all other pages), `components/ContactForm.tsx`.
   - `lib/seo.ts`: metadata, breadcrumbs (shared by the visible trail and JSON-LD), structured
     data. `lib/inquiry-*` + `app/api/inquiries/route.ts`: contact form delivery.
+  - `lib/visits.ts` + `app/api/visit/route.ts` + `components/VisitTracker.tsx`: anonymous visitor
+    tracking; `lib/telegram.ts`, `lib/db.ts` (Neon); `lib/http.ts`: helpers shared by both APIs.
   - `docs/ASSETS.md`: provenance of every image; update it whenever an image is added.
 
 ## Group, brand and sister sites
@@ -145,6 +147,33 @@ file's prose in English so it stays easy to scan. Last updated 2026-09-25.
 - In RTL, never wrap option text in Unicode isolate characters: Chromium then renders "+966" as
   "966+" in a closed `<select>`. Plain `"+966 name"` renders correctly.
 
+## Visitor tracking and Telegram alerts (2026-09-27)
+
+- Owner's request, same idea as hadarahospitality but a **separate bot** ("BYHADARA Alerts"): every
+  page posts `{sessionId, path, locale, referrer}` to `/api/visit`; each event is a row in the
+  Postgres table `visitor_events` (id, session_id, path, locale, referrer, country, city,
+  created_at; indexes on session_id and created_at). The first event of a session sends an Arabic
+  Telegram alert whose first line is exactly `🌐 BYHADARA — زائر جديد`, then place, page, language
+  and source (or «مباشر»), parse_mode HTML with every value escaped, sent with `after()`. About 1%
+  of requests delete events older than 30 days. Details: `docs/VISITOR-TRACKING.md`.
+- Owner's rules: **never store the IP address or any personal data** (session = random UUID in
+  sessionStorage, no cookie; referrer kept as origin only; no user agent); the Telegram sender is
+  a silent no-op without `TELEGRAM_BOT_TOKEN` and `TELEGRAM_CHAT_ID`; admin/internal paths are
+  ignored (only real public pages are saved); the privacy policy in all three languages must
+  describe it accurately (section "Anonymous visit statistics").
+- Env vars, set by the owner in the `byhadara` project, marked Sensitive: `TELEGRAM_BOT_TOKEN`,
+  `TELEGRAM_CHAT_ID` (the owner's own chat id, same value as in `hadarahospitality`) and
+  `DATABASE_URL`/`POSTGRES_URL` from a **new** Neon database created in Vercel → `byhadara` →
+  Storage. Never use `hadara-portal-db` (Partner Portal) or any other project's database; the owner
+  has several and once ran a migration on the wrong one, so always name the exact database before
+  they run anything. The table creates itself on first use (`visitorEventsSchema`).
+- Counting runs on production only (`VERCEL_ENV` production, never previews) and only when the build
+  saw a database, since pages are static: after adding the database, redeploy.
+- Owner's rules for this feature: run build and checks before pushing, **ask before merging and
+  deploying**, check the `/api/visit` runtime logs after deploying, and do not call it done until a
+  real Telegram alert arrives. The session's Vercel connector cannot see the `byhadara` project
+  (404), so logs are checked by the owner unless access is extended.
+
 ## Insights & News
 
 - Articles live in `content/articles/{news,real-estate,hospitality}.ts`, combined in
@@ -233,9 +262,9 @@ file's prose in English so it stays easy to scan. Last updated 2026-09-25.
 
 ## Validation and sandbox notes
 
-- Checks: `pnpm typecheck`, `pnpm test` (23 tests), `pnpm build`, then `pnpm start` +
-  `node scripts/check-routes.mjs` (93 pages incl. the articles, links, SEO assertions, 503 while
-  the form is unconfigured) and the Playwright suite (18 tests incl. axe and the phone/tablet test). Prettier:
+- Checks: `pnpm typecheck`, `pnpm test` (34 tests), `pnpm build`, then `pnpm start` +
+  `node scripts/check-routes.mjs` (93 pages incl. the articles, links, SEO assertions, 503 from
+  both APIs while unconfigured) and the Playwright suite (18 tests incl. axe and the phone/tablet test). Prettier:
   `pnpm exec prettier --check components content lib app styles tests scripts docs *.md`.
 - The installed `@playwright/test` expects a newer browser than the sandbox has: run with a
   temporary config that sets `launchOptions.executablePath: '/opt/pw-browsers/chromium'` and
@@ -287,3 +316,4 @@ file's prose in English so it stays easy to scan. Last updated 2026-09-25.
 - PR #24: lighter form pages: validation without zod in the browser, copy in one language.
 - PR #25: the Vercel build-limit note. PR #26: architecture & engineering section on the real
   estate page.
+- PR #27: anonymous visitor tracking with Telegram alerts, privacy policy updated.

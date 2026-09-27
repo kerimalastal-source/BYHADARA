@@ -1,7 +1,9 @@
 import { createHmac } from 'node:crypto';
 import { dialCode } from '@/content/countries';
+import { escapeHtml } from './html';
 import { inquiryRecipient, inquirySender } from './inquiry-config';
 import type { Inquiry } from './inquiry-schema';
+export { escapeHtml };
 export function safeEndpoint(value: string) {
   const url = new URL(value);
   if (url.protocol !== 'https:' || url.username || url.password)
@@ -37,8 +39,6 @@ export const topicLabels = {
   investment: 'Investment opportunity',
   partnership: 'Strategic partnership',
 } as const;
-export const escapeHtml = (value: string) =>
-  value.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 /**
  * Dialable international number without "+": the national trunk prefix 0 is dropped (Italian
  * numbering keeps it).

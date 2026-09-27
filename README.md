@@ -56,6 +56,12 @@ To turn it on in the Vercel project `byhadara`:
 
 Protection: same-origin requests only, a 16 KB body limit, validation on both client and server, a hidden honeypot field, a minimum completion time, and an optional shared rate limit (5 requests per IP per 15 minutes) when Upstash Redis credentials and `RATE_LIMIT_SALT` are set. See `docs/INQUIRY-INTEGRATION.md`.
 
+## Anonymous visitor tracking
+
+Every page sends a small beacon to `/api/visit` with the page path, its language and the referring website (scheme and host only, and only for the page the visitor landed on). The server adds the approximate country and city from Vercel's `x-vercel-ip-country` and `x-vercel-ip-city` headers and saves one row in the Postgres table `visitor_events` (id, session_id, path, locale, referrer, country, city, created_at). A visit is grouped by a random UUID kept in the tab's `sessionStorage`, never a cookie. No IP address, user agent or other personal data is stored. Only public pages count: API, internal and admin paths, unknown pages and crawlers are ignored.
+
+The first event of a session sends an Arabic Telegram alert ("🌐 BYHADARA — زائر جديد") after the response, so Telegram can never delay or break it. About 1% of requests also delete events older than 30 days. Tracking runs on the production deployment only, once a database is connected; the Telegram alert is silently skipped until `TELEGRAM_BOT_TOKEN` and `TELEGRAM_CHAT_ID` are both set. Setup, the table's SQL and troubleshooting: `docs/VISITOR-TRACKING.md`.
+
 ## Search engine optimization
 
 - Every route has a hand-written search title (≤65 characters) and description (110–165 characters) per language in `content/seo.ts`; Arabic entries use the Arabic brand name «مجموعة باي حضارة». Unit tests enforce length and uniqueness.
