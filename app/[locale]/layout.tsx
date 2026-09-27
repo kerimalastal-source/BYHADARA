@@ -3,6 +3,8 @@ import { notFound } from 'next/navigation';
 import { isLocale, dictionary } from '@/content/site';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Site';
+import { VisitTracker } from '@/components/VisitTracker';
+import { visitTrackingEnabled } from '@/lib/visits';
 import '@/styles/globals.css';
 export const viewport: Viewport = { themeColor: '#14283d' };
 export default async function Layout({
@@ -33,6 +35,7 @@ export default async function Layout({
         />
         <main id="main">{children}</main>
         <Footer locale={locale} />
+        {visitTrackingEnabled() && <VisitTracker locale={locale} />}
       </body>
     </html>
   );

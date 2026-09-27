@@ -86,7 +86,7 @@ export const seo: Record<Locale, Record<string, SeoEntry>> = {
     privacy: {
       title: 'Privacy Policy | BYHADARA Group',
       description:
-        'How the BYHADARA Group corporate website handles information: no advertising trackers or analytics, and separate privacy practices for business websites.',
+        'How the BYHADARA Group website handles information: no cookies or advertising trackers, anonymous visit statistics deleted after 30 days, and contact requests.',
     },
     terms: {
       title: 'Terms of Use | BYHADARA Group',
@@ -172,7 +172,7 @@ export const seo: Record<Locale, Record<string, SeoEntry>> = {
     privacy: {
       title: 'سياسة الخصوصية | مجموعة باي حضارة',
       description:
-        'كيف يتعامل الموقع المؤسسي لمجموعة باي حضارة مع المعلومات: لا أدوات تتبع إعلانية أو تحليلات، ولمواقع الشركات سياسات خصوصية خاصة بها.',
+        'كيف يتعامل موقع مجموعة باي حضارة مع المعلومات: بلا ملفات تعريف ارتباط أو تتبع إعلاني، وإحصاءات زيارات مجهولة تُحذف بعد 30 يوماً، وطلبات التواصل.',
     },
     terms: {
       title: 'شروط الاستخدام | مجموعة باي حضارة',
@@ -258,7 +258,7 @@ export const seo: Record<Locale, Record<string, SeoEntry>> = {
     privacy: {
       title: 'Gizlilik Politikası | BYHADARA Group',
       description:
-        'BYHADARA Group kurumsal web sitesi bilgileri nasıl işler: reklam takipçisi veya analitik kullanılmaz; şirket sitelerinin kendi gizlilik uygulamaları vardır.',
+        'BYHADARA Group web sitesi bilgileri nasıl işler: çerez ve reklam takipçisi yok, 30 gün sonra silinen anonim ziyaret istatistikleri ve iletişim talepleri.',
     },
     terms: {
       title: 'Kullanım Koşulları | BYHADARA Group',
