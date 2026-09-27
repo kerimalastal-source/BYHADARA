@@ -87,6 +87,13 @@ file's prose in English so it stays easy to scan. Last updated 2026-09-25.
   with three facts, areas of work, selected projects/products (each linking to its page on the
   company site in the visitor's language), a navy band leading to the company website, and a link
   to the sibling company.
+- The real estate page also has **Architecture & engineering** (`#design`, owner's request
+  2026-09-27, `DesignService` in `Pages.tsx`, copy `d.design`): title, intro, who we work with, a
+  button, then six numbered services (compact rows on phones, button above them). Facts and copy
+  follow İkinci BYHADARA's `/engineering-architecture` section (`consultancy.*`), where the service
+  is presented as HADARA's own: never name the partner design office here. The button links to
+  `designServicePath` on the company site (`content/companies.ts`, one line) once the owner gives
+  the page; while it is `null` it reads "Request a design consultation" and opens Contact.
 
 ## Contact form (all forms on the site)
 
@@ -278,3 +285,5 @@ file's prose in English so it stays easy to scan. Last updated 2026-09-25.
 - PR #22: news of the HADARA Real Estate team visiting Cityscape Qatar 2026.
 - PR #23: mobile-first pass: half the JavaScript, larger tap targets, tablet menu, phone/tablet test.
 - PR #24: lighter form pages: validation without zod in the browser, copy in one language.
+- PR #25: the Vercel build-limit note. PR #26: architecture & engineering section on the real
+  estate page.
