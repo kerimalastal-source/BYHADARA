@@ -239,6 +239,16 @@ file's prose in English so it stays easy to scan. Last updated 2026-09-25.
   `ps -eo pid,comm | awk '$2 ~ /next-server/ {print $1}' | xargs -r kill`.
 - The sandbox cannot reach byhadara.com, byhadara.vercel.app, static.wixstatic.com or the Resend
   API; verify live behaviour through the owner or the Vercel preview.
+- **Vercel build limit** (team `hadara1` is on the free Hobby plan, limit shared with
+  `kinci-byhadara`): on 2026-09-26 from 05:35 Istanbul (02:35 UTC) every deployment was refused with
+  the commit status "Deployment rate limited — retry in 24 hours", so PRs #22–#24 were merged but
+  not live until the next deployment. Every push to the session branch costs a preview deployment
+  and every merge a production one, so batch related changes into one PR. After merging, check the
+  `Vercel` commit status of the merge commit (`GET /repos/{repo}/commits/{sha}/status`); a refused
+  deployment is never retried and does not appear in the dashboard, so "Redeploy" there would
+  republish the older build: deploy the newest `main` with the next merge or the dashboard's
+  "Create Deployment" (ref `main`). Offered, not yet decided: turning off preview deployments for
+  `claude/*` branches.
 
 ## Open items to offer the owner
 
