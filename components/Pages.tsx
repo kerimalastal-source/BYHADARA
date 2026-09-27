@@ -1,6 +1,12 @@
 import Link from 'next/link';
 import { dictionary, businessIds, marketIds, site, type Locale } from '@/content/site';
-import { companyHost, companyUrl, showcase, showcaseUrl } from '@/content/companies';
+import {
+  companyHost,
+  companyUrl,
+  designServicePath,
+  showcase,
+  showcaseUrl,
+} from '@/content/companies';
 import { articleCard, findArticle, publishedArticles, categoryIds } from '@/content/articles';
 import {
   Arrow,
@@ -171,6 +177,7 @@ export function BusinessDetail({ locale, id }: { locale: Locale; id: string }) {
           ))}
         </ul>
       </section>
+      {company === 'real-estate' && <DesignService locale={locale} />}
       <section className="section showcase-section">
         <div className="container">
           <div className="section-head">
@@ -230,6 +237,65 @@ export function BusinessDetail({ locale, id }: { locale: Locale; id: string }) {
         </Link>
       </section>
     </>
+  );
+}
+/**
+ * HADARA Real Estate's architectural and engineering design service, shown on its company page.
+ * The button leads to the service page on the company website once `designServicePath` is set.
+ */
+function DesignService({ locale }: { locale: Locale }) {
+  const d = dictionary(locale),
+    t = d.design,
+    page = designServicePath && companyUrl('real-estate', locale, designServicePath);
+  return (
+    <section className="section design-service" id="design" aria-labelledby="design-title">
+      <div className="container">
+        <div className="design-head">
+          <div>
+            <Label>{t.label}</Label>
+            <h2 id="design-title">{t.title}</h2>
+          </div>
+          <div className="design-intro">
+            <p className="lead">{t.text}</p>
+            <p className="design-clients">
+              <strong>{t.clientsLabel}</strong>
+              {t.clients.join(' · ')}
+            </p>
+            <div className="design-actions">
+              {page ? (
+                <>
+                  <a className="button design-button" href={page} {...external}>
+                    {t.explore}
+                    <Arrow />
+                    <span className="sr-only"> {d.newTab}</span>
+                  </a>
+                  <Link className="text-link" href={`/${locale}/contact`}>
+                    {t.discuss}
+                    <Arrow />
+                  </Link>
+                </>
+              ) : (
+                <Link className="button design-button" href={`/${locale}/contact`}>
+                  {t.consult}
+                  <Arrow />
+                </Link>
+              )}
+            </div>
+          </div>
+        </div>
+        <ol className="design-grid">
+          {t.services.map(([title, text], i) => (
+            <li key={title}>
+              <span className="design-number" aria-hidden="true">
+                0{i + 1}
+              </span>
+              <h3>{title}</h3>
+              <p>{text}</p>
+            </li>
+          ))}
+        </ol>
+      </div>
+    </section>
   );
 }
 export function MarketIndex({ locale }: { locale: Locale }) {

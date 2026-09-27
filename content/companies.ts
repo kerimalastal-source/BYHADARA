@@ -16,6 +16,13 @@ export function companyUrl(id: CompanyId, locale: Locale, path = '') {
   return `${site.hospitality}${locale === 'ar' ? '/ar' : ''}${path}`;
 }
 
+/**
+ * Path of HADARA Real Estate's architectural and engineering design page on its website (for
+ * example '/engineering-architecture'). Until the owner confirms it, the design section's button
+ * opens the contact page with a "request a consultation" label instead.
+ */
+export const designServicePath: string | null = null;
+
 /** Display host for a company website, e.g. "www.hadararealestate.com". */
 export const companyHost = (id: CompanyId) =>
   new URL(id === 'real-estate' ? site.realEstate : site.hospitality).host;

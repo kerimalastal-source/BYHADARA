@@ -265,6 +265,49 @@ export const dictionaries = {
     thanksAnother: 'Submit another request',
     generalRequest: 'General inquiry',
     specializations: 'Areas of specialization',
+    design: {
+      label: 'ARCHITECTURE & ENGINEERING',
+      title: 'Turning ideas into well-considered, buildable spaces.',
+      text: 'Alongside developing and marketing residential projects, HADARA Real Estate offers architectural design, engineering consultancy and interior design for residential, commercial and hospitality projects in Türkiye and international markets.',
+      clientsLabel: 'Who we work with',
+      clients: [
+        'Investors',
+        'Real estate developers',
+        'Landowners',
+        'Villa owners',
+        'Hotels & hospitality operators',
+        'Commercial projects',
+      ],
+      services: [
+        [
+          'Architectural design',
+          'Architecture that balances form, function and buildability, from the first concept to a coordinated design.',
+        ],
+        [
+          'Engineering consultancy',
+          'Independent technical insight before you invest, build or commit to a design.',
+        ],
+        [
+          'Interior design',
+          'Interiors with character and longevity, resolved down to materials, furniture and light.',
+        ],
+        [
+          '3D visualization',
+          'Photorealistic imagery that lets you, your partners and your buyers see the project before it is built.',
+        ],
+        [
+          'Development consultancy',
+          'Where real estate experience meets design: shaping a product the market is looking for.',
+        ],
+        [
+          'Renovation & redesign',
+          'Better layouts, renewed character and added value for spaces and buildings that already exist.',
+        ],
+      ] as [string, string][],
+      explore: 'Explore architectural design',
+      consult: 'Request a design consultation',
+      discuss: 'Discuss your project',
+    },
     targetMarkets: 'Market focus',
     strategicInterest: 'Strategic interests',
     investmentTitle: 'Explore investment\nopportunities.',
@@ -569,6 +612,43 @@ export const dictionaries = {
     thanksAnother: 'تقديم طلب آخر',
     generalRequest: 'استفسار عام',
     specializations: 'مجالات التخصص',
+    design: {
+      label: 'التصميم المعماري والهندسي',
+      title: 'نحوّل الأفكار إلى مساحات مدروسة وقابلة للتنفيذ.',
+      text: 'إلى جانب تطوير المشاريع السكنية وتسويقها، تقدّم حضارة العقارية خدمات التصميم المعماري والاستشارات الهندسية والتصميم الداخلي للمشاريع السكنية والتجارية والفندقية في تركيا والأسواق الدولية.',
+      clientsLabel: 'مع من نعمل',
+      clients: [
+        'المستثمرون',
+        'المطوّرون العقاريون',
+        'ملّاك الأراضي',
+        'أصحاب الفلل',
+        'الفنادق ومشغّلو الضيافة',
+        'المشاريع التجارية',
+      ],
+      services: [
+        [
+          'التصميم المعماري',
+          'عمارة توازن بين الشكل والوظيفة وقابلية التنفيذ، من الفكرة الأولى حتى التصميم المنسّق.',
+        ],
+        ['الاستشارات الهندسية', 'رأي فني مستقل قبل أن تستثمر أو تبني أو تعتمد تصميماً نهائياً.'],
+        [
+          'التصميم الداخلي',
+          'مساحات داخلية ذات شخصية تدوم، مدروسة حتى أدق تفاصيل المواد والأثاث والإضاءة.',
+        ],
+        [
+          'التصوّر ثلاثي الأبعاد',
+          'صور واقعية تتيح لك ولشركائك ولمشتري وحداتك رؤية المشروع قبل بنائه.',
+        ],
+        [
+          'استشارات التطوير العقاري',
+          'حيث تلتقي الخبرة العقارية بالتصميم: لصياغة منتج عقاري يبحث عنه السوق.',
+        ],
+        ['إعادة التصميم والتطوير', 'مخططات أفضل وطابع متجدّد وقيمة مضافة لمساحات ومبانٍ قائمة.'],
+      ] as [string, string][],
+      explore: 'اكتشف خدمة التصميم المعماري',
+      consult: 'اطلب استشارة تصميم',
+      discuss: 'ناقش مشروعك معنا',
+    },
     targetMarkets: 'الأسواق المستهدفة',
     strategicInterest: 'الاهتمامات الاستراتيجية',
     investmentTitle: 'استكشف الفرص\nالاستثمارية.',
@@ -881,6 +961,49 @@ export const dictionaries = {
     thanksAnother: 'Yeni bir talep iletin',
     generalRequest: 'Genel talep',
     specializations: 'Uzmanlık alanları',
+    design: {
+      label: 'MİMARLIK VE MÜHENDİSLİK',
+      title: 'Fikirleri iyi düşünülmüş, uygulanabilir mekânlara dönüştürüyoruz.',
+      text: 'HADARA Real Estate, konut projeleri geliştirip pazarlamanın yanı sıra Türkiye’de ve uluslararası pazarlarda konut, ticari ve konaklama projeleri için mimari tasarım, mühendislik danışmanlığı ve iç mimari hizmetleri sunar.',
+      clientsLabel: 'Kimlerle çalışıyoruz',
+      clients: [
+        'Yatırımcılar',
+        'Gayrimenkul geliştiricileri',
+        'Arazi sahipleri',
+        'Villa sahipleri',
+        'Oteller ve konaklama işletmecileri',
+        'Ticari projeler',
+      ],
+      services: [
+        [
+          'Mimari tasarım',
+          'Biçim, işlev ve uygulanabilirliği dengeleyen mimari; ilk konseptten koordineli tasarıma kadar.',
+        ],
+        [
+          'Mühendislik danışmanlığı',
+          'Yatırım yapmadan, inşa etmeden veya bir tasarımı kesinleştirmeden önce bağımsız teknik görüş.',
+        ],
+        [
+          'İç mimari',
+          'Malzemeden mobilyaya ve ışığa kadar çözümlenmiş, karakterli ve kalıcı iç mekânlar.',
+        ],
+        [
+          '3B görselleştirme',
+          'Projeyi inşa edilmeden önce sizin, ortaklarınızın ve alıcılarınızın görmesini sağlayan gerçekçi görseller.',
+        ],
+        [
+          'Geliştirme danışmanlığı',
+          'Gayrimenkul deneyiminin tasarımla buluştuğu yer: piyasanın aradığı ürünü şekillendirmek.',
+        ],
+        [
+          'Yenileme ve yeniden tasarım',
+          'Mevcut mekân ve binalar için daha iyi planlar, yenilenmiş bir karakter ve katma değer.',
+        ],
+      ] as [string, string][],
+      explore: 'Mimari tasarım hizmetini keşfedin',
+      consult: 'Tasarım danışmanlığı talep edin',
+      discuss: 'Projenizi konuşalım',
+    },
     targetMarkets: 'Pazar odağı',
     strategicInterest: 'Stratejik ilgi alanları',
     investmentTitle: 'Yatırım fırsatlarını\nkeşfedin.',
