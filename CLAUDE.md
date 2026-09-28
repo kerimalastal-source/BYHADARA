@@ -34,8 +34,10 @@ file's prose in English so it stays easy to scan. Last updated 2026-09-25.
   to it (DNS on Wix nameservers pointing to Vercel). Also https://byhadara.vercel.app. Vercel project `byhadara`
   (`prj_bVxa8wH2w0Lo9KKyaRzgMvzFXIza`) in team `hadara1` (`team_QsY1Po5NrdwjnNTD0wqYTrNc`). The
   session's Vercel connector gets 403 on this team (it only sees `hadarahospitality`), so env vars
-  and deployments of `byhadara` are handled by the owner in the Vercel dashboard. Every PR gets a
-  preview at `byhadara-git-<branch>-hadara1.vercel.app`.
+  and deployments of `byhadara` are handled by the owner in the Vercel dashboard. Preview
+  deployments are off for `claude/**` branches (`vercel.json`, `git.deploymentEnabled`, owner's
+  choice 2026-09-28, to save the daily build limit); other branches still get
+  `byhadara-git-<branch>-hadara1.vercel.app`.
 - **Locales**: `en`, `ar` (RTL), `tr`; 17 routes × 3 = 51 pages plus 3 per published article, all
   static. `/` 308-redirects to `/en`.
 - **Key files**
@@ -292,8 +294,10 @@ file's prose in English so it stays easy to scan. Last updated 2026-09-25.
   `Vercel` commit status of the merge commit (`GET /repos/{repo}/commits/{sha}/status`); a refused
   deployment is never retried and does not appear in the dashboard, so "Redeploy" there would
   republish the older build: deploy the newest `main` with the next merge or the dashboard's
-  "Create Deployment" (ref `main`). Offered, not yet decided: turning off preview deployments for
-  `claude/*` branches.
+  "Create Deployment" (ref `main`). Since PR #30 `claude/**` branches no longer
+  get preview deployments, so each change costs one production deployment. On 2026-09-28 at
+  03:40 Istanbul the limit was hit again: PRs #29 and #30 were merged but refused; the owner
+  publishes them with "Create Deployment" (ref `main`) once the limit resets.
 
 ## Open items to offer the owner
 
@@ -328,3 +332,4 @@ file's prose in English so it stays easy to scan. Last updated 2026-09-25.
 - PR #27: anonymous visitor tracking with Telegram alerts, privacy policy updated.
 - PR #28: read the byhadara database's prefixed variable `STORAGE_URL_DATABASE_URL`.
 - PR #29: the visitor alert updates itself page by page; extra 🔥 alert for request pages.
+- PR #30: no preview deployments for `claude/**` branches (`vercel.json`).
