@@ -1,6 +1,7 @@
 import test, { afterEach } from 'node:test';
 import assert from 'node:assert/strict';
 import { POST } from '../app/api/visit/route';
+import { databaseVariables } from '../lib/db';
 import { sendTelegramMessage } from '../lib/telegram';
 import {
   newVisitorMessage,
@@ -30,10 +31,10 @@ const visit: Visit = {
   country: 'TR',
   city: 'Istanbul',
 };
-function configure({ telegram = true } = {}) {
-  delete process.env.POSTGRES_URL;
+function configure({ telegram = true, database = 'DATABASE_URL' } = {}) {
+  for (const name of databaseVariables) delete process.env[name];
   delete process.env.VERCEL_ENV;
-  process.env.DATABASE_URL = 'postgresql://test:test-only@db.example.test/visits';
+  process.env[database] = 'postgresql://test:test-only@db.example.test/visits';
   if (telegram)
     Object.assign(process.env, { TELEGRAM_BOT_TOKEN: '123:test-only', TELEGRAM_CHAT_ID: '42' });
   else {
@@ -252,7 +253,8 @@ test('foreign origins, bots, bad beacons and uncounted pages never reach the dat
   assert.deepEqual([statements, messages], [[], []]);
 });
 test('the first page of a session alerts Telegram once; later pages do not', async () => {
-  configure();
+  // The variable name Vercel gave the byhadara project's database.
+  configure({ database: 'STORAGE_URL_DATABASE_URL' });
   Math.random = () => 0.5;
   const { rows, messages } = services();
   const first = await POST(

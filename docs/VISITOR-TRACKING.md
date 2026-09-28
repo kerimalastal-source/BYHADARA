@@ -46,8 +46,10 @@ CREATE INDEX IF NOT EXISTS visitor_events_created_at_idx ON visitor_events USING
 ## Setup
 
 1. Vercel → project `byhadara` → Storage → Create Database → Neon (Postgres), connected to the
-   `byhadara` project for Production. This adds `DATABASE_URL` (and `POSTGRES_URL`). It must be a
-   new database: `hadara-portal-db` belongs to the HADARA Hospitality Partner Portal.
+   `byhadara` project for Production. Done on 2026-09-28: database **`neon-coquelicot-lighthouse`**
+   (Frankfurt, free plan), connected with the prefix `STORAGE_URL`, so the connection string is
+   `STORAGE_URL_DATABASE_URL` (`lib/db.ts` also accepts `DATABASE_URL` and `POSTGRES_URL`). The
+   `hadara-portal-*` databases belong to the HADARA Hospitality portals: never use them here.
 2. Create the Telegram bot "BYHADARA Alerts" with @BotFather (`/newbot`), open the bot and press
    Start. `TELEGRAM_CHAT_ID` is the owner's own chat id, the same value as in the
    `hadarahospitality` project.
