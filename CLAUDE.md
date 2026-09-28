@@ -156,6 +156,11 @@ file's prose in English so it stays easy to scan. Last updated 2026-09-25.
   Telegram alert whose first line is exactly `🌐 BYHADARA — زائر جديد`, then place, page, language
   and source (or «مباشر»), parse_mode HTML with every value escaped, sent with `after()`. About 1%
   of requests delete events older than 30 days. Details: `docs/VISITOR-TRACKING.md`.
+- Live since 2026-09-28 (the owner received the first real alert). Owner's choice the same day:
+  later pages **edit that one message** silently (`👣 الآن`, number of pages, visit length; message
+  ids in the table `visitor_alerts`), and the first opening in a visit of the contact page or a
+  request form sends one extra reply `🔥 الزائر فتح صفحة التواصل` (or الاستثمار / الشراكة). Paths
+  carry U+200E so `/tr` never shows as `tr/`.
 - Owner's rules: **never store the IP address or any personal data** (session = random UUID in
   sessionStorage, no cookie; referrer kept as origin only; no user agent); the Telegram sender is
   a silent no-op without `TELEGRAM_BOT_TOKEN` and `TELEGRAM_CHAT_ID`; admin/internal paths are
@@ -266,7 +271,7 @@ file's prose in English so it stays easy to scan. Last updated 2026-09-25.
 
 ## Validation and sandbox notes
 
-- Checks: `pnpm typecheck`, `pnpm test` (34 tests), `pnpm build`, then `pnpm start` +
+- Checks: `pnpm typecheck`, `pnpm test` (37 tests), `pnpm build`, then `pnpm start` +
   `node scripts/check-routes.mjs` (93 pages incl. the articles, links, SEO assertions, 503 from
   both APIs while unconfigured) and the Playwright suite (18 tests incl. axe and the phone/tablet test). Prettier:
   `pnpm exec prettier --check components content lib app styles tests scripts docs *.md`.
@@ -322,3 +327,4 @@ file's prose in English so it stays easy to scan. Last updated 2026-09-25.
   estate page.
 - PR #27: anonymous visitor tracking with Telegram alerts, privacy policy updated.
 - PR #28: read the byhadara database's prefixed variable `STORAGE_URL_DATABASE_URL`.
+- PR #29: the visitor alert updates itself page by page; extra 🔥 alert for request pages.

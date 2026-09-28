@@ -1,12 +1,13 @@
 import { afterResponse, allowedOrigin, readBody } from '@/lib/http';
-import { sendTelegramMessage, telegramConfigured } from '@/lib/telegram';
+import { telegramConfigured } from '@/lib/telegram';
 import {
   isBot,
-  newVisitorMessage,
+  notifyTeam,
   parseVisit,
   recordVisit,
   removeOldVisits,
   visitTrackingEnabled,
+  type VisitState,
 } from '@/lib/visits';
 export const runtime = 'nodejs';
 export const maxDuration = 15;
@@ -14,8 +15,8 @@ const MAX_BODY_BYTES = 2048;
 const reply = (status: number) =>
   new Response(null, { status, headers: { 'Cache-Control': 'no-store' } });
 /**
- * Anonymous page-view beacon sent by `VisitTracker` on every page. Saves the view and, for the
- * first view of a session, alerts the team on Telegram after the response.
+ * Anonymous page-view beacon sent by `VisitTracker` on every page. Saves the view and tells the
+ * team on Telegram after the response (`notifyTeam`).
  */
 export async function POST(request: Request) {
   if (!visitTrackingEnabled()) return reply(503);
@@ -34,18 +35,14 @@ export async function POST(request: Request) {
   const visit = parseVisit(body, request.headers);
   if (visit === undefined) return reply(400);
   if (visit === null) return reply(204);
-  let first: boolean;
+  let state: VisitState;
   try {
-    first = await recordVisit(visit);
+    state = await recordVisit(visit);
   } catch (error) {
     console.error(`Visitor tracking failed. ${error instanceof Error ? error.message : ''}`);
     return reply(500);
   }
-  if (first && telegramConfigured())
-    afterResponse(async () => {
-      await sendTelegramMessage(newVisitorMessage(visit));
-      console.info('Visitor alert sent.');
-    }, 'Visitor alert failed.');
+  if (telegramConfigured()) afterResponse(() => notifyTeam(visit, state), 'Visitor alert failed.');
   // Occasional housekeeping instead of a scheduled job.
   if (Math.random() < 0.01) afterResponse(removeOldVisits, 'Visitor cleanup failed.');
   return reply(204);
