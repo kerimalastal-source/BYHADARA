@@ -159,10 +159,14 @@ file's prose in English so it stays easy to scan. Last updated 2026-09-28.
   and source (or «مباشر»), parse_mode HTML with every value escaped, sent with `after()`. About 1%
   of requests delete events older than 30 days. Details: `docs/VISITOR-TRACKING.md`.
 - Live since 2026-09-28 (the owner received the first real alert). Owner's choice the same day:
-  later pages **edit that one message** silently (`👣 الآن`, number of pages, visit length; message
-  ids in the table `visitor_alerts`), and the first opening in a visit of the contact page or a
-  request form sends one extra reply `🔥 الزائر فتح صفحة التواصل` (or الاستثمار / الشراكة). Paths
-  carry U+200E so `/tr` never shows as `tr/`.
+  later pages **edit that one message** silently (message ids in the table `visitor_alerts`), and
+  the first opening in a visit of the contact page or a request form sends one extra reply
+  `🔥 الزائر فتح صفحة التواصل` (or الاستثمار / الشراكة). Paths carry U+200E so `/tr` never shows as
+  `tr/`. Deployed with PR #31 and confirmed by the owner on 2026-09-28 (updates and 🔥 arrive).
+- The updated alert shows the whole visit (owner's request, 2026-09-28, to analyse interests):
+  number of pages and visit length, `🧭 مسار الزيارة` with every page in order and the time spent
+  on it (`40 ث`, `2 د`), and `👣 آخر صفحة`, the exit page once updates stop. Long visits list the
+  latest 30 pages.
 - Owner's rules: **never store the IP address or any personal data** (session = random UUID in
   sessionStorage, no cookie; referrer kept as origin only; no user agent); the Telegram sender is
   a silent no-op without `TELEGRAM_BOT_TOKEN` and `TELEGRAM_CHAT_ID`; admin/internal paths are
@@ -273,7 +277,7 @@ file's prose in English so it stays easy to scan. Last updated 2026-09-28.
 
 ## Validation and sandbox notes
 
-- Checks: `pnpm typecheck`, `pnpm test` (37 tests), `pnpm build`, then `pnpm start` +
+- Checks: `pnpm typecheck`, `pnpm test` (39 tests), `pnpm build`, then `pnpm start` +
   `node scripts/check-routes.mjs` (93 pages incl. the articles, links, SEO assertions, 503 from
   both APIs while unconfigured) and the Playwright suite (18 tests incl. axe and the phone/tablet test). Prettier:
   `pnpm exec prettier --check components content lib app styles tests scripts docs *.md`.
@@ -337,3 +341,4 @@ file's prose in English so it stays easy to scan. Last updated 2026-09-28.
 - PR #29: the visitor alert updates itself page by page; extra 🔥 alert for request pages.
 - PR #30: no preview deployments for `claude/**` branches (`vercel.json`).
 - PR #31: deployment status note, merged to deploy PRs #29 and #30.
+- PR #32: the visitor alert lists every page of the visit with the time spent on it.

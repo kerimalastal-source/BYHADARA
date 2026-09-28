@@ -23,8 +23,12 @@ What the website records, how the Telegram alert works, and how to set both up i
   `lib/visits.ts`, owner's choice of 2026-09-28):
   - the first event of a session sends the alert (`🌐 BYHADARA — زائر جديد`, place, page,
     language, source) and stores its message id in `visitor_alerts`;
-  - every later page **edits that same message** (no new notification): first page, `👣 الآن`
-    with the current page, the number of pages and the visit length;
+  - every later page **edits that same message** (no new notification): number of pages and
+    visit length, then `🧭 مسار الزيارة`, every page of the visit in order with the time spent on
+    it (`40 ث`, `2 د`; the current page has none), then `👣 آخر صفحة`, which is where the visit
+    ended once the updates stop (owner's request, 2026-09-28, to analyse visitors' interests).
+    Long visits list their latest 30 pages under `… و12 صفحة قبلها`; the query reads back at
+    most the latest 60 views;
   - the first opening in a visit of `/contact`, `/inquiries/investment` or
     `/inquiries/partnership` sends one extra message as a reply to the alert:
     `🔥 الزائر فتح صفحة التواصل` (or الاستثمار / الشراكة), with place and page;

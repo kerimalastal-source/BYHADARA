@@ -107,6 +107,9 @@ export const visitorEventsSchema = [
   created_at timestamp with time zone DEFAULT now() NOT NULL
 )`,
 ];
+/** Earlier views read back for the trail, and the most pages the alert lists. */
+const TRAIL_ROWS = 60;
+const TRAIL_PAGES = 30;
 /** What the session looked like when a page view was saved. */
 export type VisitState = {
   /** No earlier event in this session. */
@@ -119,6 +122,12 @@ export type VisitState = {
   newPage: boolean;
   /** The session's first page view (this one for a new session). */
   landing: Visit;
+  /**
+   * The pages of the visit in order, this one last, each with the seconds spent on it (null for
+   * this one). Long visits keep the latest pages only; `hiddenPages` counts the ones left out.
+   */
+  trail: { path: string; seconds: number | null }[];
+  hiddenPages: number;
   /** The Telegram alert for this session, once it has been sent. */
   messageId: number | null;
 };
@@ -139,6 +148,13 @@ export async function recordVisit(visit: Visit): Promise<VisitState> {
       SELECT path, locale, referrer, country, city FROM visitor_events
       WHERE session_id = ${id} ORDER BY created_at LIMIT 1
     ),
+    recent AS (
+      SELECT coalesce(json_agg(json_build_object('path', path, 'at', at) ORDER BY at), '[]') AS views
+      FROM (
+        SELECT path, extract(epoch FROM created_at)::float8 AS at FROM visitor_events
+        WHERE session_id = ${id} ORDER BY created_at DESC LIMIT ${TRAIL_ROWS}
+      ) latest
+    ),
     alert AS (SELECT message_id::text AS message_id FROM visitor_alerts WHERE session_id = ${id}),
     saved AS (
       INSERT INTO visitor_events (session_id, path, locale, referrer, country, city)
@@ -148,9 +164,11 @@ export async function recordVisit(visit: Visit): Promise<VisitState> {
     )
     SELECT prior.pages, prior.seen,
       coalesce(extract(epoch FROM saved.created_at - prior.started), 0)::int AS seconds,
+      extract(epoch FROM saved.created_at)::float8 AS at, recent.views,
       landing.path, landing.locale, landing.referrer, landing.country, landing.city,
       alert.message_id
-    FROM saved CROSS JOIN prior LEFT JOIN landing ON true LEFT JOIN alert ON true`;
+    FROM saved CROSS JOIN prior CROSS JOIN recent LEFT JOIN landing ON true
+      LEFT JOIN alert ON true`;
   let rows: Record<string, unknown>[];
   try {
     rows = await save();
@@ -168,6 +186,18 @@ export async function recordVisit(visit: Visit): Promise<VisitState> {
   const text = (value: unknown) => (typeof value === 'string' ? value : null);
   const earlier = Number(row.pages) || 0;
   const landingLocale = text(row.locale);
+  // Earlier views (oldest first, at most TRAIL_ROWS), then this one.
+  const views = [
+    ...(Array.isArray(row.views) ? row.views : [])
+      .filter((v) => typeof v?.path === 'string' && Number.isFinite(Number(v?.at)))
+      .map((v) => ({ path: String(v.path), at: Number(v.at) })),
+    { path: visit.path, at: Number(row.at) || 0 },
+  ];
+  const trail = views.map((view, i) => ({
+    path: view.path,
+    seconds: i < views.length - 1 ? Math.max(0, views[i + 1].at - view.at) : null,
+  }));
+  const shown = trail.slice(-TRAIL_PAGES);
   return {
     first: earlier === 0,
     pages: earlier + 1,
@@ -184,6 +214,8 @@ export async function recordVisit(visit: Visit): Promise<VisitState> {
             country: text(row.country),
             city: text(row.city),
           },
+    trail: shown,
+    hiddenPages: earlier + 1 - shown.length,
     messageId: Number(row.message_id) || null,
   };
 }
@@ -243,17 +275,37 @@ export function newVisitorMessage(visit: Visit) {
     `↩️ المصدر: ${source(visit)}`,
   ].join('\n');
 }
-/** The same alert once the visitor has moved on: where they are now and for how long. */
+/** "And N pages" in Arabic, for the pages a long visit's alert leaves out. */
+const earlierPages = (n: number) =>
+  n === 1 ? 'وصفحة واحدة' : n === 2 ? 'وصفحتان' : n <= 10 ? `و${n} صفحات` : `و${n} صفحة`;
+/** Time spent on one page, short: seconds under a minute, then minutes. */
+export function pageTime(seconds: number) {
+  if (seconds < 60) return `${Math.max(1, Math.floor(seconds))} ث`;
+  const minutes = Math.floor(seconds / 60);
+  return minutes < 60 ? `${minutes} د` : 'أكثر من ساعة';
+}
+/**
+ * The same alert once the visitor has moved on: every page of the visit in order with the time
+ * spent on it, and the last page, which is where the visit ended once updates stop.
+ */
 export function visitUpdateMessage(visit: Visit, state: VisitState) {
-  const { landing } = state;
+  const { landing, trail, hiddenPages } = state;
+  const pages = trail.map(
+    (page, i) =>
+      `${hiddenPages + i + 1}. ${shownPath(page.path)}${
+        page.seconds === null ? '' : ` · ${pageTime(page.seconds)}`
+      }`,
+  );
   return [
     '🌐 BYHADARA — زائر جديد',
     `📍 من: ${place(landing)}`,
-    `📄 أول صفحة: ${shownPath(landing.path)}`,
     `🗣 اللغة: ${languages[landing.locale]}`,
     `↩️ المصدر: ${source(landing)}`,
-    `👣 الآن: ${shownPath(visit.path)}`,
     `🔢 عدد الصفحات: ${state.pages} · مدة الزيارة: ${visitLength(state.seconds)}`,
+    '🧭 مسار الزيارة:',
+    ...(hiddenPages > 0 ? [`… ${earlierPages(hiddenPages)} قبلها`] : []),
+    ...pages,
+    `👣 آخر صفحة: ${shownPath(visit.path)}`,
   ].join('\n');
 }
 /** The separate alert when a visitor first opens a request page in this visit, or null. */
