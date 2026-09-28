@@ -163,10 +163,14 @@ file's prose in English so it stays easy to scan. Last updated 2026-09-25.
   describe it accurately (section "Anonymous visit statistics").
 - Env vars, set by the owner in the `byhadara` project, marked Sensitive: `TELEGRAM_BOT_TOKEN`,
   `TELEGRAM_CHAT_ID` (the owner's own chat id, same value as in `hadarahospitality`) and
-  `DATABASE_URL`/`POSTGRES_URL` from a **new** Neon database created in Vercel → `byhadara` →
-  Storage. Never use `hadara-portal-db` (Partner Portal) or any other project's database; the owner
+  `STORAGE_URL_DATABASE_URL` from the Neon database **`neon-coquelicot-lighthouse`** (Frankfurt,
+  free), created on 2026-09-28 in Vercel → `byhadara` → Storage with the prefix `STORAGE_URL`
+  (`lib/db.ts` also reads `DATABASE_URL` and `POSTGRES_URL`). Never use `hadara-portal-db`,
+  `hadara-portal-production`, `hadara-portal-staging` or any other project's database; the owner
   has several and once ran a migration on the wrong one, so always name the exact database before
   they run anything. The table creates itself on first use (`visitorEventsSchema`).
+- 2026-09-28: PR #27 went live without a database, so no alert came; the database was then
+  connected under the prefixed name above, which PR #28 reads.
 - Counting runs on production only (`VERCEL_ENV` production, never previews) and only when the build
   saw a database, since pages are static: after adding the database, redeploy.
 - Owner's rules for this feature: run build and checks before pushing, **ask before merging and
@@ -317,3 +321,4 @@ file's prose in English so it stays easy to scan. Last updated 2026-09-25.
 - PR #25: the Vercel build-limit note. PR #26: architecture & engineering section on the real
   estate page.
 - PR #27: anonymous visitor tracking with Telegram alerts, privacy policy updated.
+- PR #28: read the byhadara database's prefixed variable `STORAGE_URL_DATABASE_URL`.
