@@ -3,6 +3,7 @@ import { isLocale, type Locale } from '@/content/locales';
 import { publishedArticles } from '@/content/articles';
 import { databaseUrl, db } from './db';
 import { escapeHtml } from './html';
+import { editTelegramMessage, sendTelegramMessage } from './telegram';
 /**
  * Anonymous page view. Nothing here identifies a person: the session is a random UUID kept in the
  * tab's sessionStorage (no cookie), the place comes from Vercel's geolocation headers, and neither
@@ -85,7 +86,7 @@ export function parseVisit(body: unknown, headers: Headers): Visit | null | unde
     ...visitorPlace(headers),
   };
 }
-/** The table and its indexes; created automatically the first time a visit is saved. */
+/** The tables and indexes; created automatically the first time a visit is saved. */
 export const visitorEventsSchema = [
   `CREATE TABLE IF NOT EXISTS visitor_events (
   id uuid PRIMARY KEY DEFAULT gen_random_uuid() NOT NULL,
@@ -99,44 +100,117 @@ export const visitorEventsSchema = [
 )`,
   'CREATE INDEX IF NOT EXISTS visitor_events_session_id_idx ON visitor_events USING btree (session_id)',
   'CREATE INDEX IF NOT EXISTS visitor_events_created_at_idx ON visitor_events USING btree (created_at)',
+  // The Telegram message of each session, so later pages update it instead of sending new ones.
+  `CREATE TABLE IF NOT EXISTS visitor_alerts (
+  session_id text PRIMARY KEY NOT NULL,
+  message_id bigint NOT NULL,
+  created_at timestamp with time zone DEFAULT now() NOT NULL
+)`,
 ];
+/** What the session looked like when a page view was saved. */
+export type VisitState = {
+  /** No earlier event in this session. */
+  first: boolean;
+  /** Pages viewed so far, this one included. */
+  pages: number;
+  /** Seconds since the session's first page. */
+  seconds: number;
+  /** This path was not viewed earlier in the session. */
+  newPage: boolean;
+  /** The session's first page view (this one for a new session). */
+  landing: Visit;
+  /** The Telegram alert for this session, once it has been sent. */
+  messageId: number | null;
+};
 /**
- * Saves the visit and reports whether it opened a new session (no earlier event with its session
- * id). Both happen in one statement, whose snapshot cannot see the row it inserts.
+ * Saves the visit and reads the session it belongs to, in one statement whose snapshot cannot
+ * see the row it inserts.
  */
-export async function recordVisit(visit: Visit) {
+export async function recordVisit(visit: Visit): Promise<VisitState> {
   const sql = db();
+  const id = visit.sessionId;
   const save = () => sql`
-    WITH prior AS (SELECT 1 FROM visitor_events WHERE session_id = ${visit.sessionId} LIMIT 1),
+    WITH prior AS (
+      SELECT count(*)::int AS pages, min(created_at) AS started,
+        coalesce(bool_or(path = ${visit.path}), false) AS seen
+      FROM visitor_events WHERE session_id = ${id}
+    ),
+    landing AS (
+      SELECT path, locale, referrer, country, city FROM visitor_events
+      WHERE session_id = ${id} ORDER BY created_at LIMIT 1
+    ),
+    alert AS (SELECT message_id::text AS message_id FROM visitor_alerts WHERE session_id = ${id}),
     saved AS (
       INSERT INTO visitor_events (session_id, path, locale, referrer, country, city)
-      VALUES (${visit.sessionId}, ${visit.path}, ${visit.locale}, ${visit.referrer},
-        ${visit.country}, ${visit.city})
-      RETURNING id
+      VALUES (${id}, ${visit.path}, ${visit.locale}, ${visit.referrer}, ${visit.country},
+        ${visit.city})
+      RETURNING created_at
     )
-    SELECT NOT EXISTS (SELECT 1 FROM prior) AS first FROM saved`;
+    SELECT prior.pages, prior.seen,
+      coalesce(extract(epoch FROM saved.created_at - prior.started), 0)::int AS seconds,
+      landing.path, landing.locale, landing.referrer, landing.country, landing.city,
+      alert.message_id
+    FROM saved CROSS JOIN prior LEFT JOIN landing ON true LEFT JOIN alert ON true`;
   let rows: Record<string, unknown>[];
   try {
     rows = await save();
   } catch (error) {
-    // 42P01: the table does not exist yet in a new database.
+    // 42P01: a table does not exist yet (a new database, or one from before visitor_alerts).
     if ((error as { code?: string }).code !== '42P01') throw error;
     await sql
       .transaction(visitorEventsSchema.map((statement) => sql.query(statement)))
       .catch(() => {
-        // Another request may have created it at the same moment; saving again tells.
+        // Another request may have created them at the same moment; saving again tells.
       });
     rows = await save();
   }
-  return rows[0]?.first === true;
+  const row = rows[0] ?? {};
+  const text = (value: unknown) => (typeof value === 'string' ? value : null);
+  const earlier = Number(row.pages) || 0;
+  const landingLocale = text(row.locale);
+  return {
+    first: earlier === 0,
+    pages: earlier + 1,
+    seconds: Number(row.seconds) || 0,
+    newPage: row.seen !== true,
+    landing:
+      earlier === 0 || !text(row.path)
+        ? visit
+        : {
+            ...visit,
+            path: text(row.path)!,
+            locale: landingLocale && isLocale(landingLocale) ? landingLocale : visit.locale,
+            referrer: text(row.referrer),
+            country: text(row.country),
+            city: text(row.city),
+          },
+    messageId: Number(row.message_id) || null,
+  };
 }
-/** Deletes events older than 30 days. */
+/** Remembers the Telegram alert of a session. */
+async function saveAlert(sessionId: string, messageId: number) {
+  await db()`
+    INSERT INTO visitor_alerts (session_id, message_id) VALUES (${sessionId}, ${messageId})
+    ON CONFLICT (session_id) DO NOTHING`;
+}
+/** Deletes events and alert references older than 30 days. */
 export async function removeOldVisits() {
-  await db()`DELETE FROM visitor_events WHERE created_at < now() - interval '30 days'`;
+  const sql = db();
+  await sql.transaction([
+    sql`DELETE FROM visitor_events WHERE created_at < now() - interval '30 days'`,
+    sql`DELETE FROM visitor_alerts WHERE created_at < now() - interval '30 days'`,
+  ]);
 }
 const languages: Record<Locale, string> = { en: 'الإنجليزية', ar: 'العربية', tr: 'التركية' };
-/** The Telegram alert for a new visitor, in Arabic (parse_mode HTML, every value escaped). */
-export function newVisitorMessage(visit: Visit) {
+/** Request pages whose first opening in a visit sends a separate alert. */
+const requestPages: Record<string, string> = {
+  contact: 'التواصل',
+  'inquiries/investment': 'الاستثمار',
+  'inquiries/partnership': 'الشراكة',
+};
+/** A path shown left to right inside Arabic text, so "/tr" never reads "tr/". */
+const shownPath = (path: string) => `‎${escapeHtml(path)}`;
+function place(visit: Visit) {
   let country = visit.country;
   if (country) {
     try {
@@ -145,13 +219,71 @@ export function newVisitorMessage(visit: Visit) {
       // Unknown code: keep it as it is.
     }
   }
-  const place = [visit.city, country].filter(Boolean).join('، ') || 'غير معروف';
-  const source = visit.referrer ? new URL(visit.referrer).host.replace(/^www\./, '') : 'مباشر';
+  return escapeHtml([visit.city, country].filter(Boolean).join('، ') || 'غير معروف');
+}
+const source = (visit: Visit) =>
+  escapeHtml(visit.referrer ? new URL(visit.referrer).host.replace(/^www\./, '') : 'مباشر');
+/** Visit length in Arabic, in whole minutes. */
+export function visitLength(seconds: number) {
+  const minutes = Math.floor(seconds / 60);
+  if (minutes < 1) return 'أقل من دقيقة';
+  if (minutes === 1) return 'دقيقة';
+  if (minutes === 2) return 'دقيقتان';
+  if (minutes <= 10) return `${minutes} دقائق`;
+  if (minutes < 60) return `${minutes} دقيقة`;
+  return 'أكثر من ساعة';
+}
+/** The Telegram alert for a new visitor, in Arabic (parse_mode HTML, every value escaped). */
+export function newVisitorMessage(visit: Visit) {
   return [
     '🌐 BYHADARA — زائر جديد',
-    `📍 من: ${escapeHtml(place)}`,
-    `📄 الصفحة: ${escapeHtml(visit.path)}`,
+    `📍 من: ${place(visit)}`,
+    `📄 الصفحة: ${shownPath(visit.path)}`,
     `🗣 اللغة: ${languages[visit.locale]}`,
-    `↩️ المصدر: ${escapeHtml(source)}`,
+    `↩️ المصدر: ${source(visit)}`,
   ].join('\n');
+}
+/** The same alert once the visitor has moved on: where they are now and for how long. */
+export function visitUpdateMessage(visit: Visit, state: VisitState) {
+  const { landing } = state;
+  return [
+    '🌐 BYHADARA — زائر جديد',
+    `📍 من: ${place(landing)}`,
+    `📄 أول صفحة: ${shownPath(landing.path)}`,
+    `🗣 اللغة: ${languages[landing.locale]}`,
+    `↩️ المصدر: ${source(landing)}`,
+    `👣 الآن: ${shownPath(visit.path)}`,
+    `🔢 عدد الصفحات: ${state.pages} · مدة الزيارة: ${visitLength(state.seconds)}`,
+  ].join('\n');
+}
+/** The separate alert when a visitor first opens a request page in this visit, or null. */
+export function requestPageMessage(visit: Visit, state: VisitState) {
+  const page = requestPages[visit.path.split('/').slice(2).join('/')];
+  if (!page || !state.newPage) return null;
+  return [`🔥 الزائر فتح صفحة ${page}`, `📍 ${place(visit)} · 📄 ${shownPath(visit.path)}`].join(
+    '\n',
+  );
+}
+/**
+ * Tells the team on Telegram, after the response: a new session sends the alert (and remembers
+ * it), a later page silently updates that alert, and the first opening of a request page sends
+ * a separate message as a reply to it.
+ */
+export async function notifyTeam(visit: Visit, state: VisitState) {
+  let messageId = state.messageId;
+  if (state.first) {
+    messageId = (await sendTelegramMessage(newVisitorMessage(visit))) ?? null;
+    if (messageId) await saveAlert(visit.sessionId, messageId);
+    console.info('Visitor alert sent.');
+  } else if (messageId) {
+    // An alert the team deleted cannot be edited; that must not stop the request-page alert.
+    await editTelegramMessage(messageId, visitUpdateMessage(visit, state)).catch((error) =>
+      console.error(`Visitor alert update failed. ${error instanceof Error ? error.message : ''}`),
+    );
+  }
+  const request = requestPageMessage(visit, state);
+  if (request) {
+    await sendTelegramMessage(request, messageId);
+    console.info('Visitor request-page alert sent.');
+  }
 }

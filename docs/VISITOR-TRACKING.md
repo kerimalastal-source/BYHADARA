@@ -17,16 +17,27 @@ What the website records, how the Telegram alert works, and how to set both up i
   `lib/visits.ts`): API, `_next`, admin and portal paths, unknown pages and unpublished articles
   return 204 without being saved. Country (ISO code) and city come from `x-vercel-ip-country` and
   `x-vercel-ip-city` (the city is URL-decoded). The IP address and user agent are never stored.
-- One statement saves the event and reports whether the session already had one. For the first
-  event of a session the Telegram alert is sent with `after()`, once the response is on its way.
-- About 1% of requests also delete events older than 30 days, also after the response; a failed
-  cleanup is only logged.
+- One statement saves the event and reads its session: how many pages came before, when it
+  started, whether this path was already viewed, its first page and its Telegram alert.
+- Telegram, always with `after()` once the response is on its way (`notifyTeam` in
+  `lib/visits.ts`, owner's choice of 2026-09-28):
+  - the first event of a session sends the alert (`🌐 BYHADARA — زائر جديد`, place, page,
+    language, source) and stores its message id in `visitor_alerts`;
+  - every later page **edits that same message** (no new notification): first page, `👣 الآن`
+    with the current page, the number of pages and the visit length;
+  - the first opening in a visit of `/contact`, `/inquiries/investment` or
+    `/inquiries/partnership` sends one extra message as a reply to the alert:
+    `🔥 الزائر فتح صفحة التواصل` (or الاستثمار / الشراكة), with place and page;
+  - paths start with U+200E so `/tr` does not read `tr/` in the Arabic text. An alert the owner
+    deleted cannot be edited: that is logged and never stops the request-page message.
+- About 1% of requests also delete events and alert references older than 30 days, also after
+  the response; a failed cleanup is only logged.
 
-## Table
+## Tables
 
-The code creates the table and its indexes by itself the first time a visit is saved in a new
-database (`visitorEventsSchema` in `lib/visits.ts`), so no manual migration is needed. The same
-statements, to run by hand only in the database connected to the `byhadara` project:
+The code creates the tables and indexes by itself when one is missing (`visitorEventsSchema` in
+`lib/visits.ts`), so no manual migration is needed. The same statements, to run by hand only in
+the database connected to the `byhadara` project (`neon-coquelicot-lighthouse`):
 
 ```sql
 CREATE TABLE IF NOT EXISTS visitor_events (
@@ -41,6 +52,11 @@ CREATE TABLE IF NOT EXISTS visitor_events (
 );
 CREATE INDEX IF NOT EXISTS visitor_events_session_id_idx ON visitor_events USING btree (session_id);
 CREATE INDEX IF NOT EXISTS visitor_events_created_at_idx ON visitor_events USING btree (created_at);
+CREATE TABLE IF NOT EXISTS visitor_alerts (
+  session_id text PRIMARY KEY NOT NULL,
+  message_id bigint NOT NULL,
+  created_at timestamp with time zone DEFAULT now() NOT NULL
+);
 ```
 
 ## Setup
@@ -61,7 +77,8 @@ CREATE INDEX IF NOT EXISTS visitor_events_created_at_idx ON visitor_events USING
 ## Checking it
 
 - Vercel → `byhadara` → Logs, filtered on `/api/visit`: requests answer 204. Log lines:
-  `Visitor alert sent.`, `Visitor alert failed. Telegram error 400: Bad Request: chat not found`
+  `Visitor alert sent.`, `Visitor request-page alert sent.`,
+  `Visitor alert update failed. …` (the alert was deleted in Telegram), `Visitor alert failed. Telegram error 400: Bad Request: chat not found`
   (Start was not pressed in the bot, or the chat id is wrong), `Visitor tracking failed. …`
   (database), `Visitor cleanup failed. …`. None of them contains visit details or secrets.
 - Neon → SQL editor on the `byhadara` database:

@@ -331,7 +331,7 @@ export const dictionaries = {
       ],
       [
         'Anonymous visit statistics',
-        'To see which pages interest visitors, the website records each page viewed, its language, the website you came from and your approximate country and city, which our hosting provider (Vercel) derives from the connection. The pages of one visit are linked by a random code kept in your browser’s session storage, not in a cookie, and erased when you close the tab. Your IP address and anything that identifies you are never stored. When a visit begins, our team receives a short notice with these details through Telegram. The records are kept in our database (Neon) and deleted after 30 days.',
+        'To see which pages interest visitors, the website records each page viewed, its language, the website you came from and your approximate country and city, which our hosting provider (Vercel) derives from the connection. The pages of one visit are linked by a random code kept in your browser’s session storage, not in a cookie, and erased when you close the tab. Your IP address and anything that identifies you are never stored. When a visit begins, our team receives a short notice with these details through Telegram; it is updated as you move between pages, and a separate notice follows when you open the contact page or a request form. The records are kept in our database (Neon) and deleted after 30 days.',
       ],
       [
         'Contact requests',
@@ -675,7 +675,7 @@ export const dictionaries = {
       ],
       [
         'إحصاءات الزيارات المجهولة',
-        'لمعرفة الصفحات التي تهم الزوار، يسجّل الموقع كل صفحة تُفتح ولغتها، والموقع الذي جئت منه، وبلدك ومدينتك على وجه التقريب كما يستنتجهما مزوّد الاستضافة (Vercel) من الاتصال. تُربط صفحات الزيارة الواحدة برمز عشوائي يُحفظ في ذاكرة الجلسة في متصفحك، لا في ملف تعريف ارتباط، ويُمحى عند إغلاق التبويب. لا نخزّن عنوان IP الخاص بك ولا أي بيانات تحدد هويتك. عند بدء زيارة جديدة يصل إلى فريقنا إشعار مختصر بهذه التفاصيل عبر Telegram. تُحفظ السجلات في قاعدة بياناتنا (Neon) وتُحذف بعد 30 يوماً.',
+        'لمعرفة الصفحات التي تهم الزوار، يسجّل الموقع كل صفحة تُفتح ولغتها، والموقع الذي جئت منه، وبلدك ومدينتك على وجه التقريب كما يستنتجهما مزوّد الاستضافة (Vercel) من الاتصال. تُربط صفحات الزيارة الواحدة برمز عشوائي يُحفظ في ذاكرة الجلسة في متصفحك، لا في ملف تعريف ارتباط، ويُمحى عند إغلاق التبويب. لا نخزّن عنوان IP الخاص بك ولا أي بيانات تحدد هويتك. عند بدء زيارة جديدة يصل إلى فريقنا إشعار مختصر بهذه التفاصيل عبر Telegram، يتحدّث مع تنقّلك بين الصفحات، ويليه إشعار منفصل عند فتح صفحة التواصل أو أحد نماذج الطلبات. تُحفظ السجلات في قاعدة بياناتنا (Neon) وتُحذف بعد 30 يوماً.',
       ],
       [
         'طلبات التواصل',
@@ -1035,7 +1035,7 @@ export const dictionaries = {
       ],
       [
         'Anonim ziyaret istatistikleri',
-        'Ziyaretçilerin hangi sayfalarla ilgilendiğini görmek için site; görüntülenen her sayfayı, sayfanın dilini, geldiğiniz web sitesini ve barındırma sağlayıcımızın (Vercel) bağlantıdan çıkardığı yaklaşık ülke ve şehrinizi kaydeder. Bir ziyaretin sayfaları, tarayıcınızın oturum depolamasında (çerezde değil) tutulan ve sekmeyi kapattığınızda silinen rastgele bir kodla ilişkilendirilir. IP adresiniz ve kimliğinizi belirleyen hiçbir bilgi saklanmaz. Yeni bir ziyaret başladığında ekibimize bu bilgileri içeren kısa bir bildirim Telegram üzerinden gönderilir. Kayıtlar veritabanımızda (Neon) tutulur ve 30 gün sonra silinir.',
+        'Ziyaretçilerin hangi sayfalarla ilgilendiğini görmek için site; görüntülenen her sayfayı, sayfanın dilini, geldiğiniz web sitesini ve barındırma sağlayıcımızın (Vercel) bağlantıdan çıkardığı yaklaşık ülke ve şehrinizi kaydeder. Bir ziyaretin sayfaları, tarayıcınızın oturum depolamasında (çerezde değil) tutulan ve sekmeyi kapattığınızda silinen rastgele bir kodla ilişkilendirilir. IP adresiniz ve kimliğinizi belirleyen hiçbir bilgi saklanmaz. Yeni bir ziyaret başladığında ekibimize bu bilgileri içeren kısa bir bildirim Telegram üzerinden gönderilir; bildirim sayfalar arasında gezindikçe güncellenir, iletişim sayfası veya bir talep formu açıldığında ise ayrı bir bildirim gönderilir. Kayıtlar veritabanımızda (Neon) tutulur ve 30 gün sonra silinir.',
       ],
       [
         'İletişim talepleri',
