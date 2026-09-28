@@ -7,8 +7,10 @@ import {
   newVisitorMessage,
   parseVisit,
   publicPageLocale,
+  pageTime,
   referrerOrigin,
   visitLength,
+  visitUpdateMessage,
   visitorPlace,
   type Visit,
 } from '../lib/visits';
@@ -114,6 +116,8 @@ function services({ table = true, database = true, editStatus = 200 } = {}) {
           field('pages', 23),
           field('seen', 16),
           field('seconds', 23),
+          field('at', 701),
+          field('views', 114),
           ...['path', 'locale', 'referrer', 'country', 'city', 'message_id'].map((n) =>
             field(n, 25),
           ),
@@ -123,6 +127,8 @@ function services({ table = true, database = true, editStatus = 200 } = {}) {
             String(prior.length),
             prior.some((r) => r.values[0] === values[1]) ? 't' : 'f',
             String(prior.length ? Math.round((clock.now - prior[0].at) / 1000) : 0),
+            String(clock.now / 1000),
+            JSON.stringify(prior.slice(-60).map((r) => ({ path: r.values[0], at: r.at / 1000 }))),
             ...landing,
             alerts.has(values[0]) ? String(alerts.get(values[0])) : null,
           ],
@@ -343,14 +349,83 @@ test('the first page sends the alert; later pages update it without a new messag
     [
       '🌐 BYHADARA — زائر جديد',
       '📍 من: Istanbul، تركيا',
-      '📄 أول صفحة: \u200E/ar',
       '🗣 اللغة: العربية',
       '↩️ المصدر: l.instagram.com',
-      '👣 الآن: \u200E/ar/about',
       '🔢 عدد الصفحات: 2 · مدة الزيارة: 3 دقائق',
+      '🧭 مسار الزيارة:',
+      '1. \u200E/ar · 3 د',
+      '2. \u200E/ar/about',
+      '👣 آخر صفحة: \u200E/ar/about',
     ].join('\n'),
   );
   assert.equal(messages.length, 2);
+});
+test('the updated alert lists every page in order with the time spent on it', async () => {
+  configure();
+  Math.random = () => 0.5;
+  const { edits, clock } = services();
+  for (const [path, wait] of [
+    ['/en', 40_000],
+    ['/en/businesses/real-estate', 130_000],
+    ['/en/about', 5_000],
+    ['/en/contact', 0],
+  ] as const) {
+    assert.equal((await POST(beacon({ sessionId, path, locale: 'en' }))).status, 204);
+    await settle();
+    clock.now += wait;
+  }
+  assert.equal(
+    edits().at(-1)?.text,
+    [
+      '🌐 BYHADARA — زائر جديد',
+      '📍 من: Istanbul، تركيا',
+      '🗣 اللغة: الإنجليزية',
+      '↩️ المصدر: مباشر',
+      '🔢 عدد الصفحات: 4 · مدة الزيارة: دقيقتان',
+      '🧭 مسار الزيارة:',
+      '1. \u200E/en · 40 ث',
+      '2. \u200E/en/businesses/real-estate · 2 د',
+      '3. \u200E/en/about · 5 ث',
+      '4. \u200E/en/contact',
+      '👣 آخر صفحة: \u200E/en/contact',
+    ].join('\n'),
+  );
+});
+test('a long visit lists its latest 30 pages and counts the rest', () => {
+  const trail = Array.from({ length: 30 }, (_, i) => ({
+    path: `/en/insights/page-${i}`,
+    seconds: i < 29 ? 10 : null,
+  }));
+  const state = (hiddenPages: number) => ({
+    first: false,
+    pages: 30 + hiddenPages,
+    seconds: 600,
+    newPage: true,
+    landing: { ...visit, locale: 'en' as const },
+    trail,
+    hiddenPages,
+    messageId: 100,
+  });
+  const current = { ...visit, locale: 'en' as const, path: '/en/insights/page-29' };
+  const lines = (hidden: number) => visitUpdateMessage(current, state(hidden)).split('\n');
+  assert.equal(lines(0).filter((l) => /^\d+\. /.test(l)).length, 30);
+  assert.ok(!lines(0).some((l) => l.startsWith('…')));
+  assert.deepEqual(
+    [1, 2, 5, 12].map((n) => lines(n).find((l) => l.startsWith('…'))),
+    ['… وصفحة واحدة قبلها', '… وصفحتان قبلها', '… و5 صفحات قبلها', '… و12 صفحة قبلها'],
+  );
+  const numbered = lines(12).filter((l) => /^\d+\. /.test(l));
+  assert.match(numbered[0], /^13\. \u200E\/en\/insights\/page-0 · 10 ث$/);
+  assert.match(numbered[29], /^42\. \u200E\/en\/insights\/page-29$/);
+  assert.deepEqual([0.4, 40, 59.9, 60, 185, 3599, 3600].map(pageTime), [
+    '1 ث',
+    '40 ث',
+    '59 ث',
+    '1 د',
+    '3 د',
+    '59 د',
+    'أكثر من ساعة',
+  ]);
 });
 test('the first opening of a request page sends one extra alert, as a reply', async () => {
   configure();
