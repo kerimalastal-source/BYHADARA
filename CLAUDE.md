@@ -4,7 +4,7 @@
 
 Corporate website of BYHADARA Group (Istanbul), the parent group of HADARA Real Estate and
 HADARA Hospitality. The owner communicates in Arabic; reply to them in Arabic and keep this
-file's prose in English so it stays easy to scan. Last updated 2026-09-25.
+file's prose in English so it stays easy to scan. Last updated 2026-09-28.
 
 ## Standing instructions from the owner
 
@@ -296,8 +296,11 @@ file's prose in English so it stays easy to scan. Last updated 2026-09-25.
   republish the older build: deploy the newest `main` with the next merge or the dashboard's
   "Create Deployment" (ref `main`). Since PR #30 `claude/**` branches no longer
   get preview deployments, so each change costs one production deployment. On 2026-09-28 at
-  03:40 Istanbul the limit was hit again: PRs #29 and #30 were merged but refused; the owner
-  publishes them with "Create Deployment" (ref `main`) once the limit resets.
+  03:40 Istanbul the limit was hit again: PRs #29 and #30 were merged but refused. At 17:25
+  Istanbul they were still not live (last production deployment: `6c8498e`, PR #28), so PR #31
+  (this note) was merged to deploy the newest `main`. To see what is live without Vercel access,
+  list `GET /repos/{repo}/deployments` (environment `Production`, newest first) and compare its
+  `sha` with `origin/main`.
 
 ## Open items to offer the owner
 
@@ -333,3 +336,4 @@ file's prose in English so it stays easy to scan. Last updated 2026-09-25.
 - PR #28: read the byhadara database's prefixed variable `STORAGE_URL_DATABASE_URL`.
 - PR #29: the visitor alert updates itself page by page; extra 🔥 alert for request pages.
 - PR #30: no preview deployments for `claude/**` branches (`vercel.json`).
+- PR #31: deployment status note, merged to deploy PRs #29 and #30.
