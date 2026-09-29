@@ -1,9 +1,11 @@
 import test, { afterEach } from 'node:test';
 import assert from 'node:assert/strict';
-import { POST } from '../app/api/visit/route';
+import { POST, maxDuration } from '../app/api/visit/route';
 import { databaseVariables } from '../lib/db';
 import { sendTelegramMessage } from '../lib/telegram';
 import {
+  alertSettle,
+  botReason,
   newVisitorMessage,
   parseVisit,
   publicPageLocale,
@@ -18,10 +20,14 @@ import { publishedArticles } from '../content/articles';
 const originalFetch = globalThis.fetch;
 const originalEnv = { ...process.env };
 const originalRandom = Math.random;
+// New-visitor alerts wait for a burst to show before deciding; tests decide at once.
+const defaultSettle = alertSettle.ms;
+alertSettle.ms = 0;
 afterEach(() => {
   globalThis.fetch = originalFetch;
   process.env = { ...originalEnv };
   Math.random = originalRandom;
+  alertSettle.ms = 0;
 });
 const sessionId = '6f1c2a3b-4d5e-4f60-8a7b-9c0d1e2f3a4b';
 const browser =
@@ -104,10 +110,23 @@ function services({ table = true, database = true, editStatus = 200 } = {}) {
         { message: 'relation "visitor_alerts" does not exist', code: '42P01' },
         { status: 400 },
       );
+    // Other sessions that opened `path` within 10 seconds of `start`.
+    const othersNear = (id: string, path: string, start: number) =>
+      new Set(
+        rows
+          .filter((r) => r.session_id !== id && r.values[0] === path)
+          .filter((r) => Math.abs(r.at - start) <= 10_000)
+          .map((r) => r.session_id),
+      ).size;
     if (body.query.includes('INSERT INTO visitor_events')) {
       // The inserted row is the last six parameters: session id, path, locale, referrer, country, city.
       const values = body.params.slice(-6);
       const prior = rows.filter((r) => r.session_id === values[0]);
+      const burst = othersNear(
+        values[0],
+        prior[0]?.values[0] ?? values[1],
+        prior[0]?.at ?? clock.now,
+      );
       rows.push({ session_id: values[0], values: values.slice(1), at: clock.now });
       const landing = prior[0]?.values ?? [null, null, null, null, null];
       const field = (name: string, dataTypeID: number) => ({ name, dataTypeID });
@@ -121,6 +140,7 @@ function services({ table = true, database = true, editStatus = 200 } = {}) {
           ...['path', 'locale', 'referrer', 'country', 'city', 'message_id'].map((n) =>
             field(n, 25),
           ),
+          field('burst', 23),
         ],
         rows: [
           [
@@ -131,10 +151,47 @@ function services({ table = true, database = true, editStatus = 200 } = {}) {
             JSON.stringify(prior.slice(-60).map((r) => ({ path: r.values[0], at: r.at / 1000 }))),
             ...landing,
             alerts.has(values[0]) ? String(alerts.get(values[0])) : null,
+            String(burst),
           ],
         ],
         rowCount: 1,
         command: 'INSERT',
+      });
+    }
+    if (body.query.includes('count(*) OVER ()')) {
+      // sessionTrail(): the session's latest views, newest first, with the total and start.
+      const own = rows.filter((r) => r.session_id === body.params[0]);
+      const started = Math.min(...own.map((r) => r.at));
+      return Response.json({
+        fields: [
+          { name: 'path', dataTypeID: 25 },
+          { name: 'at', dataTypeID: 701 },
+          { name: 'total', dataTypeID: 23 },
+          { name: 'started', dataTypeID: 701 },
+        ],
+        rows: [...own]
+          .reverse()
+          .slice(0, 60)
+          .map((r) => [
+            r.values[0],
+            String(r.at / 1000),
+            String(own.length),
+            String(started / 1000),
+          ]),
+        rowCount: own.length,
+        command: 'SELECT',
+      });
+    }
+    if (body.query.includes('count(DISTINCT session_id)')) {
+      // burstFor(): session id (twice), then the landing path.
+      const [id, , path] = body.params;
+      const own = rows.filter((r) => r.session_id === id).map((r) => r.at);
+      const start = own.length ? Math.min(...own) : clock.now;
+      return Response.json({
+        fields: [{ name: 'others', dataTypeID: 23 }],
+        rows: [[String(othersNear(id, path, start))]],
+        rowCount: 1,
+        command: 'SELECT',
       });
     }
     if (body.query.includes('INSERT INTO visitor_alerts') && !alerts.has(body.params[0]))
@@ -405,6 +462,7 @@ test('a long visit lists its latest 30 pages and counts the rest', () => {
     trail,
     hiddenPages,
     messageId: 100,
+    burst: 0,
   });
   const current = { ...visit, locale: 'en' as const, path: '/en/insights/page-29' };
   const lines = (hidden: number) => visitUpdateMessage(current, state(hidden)).split('\n');
@@ -525,4 +583,113 @@ test('a database or cleanup failure is logged without visit details', async () =
   } finally {
     console.error = originalError;
   }
+});
+
+test('the alert waits 8 seconds for a burst, within the function time limit', () => {
+  assert.equal(defaultSettle, 8000);
+  // The wait, up to three Telegram calls of at most 5 seconds each, and some room for the database.
+  assert.ok(maxDuration * 1000 >= defaultSettle + 3 * 5000 + 5000, `maxDuration ${maxDuration}`);
+});
+test('a data-center town or a same-page burst reads as automated', () => {
+  const at = (city: string, country: string) => ({ ...visit, city, country });
+  assert.equal(botReason(at('Clonee', 'IE'), 0), 'data-center town');
+  assert.equal(botReason(at('Luleå', 'SE'), 0), 'data-center town');
+  assert.equal(botReason(at('Boardman', 'US'), 0), 'data-center town');
+  assert.equal(botReason(at('The Dalles', 'US'), 0), 'data-center town');
+  assert.equal(botReason(visit, 2), 'same-page burst');
+  // Real visitors: an ordinary city, real cities with a data center, a town name elsewhere.
+  assert.equal(botReason(visit, 0), null);
+  for (const city of ['Fort Worth', 'Henrico', 'Council Bluffs', 'Sterling'])
+    assert.equal(botReason(at(city, 'US'), 0), null, city);
+  assert.equal(botReason(at('Boardman', 'GB'), 0), null);
+  assert.equal(botReason({ ...visit, city: null, country: null }, 0), null);
+});
+test('a visit from a data-center town is saved but sends nothing to Telegram', async () => {
+  configure();
+  Math.random = () => 0.5;
+  const { rows, messages } = services();
+  const meta = { 'x-vercel-ip-city': 'Clonee', 'x-vercel-ip-country': 'IE' };
+  for (const path of ['/en', '/en/about', '/en/contact']) {
+    assert.equal((await POST(beacon({ sessionId, path, locale: 'en' }, meta))).status, 204);
+    await settle();
+  }
+  assert.equal(rows.length, 3);
+  assert.deepEqual(messages, []);
+});
+test('sessions landing on the same page together send nothing; a lone visitor still does', async () => {
+  configure();
+  Math.random = () => 0.5;
+  alertSettle.ms = 50;
+  const { rows, messages, sent, clock } = services();
+  const fortWorth = { 'x-vercel-ip-city': 'Fort%20Worth', 'x-vercel-ip-country': 'US' };
+  const ids = [1, 2, 3].map((n) => `11111111-2222-4333-8444-55555555555${n}`);
+  // Three "visitors" open the shared page in the same second, as Meta's checks do.
+  for (const id of ids)
+    assert.equal(
+      (await POST(beacon({ sessionId: id, path: '/en/about', locale: 'en' }, fortWorth))).status,
+      204,
+    );
+  await new Promise((resolve) => setTimeout(resolve, 150));
+  assert.equal(rows.length, 3);
+  assert.deepEqual(messages, []);
+  // The same page a minute later, alone: a real visitor from Fort Worth gets the alert.
+  clock.now += 60_000;
+  await POST(beacon({ sessionId, path: '/en/about', locale: 'en' }, fortWorth));
+  await new Promise((resolve) => setTimeout(resolve, 150));
+  assert.equal(sent().length, 1);
+  assert.match(String(sent()[0].text), /📍 من: Fort Worth، الولايات المتحدة/);
+});
+test('an alerted visitor keeps the updates when someone else lands on the same page', async () => {
+  configure();
+  Math.random = () => 0.5;
+  const { sent, edits, clock } = services();
+  await POST(beacon({ sessionId, path: '/en', locale: 'en' }));
+  await settle();
+  // Nine seconds later another session lands on the same page: it is counted as a burst.
+  clock.now += 9_000;
+  const other = '11111111-2222-4333-8444-555555555559';
+  await POST(beacon({ sessionId: other, path: '/en', locale: 'en' }));
+  await settle();
+  assert.equal(sent().length, 1);
+  // The first visitor, already judged a person, still gets the update and the 🔥 reply.
+  clock.now += 5_000;
+  await POST(beacon({ sessionId, path: '/en/contact', locale: 'en' }));
+  await settle();
+  assert.equal(edits().length, 1);
+  assert.equal(sent().length, 2);
+  assert.match(String(sent()[1].text), /^🔥 الزائر فتح صفحة التواصل/);
+});
+
+test('pages viewed while the new-visitor alert waits are in the alert', async () => {
+  configure();
+  Math.random = () => 0.5;
+  alertSettle.ms = 50;
+  const { sent, edits, clock } = services();
+  for (const [path, wait] of [
+    ['/en', 3_000],
+    ['/en/businesses/real-estate', 4_000],
+    ['/en/about', 0],
+  ] as const) {
+    assert.equal((await POST(beacon({ sessionId, path, locale: 'en' }))).status, 204);
+    clock.now += wait;
+  }
+  await new Promise((resolve) => setTimeout(resolve, 150));
+  // No alert existed to update while the visitor moved on, so the alert itself has the whole visit.
+  assert.deepEqual(edits(), []);
+  assert.equal(sent().length, 1);
+  assert.equal(
+    sent()[0].text,
+    [
+      '🌐 BYHADARA — زائر جديد',
+      '📍 من: Istanbul، تركيا',
+      '🗣 اللغة: الإنجليزية',
+      '↩️ المصدر: مباشر',
+      '🔢 عدد الصفحات: 3 · مدة الزيارة: أقل من دقيقة',
+      '🧭 مسار الزيارة:',
+      '1. ‎/en · 3 ث',
+      '2. ‎/en/businesses/real-estate · 4 ث',
+      '3. ‎/en/about',
+      '👣 آخر صفحة: ‎/en/about',
+    ].join('\n'),
+  );
 });

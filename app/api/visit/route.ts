@@ -10,7 +10,8 @@ import {
   type VisitState,
 } from '@/lib/visits';
 export const runtime = 'nodejs';
-export const maxDuration = 15;
+// Covers the new-visitor alert's wait (`alertSettle`, 8 s) and up to three Telegram calls.
+export const maxDuration = 30;
 const MAX_BODY_BYTES = 2048;
 const reply = (status: number) =>
   new Response(null, { status, headers: { 'Cache-Control': 'no-store' } });

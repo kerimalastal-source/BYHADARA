@@ -32,6 +32,19 @@ What the website records, how the Telegram alert works, and how to set both up i
   - the first opening in a visit of `/contact`, `/inquiries/investment` or
     `/inquiries/partnership` sends one extra message as a reply to the alert:
     `🔥 الزائر فتح صفحة التواصل` (or الاستثمار / الشراكة), with place and page;
+  - **likely automated visits send nothing** (owner's request, 2026-09-29, same method as HADARA
+    Hospitality's PR #137): Meta and other platforms open a shared link in a normal-looking
+    browser from their data centers, so the user agent does not reveal them. `botReason()` treats
+    a visit as automated when its landing city is in `DATA_CENTER_TOWNS` (small data-center towns
+    such as Clonee, Boardman or Luleå, matched as `city|country` without accents; real cities
+    that also host data centers, such as Fort Worth or Sterling, are left out) or when other
+    sessions opened the same landing page within 10 seconds of this one's start (`burstFor()`,
+    and `burst` in the session statement for later pages). Such a visit gets no alert, no update
+    and no 🔥, but its events are saved. A new session waits `alertSettle.ms` (8 s) before
+    deciding, so the first visit of a burst is caught too; `maxDuration` is 30 s to cover that
+    wait. When the alert does go out, it reads the session back (`sessionTrail()`), so pages
+    viewed during the wait are in it. A session that already has its alert keeps its updates if
+    a burst comes later;
   - paths start with U+200E so `/tr` does not read `tr/` in the Arabic text. An alert the owner
     deleted cannot be edited: that is logged and never stops the request-page message.
 - About 1% of requests also delete events and alert references older than 30 days, also after
@@ -82,7 +95,8 @@ CREATE TABLE IF NOT EXISTS visitor_alerts (
 
 - Vercel → `byhadara` → Logs, filtered on `/api/visit`: requests answer 204. Log lines:
   `Visitor alert sent.`, `Visitor request-page alert sent.`,
-  `Visitor alert update failed. …` (the alert was deleted in Telegram), `Visitor alert failed. Telegram error 400: Bad Request: chat not found`
+  `Visitor alert update failed. …` (the alert was deleted in Telegram),
+  `Visitor alert skipped, likely automated: data-center town.` / `… same-page burst.`, `Visitor alert failed. Telegram error 400: Bad Request: chat not found`
   (Start was not pressed in the bot, or the chat id is wrong), `Visitor tracking failed. …`
   (database), `Visitor cleanup failed. …`. None of them contains visit details or secrets.
 - Neon → SQL editor on the `byhadara` database:
