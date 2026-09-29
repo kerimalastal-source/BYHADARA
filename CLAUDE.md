@@ -81,12 +81,19 @@ file's prose in English so it stays easy to scan. Last updated 2026-09-28.
   Turkish, so Turkish visitors are linked to English. Supplies hotel textiles to 3★–5★ hotels in
   the GCC and Europe. Its product photos are Unsplash stand-ins (IDs in its CLAUDE.md).
 - Sister repos are public: clone read-only into `/home/user/kerimalastal-source/` when needed.
+- Since 2026-09-27 `www.hadararealestate.com` is served by the İkinci BYHADARA site (Vercel
+  project `kinci-byhadara`): English without a prefix, `/ar`, `/fr`, `/ru`, `/fa`, no Turkish.
+  Its `vercel.json` redirects the old `/en/…` and `/tr/…` addresses (and the old slugs
+  `lotus-yasam` → `beylikduzu-living`, `lotus-koru` → `lotus-koru-1`), so `companyUrl()` links
+  still work; new links should use the new addresses directly.
 
 ## Homepage and company pages
 
 - Home: hero (Bosphorus) → group section ("One group. Two specialized companies." with the
   BYHADARA GROUP node and gold branch lines to two large company panels) → Success Partners →
-  compact markets → vision → latest insights (hidden when no article is published) → final CTA.
+  **news** ("NEWS / Latest from the group.", the three latest items of `content/articles/news.ts`
+  via `latestNews()`, never the guides; owner's request 2026-09-29, moved up from the bottom) →
+  compact markets → vision → final CTA.
 - `/businesses/{real-estate|hospitality}`: badge "A BYHADARA Group company", intro, image, about
   with three facts, areas of work, selected projects/products (each linking to its page on the
   company site in the visitor's language), a navy band leading to the company website, and a link
@@ -217,7 +224,15 @@ file's prose in English so it stays easy to scan. Last updated 2026-09-28.
 - Added 2026-09-26: news **HADARA Real Estate visits Cityscape Qatar 2026** (also as visitors, same
   rule; 27–29 October 2026, DECC Doha, theme "Where Vision Meets Investment", 400+ projects, some
   16,000 visitors, 4th Qatar Real Estate Forum, from The Peninsula Qatar of 9 September 2026 and
-  Cityscape Qatar's posts; some listings show older dates, ignore them). 14 articles, 93 pages.
+  Cityscape Qatar's posts; some listings show older dates, ignore them).
+- Added 2026-09-29 at the owner's request: news **"Istanbul, one video call away"**
+  (`video-tour-launch`): HADARA Real Estate's private video tours, facts from the real estate
+  site's `/video-tour` page (İkinci BYHADARA `videoTour.*` and its CLAUDE.md): live call with an
+  advisor through the show apartment, the scale model, the project on site and the neighbourhood;
+  free, no obligation, 30–45 minutes, every day 9:00–19:00 Istanbul time, Arabic/English/Turkish,
+  WhatsApp/FaceTime/Zoom/Google Meet. That site's rule: no buying from a distance, the tour
+  prepares a visit to Istanbul. Its call to action opens `www.hadararealestate.com/video-tour`
+  (`/ar/video-tour` in Arabic; no Turkish edition). 15 articles, 96 pages.
 - In Arabic text, number ranges render reversed ("100–109" shows as "109–100"): write them in
   words («بين 100 و109») or wrap them in U+2066/U+2069 isolates (fine outside `<select>`).
 
@@ -230,7 +245,7 @@ file's prose in English so it stays easy to scan. Last updated 2026-09-28.
   rendered with Playwright from an HTML file opened via `file://` (so local fonts and the photo
   load); re-render them the same way if the brand changes.
 - The insights index is `noindex` and outside the sitemap only while no article is published; the
-  thank-you page is always `noindex` and outside it. Sitemap: 90 URLs with 14 articles.
+  thank-you page is always `noindex` and outside it. Sitemap: 93 URLs with 15 articles.
 - Canonical origin is `https://www.byhadara.com` (default in `content/site.ts`, `SITE_URL`
   overrides), matching Vercel where the apex redirects to `www`. Keep the two in sync.
 - Google Search Console: Domain property verified by a DNS TXT record
@@ -278,7 +293,7 @@ file's prose in English so it stays easy to scan. Last updated 2026-09-28.
 ## Validation and sandbox notes
 
 - Checks: `pnpm typecheck`, `pnpm test` (39 tests), `pnpm build`, then `pnpm start` +
-  `node scripts/check-routes.mjs` (93 pages incl. the articles, links, SEO assertions, 503 from
+  `node scripts/check-routes.mjs` (96 pages incl. the articles, links, SEO assertions, 503 from
   both APIs while unconfigured) and the Playwright suite (18 tests incl. axe and the phone/tablet test). Prettier:
   `pnpm exec prettier --check components content lib app styles tests scripts docs *.md`.
 - The installed `@playwright/test` expects a newer browser than the sandbox has: run with a
@@ -342,3 +357,4 @@ file's prose in English so it stays easy to scan. Last updated 2026-09-28.
 - PR #30: no preview deployments for `claude/**` branches (`vercel.json`).
 - PR #31: deployment status note, merged to deploy PRs #29 and #30.
 - PR #32: the visitor alert lists every page of the visit with the time spent on it.
+- PR #33: news "Istanbul, one video call away" and a news section on the homepage.

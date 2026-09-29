@@ -46,6 +46,7 @@ Further insights visuals (2026-09-26), unmodified unless noted:
 | `hotel-bed-blanket.jpg`         | HADARA Hospitality repository `products/luxury-hotel-bed-blanket/1.jpg` (Unsplash `8X5dbIEakwE`)                                 | Unsplash         |
 | `quilted-pillow-protector.jpg`  | HADARA Hospitality repository `products/waterproof-pillow-protector/2.jpg` (Unsplash `_0xZUyAz8j4`)                              | Unsplash         |
 | `lotus-manzara-sea-view.jpg`    | İkinci BYHADARA `lotus-manzara-beylikduzu/aerial-sea-view.jpg`                                                                   | Lotus Yapı Proje |
+| `lotus-yasam-aerial.jpg`        | İkinci BYHADARA `beylikduzu-living/aerial-view.jpg` (commit `72f6951`, 2026-09-29)                                               | Lotus Yapı Proje |
 
 Articles also reuse `istanbul-bosphorus.jpg`, `hospitality/fitted-sheet.jpg` and `hospitality/hotel-bath-sheet.jpg`. The Unsplash IDs follow the mapping in the HADARA Hospitality repository's CLAUDE.md.
 
