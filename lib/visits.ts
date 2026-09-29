@@ -130,6 +130,8 @@ export type VisitState = {
   hiddenPages: number;
   /** The Telegram alert for this session, once it has been sent. */
   messageId: number | null;
+  /** Other sessions that opened the same landing page within 10 seconds of this one's start. */
+  burst: number;
 };
 /**
  * Saves the visit and reads the session it belongs to, in one statement whose snapshot cannot
@@ -156,6 +158,13 @@ export async function recordVisit(visit: Visit): Promise<VisitState> {
       ) latest
     ),
     alert AS (SELECT message_id::text AS message_id FROM visitor_alerts WHERE session_id = ${id}),
+    burst AS (
+      SELECT count(DISTINCT session_id)::int AS others FROM visitor_events
+      WHERE session_id <> ${id}
+        AND path = coalesce((SELECT path FROM landing), ${visit.path})
+        AND created_at BETWEEN coalesce((SELECT started FROM prior), now()) - interval '10 seconds'
+          AND coalesce((SELECT started FROM prior), now()) + interval '10 seconds'
+    ),
     saved AS (
       INSERT INTO visitor_events (session_id, path, locale, referrer, country, city)
       VALUES (${id}, ${visit.path}, ${visit.locale}, ${visit.referrer}, ${visit.country},
@@ -166,8 +175,8 @@ export async function recordVisit(visit: Visit): Promise<VisitState> {
       coalesce(extract(epoch FROM saved.created_at - prior.started), 0)::int AS seconds,
       extract(epoch FROM saved.created_at)::float8 AS at, recent.views,
       landing.path, landing.locale, landing.referrer, landing.country, landing.city,
-      alert.message_id
-    FROM saved CROSS JOIN prior CROSS JOIN recent LEFT JOIN landing ON true
+      alert.message_id, burst.others AS burst
+    FROM saved CROSS JOIN prior CROSS JOIN recent CROSS JOIN burst LEFT JOIN landing ON true
       LEFT JOIN alert ON true`;
   let rows: Record<string, unknown>[];
   try {
@@ -193,11 +202,7 @@ export async function recordVisit(visit: Visit): Promise<VisitState> {
       .map((v) => ({ path: String(v.path), at: Number(v.at) })),
     { path: visit.path, at: Number(row.at) || 0 },
   ];
-  const trail = views.map((view, i) => ({
-    path: view.path,
-    seconds: i < views.length - 1 ? Math.max(0, views[i + 1].at - view.at) : null,
-  }));
-  const shown = trail.slice(-TRAIL_PAGES);
+  const shown = trailOf(views);
   return {
     first: earlier === 0,
     pages: earlier + 1,
@@ -217,6 +222,41 @@ export async function recordVisit(visit: Visit): Promise<VisitState> {
     trail: shown,
     hiddenPages: earlier + 1 - shown.length,
     messageId: Number(row.message_id) || null,
+    burst: Number(row.burst) || 0,
+  };
+}
+/** Views (oldest first) as trail pages with the seconds spent on each, the latest ones only. */
+function trailOf(views: { path: string; at: number }[]) {
+  return views
+    .map((view, i) => ({
+      path: view.path,
+      seconds: i < views.length - 1 ? Math.max(0, views[i + 1].at - view.at) : null,
+    }))
+    .slice(-TRAIL_PAGES);
+}
+/**
+ * The session as it stands now, read back when a new visitor's alert is sent after its wait, so
+ * pages viewed meanwhile are in it: the page count, visit length, trail and current page.
+ */
+export async function sessionTrail(sessionId: string) {
+  const rows = await db()`
+    SELECT path, extract(epoch FROM created_at)::float8 AS at, count(*) OVER ()::int AS total,
+      extract(epoch FROM min(created_at) OVER ())::float8 AS started
+    FROM visitor_events WHERE session_id = ${sessionId}
+    ORDER BY created_at DESC LIMIT ${TRAIL_ROWS}`;
+  const views = rows
+    .map((r) => ({ path: String(r.path), at: Number(r.at) }))
+    .filter((v) => v.path && Number.isFinite(v.at))
+    .reverse();
+  if (!views.length) return null;
+  const pages = Number(rows[0].total) || views.length;
+  const trail = trailOf(views);
+  return {
+    current: views[views.length - 1].path,
+    pages,
+    seconds: Math.max(0, Math.round(views[views.length - 1].at - Number(rows[0].started))),
+    trail,
+    hiddenPages: pages - trail.length,
   };
 }
 /** Remembers the Telegram alert of a session. */
@@ -317,14 +357,98 @@ export function requestPageMessage(visit: Visit, state: VisitState) {
   );
 }
 /**
+ * Small towns whose visits are mostly data centers (Meta, Amazon, Google, Microsoft), as
+ * "city|country" in lower case without accents. Link previews and safety checks, Meta's
+ * especially, open a shared page in a normal-looking browser from these places, so the user
+ * agent does not give them away. Real cities that also have a data center (Fort Worth, Henrico,
+ * Council Bluffs, Sterling) are left out so a real visitor there is never hidden: a burst catches
+ * those checks instead. Same list as HADARA Hospitality (its PR #137, owner's request 2026-09-29).
+ */
+const DATA_CENTER_TOWNS = new Set([
+  'clonee|ie',
+  'odense|dk',
+  'lulea|se',
+  'prineville|us',
+  'forest city|us',
+  'altoona|us',
+  'los lunas|us',
+  'papillion|us',
+  'new albany|us',
+  'sandston|us',
+  'eagle mountain|us',
+  'ashburn|us',
+  'boardman|us',
+  'umatilla|us',
+  'the dalles|us',
+  'moncks corner|us',
+  'lenoir|us',
+  'pryor|us',
+  'boydton|us',
+  'saint-ghislain|be',
+  'st. ghislain|be',
+  'hamina|fi',
+  'eemshaven|nl',
+]);
+const plainCity = (city: string) =>
+  city
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .trim()
+    .toLowerCase();
+/**
+ * Why a visit looks automated, or null: its landing city is a data-center town, or other
+ * sessions opened the same landing page at the same moment.
+ */
+export function botReason(visit: Visit, burst: number) {
+  const town =
+    visit.city && visit.country ? `${plainCity(visit.city)}|${visit.country.toLowerCase()}` : '';
+  if (DATA_CENTER_TOWNS.has(town)) return 'data-center town';
+  return burst > 0 ? 'same-page burst' : null;
+}
+/** Other sessions that opened `path` within 10 seconds of this session's first page. */
+export async function burstFor(sessionId: string, path: string) {
+  const rows = await db()`
+    WITH started AS (SELECT min(created_at) AS at FROM visitor_events WHERE session_id = ${sessionId})
+    SELECT count(DISTINCT session_id)::int AS others FROM visitor_events, started
+    WHERE session_id <> ${sessionId} AND path = ${path}
+      AND created_at BETWEEN coalesce(started.at, now()) - interval '10 seconds'
+        AND coalesce(started.at, now()) + interval '10 seconds'`;
+  return Number(rows[0]?.others) || 0;
+}
+/**
+ * How long a new session's alert waits before deciding, so the rest of a burst has arrived and
+ * is counted (tests shorten it). The visit function's `maxDuration` must cover this wait plus
+ * the Telegram calls.
+ */
+export const alertSettle = { ms: 8000 };
+/**
  * Tells the team on Telegram, after the response: a new session sends the alert (and remembers
  * it), a later page silently updates that alert, and the first opening of a request page sends
- * a separate message as a reply to it.
+ * a separate message as a reply to it. A visit that looks automated (`botReason`) gets no message
+ * at all, only its saved events (owner's request, 2026-09-29). A new session first waits
+ * `alertSettle.ms`, so the first visit of a burst is recognised too; once a session has its
+ * alert, it was judged a person and keeps its updates even if a burst comes later.
  */
 export async function notifyTeam(visit: Visit, state: VisitState) {
   let messageId = state.messageId;
+  let burst = messageId ? 0 : state.burst;
   if (state.first) {
-    messageId = (await sendTelegramMessage(newVisitorMessage(visit))) ?? null;
+    await new Promise((resolve) => setTimeout(resolve, alertSettle.ms));
+    burst = await burstFor(visit.sessionId, visit.path);
+  }
+  const reason = botReason(state.landing, burst);
+  if (reason) {
+    console.info(`Visitor alert skipped, likely automated: ${reason}.`);
+    return;
+  }
+  if (state.first) {
+    // Pages viewed during the wait belong in the alert, since there was no alert to update yet.
+    const now = await sessionTrail(visit.sessionId);
+    const text =
+      now && now.pages > 1
+        ? visitUpdateMessage({ ...visit, path: now.current }, { ...state, ...now })
+        : newVisitorMessage(visit);
+    messageId = (await sendTelegramMessage(text)) ?? null;
     if (messageId) await saveAlert(visit.sessionId, messageId);
     console.info('Visitor alert sent.');
   } else if (messageId) {

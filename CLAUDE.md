@@ -174,6 +174,18 @@ file's prose in English so it stays easy to scan. Last updated 2026-09-28.
   number of pages and visit length, `🧭 مسار الزيارة` with every page in order and the time spent
   on it (`40 ث`, `2 د`), and `👣 آخر صفحة`, the exit page once updates stop. Long visits list the
   latest 30 pages.
+- **No Telegram for likely automated visits** (owner's request, 2026-09-29, ported from HADARA
+  Hospitality's PR #137): Meta and others open shared links in a normal browser from data
+  centers. `botReason()` flags a landing city in `DATA_CENTER_TOWNS` (the owner's list of small
+  data-center towns, `city|country`, lower case, no accents; never add real cities such as Fort
+  Worth, Henrico, Council Bluffs or Sterling) or a burst (`burstFor()`: other sessions on the same
+  landing page within 10 s of this session's start). Then no alert, update or 🔥 is sent; the
+  events are still saved. New sessions wait 8 s (`alertSettle`) before deciding, so
+  `maxDuration` is 30 s. This site's refinements: the delayed alert reads the session back
+  (`sessionTrail()`) so pages viewed during the wait are in it, and an already-alerted session
+  keeps its updates if a burst comes later.
+  Queries checked on PGlite. Tell the owner to test with one tab: two tabs on the same page
+  within 10 s count as a burst.
 - Owner's rules: **never store the IP address or any personal data** (session = random UUID in
   sessionStorage, no cookie; referrer kept as origin only; no user agent); the Telegram sender is
   a silent no-op without `TELEGRAM_BOT_TOKEN` and `TELEGRAM_CHAT_ID`; admin/internal paths are
@@ -292,7 +304,7 @@ file's prose in English so it stays easy to scan. Last updated 2026-09-28.
 
 ## Validation and sandbox notes
 
-- Checks: `pnpm typecheck`, `pnpm test` (39 tests), `pnpm build`, then `pnpm start` +
+- Checks: `pnpm typecheck`, `pnpm test` (45 tests), `pnpm build`, then `pnpm start` +
   `node scripts/check-routes.mjs` (96 pages incl. the articles, links, SEO assertions, 503 from
   both APIs while unconfigured) and the Playwright suite (18 tests incl. axe and the phone/tablet test). Prettier:
   `pnpm exec prettier --check components content lib app styles tests scripts docs *.md`.
@@ -358,3 +370,4 @@ file's prose in English so it stays easy to scan. Last updated 2026-09-28.
 - PR #31: deployment status note, merged to deploy PRs #29 and #30.
 - PR #32: the visitor alert lists every page of the visit with the time spent on it.
 - PR #33: news "Istanbul, one video call away" and a news section on the homepage.
+- PR #34: no Telegram alerts for likely automated visits (data-center towns, same-page bursts).
