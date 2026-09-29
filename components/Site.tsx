@@ -3,7 +3,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { Brand, Wordmark } from './Brand';
 import { LanguageLinks } from './LanguageLinks';
-import { publishedArticles, categoryIds, type Article } from '@/content/articles';
+import { latestNews, categoryIds, type Article } from '@/content/articles';
 import { partners } from '@/content/partners';
 import { dictionary, navPaths, businessIds, marketIds, site, type Locale } from '@/content/site';
 export const Arrow = () => (
@@ -324,6 +324,23 @@ export function Home({ locale }: { locale: Locale }) {
         </div>
       </section>
       <Partners locale={locale} />
+      {latestNews().length > 0 && (
+        <section className="insights-section section">
+          <div className="container">
+            <div className="section-head">
+              <div>
+                <Label>{d.news}</Label>
+                <h2>{d.newsTitle}</h2>
+              </div>
+              <Link className="text-link" href={`/${locale}/insights`}>
+                {d.allNews}
+                <Arrow />
+              </Link>
+            </div>
+            <ArticleCards locale={locale} articles={latestNews()} />
+          </div>
+        </section>
+      )}
       <section className="container section">
         <div className="section-head">
           <div>
@@ -353,31 +370,11 @@ export function Home({ locale }: { locale: Locale }) {
           </span>
         </div>
       </section>
-      {publishedArticles().length > 0 && (
-        <section className="insights-section section">
-          <div className="container">
-            <div className="section-head">
-              <div>
-                <Label>{d.insights}</Label>
-                <h2>{d.insightsTitle}</h2>
-              </div>
-              <Link className="text-link" href={`/${locale}/insights`}>
-                {d.allInsights}
-                <Arrow />
-              </Link>
-            </div>
-            <LatestInsights locale={locale} />
-          </div>
-        </section>
-      )}
       <FinalCTA locale={locale} />
     </>
   );
 }
 
-export function LatestInsights({ locale }: { locale: Locale }) {
-  return <ArticleCards locale={locale} articles={publishedArticles().slice(0, 3)} />;
-}
 /** Article cards without search or filters, for the homepage and related articles. */
 export function ArticleCards({ locale, articles }: { locale: Locale; articles: Article[] }) {
   const d = dictionary(locale);

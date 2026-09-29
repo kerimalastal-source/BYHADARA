@@ -47,6 +47,12 @@ export function publishedArticles() {
     )
     .sort((a, b) => Date.parse(b.publishedAt) - Date.parse(a.publishedAt));
 }
+/** The latest group and company news (not the guides), newest first. */
+export function latestNews(count = 3) {
+  return publishedArticles()
+    .filter((a) => news.includes(a))
+    .slice(0, count);
+}
 export function findArticle(slug: string) {
   return publishedArticles().find((a) => a.slug === slug);
 }

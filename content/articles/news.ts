@@ -1,8 +1,133 @@
 import type { Article } from '../articles';
 import { showcaseUrl } from '../companies';
+import { site } from '../site';
 const image = (file: string) => `/images/insights/${file}.jpg`;
+/**
+ * HADARA Real Estate's video tour page. Its website publishes English without a prefix and has
+ * no Turkish edition, so Turkish readers are sent to English.
+ */
+const videoTourPage = (arabic: boolean) => `${site.realEstate}${arabic ? '/ar' : ''}/video-tour`;
 /** Group and company news. Facts come from the companies' own pages and verified event sources. */
 export const news: Article[] = [
+  {
+    // Service facts from the HADARA Real Estate website (İkinci BYHADARA: `/video-tour`,
+    // `videoTour.*` copy and its CLAUDE.md). Owner's rule there: no buying from a distance; the
+    // tour prepares a visit to Istanbul, so never promise remote purchase or legal agency.
+    slug: 'video-tour-launch',
+    category: 'real-estate',
+    status: 'published',
+    approved: true,
+    publishedAt: '2026-09-29',
+    company: 'real-estate',
+    translations: {
+      en: {
+        title: 'Istanbul, one video call away: HADARA Real Estate launches private video tours',
+        seoTitle: 'HADARA Real Estate launches private video tours',
+        description:
+          'HADARA Real Estate now offers free, live video tours of its Istanbul projects: an advisor shows you the show apartment, the scale model and the project on site.',
+        body: [
+          'HADARA Real Estate, a BYHADARA Group company, has launched private video tours of its Istanbul projects: a live video call in which one of its advisors takes you through a project as if you were there, wherever you are in the world.',
+          'During the call, the advisor shows you the show apartment room by room, the scale model at the sales office and the project on site, with its views and construction progress, then introduces the neighbourhood: transport, schools, shopping and the distance to the sea and the airport.',
+          'The tour is a full consultation, not just a video. You can ask about prices and available units, payment plans, delivery dates, eligibility for Turkish citizenship, the title deed and buying steps, and investment and rental income.',
+          'Booking on the HADARA Real Estate website takes less than a minute: choose one or several projects, then a time between 9:00 and 19:00 Istanbul time, any day of the week, with each slot also shown in your own time zone, and receive an email confirmation. Your advisor calls you on WhatsApp, FaceTime, Zoom or Google Meet, so there is no new app to install, and your family can join the call.',
+          'Tours usually last 30 to 45 minutes, are completely free with no obligation, and are given in Arabic, English or Turkish.',
+          'HADARA Real Estate always advises seeing a project in person before completing a purchase. The video tour helps you choose the right project and unit before you travel; when you decide, the team arranges your visit to Istanbul and accompanies you at every step until you receive your title deed.',
+        ],
+        image: image('diamond-marin-living-room'),
+        imageAlt: 'Living room of the Diamond Marin show apartment in Beylikdüzü',
+        imageCredit: 'Project visuals: Yıltaş × Lotus Yapı and Lotus Yapı Proje.',
+        facts: [
+          ['Free', 'No obligation to buy'],
+          ['30–45 min', 'Live with an advisor'],
+          ['Daily', '9:00–19:00, Istanbul time'],
+        ],
+        gallery: [
+          { src: image('diamond-marin-facade'), alt: 'The Diamond Marin project on site' },
+          {
+            src: image('lotus-yasam-aerial'),
+            alt: 'Aerial view of Lotus Yaşam and Beylikdüzü, with the Sea of Marmara beyond',
+          },
+        ],
+        cta: {
+          title: 'Book your private video tour',
+          text: 'Choose a time that suits you on the HADARA Real Estate website and let an advisor show you your future home.',
+          label: 'Book a video tour',
+          href: videoTourPage(false),
+        },
+      },
+      ar: {
+        title: 'إسطنبول على بُعد مكالمة فيديو: حضارة العقارية تطلق الجولات الخاصة عبر الفيديو',
+        seoTitle: 'حضارة العقارية تطلق جولات خاصة عبر الفيديو',
+        description:
+          'أطلقت حضارة العقارية جولات خاصة ومباشرة عبر الفيديو في مشاريعها بإسطنبول: مستشار يريك الشقة النموذجية والمجسّم والمشروع على أرض الواقع، مجاناً ودون التزام.',
+        body: [
+          'أطلقت حضارة العقارية، إحدى شركات مجموعة باي حضارة، خدمة الجولات الخاصة عبر الفيديو في مشاريعها بإسطنبول: مكالمة فيديو مباشرة يرافقك فيها أحد مستشاري الشركة في المشروع كأنك تزوره بنفسك، أينما كنت في العالم.',
+          'خلال المكالمة، يريك المستشار الشقة النموذجية غرفةً غرفة، والمجسّم في مكتب المبيعات، والمشروع على أرض الواقع بإطلالاته ومراحل إنشائه، ثم يعرّفك بالحيّ المحيط: المواصلات والمدارس والأسواق والمسافة إلى البحر والمطار.',
+          'والجولة جلسة استشارية كاملة لا مجرد عرض مصوَّر: يمكنك أن تسأل عن الأسعار والوحدات المتاحة، وخطط الدفع، ومواعيد التسليم، والأهلية للجنسية التركية، وسند الملكية وخطوات الشراء، والاستثمار والعائد الإيجاري.',
+          'ويتم الحجز من موقع حضارة العقارية في أقل من دقيقة: تختار مشروعاً واحداً أو أكثر، ثم موعداً في أي يوم من الأسبوع من التاسعة صباحاً حتى السابعة مساءً بتوقيت إسطنبول، مع عرض كل موعد بتوقيت بلدك، ويصلك تأكيد على بريدك الإلكتروني. ثم يتصل بك مستشارك عبر واتساب أو فيس تايم أو زوم أو جوجل ميت، فلا حاجة إلى تثبيت أي برنامج جديد، ويمكن لأفراد عائلتك الانضمام إلى المكالمة.',
+          'تستغرق الجولة عادةً بين 30 و45 دقيقة، وهي مجانية تماماً ودون أي التزام، ويقدّمها المستشارون بالعربية أو الإنجليزية أو التركية.',
+          'وتنصح حضارة العقارية دائماً بمعاينة المشروع على أرض الواقع قبل إتمام الشراء؛ فالجولة عبر الفيديو تساعدك على اختيار المشروع والوحدة المناسبين قبل السفر، وعندما تتخذ قرارك يرتّب الفريق موعد زيارتك إلى إسطنبول ويرافقك في كل خطوة حتى استلام سند الملكية.',
+        ],
+        image: image('diamond-marin-living-room'),
+        imageAlt: 'غرفة المعيشة في الشقة النموذجية لمشروع دايموند مارين في بيليكدوزو',
+        imageCredit: 'تصاميم المشاريع: يلتاش × لوتس يابي ولوتس يابي بروجي.',
+        facts: [
+          ['مجانية', 'دون أي التزام بالشراء'],
+          ['\u206630–45\u2069 دقيقة', 'مباشرة مع مستشار'],
+          ['يومياً', 'من 9 صباحاً حتى 7 مساءً بتوقيت إسطنبول'],
+        ],
+        gallery: [
+          { src: image('diamond-marin-facade'), alt: 'مشروع دايموند مارين على أرض الواقع' },
+          {
+            src: image('lotus-yasam-aerial'),
+            alt: 'منظر جوي لمشروع لوتس ياشام وبيليكدوزو وبحر مرمرة في الأفق',
+          },
+        ],
+        cta: {
+          title: 'احجز جولتك الخاصة عبر الفيديو',
+          text: 'اختر الموعد المناسب لك على موقع حضارة العقارية، ودع أحد مستشارينا يريك منزلك المستقبلي.',
+          label: 'احجز جولة عبر الفيديو',
+          href: videoTourPage(true),
+        },
+      },
+      tr: {
+        title:
+          'İstanbul bir görüntülü arama uzağınızda: HADARA Real Estate özel video turlarını başlattı',
+        seoTitle: 'HADARA Real Estate özel video turlarını başlattı',
+        description:
+          'HADARA Real Estate, İstanbul projeleri için ücretsiz ve canlı video turları sunuyor: bir danışman örnek daireyi, maketi ve projeyi yerinde gösteriyor.',
+        body: [
+          'BYHADARA Group şirketlerinden HADARA Real Estate, İstanbul projeleri için özel video turlarını başlattı: dünyanın neresinde olursanız olun, danışmanlarından birinin sizi projede sanki oradaymışsınız gibi gezdirdiği canlı bir görüntülü görüşme.',
+          'Görüşme sırasında danışman örnek daireyi oda oda, satış ofisindeki maketi ve projeyi manzaraları ve inşaat ilerlemesiyle birlikte yerinde gösteriyor; ardından çevreyi tanıtıyor: ulaşım, okullar, alışveriş ile denize ve havalimanına uzaklık.',
+          'Tur yalnızca bir video değil, eksiksiz bir danışmanlık görüşmesi. Fiyatlar ve müsait daireler, ödeme planları, teslim tarihleri, Türk vatandaşlığına uygunluk, tapu ve satın alma adımları ile yatırım ve kira getirisi hakkında soru sorabilirsiniz.',
+          'HADARA Real Estate web sitesinden rezervasyon bir dakikadan kısa sürüyor: bir veya birkaç proje seçiyor, ardından haftanın her günü İstanbul saatiyle 9.00 ile 19.00 arasında bir saat belirliyorsunuz; her saat kendi saat diliminize göre de gösteriliyor ve onay e-postanıza geliyor. Danışmanınız sizi WhatsApp, FaceTime, Zoom veya Google Meet üzerinden arıyor; yeni bir uygulama yüklemeniz gerekmiyor ve aileniz de görüşmeye katılabiliyor.',
+          'Turlar genellikle 30 ila 45 dakika sürüyor, tamamen ücretsiz ve hiçbir yükümlülük getirmiyor; Arapça, İngilizce veya Türkçe olarak sunuluyor.',
+          'HADARA Real Estate, satın alma işlemini tamamlamadan önce projeyi yerinde görmenizi her zaman tavsiye ediyor. Video tur, seyahat etmeden önce doğru projeyi ve daireyi seçmenize yardımcı oluyor; karar verdiğinizde ekip İstanbul ziyaretinizi planlıyor ve tapunuzu teslim alana kadar her adımda yanınızda oluyor.',
+        ],
+        image: image('diamond-marin-living-room'),
+        imageAlt: 'Beylikdüzü’ndeki Diamond Marin örnek dairesinin oturma odası',
+        imageCredit: 'Proje görselleri: Yıltaş × Lotus Yapı ve Lotus Yapı Proje.',
+        facts: [
+          ['Ücretsiz', 'Satın alma yükümlülüğü yok'],
+          ['30–45 dk', 'Danışmanla canlı'],
+          ['Her gün', 'İstanbul saatiyle 9.00–19.00'],
+        ],
+        gallery: [
+          { src: image('diamond-marin-facade'), alt: 'Diamond Marin projesi yerinde' },
+          {
+            src: image('lotus-yasam-aerial'),
+            alt: 'Lotus Yaşam ve Beylikdüzü’nün havadan görünümü, arkada Marmara Denizi',
+          },
+        ],
+        cta: {
+          title: 'Özel video turunuzu ayırtın',
+          text: 'HADARA Real Estate web sitesinde size uygun saati seçin; rezervasyon sayfası İngilizcedir.',
+          label: 'Video tur ayırtın',
+          href: videoTourPage(false),
+        },
+      },
+    },
+  },
   {
     // Event facts (27–29 October 2026, DECC Doha, theme "Where Vision Meets Investment", 400+ live
     // projects, some 16,000 visitors expected, 4th Qatar Real Estate Forum) from The Peninsula
