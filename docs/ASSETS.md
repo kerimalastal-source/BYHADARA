@@ -48,6 +48,19 @@ Further insights visuals (2026-09-26), unmodified unless noted:
 | `lotus-manzara-sea-view.jpg`    | İkinci BYHADARA `lotus-manzara-beylikduzu/aerial-sea-view.jpg`                                                                   | Lotus Yapı Proje |
 | `lotus-yasam-aerial.jpg`        | İkinci BYHADARA `beylikduzu-living/aerial-view.jpg` (commit `72f6951`, 2026-09-29)                                               | Lotus Yapı Proje |
 
+Hospitality guide visuals (2026-10-08), from the HADARA Hospitality repository's product photos
+(`public/assets/products/`, commit `3709ecc`). They come from the owner's Drive photo set of
+2026-10-07, whose sources are mixed and not verified as HADARA's own goods (some look generated),
+so the articles credit them as illustrative. Checked at full size: no third-party branding.
+Re-encoded as progressive JPEG q80.
+
+| Local asset                   | Source                                                           | Credit shown                     |
+| ----------------------------- | ---------------------------------------------------------------- | -------------------------------- |
+| `hotel-linen-star-rating.jpg` | `satin-stripe-bed-linen-set/2.jpg`, left panel 975×650 from y 60 | Illustrative: HADARA Hospitality |
+| `hotel-pillows.jpg`           | `goose-down-hotel-pillow/2.jpg`                                  | Illustrative: HADARA Hospitality |
+| `spa-bathrobe.jpg`            | `bathrobe-towel-hanger-set/2.jpg`, 1254×836 from y 170           | Illustrative: HADARA Hospitality |
+| `hotel-linen-samples.jpg`     | `satin-stripe-bed-linen-set/1.jpg`                               | Illustrative: HADARA Hospitality |
+
 Articles also reuse `istanbul-bosphorus.jpg`, `hospitality/fitted-sheet.jpg` and `hospitality/hotel-bath-sheet.jpg`. The Unsplash IDs follow the mapping in the HADARA Hospitality repository's CLAUDE.md.
 
 `diamond-marin/aerial-sea-view.jpg` in that repository was not used: its lower corner carries what looks like an AI image tool's watermark.

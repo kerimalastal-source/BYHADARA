@@ -9,6 +9,7 @@ import {
 } from '@/content/companies';
 import {
   articleCard,
+  companyArticles,
   findArticle,
   marketArticles,
   publishedArticles,
@@ -219,6 +220,18 @@ export function BusinessDetail({ locale, id }: { locale: Locale; id: string }) {
           {company === 'hospitality' && <p className="image-note">{d.productImageNote}</p>}
         </div>
       </section>
+      {companyArticles(company).length > 0 && (
+        <section className="container body-section">
+          <div className="section-head">
+            <h2>{d.companyArticles}</h2>
+            <Link className="text-link" href={`/${locale}/insights`}>
+              {d.allInsights}
+              <Arrow />
+            </Link>
+          </div>
+          <ArticleCards locale={locale} articles={companyArticles(company)} />
+        </section>
+      )}
       <section className="visit-band">
         <div className="container visit-inner">
           <HadaraMark className="visit-mark" />

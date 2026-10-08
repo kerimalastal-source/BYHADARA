@@ -53,6 +53,12 @@ export function latestNews(count = 3) {
     .filter((a) => news.includes(a))
     .slice(0, count);
 }
+/** The latest guides and news about one group company, newest first. */
+export function companyArticles(company: CompanyId, count = 3) {
+  return publishedArticles()
+    .filter((a) => a.company === company)
+    .slice(0, count);
+}
 /** Guides and news shown on each market page, in this order (unpublished ones are skipped). */
 const marketReading: Record<(typeof marketIds)[number], string[]> = {
   turkiye: [

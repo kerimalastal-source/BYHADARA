@@ -252,6 +252,17 @@ file's prose in English so it stays easy to scan. Last updated 2026-10-08.
   WhatsApp/FaceTime/Zoom/Google Meet. That site's rule: no buying from a distance, the tour
   prepares a visit to Istanbul. Its call to action opens `www.hadararealestate.com/video-tour`
   (`/ar/video-tour` in Arabic; no Turkish edition). 15 articles, 96 pages.
+- Added 2026-10-08, owner's request to focus on HADARA Hospitality after the Search Console
+  analysis (hospitality guides ranked 5–7): four guides following that site's own guides
+  (`hotel-linen-procurement-by-star-rating`, `choosing-hotel-pillows-and-duvets`,
+  `spa-and-wellness-textiles`, `from-sample-to-supply` + `how-to-prepare-an-effective-rfq`),
+  rewritten: **bed linen for 3, 4 and 5-star hotels**, **pillows and duvets**, **spa bathrobes and
+  towels**, **ordering hotel textiles from inquiry to delivery**. Thread counts and GSM are general
+  market guidance, never HADARA product claims (the hospitality site's rule). Their calls to action
+  open the matching page on hadarahospitality.com (`/collections/bed-linen`, `/pillows`,
+  `/robes`, `/get-a-quote`). Images: illustrative product photos from that site (provenance in
+  `docs/ASSETS.md`). Company pages now end with "Guides and news" (`companyArticles()`, the
+  company's three latest articles). 19 articles, 108 pages, 105 sitemap URLs.
 - In Arabic text, number ranges render reversed ("100–109" shows as "109–100"): write them in
   words («بين 100 و109») or wrap them in U+2066/U+2069 isolates (fine outside `<select>`).
 
@@ -264,7 +275,7 @@ file's prose in English so it stays easy to scan. Last updated 2026-10-08.
   rendered with Playwright from an HTML file opened via `file://` (so local fonts and the photo
   load); re-render them the same way if the brand changes.
 - The insights index is `noindex` and outside the sitemap only while no article is published; the
-  thank-you page is always `noindex` and outside it. Sitemap: 93 URLs with 15 articles.
+  thank-you page is always `noindex` and outside it. Sitemap: 105 URLs with 19 articles.
 - Canonical origin is `https://www.byhadara.com` (default in `content/site.ts`, `SITE_URL`
   overrides), matching Vercel where the apex redirects to `www`. Keep the two in sync.
 - Google Search Console: Domain property verified by a DNS TXT record
@@ -353,7 +364,7 @@ file's prose in English so it stays easy to scan. Last updated 2026-10-08.
 ## Validation and sandbox notes
 
 - Checks: `pnpm typecheck`, `pnpm test` (49 tests), `pnpm build`, then `pnpm start` +
-  `node scripts/check-routes.mjs` (96 pages incl. the articles, links, SEO assertions, 503 from
+  `node scripts/check-routes.mjs` (108 pages incl. the articles, links, SEO assertions, 503 from
   both APIs while unconfigured) and the Playwright suite (18 tests incl. axe and the phone/tablet test). Prettier:
   `pnpm exec prettier --check components content lib app styles tests scripts docs *.md`.
 - The installed `@playwright/test` expects a newer browser than the sandbox has: run with a
@@ -423,3 +434,4 @@ file's prose in English so it stays easy to scan. Last updated 2026-10-08.
 - PR #36: market pages strengthened (the companies in each market, related articles, other markets).
 - PR #37: IndexNow after each production build (Bing, Yandex and other engines; not Google).
 - PR #38: more old Wix addresses redirected, Lotus Koru 1/2 fixed, Diamond Marin button to its page.
+- PR #39: four HADARA Hospitality guides and a "Guides and news" section on the company pages.
