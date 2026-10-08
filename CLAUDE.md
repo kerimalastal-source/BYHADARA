@@ -4,7 +4,7 @@
 
 Corporate website of BYHADARA Group (Istanbul), the parent group of HADARA Real Estate and
 HADARA Hospitality. The owner communicates in Arabic; reply to them in Arabic and keep this
-file's prose in English so it stays easy to scan. Last updated 2026-09-28.
+file's prose in English so it stays easy to scan. Last updated 2026-10-08.
 
 ## Standing instructions from the owner
 
@@ -264,6 +264,16 @@ file's prose in English so it stays easy to scan. Last updated 2026-09-28.
   (`google-site-verification=…`) that the owner added in Wix DNS on 2026-09-25, and
   `https://www.byhadara.com/sitemap.xml` submitted (owner-reported). No meta tag is needed;
   `GOOGLE_SITE_VERIFICATION` stays unset. Never remove that TXT record when editing DNS.
+- **Old Wix addresses** (2026-10-08): Search Console listed 21 URLs as "Crawled – currently not
+  indexed" (`Tarandı – şu anda dizine eklenmemiş`); 18 were pages of the former Wix site
+  (`/post/…`, `/blog/…`, `/projects/…`, `/projects-1/…`, `/en-us/…`, `/ru-ru/…`, `/ar-sa/…`) that
+  returned 404. `redirects()` in `next.config.ts` now sends them permanently (308) to the closest
+  page: posts to the matching guide or `/en/markets/turkiye`, other posts to `/en/insights`,
+  Marmara Haven and Lotus Koru to their pages on the real estate site, other projects to
+  `/en/businesses/real-estate`, locale roots to `/en` or `/ar`. `check-routes.mjs` asserts a
+  sample. The other three were `/sitemap.xml` (normal: a sitemap is never indexed),
+  `/en/markets/turkiye` (short page) and `/en/inquiries/partnership` (a form). After a deploy the
+  owner clicks «Düzeltmeyi doğrula» in that report.
 
 ## Mobile and performance (2026-09-26)
 
@@ -371,3 +381,4 @@ file's prose in English so it stays easy to scan. Last updated 2026-09-28.
 - PR #32: the visitor alert lists every page of the visit with the time spent on it.
 - PR #33: news "Istanbul, one video call away" and a news section on the homepage.
 - PR #34: no Telegram alerts for likely automated visits (data-center towns, same-page bursts).
+- PR #35: old Wix addresses reported by Search Console redirected to the closest current page.
