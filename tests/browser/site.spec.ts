@@ -51,6 +51,7 @@ test('representative pages meet automated WCAG checks', async ({ page }) => {
     '/tr/insights',
     '/ar/insights/lotus-yasam-launch',
     '/ar/businesses/real-estate',
+    '/en/markets/gcc',
     '/ar/contact/thank-you',
   ]) {
     await page.goto(path);

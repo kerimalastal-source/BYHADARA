@@ -1408,6 +1408,41 @@ html[lang='ar'] .showcase-tag {
 .sibling-card:hover h2 {
   color: #527c89;
 }
+/* Market pages: the group companies in that market, then the other markets. */
+.market-companies-title {
+  margin: 14px 0 36px;
+}
+.market-companies {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+.market-company {
+  display: block;
+  padding: 34px 32px 30px;
+  background: var(--paper);
+  border-top: 2px solid var(--gold);
+}
+.market-company img {
+  width: 28px;
+  height: auto;
+  margin-bottom: 22px;
+}
+.market-company h3 {
+  margin: 10px 0 12px;
+  font-size: clamp(26px, 2.4vw, 34px);
+}
+.market-company p {
+  max-width: 520px;
+  color: var(--muted);
+}
+.market-company:hover h3 {
+  color: #527c89;
+}
+.markets-grid.pair {
+  grid-template-columns: repeat(2, 1fr);
+  margin-top: 0;
+}
 @media (max-width: 960px) {
   .showcase-grid.hospitality {
     grid-template-columns: repeat(2, 1fr);
@@ -1707,6 +1742,20 @@ html[lang='ar'] .showcase-tag {
     grid-template-columns: 1fr;
     gap: 30px;
     margin-top: 35px;
+  }
+  .markets-grid.pair {
+    grid-template-columns: 1fr;
+    margin-top: 0;
+  }
+  .market-companies {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .market-company {
+    padding: 26px 22px 24px;
+  }
+  .market-companies-title {
+    margin-bottom: 28px;
   }
   .market-card {
     position: relative;
