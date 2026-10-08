@@ -282,6 +282,24 @@ file's prose in English so it stays easy to scan. Last updated 2026-10-08.
   `/en/markets/turkiye` (short page) and `/en/inquiries/partnership` (a form). After a deploy the
   owner clicks «Düzeltmeyi doğrula» in that report.
 
+- **IndexNow** (2026-10-08, owner's request, same design as HADARA Hospitality and HADARA Real
+  Estate): after every production build, new or changed pages go to Bing, Yandex and the other
+  IndexNow engines (one call to `api.indexnow.org`). **Google does not use IndexNow**; for Google
+  the sitemap and Search Console's URL inspection remain the tools. `pnpm build` runs
+  `next build && tsx scripts/indexnow.ts`: it fingerprints each sitemap URL's prerendered HTML in
+  `.next/server/app` (title, description and `<main>`, without scripts or `/_next/static/`
+  hashes; two builds give identical fingerprints) and writes `public/indexnow-manifest.json`
+  (gitignored). Only when `VERCEL_ENV=production`: if the key file is not live yet (first
+  deploy) every page is held; otherwise it reads the live manifest and submits the new or changed
+  URLs, publishing a manifest without the unsent ones so the next build retries them. If the
+  manifest is not deployed (a 404 while the key is live; files written to `public/` after
+  `next build` may not reach Vercel's output), it compares with the live pages instead. Never
+  fails the build: look for `[indexnow]` lines in the Vercel build log. Key `INDEXNOW_KEY` in
+  `lib/indexnow.ts` = `public/<key>.txt` (public by design, a test checks they match; never
+  change one without the other). Tests: `tests/indexnow.test.ts`. Expect HTTP 403
+  `SiteVerificationNotCompleted` for a few hours after the first submission (as on the
+  hospitality site); the pages are retried with the next build.
+
 ## Mobile and performance (2026-09-26)
 
 - Header: full menu and Contact button above 1200 px; at ≤1200 px (all iPads, incl. landscape) the
@@ -321,7 +339,7 @@ file's prose in English so it stays easy to scan. Last updated 2026-10-08.
 
 ## Validation and sandbox notes
 
-- Checks: `pnpm typecheck`, `pnpm test` (45 tests), `pnpm build`, then `pnpm start` +
+- Checks: `pnpm typecheck`, `pnpm test` (49 tests), `pnpm build`, then `pnpm start` +
   `node scripts/check-routes.mjs` (96 pages incl. the articles, links, SEO assertions, 503 from
   both APIs while unconfigured) and the Playwright suite (18 tests incl. axe and the phone/tablet test). Prettier:
   `pnpm exec prettier --check components content lib app styles tests scripts docs *.md`.
@@ -390,3 +408,4 @@ file's prose in English so it stays easy to scan. Last updated 2026-10-08.
 - PR #34: no Telegram alerts for likely automated visits (data-center towns, same-page bursts).
 - PR #35: old Wix addresses reported by Search Console redirected to the closest current page.
 - PR #36: market pages strengthened (the companies in each market, related articles, other markets).
+- PR #37: IndexNow after each production build (Bing, Yandex and other engines; not Google).
