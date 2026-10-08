@@ -51,6 +51,86 @@ const guide = (locale: Locale) => ({
   ...guideCopy[locale],
   href: companyUrl('hospitality', locale, '/fabric-quality-guide'),
 });
+/** Credit for the illustrative images taken from the HADARA Hospitality website. */
+const illustration = {
+  en: 'Illustrative image: HADARA Hospitality.',
+  ar: 'صورة توضيحية: حضارة للضيافة.',
+  tr: 'Temsili görsel: HADARA Hospitality.',
+} as const;
+type Cta = { title: string; text: string; label: string };
+/** Closing call to action leading to a page of the HADARA Hospitality website. */
+const page = (locale: Locale, path: string, copy: Record<Locale, Cta>) => ({
+  ...copy[locale],
+  href: companyUrl('hospitality', locale, path),
+});
+const bedLinen: Record<Locale, Cta> = {
+  en: {
+    title: 'Hotel bed linen at HADARA Hospitality',
+    text: 'Sheets, duvet covers, pillowcases and bed linen sets for hotels, with specifications and quotations.',
+    label: 'View bed linen',
+  },
+  ar: {
+    title: 'بياضات الأسرّة لدى حضارة للضيافة',
+    text: 'شراشف وأغطية لحف وأكياس وسائد وأطقم بياضات للفنادق، مع المواصفات وعروض الأسعار.',
+    label: 'تصفّح بياضات الأسرّة',
+  },
+  tr: {
+    title: 'HADARA Hospitality’de yatak tekstili',
+    text: 'Oteller için çarşaf, nevresim, yastık kılıfı ve nevresim takımları; teknik özellikler ve tekliflerle.',
+    label: 'Yatak tekstilini inceleyin',
+  },
+};
+const pillows: Record<Locale, Cta> = {
+  en: {
+    title: 'Pillows and duvets at HADARA Hospitality',
+    text: 'Hotel pillows and duvets are on the HADARA Hospitality website, with specifications and quotations.',
+    label: 'View pillows and duvets',
+  },
+  ar: {
+    title: 'الوسائد واللحف لدى حضارة للضيافة',
+    text: 'وسائد ولحف للفنادق على موقع حضارة للضيافة، مع المواصفات وعروض الأسعار.',
+    label: 'تصفّح الوسائد واللحف',
+  },
+  tr: {
+    title: 'HADARA Hospitality’de yastık ve yorgan',
+    text: 'Oteller için yastık ve yorganlar HADARA Hospitality web sitesinde; teknik özellikler ve tekliflerle.',
+    label: 'Yastık ve yorganları inceleyin',
+  },
+};
+const robes: Record<Locale, Cta> = {
+  en: {
+    title: 'Bathrobes at HADARA Hospitality',
+    text: 'Hotel and spa bathrobes and slippers, with specifications and quotations.',
+    label: 'View bathrobes',
+  },
+  ar: {
+    title: 'أرواب الحمّام لدى حضارة للضيافة',
+    text: 'أرواب حمّام وأخفاف للفنادق ومراكز السبا، مع المواصفات وعروض الأسعار.',
+    label: 'تصفّح الأرواب',
+  },
+  tr: {
+    title: 'HADARA Hospitality’de bornozlar',
+    text: 'Otel ve spa bornozları ile terlikler; teknik özellikler ve tekliflerle.',
+    label: 'Bornozları inceleyin',
+  },
+};
+const quote: Record<Locale, Cta> = {
+  en: {
+    title: 'Request a quotation',
+    text: 'HADARA Hospitality’s quote form gathers the property, products, quantities and delivery details in one place.',
+    label: 'Request a quote',
+  },
+  ar: {
+    title: 'اطلب عرض سعر',
+    text: 'يجمع نموذج طلب عرض السعر لدى حضارة للضيافة تفاصيل المنشأة والمنتجات والكميات والتسليم في مكان واحد.',
+    label: 'طلب عرض سعر',
+  },
+  tr: {
+    title: 'Teklif isteyin',
+    text: 'HADARA Hospitality’nin teklif formu tesis, ürün, miktar ve teslimat bilgilerini tek yerde toplar.',
+    label: 'Teklif isteyin',
+  },
+};
 /**
  * Hospitality and hotel supply insights. Facts follow the HADARA Hospitality guides
  * (hadarahospitality repository, src/data/blog.ts), rewritten for the group site rather than copied.
@@ -389,6 +469,297 @@ export const hospitality: Article[] = [
         imageAlt: 'Kapitone beyaz yastık alezi',
         imageCredit: photo.tr,
         cta: visit('tr'),
+      },
+    },
+  },
+  {
+    slug: 'hotel-bed-linen-by-star-rating',
+    category: 'hospitality',
+    status: 'published',
+    approved: true,
+    publishedAt: '2026-10-08',
+    company: 'hospitality',
+    translations: {
+      en: {
+        title: 'Hotel bed linen for 3, 4 and 5-star hotels',
+        description:
+          'The right bed linen is not the most expensive one but the one matched to the hotel’s star rating, guests and laundry. A guide for 3, 4 and 5-star hotels.',
+        body: [
+          'A 3-star city hotel and a 5-star resort should not buy the same bed linen. The right specification follows the guests’ expectations, the room rate and the laundry programme, not the highest thread count on a price list.',
+          'At 3-star level, guests notice crisp, clean and well-pressed sheets rather than a number on a label. A durable percale of around 180–200 thread count in long-staple cotton, chosen for how it survives washing, usually serves better than a “premium” sheet that wears out sooner.',
+          'At 4-star level, guests expect a softer hand and a fuller-looking bed. A sateen or percale of around 250 thread count with a mid-weight duvet usually meets that expectation without paying for gains guests will not feel.',
+          'At 5-star and resort properties, guests judge the whole bed rather than the sheet alone: a sateen finish, a choice of duvet weights and a decorative layer all shape the made bed they remember and photograph.',
+          'At every level, three things matter more than the label: the quality and staple length of the cotton, the weave (percale for a crisp finish, sateen for a softer drape) and whether the fabric holds up in the hotel’s own commercial laundry. That is why a specification is best checked on a sample, washed in that laundry, before a bulk order.',
+        ],
+        image: image('insights/hotel-linen-star-rating'),
+        imageAlt: 'Hotel bed with white striped sateen linen and pillows',
+        imageCredit: illustration.en,
+        facts: [
+          ['180–200 TC', 'Durable percale, 3★'],
+          ['~250 TC', 'Sateen or percale, 4★'],
+          ['The whole bed', 'Sateen and duvet options, 5★'],
+        ],
+        cta: page('en', '/collections/bed-linen', bedLinen),
+      },
+      ar: {
+        title: 'بياضات الأسرّة لفنادق 3 و4 و5 نجوم',
+        description:
+          'البياضات المناسبة ليست الأغلى، بل تلك التي تناسب فئة الفندق ونزلاءه ونظام الغسيل فيه. دليل لاختيار بياضات الأسرّة لفنادق الثلاث والأربع والخمس نجوم.',
+        body: [
+          'لا ينبغي لفندق مدينة من فئة ثلاث نجوم ومنتجع من فئة خمس نجوم أن يشتريا البياضات نفسها. فالمواصفات الصحيحة تتبع توقعات النزلاء وسعر الغرفة ونظام الغسيل، لا أعلى عدد خيوط في قائمة الأسعار.',
+          'في فنادق الثلاث نجوم يلاحظ النزيل نظافة الشراشف وانتعاشها وكيّها الجيد أكثر من أي رقم على البطاقة. ولذلك يخدم قماش البيركال المتين من القطن طويل التيلة، بعدد خيوط بين 180 و200 تقريباً، أفضل من شرشف «فاخر» يبلى أسرع.',
+          'وفي فنادق الأربع نجوم يتوقع النزيل ملمساً أنعم وسريراً يبدو أكثر امتلاءً، وغالباً ما يلبّي ذلك قماش ساتان أو بيركال بعدد خيوط يقارب 250 مع لحاف متوسط الوزن، دون دفع ثمن فروق لا يشعر بها النزيل.',
+          'أما فنادق الخمس نجوم والمنتجعات فيحكم فيها النزيل على السرير كاملاً لا على الشرشف وحده: لمسة الساتان، وخيارات أوزان اللحاف، وطبقة زخرفية، كلها تصنع السرير الذي يتذكره النزيل ويصوّره.',
+          'وفي كل الفئات تبقى ثلاثة أمور أهم من البطاقة: جودة القطن وطول تيلته، ونوع النسج (البيركال لملمس منتعش والساتان لانسدال أنعم)، وصمود القماش في مغسلة الفندق نفسه. لذلك يُستحسن اختبار المواصفات على عيّنة تُغسل في تلك المغسلة قبل الطلب الكبير.',
+        ],
+        image: image('insights/hotel-linen-star-rating'),
+        imageAlt: 'سرير فندقي ببياضات ساتان بيضاء مخططة ووسائد',
+        imageCredit: illustration.ar,
+        facts: [
+          ['⁦180–200⁩ خيط', 'بيركال متين، 3 نجوم'],
+          ['نحو 250 خيطاً', 'ساتان أو بيركال، 4 نجوم'],
+          ['السرير كاملاً', 'ساتان وخيارات لحاف، 5 نجوم'],
+        ],
+        cta: page('ar', '/collections/bed-linen', bedLinen),
+      },
+      tr: {
+        title: '3, 4 ve 5 yıldızlı oteller için yatak tekstili',
+        description:
+          'Doğru nevresim en pahalısı değil; otelin yıldız sınıfına, misafirlerine ve çamaşırhanesine uygun olandır. 3, 4 ve 5 yıldızlı oteller için yatak tekstili rehberi.',
+        body: [
+          '3 yıldızlı bir şehir oteliyle 5 yıldızlı bir tatil köyü aynı yatak tekstilini almamalı. Doğru şartname, fiyat listesindeki en yüksek iplik sayısını değil; misafir beklentisini, oda fiyatını ve yıkama programını izler.',
+          '3 yıldızlı otellerde misafir, etiketteki rakamdan çok çarşafların temizliğini, canlılığını ve ütüsünü fark eder. Uzun elyaflı pamuktan, yaklaşık 180–200 iplik sayılı dayanıklı bir perkal, daha çabuk yıpranan “premium” bir çarşaftan genellikle daha iyi hizmet verir.',
+          '4 yıldızlı otellerde misafir daha yumuşak bir dokunuş ve daha dolgun görünen bir yatak bekler. Yaklaşık 250 iplik sayılı saten ya da perkal ve orta ağırlıkta bir yorgan, misafirin hissetmeyeceği farklara para ödemeden bu beklentiyi çoğunlukla karşılar.',
+          '5 yıldızlı otellerde ve tatil köylerinde misafir yalnızca çarşafı değil, yatağın bütününü değerlendirir: saten yüzey, farklı yorgan ağırlıkları ve dekoratif bir katman, misafirin hatırladığı ve fotoğrafladığı yatağı oluşturur.',
+          'Her sınıfta üç şey etiketten daha önemlidir: pamuğun kalitesi ve elyaf uzunluğu, dokuma (canlı bir doku için perkal, daha yumuşak bir düşüş için saten) ve kumaşın otelin kendi endüstriyel çamaşırhanesinde dayanıp dayanmadığı. Bu yüzden şartnameyi toplu siparişten önce o çamaşırhanede yıkanan bir numuneyle denemek en doğrusudur.',
+        ],
+        image: image('insights/hotel-linen-star-rating'),
+        imageAlt: 'Beyaz çizgili saten nevresimli ve yastıklı otel yatağı',
+        imageCredit: illustration.tr,
+        facts: [
+          ['180–200 TC', 'Dayanıklı perkal, 3★'],
+          ['~250 TC', 'Saten veya perkal, 4★'],
+          ['Yatağın bütünü', 'Saten ve yorgan seçenekleri, 5★'],
+        ],
+        cta: page('tr', '/collections/bed-linen', bedLinen),
+      },
+    },
+  },
+  {
+    slug: 'hotel-pillows-and-duvets',
+    category: 'hospitality',
+    status: 'published',
+    approved: true,
+    publishedAt: '2026-10-08',
+    company: 'hospitality',
+    translations: {
+      en: {
+        title: 'Hotel pillows and duvets: firmness, fill and weight',
+        seoTitle: 'How to choose hotel pillows and duvets',
+        description:
+          'Sheets get most of the attention, but the pillow and duvet shape a guest’s night. How hotels choose firmness, fill and duvet weight, and when to replace them.',
+        body: [
+          'Hotel bedding decisions tend to focus on sheets and thread count, yet it is the pillow under a guest’s head and the duvet over them that shape how the night feels, and how it is reviewed.',
+          'There is no single right firmness. Rather than standardising on one pillow that suits some guests and disappoints others, many hotels offer a small, consistent range, typically soft and medium-firm.',
+          'Microfibre fill has become the practical standard in hospitality: it keeps its shape through frequent commercial washing, resists clumping better than cheaper fills and avoids the allergy concerns some guests associate with down.',
+          'Duvet weight should follow the climate and the season, not only the brand standard: light for warm climates and air-conditioned properties all year, medium as the safest default for most 3 to 5-star hotels, and heavier for mountain or resort properties with genuinely cold nights. One cover size and closure across the property keeps housekeeping simple.',
+          'Pillows and duvet inserts lose loft and hygiene well before they look worn, so a planned replacement cycle protects comfort better than waiting until they look tired.',
+        ],
+        image: image('insights/hotel-pillows'),
+        imageAlt: 'White hotel pillows on a made bed',
+        imageCredit: illustration.en,
+        facts: [
+          ['Soft · medium-firm', 'A small pillow range'],
+          ['Microfibre', 'The practical standard fill'],
+          ['Light · medium · heavy', 'Duvet weight by climate'],
+        ],
+        cta: page('en', '/collections/pillows', pillows),
+      },
+      ar: {
+        title: 'وسائد الفنادق ولحفها: كيف تختار الأنسب؟',
+        description:
+          'تنال الشراشف معظم الاهتمام، لكن الوسادة واللحاف هما ما يصنعان ليلة النزيل. كيف تختار الفنادق صلابة الوسائد وحشوها ووزن اللحاف، ومتى تستبدلها.',
+        body: [
+          'تتركز قرارات أسرّة الفنادق عادةً على الشراشف وعدد الخيوط، لكن الوسادة التي يضع النزيل رأسه عليها واللحاف الذي يتغطى به هما ما يصنعان إحساسه بالليلة، وتقييمه لها.',
+          'لا توجد صلابة واحدة صحيحة للجميع. فبدلاً من اعتماد وسادة واحدة تناسب بعض النزلاء وتخيّب آخرين، تقدّم فنادق كثيرة تشكيلة صغيرة ثابتة، عادةً وسادة ناعمة وأخرى متوسطة الصلابة.',
+          'وأصبح حشو الألياف الدقيقة (المايكروفايبر) المعيار العملي في الضيافة: يحافظ على شكله مع الغسيل التجاري المتكرر، ويقاوم التكتل أكثر من الحشوات الأرخص، ويتجنب مخاوف الحساسية التي يربطها بعض النزلاء بالريش.',
+          'ويتبع وزن اللحاف المناخ والموسم لا معيار العلامة فقط: خفيف للمناطق الحارة والفنادق المكيفة طوال العام، ومتوسط كخيار آمن لمعظم فنادق الثلاث إلى الخمس نجوم، وأثقل للفنادق الجبلية والمنتجعات ذات الليالي الباردة فعلاً. كما أن توحيد مقاس غطاء اللحاف وطريقة إغلاقه في الفندق كله يسهّل عمل فرق التدبير الفندقي.',
+          'وتفقد الوسائد وحشوات اللحف انتفاخها ومستوى نظافتها قبل أن يظهر عليها البلى بوقت طويل، لذا تحمي دورة استبدال مخططة راحة النزيل أكثر من الانتظار حتى يبدو عليها التعب.',
+        ],
+        image: image('insights/hotel-pillows'),
+        imageAlt: 'وسائد فندقية بيضاء على سرير مرتب',
+        imageCredit: illustration.ar,
+        facts: [
+          ['ناعمة ومتوسطة', 'تشكيلة وسائد صغيرة'],
+          ['مايكروفايبر', 'الحشو العملي المعتاد'],
+          ['خفيف · متوسط · ثقيل', 'وزن اللحاف حسب المناخ'],
+        ],
+        cta: page('ar', '/collections/pillows', pillows),
+      },
+      tr: {
+        title: 'Otel yastıkları ve yorganları nasıl seçilir?',
+        description:
+          'Çarşaflar ilgiyi toplar, ancak misafirin gecesini yastık ve yorgan belirler. Oteller sertliği, dolguyu ve yorgan ağırlığını nasıl seçmeli, ne zaman yenilemeli?',
+        body: [
+          'Otel yatağıyla ilgili kararlar genellikle çarşaf ve iplik sayısına odaklanır; oysa gecenin nasıl geçtiğini ve nasıl yorumlandığını misafirin başını koyduğu yastık ve üzerine çektiği yorgan belirler.',
+          'Herkese uyan tek bir sertlik yoktur. Bazı misafirleri memnun edip diğerlerini hayal kırıklığına uğratan tek bir yastık yerine birçok otel küçük ve tutarlı bir seçenek sunar; genellikle yumuşak ve orta sert.',
+          'Mikrofiber dolgu konaklama sektöründe pratik standart haline geldi: sık endüstriyel yıkamada formunu korur, ucuz dolgulara göre daha az topaklanır ve bazı misafirlerin kaz tüyüyle ilişkilendirdiği alerji kaygısını taşımaz.',
+          'Yorgan ağırlığı yalnızca marka standardına değil iklime ve mevsime göre seçilmelidir: sıcak iklimler ve yıl boyu klimalı oteller için hafif, 3–5 yıldızlı otellerin çoğu için en güvenli varsayılan olarak orta, gerçekten soğuk gecelerin yaşandığı dağ otelleri ve tatil köyleri için daha ağır. Tüm otelde tek bir nevresim ölçüsü ve kapama sistemi kat hizmetlerini kolaylaştırır.',
+          'Yastıklar ve yorgan içleri, yıpranmış görünmeden çok önce kabarıklığını ve hijyenini kaybeder; bu yüzden planlı bir yenileme döngüsü misafir konforunu, eskidiği görülene kadar beklemekten daha iyi korur.',
+        ],
+        image: image('insights/hotel-pillows'),
+        imageAlt: 'Hazırlanmış yatakta beyaz otel yastıkları',
+        imageCredit: illustration.tr,
+        facts: [
+          ['Yumuşak · orta sert', 'Küçük bir yastık seçkisi'],
+          ['Mikrofiber', 'Pratik standart dolgu'],
+          ['Hafif · orta · ağır', 'İklime göre yorgan ağırlığı'],
+        ],
+        cta: page('tr', '/collections/pillows', pillows),
+      },
+    },
+  },
+  {
+    slug: 'spa-bathrobes-and-towels',
+    category: 'hospitality',
+    status: 'published',
+    approved: true,
+    publishedAt: '2026-10-08',
+    company: 'hospitality',
+    translations: {
+      en: {
+        title: 'Spa bathrobes and towels that last',
+        description:
+          'Spa textiles must feel indulgent yet survive constant moisture and frequent washing. Terry or waffle, towel weight and what to specify for high-frequency use.',
+        body: [
+          'Spa and wellness textiles face a harder mix of demands than almost any other hotel category: they must feel indulgent at first touch, survive far more frequent laundering than a guest-room towel and keep their shape and softness through it.',
+          'Terry and waffle do different jobs. Terry robes and towels offer the most absorbency and a familiar plush feel, the right choice for pool and bath-focused properties. Waffle weaves are lighter and dry faster, better suited to warm climates and treatment spas where guests move often between wet and dry areas.',
+          'For high-frequency use, specifications usually include heavier towels of around 700–800 GSM that outlast frequent washing, reinforced seams on robes, and fabric that resists pilling after high-heat industrial drying.',
+          'Consistency matters too: buying from the same supplier keeps replacement stock matching the texture and colour already in use, so a spa never looks like a mix of generations.',
+        ],
+        image: image('insights/spa-bathrobe'),
+        imageAlt: 'White bathrobe and towel hanging in a spa bathroom',
+        imageCredit: illustration.en,
+        facts: [
+          ['Terry', 'Absorbent and plush'],
+          ['Waffle', 'Light and fast-drying'],
+          ['700–800 GSM', 'Spa towels for frequent washing'],
+        ],
+        cta: page('en', '/collections/robes', robes),
+      },
+      ar: {
+        title: 'أرواب ومناشف السبا التي تدوم',
+        description:
+          'يجب أن تمنح منسوجات السبا إحساساً بالرفاهية وأن تتحمل الرطوبة الدائمة والغسيل المتكرر. التيري أم الوافل، ووزن المناشف، وما يلزم للاستخدام الكثيف.',
+        body: [
+          'تواجه منسوجات السبا والعافية متطلبات أصعب من أي فئة فندقية أخرى تقريباً: يجب أن تمنح إحساساً بالرفاهية من اللمسة الأولى، وأن تتحمل غسيلاً أكثر تكراراً بكثير من مناشف الغرف، وأن تحافظ على شكلها ونعومتها رغم ذلك.',
+          'ولكلٍّ من التيري والوافل دور مختلف. فأرواب التيري ومناشفه تمنح أعلى امتصاص وملمساً وثيراً مألوفاً، وهي الخيار المناسب للفنادق التي تركز على المسابح والحمّامات. أما نسيج الوافل فأخف وزناً وأسرع جفافاً، وأنسب للمناطق الحارة ومراكز العلاج التي يتنقل فيها النزيل كثيراً بين المناطق الرطبة والجافة.',
+          'وللاستخدام الكثيف تتضمن المواصفات عادةً مناشف أثقل بين 700 و800 غرام للمتر المربع تصمد أمام الغسيل المتكرر، وخياطة مقوّاة في الأرواب، وقماشاً يقاوم التوبّر بعد التجفيف الصناعي بالحرارة العالية.',
+          'والثبات مهم أيضاً: الشراء من المورّد نفسه يجعل مخزون الاستبدال مطابقاً للملمس واللون المستخدمين، فلا يبدو السبا خليطاً من أجيال مختلفة من المنسوجات.',
+        ],
+        image: image('insights/spa-bathrobe'),
+        imageAlt: 'روب حمّام أبيض ومنشفة معلّقان في حمّام سبا',
+        imageCredit: illustration.ar,
+        facts: [
+          ['تيري', 'امتصاص عالٍ وملمس وثير'],
+          ['وافل', 'خفيف وسريع الجفاف'],
+          ['⁦700–800⁩ غرام', 'مناشف السبا للغسيل المتكرر'],
+        ],
+        cta: page('ar', '/collections/robes', robes),
+      },
+      tr: {
+        title: 'Uzun ömürlü spa bornozları ve havluları',
+        description:
+          'Spa tekstili lüks hissettirmeli, ancak sürekli neme ve sık yıkamaya da dayanmalı. Havlu kumaş mı waffle mı, havlu ağırlığı ve yoğun kullanım için doğru şartname.',
+        body: [
+          'Spa ve wellness tekstili, neredeyse tüm otel kategorilerinden daha zorlu bir talep karışımıyla karşı karşıyadır: ilk dokunuşta lüks hissettirmeli, oda havlusundan çok daha sık yıkanmaya dayanmalı ve bu süreçte formunu ve yumuşaklığını korumalıdır.',
+          'Havlu kumaş (terry) ve waffle farklı işler görür. Terry bornoz ve havlular en yüksek emiciliği ve tanıdık, kabarık bir dokuyu sunar; havuz ve banyo odaklı oteller için doğru seçimdir. Waffle dokuma daha hafiftir ve daha hızlı kurur; sıcak iklimlere ve misafirin ıslak ve kuru alanlar arasında sık geçtiği bakım odaklı spalara daha uygundur.',
+          'Yoğun kullanım için şartnameler genellikle sık yıkamaya dayanan, yaklaşık 700–800 GSM ağırlığında daha ağır havluları, bornozlarda güçlendirilmiş dikişleri ve yüksek ısıda endüstriyel kurutmadan sonra tüylenmeye direnen kumaşı içerir.',
+          'Tutarlılık da önemlidir: aynı tedarikçiden almak, yenileme stokunun kullanımdaki doku ve renkle eşleşmesini sağlar; böylece spa farklı kuşaklardan tekstillerin karışımı gibi görünmez.',
+        ],
+        image: image('insights/spa-bathrobe'),
+        imageAlt: 'Spa banyosunda asılı beyaz bornoz ve havlu',
+        imageCredit: illustration.tr,
+        facts: [
+          ['Terry', 'Emici ve kabarık'],
+          ['Waffle', 'Hafif ve hızlı kuruyan'],
+          ['700–800 GSM', 'Sık yıkanan spa havluları'],
+        ],
+        cta: page('tr', '/collections/robes', robes),
+      },
+    },
+  },
+  {
+    slug: 'ordering-hotel-textiles',
+    category: 'trade',
+    status: 'published',
+    approved: true,
+    publishedAt: '2026-10-08',
+    company: 'hospitality',
+    translations: {
+      en: {
+        title: 'Ordering hotel textiles: from inquiry to delivery',
+        seoTitle: 'How hotels order textiles, step by step',
+        description:
+          'A complete request gets an accurate, comparable quotation in days. The five stages of a well-run hotel textile order and where delays usually begin.',
+        body: [
+          'Ordering textiles for a hotel is rarely a single transaction. Specifications have to be confirmed, samples tested and production planned against a real opening or delivery date, often across a language and a border.',
+          'A well-run order moves through five stages: an inquiry that shares the property type, room count and categories needed; samples reviewed against the hotel’s own quality and laundry standards; approval that fixes specifications, quantities and terms in writing; production with regular progress updates; and delivery, with export documents and logistics arranged to the destination.',
+          'The first stage decides how fast and how accurate the quotation will be. A complete request names the property type and star rating, quantities per product rather than “please quote your range”, any existing specifications to match (size, colour, GSM or thread count), the delivery city and target date, whether a sample is needed and any branding requirements.',
+          'Grouping products precisely pays off: bath towels, hand towels and bath mats quoted separately give a price that can be compared with another offer, where a single line for “bed linen and towels” only returns a range.',
+          'Delays rarely start on the factory floor. They usually come from specifications approved verbally instead of in writing, or from samples never tested in real laundry conditions before the bulk order, which is why a clear sampling and approval step saves time rather than costing it.',
+        ],
+        image: image('insights/hotel-linen-samples'),
+        imageAlt: 'Folded white striped hotel bed linen and pillowcases',
+        imageCredit: illustration.en,
+        facts: [
+          ['5 stages', 'From inquiry to delivery'],
+          ['In writing', 'Specifications and terms'],
+          ['Sample first', 'Tested before the bulk order'],
+        ],
+        cta: page('en', '/get-a-quote', quote),
+      },
+      ar: {
+        title: 'طلب منسوجات الفنادق من الاستفسار إلى التسليم',
+        description:
+          'الطلب المكتمل يحصل على عرض سعر دقيق وقابل للمقارنة خلال أيام. المراحل الخمس لطلب منسوجات الفنادق بشكل منظم، ومن أين تبدأ التأخيرات عادةً.',
+        body: [
+          'نادراً ما يكون طلب منسوجات فندق صفقة واحدة سريعة. فالمواصفات تحتاج إلى تأكيد، والعيّنات إلى اختبار، والإنتاج إلى تخطيط وفق موعد افتتاح أو تسليم حقيقي، وغالباً عبر لغة وحدود مختلفة.',
+          'ويمر الطلب المنظم بخمس مراحل: استفسار يوضح نوع المنشأة وعدد الغرف والفئات المطلوبة، ثم عيّنات تُراجع وفق معايير الجودة والغسيل في الفندق نفسه، ثم موافقة تثبّت المواصفات والكميات والشروط كتابةً، ثم إنتاج مع تحديثات منتظمة عن سيره، وأخيراً تسليم مع وثائق التصدير والشحن حتى الوجهة.',
+          'والمرحلة الأولى هي التي تحدد سرعة عرض السعر ودقته. فالطلب المكتمل يذكر نوع الفندق وفئته، والكميات لكل منتج بدلاً من «أرسلوا لنا أسعار تشكيلتكم»، وأي مواصفات حالية يجب مطابقتها (المقاس واللون والوزن أو عدد الخيوط)، ومدينة التسليم والموعد المستهدف، وهل تلزم عيّنة، وأي متطلبات لوضع العلامة التجارية.',
+          'ويفيد التحديد الدقيق للمنتجات: فتسعير مناشف الاستحمام ومناشف اليد ودواسات الحمّام كلٌّ على حدة يعطي سعراً يمكن مقارنته بعرض آخر، بينما لا يُرجع بند واحد باسم «بياضات ومناشف» إلا نطاقاً تقريبياً.',
+          'ونادراً ما تبدأ التأخيرات في المصنع، بل تأتي غالباً من مواصفات اعتُمدت شفهياً لا كتابةً، أو من عيّنات لم تُختبر في ظروف غسيل حقيقية قبل الطلب الكبير. لذلك فإن خطوة واضحة للعيّنات والموافقة توفر الوقت ولا تهدره.',
+        ],
+        image: image('insights/hotel-linen-samples'),
+        imageAlt: 'بياضات فندقية بيضاء مخططة مطوية مع أكياس وسائد',
+        imageCredit: illustration.ar,
+        facts: [
+          ['5 مراحل', 'من الاستفسار إلى التسليم'],
+          ['كتابةً', 'المواصفات والشروط'],
+          ['العيّنة أولاً', 'تُختبر قبل الطلب الكبير'],
+        ],
+        cta: page('ar', '/get-a-quote', quote),
+      },
+      tr: {
+        title: 'Otel tekstili siparişi: talepten teslimata',
+        description:
+          'Eksiksiz bir talep, birkaç gün içinde doğru ve karşılaştırılabilir bir teklif getirir. Bir otel tekstili siparişinin beş aşaması ve gecikmelerin başladığı yer.',
+        body: [
+          'Bir otel için tekstil siparişi nadiren tek seferlik bir işlemdir. Şartnamelerin teyit edilmesi, numunelerin denenmesi ve üretimin gerçek bir açılış ya da teslim tarihine göre planlanması gerekir; çoğu zaman farklı bir dil ve sınır üzerinden.',
+          'İyi yönetilen bir sipariş beş aşamadan geçer: tesis tipini, oda sayısını ve gereken kategorileri paylaşan bir talep; otelin kendi kalite ve yıkama standartlarına göre incelenen numuneler; şartname, miktar ve koşulları yazılı olarak sabitleyen onay; düzenli ilerleme bilgisiyle üretim; ve ihracat belgeleri ile lojistiği varış noktasına kadar düzenlenen teslimat.',
+          'Teklifin ne kadar hızlı ve doğru geleceğini ilk aşama belirler. Eksiksiz bir talep; tesis tipini ve yıldız sınıfını, “ürün yelpazenizin fiyatını gönderin” yerine ürün başına miktarları, eşleştirilecek mevcut şartnameleri (ölçü, renk, GSM veya iplik sayısı), teslim şehrini ve hedef tarihi, numune gerekip gerekmediğini ve markalama ihtiyaçlarını içerir.',
+          'Ürünleri net gruplamak kazandırır: banyo havlusu, el havlusu ve banyo paspası ayrı ayrı fiyatlandığında başka bir teklifle karşılaştırılabilir bir fiyat elde edilir; “nevresim ve havlu” diye tek bir kalem ise yalnızca bir aralık döndürür.',
+          'Gecikmeler nadiren üretim hattında başlar. Çoğunlukla yazılı yerine sözlü onaylanan şartnamelerden ya da toplu siparişten önce gerçek yıkama koşullarında denenmemiş numunelerden kaynaklanır; bu yüzden net bir numune ve onay adımı zaman kaybettirmez, kazandırır.',
+        ],
+        image: image('insights/hotel-linen-samples'),
+        imageAlt: 'Katlanmış beyaz çizgili otel nevresimi ve yastık kılıfları',
+        imageCredit: illustration.tr,
+        facts: [
+          ['5 aşama', 'Talepten teslimata'],
+          ['Yazılı', 'Şartname ve koşullar'],
+          ['Önce numune', 'Toplu siparişten önce denenir'],
+        ],
+        cta: page('tr', '/get-a-quote', quote),
       },
     },
   },

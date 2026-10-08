@@ -326,6 +326,7 @@ export const dictionaries = {
     targetMarkets: 'Market focus',
     strategicInterest: 'Strategic interests',
     otherMarkets: 'Other markets',
+    companyArticles: 'Guides and news',
     investmentTitle: 'Explore investment\nopportunities.',
     partnershipFormTitle: 'Become a\nstrategic partner.',
     formIntro:
@@ -687,6 +688,7 @@ export const dictionaries = {
     targetMarkets: 'الأسواق المستهدفة',
     strategicInterest: 'الاهتمامات الاستراتيجية',
     otherMarkets: 'أسواق أخرى',
+    companyArticles: 'أدلة وأخبار',
     investmentTitle: 'استكشف الفرص\nالاستثمارية.',
     partnershipFormTitle: 'كن شريكاً\nاستراتيجياً.',
     formIntro:
@@ -1062,6 +1064,7 @@ export const dictionaries = {
     targetMarkets: 'Pazar odağı',
     strategicInterest: 'Stratejik ilgi alanları',
     otherMarkets: 'Diğer pazarlar',
+    companyArticles: 'Rehberler ve haberler',
     investmentTitle: 'Yatırım fırsatlarını\nkeşfedin.',
     partnershipFormTitle: 'Stratejik iş\nortağımız olun.',
     formIntro:
