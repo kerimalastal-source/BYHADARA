@@ -60,6 +60,32 @@ assert.equal((sitemap.match(/<loc>/g) || []).length, indexable);
 const robots = await (await fetch('http://localhost:3000/robots.txt')).text();
 assert.ok(robots.includes('Disallow: /api/'));
 assert.equal((await fetch('http://localhost:3000/', { redirect: 'manual' })).status, 308);
+// Addresses of the former Wix site that Google still crawls (Search Console, 2026-10-08).
+const oldAddresses = {
+  '/post/why-invest-in-real-estate-in-turkey': '/en/insights/buying-property-in-turkiye',
+  '/post/living-in-istanbul': '/en/markets/turkiye',
+  '/post/some-other-post': '/en/insights',
+  '/en-us/post/best-areas-to-buy-property-in-istanbul':
+    '/en/insights/western-istanbul-beylikduzu-buyukcekmece',
+  '/ru-ru/turkishcitizenship': '/en/insights/turkish-citizenship-through-real-estate',
+  '/ru-ru': '/en',
+  '/ar-sa': '/ar',
+  '/projects/unknown': '/en/businesses/real-estate',
+  '/projects-1/Marmarahavenvilla': 'https://www.hadararealestate.com/projects/marmara-haven-villa',
+};
+for (const [from, to] of Object.entries(oldAddresses)) {
+  const response = await fetch('http://localhost:3000' + from, { redirect: 'manual' });
+  assert.equal(response.status, 308, from);
+  assert.equal(
+    new URL(response.headers.get('location'), 'http://localhost:3000').href.replace(
+      'http://localhost:3000',
+      '',
+    ),
+    to,
+    from,
+  );
+  if (to.startsWith('/')) assert.equal((await fetch('http://localhost:3000' + to)).status, 200, to);
+}
 for (const asset of ['/manifest.webmanifest', '/icon-512.png', '/og/byhadara-ar.jpg'])
   assert.equal((await fetch('http://localhost:3000' + asset)).status, 200, asset);
 console.log(
@@ -72,5 +98,6 @@ console.log(
     seo: 'passed',
     notFound: 'passed',
     unconfiguredAPIs: 503,
+    oldAddresses: 'redirected',
   }),
 );
