@@ -70,6 +70,10 @@ const oldAddresses = {
   '/ru-ru/turkishcitizenship': '/en/insights/turkish-citizenship-through-real-estate',
   '/ru-ru': '/en',
   '/ar-sa': '/ar',
+  '/aboutus': '/en/about',
+  '/tr/beylikduzuliving': '/tr/insights/lotus-yasam-launch',
+  '/tr/post/l%C3%BCks-villalar': '/tr/insights',
+  '/projects/lotus-koru-2': 'https://www.hadararealestate.com/projects/lotus-koru-2',
   '/projects/unknown': '/en/businesses/real-estate',
   '/projects-1/Marmarahavenvilla': 'https://www.hadararealestate.com/projects/marmara-haven-villa',
 };

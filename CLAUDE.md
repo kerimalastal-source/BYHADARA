@@ -227,8 +227,8 @@ file's prose in English so it stays easy to scan. Last updated 2026-10-08.
   and **Diamond Marin** (Yıltaş × Lotus Yapı), both Beylikdüzü, facts and visuals from İkinci
   BYHADARA (`src/data/projects.ts`, `src/i18n/*.json`; Lotus Yaşam is "beylikduzu-living" there).
   HADARA Real Estate is described as "presenting" them; the owner has not stated its exact role
-  (marketer, partner…). Diamond Marin is not on hadararealestate.com yet, so its call to action
-  leads to Contact; point it to the project page once that site lists it.
+  (marketer, partner…). Since 2026-10-08 Diamond Marin's call to action opens its page on
+  hadararealestate.com (`/projects/diamond-marin`, `/ar/…`; English for Turkish readers).
 - Added 2026-09-26 at the owner's request: news **HADARA Hospitality at Hospitality Qatar 2026**
   (the team attends **as visitors, not exhibitors**, per the owner: the article says "visit",
   never "take part" or a stand; event facts: 11th edition, 12–14 October 2026, DECC Doha,
@@ -280,7 +280,20 @@ file's prose in English so it stays easy to scan. Last updated 2026-10-08.
   `/en/businesses/real-estate`, locale roots to `/en` or `/ar`. `check-routes.mjs` asserts a
   sample. The other three were `/sitemap.xml` (normal: a sitemap is never indexed),
   `/en/markets/turkiye` (short page) and `/en/inquiries/partnership` (a form). After a deploy the
-  owner clicks «Düzeltmeyi doğrula» in that report.
+  owner clicks «Düzeltmeyi doğrula» in that report. The performance export of the same day showed
+  more Wix pages with impressions, now redirected too: `/marmarahaven`, `/beylikduzuliving` (to the
+  project page; `/tr/beylikduzuliving` to our Turkish Lotus Yaşam article), `/aboutus`,
+  `/contactus`, `/faq` (the real estate site's FAQ) and `/tr/post/…`. Lotus Koru 1 and Lotus
+  Koru 2 are **two different projects** on the real estate site (`/projects/lotus-koru-1`, sold
+  out; `/projects/lotus-koru-2`, delivered with units available).
+- **Search performance** (Search Console export, 24 Sep–4 Oct 2026): 220 impressions, 10 clicks,
+  average position about 8; 64% mobile; Türkiye 48% of impressions, then Saudi Arabia, Egypt,
+  the US and India. Best pages: the Turkish news of Lotus Yaşam (57 impressions; query "lotus
+  yaşam beylikdüzü", position 5) and Diamond Marin (CTR 22%): the real estate site has no
+  Turkish edition, so our Turkish project articles are what Turkish searchers find. Also seen:
+  "lotus koru 1/2" (no article yet), the brand ("hadara", "who is hadara", position 5–7), hotel
+  towels/bed linen guides (positions 5–7) and Turkish citizenship (positions 30–80, very
+  competitive). An old Google Business Profile still links to the site with Wix UTM tags.
 
 - **IndexNow** (2026-10-08, owner's request, same design as HADARA Hospitality and HADARA Real
   Estate): after every production build, new or changed pages go to Bing, Yandex and the other
@@ -409,3 +422,4 @@ file's prose in English so it stays easy to scan. Last updated 2026-10-08.
 - PR #35: old Wix addresses reported by Search Console redirected to the closest current page.
 - PR #36: market pages strengthened (the companies in each market, related articles, other markets).
 - PR #37: IndexNow after each production build (Bing, Yandex and other engines; not Google).
+- PR #38: more old Wix addresses redirected, Lotus Koru 1/2 fixed, Diamond Marin button to its page.

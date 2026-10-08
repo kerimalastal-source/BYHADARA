@@ -7,6 +7,8 @@ const image = (file: string) => `/images/insights/${file}.jpg`;
  * no Turkish edition, so Turkish readers are sent to English.
  */
 const videoTourPage = (arabic: boolean) => `${site.realEstate}${arabic ? '/ar' : ''}/video-tour`;
+const diamondMarinPage = (arabic: boolean) =>
+  `${site.realEstate}${arabic ? '/ar' : ''}/projects/diamond-marin`;
 /** Group and company news. Facts come from the companies' own pages and verified event sources. */
 export const news: Article[] = [
   {
@@ -438,7 +440,7 @@ export const news: Article[] = [
   },
   {
     // Project facts from the İkinci BYHADARA real estate site (projects.ts, "diamond-marin").
-    // The project is not yet on hadararealestate.com, so the call to action leads to Contact.
+    // Its call to action opens the project page on hadararealestate.com (English for Turkish).
     slug: 'diamond-marin-launch',
     category: 'real-estate',
     status: 'published',
@@ -477,10 +479,10 @@ export const news: Article[] = [
           },
         ],
         cta: {
-          title: 'Ask about Diamond Marin',
-          text: 'Our team in Istanbul will be glad to share the project details and answer your questions.',
-          label: 'Contact us',
-          href: '/en/contact',
+          title: 'Discover Diamond Marin',
+          text: 'Floor plans, the full gallery and the project details are on the HADARA Real Estate website.',
+          label: 'View the project',
+          href: diamondMarinPage(false),
         },
       },
       ar: {
@@ -512,10 +514,10 @@ export const news: Article[] = [
           },
         ],
         cta: {
-          title: 'استفسر عن دايموند مارين',
-          text: 'يسعد فريقنا في إسطنبول بمشاركتك تفاصيل المشروع والإجابة عن استفساراتك.',
-          label: 'تواصل معنا',
-          href: '/ar/contact',
+          title: 'اكتشف دايموند مارين',
+          text: 'المخططات والمعرض الكامل وتفاصيل المشروع على موقع حضارة العقارية.',
+          label: 'شاهد المشروع',
+          href: diamondMarinPage(true),
         },
       },
       tr: {
@@ -546,10 +548,10 @@ export const news: Article[] = [
           },
         ],
         cta: {
-          title: 'Diamond Marin hakkında bilgi alın',
-          text: 'İstanbul’daki ekibimiz proje detaylarını paylaşmaktan ve sorularınızı yanıtlamaktan memnuniyet duyar.',
-          label: 'Bize ulaşın',
-          href: '/tr/contact',
+          title: 'Diamond Marin’i keşfedin',
+          text: 'Kat planları, tüm görseller ve proje detayları HADARA Real Estate web sitesinde (İngilizce).',
+          label: 'Projeyi inceleyin',
+          href: diamondMarinPage(false),
         },
       },
     },
