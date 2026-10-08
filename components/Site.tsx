@@ -212,21 +212,32 @@ export function Partners({ locale }: { locale: Locale }) {
     </section>
   );
 }
-export function Markets({ locale, compact = false }: { locale: Locale; compact?: boolean }) {
+export function Markets({
+  locale,
+  compact = false,
+  except,
+}: {
+  locale: Locale;
+  compact?: boolean;
+  /** Market left out, on that market's own page. */
+  except?: (typeof marketIds)[number];
+}) {
   const d = dictionary(locale);
   return (
-    <div className={`markets-grid${compact ? ' compact' : ''}`}>
-      {d.market.map((m, i) => (
-        <Link key={m.name} href={`/${locale}/markets/${marketIds[i]}`} className="market-card">
-          <span className="market-number">0{i + 1}</span>
-          <div className="market-heading">
-            <h3>{m.name}</h3>
-            <Arrow />
-          </div>
-          <p className="market-status">{m.status}</p>
-          {!compact && <p>{m.desc}</p>}
-        </Link>
-      ))}
+    <div className={`markets-grid${compact ? ' compact' : ''}${except ? ' pair' : ''}`}>
+      {d.market.map((m, i) =>
+        marketIds[i] === except ? null : (
+          <Link key={m.name} href={`/${locale}/markets/${marketIds[i]}`} className="market-card">
+            <span className="market-number">0{i + 1}</span>
+            <div className="market-heading">
+              <h3>{m.name}</h3>
+              <Arrow />
+            </div>
+            <p className="market-status">{m.status}</p>
+            {!compact && <p>{m.desc}</p>}
+          </Link>
+        ),
+      )}
     </div>
   );
 }

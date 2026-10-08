@@ -7,7 +7,13 @@ import {
   showcase,
   showcaseUrl,
 } from '@/content/companies';
-import { articleCard, findArticle, publishedArticles, categoryIds } from '@/content/articles';
+import {
+  articleCard,
+  findArticle,
+  marketArticles,
+  publishedArticles,
+  categoryIds,
+} from '@/content/articles';
 import {
   Arrow,
   ArticleCards,
@@ -320,7 +326,8 @@ export function MarketDetail({ locale, id }: { locale: Locale; id: string }) {
   const i = marketIds.indexOf(id as (typeof marketIds)[number]);
   if (i < 0) notFound();
   const d = dictionary(locale),
-    m = d.market[i];
+    m = d.market[i],
+    reading = marketArticles(marketIds[i]);
   return (
     <>
       <PageHero
@@ -346,7 +353,40 @@ export function MarketDetail({ locale, id }: { locale: Locale; id: string }) {
         </div>
       </section>
       <section className="container body-section">
-        <Markets locale={locale} />
+        <Label>{d.groupLabel}</Label>
+        <h2 className="market-companies-title">{m.companiesTitle}</h2>
+        <div className="market-companies">
+          {d.business.map((b, c) => (
+            <Link
+              key={b.name}
+              className="market-company"
+              href={`/${locale}/businesses/${businessIds[c]}`}
+            >
+              <HadaraMark />
+              <span className="company-sector">{b.sector}</span>
+              <h3>{b.name}</h3>
+              <p>{m.companies[c] || b.desc}</p>
+              <span className="company-cta">
+                {d.learn}
+                <Arrow />
+              </span>
+            </Link>
+          ))}
+        </div>
+      </section>
+      {reading.length > 0 && (
+        <section className="container body-section">
+          <h2 className="related-title">{d.related}</h2>
+          <ArticleCards locale={locale} articles={reading} />
+          <Link className="text-link all-insights" href={`/${locale}/insights`}>
+            {d.allInsights}
+            <Arrow />
+          </Link>
+        </section>
+      )}
+      <section className="container body-section">
+        <h2 className="related-title">{d.otherMarkets}</h2>
+        <Markets locale={locale} except={marketIds[i]} />
       </section>
       <FinalCTA locale={locale} />
     </>

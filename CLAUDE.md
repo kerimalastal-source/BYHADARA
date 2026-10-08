@@ -106,6 +106,13 @@ file's prose in English so it stays easy to scan. Last updated 2026-10-08.
   `designServicePath` on the company site (`content/companies.ts`, one line) once the owner gives
   the page; while it is `null` it reads "Request a design consultation" and opens Contact.
 
+- `/markets/{turkiye|gcc|egypt}` (strengthened 2026-10-08 after Search Console held back
+  `/en/markets/turkiye`): hero, strategic interests, then "The group" with a card per company
+  (`market[i].companiesTitle`/`companies`, facts from the company pages and news: Qatar visits,
+  video tours; an empty line falls back to the company's general `desc`, as on Egypt, where the
+  group has no activity yet), three related articles (`marketArticles()` in `content/articles.ts`)
+  and the other two markets. About 330 words each instead of 150.
+
 ## Contact form (all forms on the site)
 
 - One `ContactForm` on `/contact`, `/inquiries/investment` and `/inquiries/partnership` (topic
@@ -382,3 +389,4 @@ file's prose in English so it stays easy to scan. Last updated 2026-10-08.
 - PR #33: news "Istanbul, one video call away" and a news section on the homepage.
 - PR #34: no Telegram alerts for likely automated visits (data-center towns, same-page bursts).
 - PR #35: old Wix addresses reported by Search Console redirected to the closest current page.
+- PR #36: market pages strengthened (the companies in each market, related articles, other markets).

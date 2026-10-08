@@ -1,4 +1,4 @@
-import type { Locale } from './site';
+import type { Locale, marketIds } from './site';
 import type { CompanyId } from './companies';
 import { news } from './articles/news';
 import { realEstate } from './articles/real-estate';
@@ -52,6 +52,23 @@ export function latestNews(count = 3) {
   return publishedArticles()
     .filter((a) => news.includes(a))
     .slice(0, count);
+}
+/** Guides and news shown on each market page, in this order (unpublished ones are skipped). */
+const marketReading: Record<(typeof marketIds)[number], string[]> = {
+  turkiye: [
+    'buying-property-in-turkiye',
+    'western-istanbul-beylikduzu-buyukcekmece',
+    'turkiye-hub-for-hotel-textiles',
+  ],
+  gcc: ['hospitality-qatar-2026', 'cityscape-qatar-2026', 'video-tour-launch'],
+  egypt: [
+    'video-tour-launch',
+    'turkish-citizenship-through-real-estate',
+    'turkiye-hub-for-hotel-textiles',
+  ],
+};
+export function marketArticles(market: (typeof marketIds)[number]) {
+  return marketReading[market].map(findArticle).filter((a): a is Article => a !== undefined);
 }
 export function findArticle(slug: string) {
   return publishedArticles().find((a) => a.slug === slug);

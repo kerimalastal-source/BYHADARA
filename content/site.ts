@@ -146,6 +146,11 @@ export const dictionaries = {
         interest:
           'Develop existing businesses, deepen local relationships, and explore property and hospitality opportunities.',
         sectors: 'Real estate development · Hospitality supply',
+        companiesTitle: 'Both companies are based in Istanbul.',
+        companies: [
+          'Founded in Istanbul in 2014: luxury villas and residential projects in western Istanbul, from Beylikdüzü to the Marmara coast, with architectural and engineering design.',
+          'Hotel linen, towels, bathrobes and guest essentials, sourced from trusted manufacturing partners across Türkiye.',
+        ],
       },
       {
         name: 'GCC Markets',
@@ -154,6 +159,11 @@ export const dictionaries = {
         interest:
           'Build relationships with hospitality buyers, distributors, suppliers, and regional business development partners.',
         sectors: 'Hospitality supply · Business development',
+        companiesTitle: 'Hotels and investors across the Gulf.',
+        companies: [
+          'Introduces its Istanbul residential projects to investors in Qatar and across the Gulf, in person and through private video tours in Arabic, English and Turkish.',
+          'Supplies 3★–5★ hotels and resorts in the Gulf region with textiles and guest room essentials made in Türkiye.',
+        ],
       },
       {
         name: 'Egypt',
@@ -162,6 +172,8 @@ export const dictionaries = {
         interest:
           'Explore market knowledge, potential partners, and opportunities that align with the group’s growth direction.',
         sectors: 'Commercial relationships · Business development',
+        companiesTitle: 'What our companies bring.',
+        companies: ['', ''],
       },
     ],
     vision: 'OUR VISION',
@@ -313,6 +325,7 @@ export const dictionaries = {
     },
     targetMarkets: 'Market focus',
     strategicInterest: 'Strategic interests',
+    otherMarkets: 'Other markets',
     investmentTitle: 'Explore investment\nopportunities.',
     partnershipFormTitle: 'Become a\nstrategic partner.',
     formIntro:
@@ -502,6 +515,11 @@ export const dictionaries = {
         desc: 'إسطنبول مقر المجموعة وقاعدة عملياتها الرئيسية، ومنها ننطلق في أنشطة العقارات وتوريد مستلزمات الضيافة.',
         interest: 'تطوير أعمالنا الحالية وتعميق العلاقات المحلية واستكشاف فرص العقارات والضيافة.',
         sectors: 'التطوير العقاري · توريد مستلزمات الضيافة',
+        companiesTitle: 'مقر الشركتين في إسطنبول.',
+        companies: [
+          'تأسست في إسطنبول عام 2014: فلل فاخرة ومشاريع سكنية في غرب إسطنبول، من بيليكدوزو إلى ساحل مرمرة، إلى جانب التصميم المعماري والهندسي.',
+          'بياضات فندقية ومناشف وأردية حمام ومستلزمات ضيوف، من شركاء تصنيع موثوقين في أنحاء تركيا.',
+        ],
       },
       {
         name: 'أسواق الخليج',
@@ -510,6 +528,11 @@ export const dictionaries = {
         interest:
           'بناء علاقات مع مشتري قطاع الضيافة والموزعين والموردين وشركاء تطوير الأعمال الإقليميين.',
         sectors: 'توريد مستلزمات الضيافة · تطوير الأعمال',
+        companiesTitle: 'فنادق ومستثمرون في أنحاء الخليج.',
+        companies: [
+          'تعرّف المستثمرين في قطر ودول الخليج بمشاريعها السكنية في إسطنبول، وجهاً لوجه وعبر جولات فيديو خاصة بالعربية والإنجليزية والتركية.',
+          'تورّد للفنادق والمنتجعات من فئة 3 إلى 5 نجوم في منطقة الخليج منسوجات ومستلزمات غرف مصنوعة في تركيا.',
+        ],
       },
       {
         name: 'مصر',
@@ -518,6 +541,8 @@ export const dictionaries = {
         interest:
           'تعميق المعرفة بالسوق واستكشاف الشركاء المحتملين والفرص المتوافقة مع توجه المجموعة.',
         sectors: 'العلاقات التجارية · تطوير الأعمال',
+        companiesTitle: 'ما تقدّمه شركتانا.',
+        companies: ['', ''],
       },
     ],
     vision: 'رؤيتنا',
@@ -661,6 +686,7 @@ export const dictionaries = {
     },
     targetMarkets: 'الأسواق المستهدفة',
     strategicInterest: 'الاهتمامات الاستراتيجية',
+    otherMarkets: 'أسواق أخرى',
     investmentTitle: 'استكشف الفرص\nالاستثمارية.',
     partnershipFormTitle: 'كن شريكاً\nاستراتيجياً.',
     formIntro:
@@ -856,6 +882,11 @@ export const dictionaries = {
         interest:
           'Mevcut işletmeleri geliştirmek, yerel ilişkileri derinleştirmek, gayrimenkul ve konaklama fırsatlarını değerlendirmek.',
         sectors: 'Gayrimenkul geliştirme · Konaklama tedariki',
+        companiesTitle: 'İki şirketimiz de İstanbul merkezli.',
+        companies: [
+          '2014’te İstanbul’da kuruldu: Beylikdüzü’nden Marmara kıyısına, batı İstanbul’da lüks villalar ve konut projeleri, mimari ve mühendislik tasarımıyla birlikte.',
+          'Türkiye genelindeki güvenilir üretim ortaklarından otel tekstili, havlu, bornoz ve misafir ürünleri.',
+        ],
       },
       {
         name: 'Körfez Pazarları',
@@ -864,6 +895,11 @@ export const dictionaries = {
         interest:
           'Konaklama alıcıları, distribütörler, tedarikçiler ve bölgesel iş geliştirme ortaklarıyla ilişkiler kurmak.',
         sectors: 'Konaklama tedariki · İş geliştirme',
+        companiesTitle: 'Körfez’de oteller ve yatırımcılar.',
+        companies: [
+          'İstanbul’daki konut projelerini Katar ve Körfez’deki yatırımcılara yüz yüze ve Arapça, İngilizce, Türkçe özel video turlarıyla tanıtıyor.',
+          'Körfez bölgesindeki 3★–5★ otel ve tatil köylerine Türkiye’de üretilen tekstil ve oda ürünleri tedarik ediyor.',
+        ],
       },
       {
         name: 'Mısır',
@@ -872,6 +908,8 @@ export const dictionaries = {
         interest:
           'Pazar bilgisini, potansiyel ortakları ve grubun büyüme yönüyle uyumlu fırsatları araştırmak.',
         sectors: 'Ticari ilişkiler · İş geliştirme',
+        companiesTitle: 'Şirketlerimizin katkısı.',
+        companies: ['', ''],
       },
     ],
     vision: 'VİZYONUMUZ',
@@ -1023,6 +1061,7 @@ export const dictionaries = {
     },
     targetMarkets: 'Pazar odağı',
     strategicInterest: 'Stratejik ilgi alanları',
+    otherMarkets: 'Diğer pazarlar',
     investmentTitle: 'Yatırım fırsatlarını\nkeşfedin.',
     partnershipFormTitle: 'Stratejik iş\nortağımız olun.',
     formIntro:
