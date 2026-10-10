@@ -47,14 +47,14 @@ export const dictionaries = {
     location: 'ISTANBUL, TÜRKİYE · INTERNATIONAL PERSPECTIVE',
     hero: ['Building Value.', 'Connecting Markets.'],
     intro:
-      'The Istanbul-based group behind HADARA Real Estate, developing residences in Istanbul since 2014, and HADARA Hospitality, supplying hotels across the Gulf and Europe from Türkiye.',
+      'The Istanbul-based group behind HADARA Real Estate, a real estate development and marketing partner in Istanbul since 2014, and HADARA Hospitality, supplying hotels across the Gulf and Europe from Türkiye.',
     explore: 'Explore our businesses',
     discover: 'Discover our group',
     scroll: 'A shared vision. A world of opportunity.',
     who: 'WHO WE ARE',
     whoTitle: 'Rooted in Istanbul.\nLooking beyond borders.',
     whoText:
-      'BYHADARA Group brings together two specialized companies with a shared commitment to sustainable growth: HADARA Real Estate, developing residences in Istanbul, and HADARA Hospitality, supplying hotels in the Gulf and Europe.',
+      'BYHADARA Group brings together two specialized companies with a shared commitment to sustainable growth: HADARA Real Estate, developing and marketing residences in Istanbul, and HADARA Hospitality, supplying hotels in the Gulf and Europe.',
     whoMore:
       'We combine local market understanding with an international perspective to develop our businesses, explore new opportunities, and build lasting commercial relationships.',
     businesses: 'OUR BUSINESSES',
@@ -79,18 +79,18 @@ export const dictionaries = {
     business: [
       {
         name: 'HADARA Real Estate',
-        sector: 'Real Estate Development',
-        desc: 'Luxury villas and considered residential developments in Istanbul, created for modern living and long-term value.',
+        sector: 'Real Estate Development & Marketing',
+        desc: 'Developer of Marmara Haven Villa and marketing partner for selected residential projects by leading Istanbul developers.',
         detail:
-          'HADARA Real Estate is an Istanbul-based developer of luxury villas and high-quality residential projects. Since 2014 it has combined elegant design, sustainable construction and premium living environments for families and investors.',
+          'HADARA Real Estate is an Istanbul-based real estate company founded in 2014. It developed Marmara Haven Villa, a private villa on the Marmara coast, and is the marketing partner for residential projects by other developers, such as Lotus Yapı Proje, presenting them to families and investors from Türkiye and abroad.',
         facts: [
           ['2014', 'Founded in Istanbul'],
-          ['3', 'Signature developments'],
-          ['3', 'Regional partnerships'],
+          ['1', 'Own development: Marmara Haven Villa'],
+          ['10', 'Partner developers’ projects it markets'],
         ],
         areas: [
-          'Luxury villas',
-          'Residential project development',
+          'Luxury villa development',
+          'Marketing of partner projects',
           'Architectural services',
           'Building materials export',
         ],
@@ -145,10 +145,10 @@ export const dictionaries = {
         desc: 'Istanbul is our headquarters and primary operating base, supporting our real estate and hospitality supply activities.',
         interest:
           'Develop existing businesses, deepen local relationships, and explore property and hospitality opportunities.',
-        sectors: 'Real estate development · Hospitality supply',
+        sectors: 'Real estate development & marketing · Hospitality supply',
         companiesTitle: 'Both companies are based in Istanbul.',
         companies: [
-          'Founded in Istanbul in 2014: luxury villas and residential projects in western Istanbul, from Beylikdüzü to the Marmara coast, with architectural and engineering design.',
+          'Founded in Istanbul in 2014: developer of Marmara Haven Villa on the Marmara coast and marketing partner for residential projects in western Istanbul, with architectural and engineering design.',
           'Hotel linen, towels, bathrobes and guest essentials, sourced from trusted manufacturing partners across Türkiye.',
         ],
       },
@@ -161,7 +161,7 @@ export const dictionaries = {
         sectors: 'Hospitality supply · Business development',
         companiesTitle: 'Hotels and investors across the Gulf.',
         companies: [
-          'Introduces its Istanbul residential projects to investors in Qatar and across the Gulf, in person and through private video tours in Arabic, English and Turkish.',
+          'Introduces the Istanbul residential projects it develops and markets to investors in Qatar and across the Gulf, in person and through private video tours in Arabic, English and Turkish.',
           'Supplies 3★–5★ hotels and resorts in the Gulf region with textiles and guest room essentials made in Türkiye.',
         ],
       },
@@ -283,7 +283,7 @@ export const dictionaries = {
     design: {
       label: 'ARCHITECTURE & ENGINEERING',
       title: 'Turning ideas into well-considered, buildable spaces.',
-      text: 'Alongside developing and marketing residential projects, HADARA Real Estate offers architectural design, engineering consultancy and interior design for residential, commercial and hospitality projects in Türkiye and international markets.',
+      text: 'Alongside its own developments and the marketing of partner projects, HADARA Real Estate offers architectural design, engineering consultancy and interior design for residential, commercial and hospitality projects in Türkiye and international markets.',
       clientsLabel: 'Who we work with',
       clients: [
         'Investors',
@@ -419,14 +419,14 @@ export const dictionaries = {
     location: 'إسطنبول، تركيا · رؤية دولية',
     hero: ['نبني القيمة.', 'نربط الأسواق.'],
     intro:
-      'مجموعة مقرها إسطنبول تضم حضارة العقارية، التي تطوّر المشاريع السكنية في إسطنبول منذ 2014، وحضارة للضيافة، التي تورّد مستلزمات الفنادق من تركيا إلى الخليج وأوروبا.',
+      'مجموعة مقرها إسطنبول تضم حضارة العقارية، شريك التطوير والتسويق العقاري في إسطنبول منذ 2014، وحضارة للضيافة، التي تورّد مستلزمات الفنادق من تركيا إلى الخليج وأوروبا.',
     explore: 'اكتشف شركاتنا',
     discover: 'تعرّف على المجموعة',
     scroll: 'رؤية مشتركة. وآفاق واسعة.',
     who: 'من نحن',
     whoTitle: 'من إسطنبول.\nإلى آفاق أوسع.',
     whoText:
-      'تجمع مجموعة باي حضارة شركتين متخصصتين يوحّدهما الالتزام بالنمو المستدام: حضارة العقارية للتطوير العقاري في إسطنبول، وحضارة للضيافة لتوريد مستلزمات الفنادق في الخليج وأوروبا.',
+      'تجمع مجموعة باي حضارة شركتين متخصصتين يوحّدهما الالتزام بالنمو المستدام: حضارة العقارية للتطوير والتسويق العقاري في إسطنبول، وحضارة للضيافة لتوريد مستلزمات الفنادق في الخليج وأوروبا.',
     whoMore:
       'نجمع بين فهم السوق المحلي والرؤية الدولية لتطوير أعمالنا، واستكشاف الفرص، وبناء علاقات تجارية طويلة الأمد.',
     businesses: 'شركاتنا',
@@ -450,18 +450,18 @@ export const dictionaries = {
     business: [
       {
         name: 'حضارة العقارية',
-        sector: 'التطوير العقاري',
-        desc: 'فلل فاخرة ومشاريع سكنية مدروسة في إسطنبول، تُصمَّم للحياة العصرية والقيمة طويلة الأمد.',
+        sector: 'التطوير والتسويق العقاري',
+        desc: 'مطوّرة فيلا Marmara Haven، وشريك تسويق لمشاريع سكنية مختارة من كبار المطوّرين في إسطنبول.',
         detail:
-          'حضارة العقارية مطوّر عقاري مقره إسطنبول، متخصص في الفلل الفاخرة والمشاريع السكنية عالية الجودة. منذ عام 2014 تجمع بين التصميم الأنيق والبناء المستدام وبيئات العيش الراقية للعائلات والمستثمرين.',
+          'حضارة العقارية شركة عقارية مقرها إسطنبول، تأسست عام 2014. طوّرت فيلا Marmara Haven، وهي فيلا خاصة على ساحل مرمرة، وهي شريك تسويق لمشاريع سكنية من تطوير شركات أخرى، مثل لوتس يابي بروجي، تقدّمها للعائلات والمستثمرين من تركيا والعالم.',
         facts: [
           ['2014', 'تأسست في إسطنبول'],
-          ['3', 'مشاريع مميزة'],
-          ['3', 'شراكات إقليمية'],
+          ['1', 'من تطويرها: فيلا Marmara Haven'],
+          ['10', 'مشاريع لمطوّرين شركاء تسوّقها'],
         ],
         areas: [
-          'الفلل الفاخرة',
-          'تطوير المشاريع السكنية',
+          'تطوير الفلل الفاخرة',
+          'تسويق مشاريع الشركاء',
           'الخدمات المعمارية',
           'تصدير مواد البناء',
         ],
@@ -515,10 +515,10 @@ export const dictionaries = {
         status: 'مركز أعمالنا',
         desc: 'إسطنبول مقر المجموعة وقاعدة عملياتها الرئيسية، ومنها ننطلق في أنشطة العقارات وتوريد مستلزمات الضيافة.',
         interest: 'تطوير أعمالنا الحالية وتعميق العلاقات المحلية واستكشاف فرص العقارات والضيافة.',
-        sectors: 'التطوير العقاري · توريد مستلزمات الضيافة',
+        sectors: 'التطوير والتسويق العقاري · توريد مستلزمات الضيافة',
         companiesTitle: 'مقر الشركتين في إسطنبول.',
         companies: [
-          'تأسست في إسطنبول عام 2014: فلل فاخرة ومشاريع سكنية في غرب إسطنبول، من بيليكدوزو إلى ساحل مرمرة، إلى جانب التصميم المعماري والهندسي.',
+          'تأسست في إسطنبول عام 2014: مطوّرة فيلا Marmara Haven على ساحل مرمرة، وشريك تسويق لمشاريع سكنية في غرب إسطنبول، إلى جانب التصميم المعماري والهندسي.',
           'بياضات فندقية ومناشف وأردية حمام ومستلزمات ضيوف، من شركاء تصنيع موثوقين في أنحاء تركيا.',
         ],
       },
@@ -531,7 +531,7 @@ export const dictionaries = {
         sectors: 'توريد مستلزمات الضيافة · تطوير الأعمال',
         companiesTitle: 'فنادق ومستثمرون في أنحاء الخليج.',
         companies: [
-          'تعرّف المستثمرين في قطر ودول الخليج بمشاريعها السكنية في إسطنبول، وجهاً لوجه وعبر جولات فيديو خاصة بالعربية والإنجليزية والتركية.',
+          'تعرّف المستثمرين في قطر ودول الخليج بالمشاريع السكنية التي تطوّرها وتسوّقها في إسطنبول، وجهاً لوجه وعبر جولات فيديو خاصة بالعربية والإنجليزية والتركية.',
           'تورّد للفنادق والمنتجعات من فئة 3 إلى 5 نجوم في منطقة الخليج منسوجات ومستلزمات غرف مصنوعة في تركيا.',
         ],
       },
@@ -651,7 +651,7 @@ export const dictionaries = {
     design: {
       label: 'التصميم المعماري والهندسي',
       title: 'نحوّل الأفكار إلى مساحات مدروسة وقابلة للتنفيذ.',
-      text: 'إلى جانب تطوير المشاريع السكنية وتسويقها، تقدّم حضارة العقارية خدمات التصميم المعماري والاستشارات الهندسية والتصميم الداخلي للمشاريع السكنية والتجارية والفندقية في تركيا والأسواق الدولية.',
+      text: 'إلى جانب مشاريعها الخاصة وتسويق مشاريع شركائها، تقدّم حضارة العقارية خدمات التصميم المعماري والاستشارات الهندسية والتصميم الداخلي للمشاريع السكنية والتجارية والفندقية في تركيا والأسواق الدولية.',
       clientsLabel: 'مع من نعمل',
       clients: [
         'المستثمرون',
@@ -786,14 +786,14 @@ export const dictionaries = {
     location: 'İSTANBUL, TÜRKİYE · ULUSLARARASI BAKIŞ',
     hero: ['Değer İnşa Ediyoruz.', 'Pazarları Buluşturuyoruz.'],
     intro:
-      'İstanbul merkezli grubumuz, 2014’ten bu yana İstanbul’da konut projeleri geliştiren HADARA Real Estate’i ve Türkiye’den Körfez ile Avrupa’daki otellere tedarik sağlayan HADARA Hospitality’yi bir araya getirir.',
+      'İstanbul merkezli grubumuz, 2014’ten bu yana İstanbul’da gayrimenkul geliştirme ve pazarlama ortağı olan HADARA Real Estate’i ve Türkiye’den Körfez ile Avrupa’daki otellere tedarik sağlayan HADARA Hospitality’yi bir araya getirir.',
     explore: 'Şirketlerimizi keşfedin',
     discover: 'Grubumuzu tanıyın',
     scroll: 'Ortak bir vizyon. Yeni fırsatlar.',
     who: 'BİZ KİMİZ',
     whoTitle: 'İstanbul’dan güç alıyor.\nSınırların ötesine bakıyoruz.',
     whoText:
-      'BYHADARA Group, sürdürülebilir büyüme anlayışını paylaşan iki uzman şirketi bir araya getirir: İstanbul’da konut geliştiren HADARA Real Estate ve Körfez ile Avrupa’daki otellere tedarik sağlayan HADARA Hospitality.',
+      'BYHADARA Group, sürdürülebilir büyüme anlayışını paylaşan iki uzman şirketi bir araya getirir: İstanbul’da konut geliştiren ve pazarlayan HADARA Real Estate ve Körfez ile Avrupa’daki otellere tedarik sağlayan HADARA Hospitality.',
     whoMore:
       'İşletmelerimizi geliştirmek, yeni fırsatları değerlendirmek ve kalıcı ticari ilişkiler kurmak için yerel pazar bilgisini uluslararası bir bakış açısıyla birleştiriyoruz.',
     businesses: 'ŞİRKETLERİMİZ',
@@ -817,18 +817,18 @@ export const dictionaries = {
     business: [
       {
         name: 'HADARA Real Estate',
-        sector: 'Gayrimenkul Geliştirme',
-        desc: 'İstanbul’da modern yaşam ve uzun vadeli değer için tasarlanan lüks villalar ve özenli konut projeleri.',
+        sector: 'Gayrimenkul Geliştirme ve Pazarlama',
+        desc: 'Marmara Haven Villa’nın geliştiricisi; İstanbul’un önde gelen geliştiricilerinin seçkin konut projelerinin pazarlama ortağı.',
         detail:
-          'HADARA Real Estate, İstanbul merkezli bir lüks villa ve nitelikli konut projeleri geliştiricisidir. 2014’ten bu yana aileler ve yatırımcılar için zarif tasarımı, sürdürülebilir yapıyı ve seçkin yaşam alanlarını bir araya getirir.',
+          'HADARA Real Estate, 2014’te kurulan İstanbul merkezli bir gayrimenkul şirketidir. Marmara kıyısındaki özel bir villa olan Marmara Haven Villa’yı geliştirdi; Lotus Yapı Proje gibi başka geliştiricilerin konut projelerinin pazarlama ortağı olarak bu projeleri Türkiye’den ve yurt dışından ailelere ve yatırımcılara sunar.',
         facts: [
           ['2014', 'İstanbul’da kuruldu'],
-          ['3', 'Özel proje'],
-          ['3', 'Bölgesel ortaklık'],
+          ['1', 'Kendi projesi: Marmara Haven Villa'],
+          ['10', 'Pazarladığı ortak geliştirici projesi'],
         ],
         areas: [
-          'Lüks villalar',
-          'Konut projesi geliştirme',
+          'Lüks villa geliştirme',
+          'Ortak projelerin pazarlanması',
           'Mimari hizmetler',
           'Yapı malzemeleri ihracatı',
         ],
@@ -883,10 +883,10 @@ export const dictionaries = {
         desc: 'İstanbul, grubun merkezi ve gayrimenkul ile konaklama tedariki faaliyetlerinin ana üssüdür.',
         interest:
           'Mevcut işletmeleri geliştirmek, yerel ilişkileri derinleştirmek, gayrimenkul ve konaklama fırsatlarını değerlendirmek.',
-        sectors: 'Gayrimenkul geliştirme · Konaklama tedariki',
+        sectors: 'Gayrimenkul geliştirme ve pazarlama · Konaklama tedariki',
         companiesTitle: 'İki şirketimiz de İstanbul merkezli.',
         companies: [
-          '2014’te İstanbul’da kuruldu: Beylikdüzü’nden Marmara kıyısına, batı İstanbul’da lüks villalar ve konut projeleri, mimari ve mühendislik tasarımıyla birlikte.',
+          '2014’te İstanbul’da kuruldu: Marmara kıyısındaki Marmara Haven Villa’nın geliştiricisi ve batı İstanbul’daki konut projelerinin pazarlama ortağı; mimari ve mühendislik tasarımıyla birlikte.',
           'Türkiye genelindeki güvenilir üretim ortaklarından otel tekstili, havlu, bornoz ve misafir ürünleri.',
         ],
       },
@@ -899,7 +899,7 @@ export const dictionaries = {
         sectors: 'Konaklama tedariki · İş geliştirme',
         companiesTitle: 'Körfez’de oteller ve yatırımcılar.',
         companies: [
-          'İstanbul’daki konut projelerini Katar ve Körfez’deki yatırımcılara yüz yüze ve Arapça, İngilizce, Türkçe özel video turlarıyla tanıtıyor.',
+          'İstanbul’da geliştirdiği ve pazarladığı konut projelerini Katar ve Körfez’deki yatırımcılara yüz yüze ve Arapça, İngilizce, Türkçe özel video turlarıyla tanıtıyor.',
           'Körfez bölgesindeki 3★–5★ otel ve tatil köylerine Türkiye’de üretilen tekstil ve oda ürünleri tedarik ediyor.',
         ],
       },
@@ -1021,7 +1021,7 @@ export const dictionaries = {
     design: {
       label: 'MİMARLIK VE MÜHENDİSLİK',
       title: 'Fikirleri iyi düşünülmüş, uygulanabilir mekânlara dönüştürüyoruz.',
-      text: 'HADARA Real Estate, konut projeleri geliştirip pazarlamanın yanı sıra Türkiye’de ve uluslararası pazarlarda konut, ticari ve konaklama projeleri için mimari tasarım, mühendislik danışmanlığı ve iç mimari hizmetleri sunar.',
+      text: 'HADARA Real Estate, kendi projeleri ve ortak projelerin pazarlamasının yanı sıra Türkiye’de ve uluslararası pazarlarda konut, ticari ve konaklama projeleri için mimari tasarım, mühendislik danışmanlığı ve iç mimari hizmetleri sunar.',
       clientsLabel: 'Kimlerle çalışıyoruz',
       clients: [
         'Yatırımcılar',
