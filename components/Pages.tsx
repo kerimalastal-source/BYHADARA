@@ -134,7 +134,37 @@ export function BusinessDetail({ locale, id }: { locale: Locale; id: string }) {
     sibling = businessIds[1 - index],
     other = d.business[1 - index],
     url = companyUrl(company, locale),
-    newTab = <span className="sr-only"> {d.newTab}</span>;
+    newTab = <span className="sr-only"> {d.newTab}</span>,
+    projects = showcase[company][locale],
+    // HADARA Real Estate's own development first, then the projects it markets for their developers.
+    own = company === 'real-estate' ? projects.filter((p) => !p.developer) : [],
+    listed = projects.filter((p) => !own.includes(p)),
+    Name = own.length > 0 ? 'h4' : 'h3';
+  const card = (item: (typeof projects)[number]) => (
+    <a
+      key={item.slug}
+      className="showcase-card"
+      href={showcaseUrl(company, locale, item.slug)}
+      {...external}
+    >
+      <Photo name={item.image} alt="" sizes="(max-width: 640px) 100vw, 50vw" />
+      <span className="showcase-body">
+        <span className="showcase-tag">{item.tag}</span>
+        <Name>{item.name}</Name>
+        {item.developer && (
+          <span className="showcase-developer">
+            {d.developer}: <bdi>{item.developer}</bdi>
+          </span>
+        )}
+        {item.facts.length > 0 && <span className="showcase-facts">{item.facts.join(' · ')}</span>}
+        <span className="company-cta">
+          {b.showcaseCta}
+          <Arrow />
+        </span>
+      </span>
+      {newTab}
+    </a>
+  );
   return (
     <>
       <section className="company-hero container">
@@ -154,7 +184,6 @@ export function BusinessDetail({ locale, id }: { locale: Locale; id: string }) {
       </section>
       <div className="container">
         <Photo name={b.image} alt={b.alt} className="detail-image" sizes="100vw" priority />
-        {company === 'real-estate' && <p className="image-note">{d.imageNote}</p>}
       </div>
       <section className="container section prose-grid">
         <h2 className="eyebrow">
@@ -195,28 +224,15 @@ export function BusinessDetail({ locale, id }: { locale: Locale; id: string }) {
               {newTab}
             </a>
           </div>
-          <div className={`showcase-grid ${company}`}>
-            {showcase[company][locale].map((item) => (
-              <a
-                key={item.slug}
-                className="showcase-card"
-                href={showcaseUrl(company, locale, item.slug)}
-                {...external}
-              >
-                <Photo name={item.image} alt="" sizes="(max-width: 640px) 100vw, 33vw" />
-                <span className="showcase-tag">{item.tag}</span>
-                <h3>{item.name}</h3>
-                {item.facts.length > 0 && (
-                  <span className="showcase-facts">{item.facts.join(' · ')}</span>
-                )}
-                <span className="company-cta">
-                  {b.showcaseCta}
-                  <Arrow />
-                </span>
-                {newTab}
-              </a>
-            ))}
-          </div>
+          {own.length > 0 && (
+            <>
+              <h3 className="showcase-group">{d.ownDevelopment}</h3>
+              <div className="showcase-feature">{own.map(card)}</div>
+              <h3 className="showcase-group">{d.marketedProjects}</h3>
+            </>
+          )}
+          <div className={`showcase-grid ${company}`}>{listed.map(card)}</div>
+          {company === 'real-estate' && <p className="image-note">{d.imageNote}</p>}
           {company === 'hospitality' && <p className="image-note">{d.productImageNote}</p>}
         </div>
       </section>

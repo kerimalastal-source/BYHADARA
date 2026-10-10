@@ -33,6 +33,16 @@ Insights and news visuals in `public/images/insights/` are unmodified copies of 
 
 HADARA Real Estate imagery (2026-09-26, replacing an Unsplash office tower): the homepage panel uses `public/images/real-estate/lotus-manzara-villa.jpg`, an unmodified copy of `lotus-manzara-beylikduzu/villa-type-a.jpg` from the same repository (Lotus Manzara Beylikdüzü, visualisation by Lotus Yapı Proje), and the company page reuses `insights/lotus-yasam-courtyard.jpg`. Both are credited under the image as visualisations by Lotus Yapı Proje.
 
+Since 2026-10-10 (owner: HADARA Real Estate developed only Marmara Haven Villa and markets the
+other projects), the homepage panel and the company page use
+`public/images/real-estate/marmara-haven-evening.jpg`, HADARA Real Estate's own photograph
+`marmara-haven-villa/exterior-facade.jpg` from the İkinci BYHADARA repository (commit `849cbab`),
+cropped to 1200×800 from y 480 and re-encoded (progressive JPEG q80). The company page's projects
+are self-hosted (no Wix): the villa photo, `insights/lotus-yasam-street.jpg`,
+`insights/diamond-marin-facade.jpg` and `public/images/real-estate/lotus-koru-2.jpg`, an
+unmodified copy of `lotus-koru-2/landscaped-grounds.jpg` (visualisation by Lotus Yapı Proje). The
+partner images are credited under the project grid. `lotus-manzara-villa.jpg` is no longer used.
+
 Further insights visuals (2026-09-26), unmodified unless noted:
 
 | Local asset                     | Source                                                                                                                           | Credit shown     |
