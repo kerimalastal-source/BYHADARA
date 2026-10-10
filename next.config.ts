@@ -1,4 +1,5 @@
 import type { NextConfig } from 'next';
+import { allLocales, locales } from './content/locales';
 const config: NextConfig = {
   poweredByHeader: false,
   images: {
@@ -15,6 +16,9 @@ const config: NextConfig = {
     const realEstate = 'https://www.hadararealestate.com';
     const villa = `${realEstate}/projects/marmara-haven-villa`;
     const to = (source: string, destination: string) => ({ source, destination, permanent: true });
+    // Turkish addresses lead to English while Turkish is switched off (content/locales.ts).
+    const tr = locales.includes('tr') ? 'tr' : 'en';
+    const off = allLocales.filter((l) => !locales.includes(l));
     return [
       to('/post/why-invest-in-real-estate-in-turkey', guide('buying-property-in-turkiye')),
       to('/post/property-taxes-and-fees-in-turkey', guide('buying-property-in-turkiye')),
@@ -50,18 +54,23 @@ const config: NextConfig = {
       to('/marmarahaven', villa),
       to('/tr/marmarahaven', villa),
       to('/beylikduzuliving', `${realEstate}/projects/beylikduzu-living`),
-      to('/tr/beylikduzuliving', '/tr/insights/lotus-yasam-launch'),
+      to('/tr/beylikduzuliving', `/${tr}/insights/lotus-yasam-launch`),
       to('/aboutus', '/en/about'),
-      to('/tr/aboutus', '/tr/about'),
+      to('/tr/aboutus', `/${tr}/about`),
       to('/contactus', '/en/contact'),
-      to('/tr/contactus', '/tr/contact'),
+      to('/tr/contactus', `/${tr}/contact`),
       to('/faq', `${realEstate}/faq`),
       to('/tr/faq', `${realEstate}/faq`),
-      to('/tr/post/:slug*', '/tr/insights'),
+      to('/tr/post/:slug*', `/${tr}/insights`),
       to('/ru-ru/turkishcitizenship', guide('turkish-citizenship-through-real-estate')),
       to('/ru-ru/:path*', '/en'),
       to('/en-us/:path*', '/en'),
       to('/ar-sa/:path*', '/ar'),
+      // A switched-off language keeps its content but its pages open in English, temporarily.
+      ...off.flatMap((l) => [
+        { source: `/${l}`, destination: '/en', permanent: false },
+        { source: `/${l}/:path*`, destination: '/en/:path*', permanent: false },
+      ]),
     ];
   },
   async headers() {

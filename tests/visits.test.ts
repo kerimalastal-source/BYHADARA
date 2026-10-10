@@ -207,7 +207,9 @@ const settle = () => new Promise((resolve) => setTimeout(resolve, 20));
 test('only public pages of the website are counted', () => {
   assert.equal(publicPageLocale('/en'), 'en');
   assert.equal(publicPageLocale('/ar/businesses/real-estate'), 'ar');
-  assert.equal(publicPageLocale('/tr/contact/thank-you'), 'tr');
+  assert.equal(publicPageLocale('/ar/contact/thank-you'), 'ar');
+  // Turkish is switched off, so its old addresses are not pages any more.
+  assert.equal(publicPageLocale('/tr/contact'), null);
   const article = publishedArticles()[0];
   assert.equal(publicPageLocale(`/en/insights/${article.slug}`), 'en');
   for (const path of [
@@ -535,8 +537,8 @@ test('an alert the team deleted is not updated, but request pages still alert', 
   console.error = (message: string) => logged.push(message);
   try {
     const { sent, edits } = services({ editStatus: 400 });
-    for (const path of ['/tr', '/tr/contact']) {
-      assert.equal((await POST(beacon({ sessionId, path, locale: 'tr' }))).status, 204);
+    for (const path of ['/ar', '/ar/contact']) {
+      assert.equal((await POST(beacon({ sessionId, path, locale: 'ar' }))).status, 204);
       await settle();
     }
     assert.equal(edits().length, 1);

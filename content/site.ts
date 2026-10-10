@@ -1,6 +1,6 @@
 import { locales, navPaths, type Locale } from './locales';
 import { notFoundCopy } from './not-found';
-export { locales, isLocale, navPaths, type Locale } from './locales';
+export { allLocales, locales, isLocale, navPaths, type Locale } from './locales';
 export const paths = [
   '',
   'about',

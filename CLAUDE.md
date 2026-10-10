@@ -38,8 +38,15 @@ file's prose in English so it stays easy to scan. Last updated 2026-10-10.
   deployments are off for `claude/**` branches (`vercel.json`, `git.deploymentEnabled`, owner's
   choice 2026-09-28, to save the daily build limit); other branches still get
   `byhadara-git-<branch>-hadara1.vercel.app`.
-- **Locales**: `en`, `ar` (RTL), `tr`; 17 routes × 3 = 51 pages plus 3 per published article, all
-  static. `/` 308-redirects to `/en`.
+- **Locales**: `en` and `ar` (RTL) published; 17 routes × 2 = 34 pages plus 2 per published
+  article, all static. `/` 308-redirects to `/en`. **Turkish is switched off, not deleted**
+  (owner, 2026-10-10, after being told the Turkish pages brought most of the search clicks):
+  `content/locales.ts` has `allLocales` (en, ar, tr: every dictionary, SEO entry and article keeps
+  its Turkish copy, and the unit tests still check it) and `locales` (published: en, ar), which
+  drives static params, the language links, the sitemap, hreflang and visitor tracking.
+  `next.config.ts` sends every `/tr` and `/tr/…` address to the same path in English with a
+  temporary 307. To re-enable Turkish, add `'tr'` back to `locales` (and restore the Turkish paths
+  in `check-routes.mjs` and the browser tests).
 - **Key files**
   - `content/site.ts`: all EN/AR/TR copy (one dictionary per locale; unit tests require identical
     keys), `site` (origin, company URLs, contact email/phone).
@@ -280,7 +287,7 @@ file's prose in English so it stays easy to scan. Last updated 2026-10-10.
   rendered with Playwright from an HTML file opened via `file://` (so local fonts and the photo
   load); re-render them the same way if the brand changes.
 - The insights index is `noindex` and outside the sitemap only while no article is published; the
-  thank-you page is always `noindex` and outside it. Sitemap: 105 URLs with 19 articles.
+  thank-you page is always `noindex` and outside it. Sitemap: 70 URLs with 19 articles (English and Arabic).
 - Canonical origin is `https://www.byhadara.com` (default in `content/site.ts`, `SITE_URL`
   overrides), matching Vercel where the apex redirects to `www`. Keep the two in sync.
 - Google Search Console: Domain property verified by a DNS TXT record
@@ -368,9 +375,9 @@ file's prose in English so it stays easy to scan. Last updated 2026-10-10.
 
 ## Validation and sandbox notes
 
-- Checks: `pnpm typecheck`, `pnpm test` (49 tests), `pnpm build`, then `pnpm start` +
-  `node scripts/check-routes.mjs` (108 pages incl. the articles, links, SEO assertions, 503 from
-  both APIs while unconfigured) and the Playwright suite (18 tests incl. axe and the phone/tablet test). Prettier:
+- Checks: `pnpm typecheck`, `pnpm test` (50 tests), `pnpm build`, then `pnpm start` +
+  `node scripts/check-routes.mjs` (72 pages incl. the articles, links, SEO assertions, 503 from
+  both APIs while unconfigured) and the Playwright suite (16 tests incl. axe and the phone/tablet test). Prettier:
   `pnpm exec prettier --check components content lib app styles tests scripts docs *.md`.
 - The installed `@playwright/test` expects a newer browser than the sandbox has: run with a
   temporary config that sets `launchOptions.executablePath: '/opt/pw-browsers/chromium'` and
@@ -442,3 +449,4 @@ file's prose in English so it stays easy to scan. Last updated 2026-10-10.
 - PR #39: four HADARA Hospitality guides and a "Guides and news" section on the company pages.
 - PR #40: HADARA Real Estate described as developer of Marmara Haven Villa and marketing partner
   for other developers' projects, in all copy, search descriptions and articles.
+- PR #41: Turkish switched off (content kept); `/tr/…` redirects to English.

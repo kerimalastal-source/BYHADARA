@@ -48,7 +48,7 @@ test('representative pages meet automated WCAG checks', async ({ page }) => {
   for (const path of [
     '/en',
     '/ar/inquiries/investment',
-    '/tr/insights',
+    '/en/insights',
     '/ar/insights/lotus-yasam-launch',
     '/ar/businesses/real-estate',
     '/en/markets/gcc',
@@ -87,7 +87,7 @@ test('phones and tablets: no sideways scroll, Contact reachable, comfortable tap
     for (const path of [
       '/en',
       '/ar/contact',
-      '/tr/insights',
+      '/en/insights',
       '/ar/insights/cityscape-qatar-2026',
     ]) {
       await page.goto(path);
