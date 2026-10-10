@@ -1,24 +1,28 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { locales, dictionary, paths } from '../content/site';
+import { allLocales, locales, dictionary, paths } from '../content/site';
 import { articles, publishedArticles } from '../content/articles';
 import { existsSync } from 'node:fs';
 import { metadataFor, pageSeo, structuredData, breadcrumbs } from '../lib/seo';
 import { seo } from '../content/seo';
-test('all 51 corporate pages have localized metadata and equivalent alternates', () => {
+test('Turkish is switched off but its copy is kept', () => {
+  assert.deepEqual(locales, ['en', 'ar']);
+  assert.deepEqual(allLocales, ['en', 'ar', 'tr']);
+});
+test('all 34 published corporate pages have localized metadata and equivalent alternates', () => {
   for (const locale of locales)
     for (const path of paths) {
       const m = metadataFor(locale, path);
       assert.ok(m.title);
       assert.ok(m.description);
       assert.ok(String(m.alternates?.canonical).includes(`/${locale}`));
-      assert.equal(Object.keys(m.alternates?.languages || {}).length, 4);
+      assert.equal(Object.keys(m.alternates?.languages || {}).length, locales.length + 1);
     }
-  assert.equal(locales.length * paths.length, 51);
+  assert.equal(locales.length * paths.length, 34);
 });
 test('translations preserve the complete dictionary structure', () => {
   const keys = Object.keys(dictionary('en')).sort();
-  for (const l of locales) assert.deepEqual(Object.keys(dictionary(l)).sort(), keys);
+  for (const l of allLocales) assert.deepEqual(Object.keys(dictionary(l)).sort(), keys);
 });
 test('no unapproved or future articles are published', () => {
   const published = publishedArticles().length;
@@ -40,7 +44,7 @@ test('no unapproved or future articles are published', () => {
 });
 test('search titles and descriptions are complete, unique and within result limits', () => {
   const titles = new Set<string>();
-  for (const locale of locales)
+  for (const locale of allLocales)
     for (const path of paths) {
       const { title, description } = seo[locale][path];
       assert.ok([...title].length <= 65, `${locale}/${path} title length`);
@@ -53,9 +57,9 @@ test('search titles and descriptions are complete, unique and within result limi
     }
 });
 test('articles are complete in every language, within search limits and use existing images', () => {
-  const titles = new Set(locales.flatMap((l) => paths.map((p) => seo[l][p].title)));
+  const titles = new Set(allLocales.flatMap((l) => paths.map((p) => seo[l][p].title)));
   for (const a of publishedArticles())
-    for (const locale of locales) {
+    for (const locale of allLocales) {
       const t = a.translations[locale];
       const page = pageSeo(locale, `insights/${a.slug}`)!;
       assert.ok([...page.title].length <= 65, `${locale}/${a.slug} title length`);

@@ -26,7 +26,8 @@ const pages = [];
 const links = new Set();
 const titles = new Set();
 let indexable = 0;
-for (const lang of ['en', 'ar', 'tr'])
+// Published languages; Turkish is switched off (content/locales.ts) and redirects to English.
+for (const lang of ['en', 'ar'])
   for (const p of paths) {
     const path = `/${lang}${p ? '/' + p : ''}`;
     const r = await fetch('http://localhost:3000' + path);
@@ -71,12 +72,25 @@ const oldAddresses = {
   '/ru-ru': '/en',
   '/ar-sa': '/ar',
   '/aboutus': '/en/about',
-  '/tr/beylikduzuliving': '/tr/insights/lotus-yasam-launch',
-  '/tr/post/l%C3%BCks-villalar': '/tr/insights',
+  '/tr/beylikduzuliving': '/en/insights/lotus-yasam-launch',
+  '/tr/post/l%C3%BCks-villalar': '/en/insights',
   '/projects/lotus-koru-2': 'https://www.hadararealestate.com/projects/lotus-koru-2',
   '/projects/unknown': '/en/businesses/real-estate',
   '/projects-1/Marmarahavenvilla': 'https://www.hadararealestate.com/projects/marmara-haven-villa',
 };
+for (const [from, to] of [
+  ['/tr', '/en'],
+  ['/tr/about', '/en/about'],
+  ['/tr/insights/diamond-marin-launch', '/en/insights/diamond-marin-launch'],
+]) {
+  const response = await fetch('http://localhost:3000' + from, { redirect: 'manual' });
+  assert.equal(response.status, 307, from);
+  assert.equal(
+    new URL(response.headers.get('location'), 'http://localhost:3000').pathname,
+    to,
+    from,
+  );
+}
 for (const [from, to] of Object.entries(oldAddresses)) {
   const response = await fetch('http://localhost:3000' + from, { redirect: 'manual' });
   assert.equal(response.status, 308, from);
@@ -103,5 +117,6 @@ console.log(
     notFound: 'passed',
     unconfiguredAPIs: 503,
     oldAddresses: 'redirected',
+    turkish: 'switched off, redirects to English',
   }),
 );
