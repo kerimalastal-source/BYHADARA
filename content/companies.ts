@@ -56,51 +56,51 @@ export const showcase: Record<CompanyId, Record<Locale, ShowcaseItem[]>> = {
     en: items(projectImages, {
       'marmara-haven-villa': {
         name: 'Marmara Haven Villa',
-        tag: 'Private villa · Marmara coast',
+        tag: 'Own development · Private villa, Marmara coast',
         facts: ['4 floors', '576 m²', '5 bedrooms', '7 bathrooms'],
       },
       'lotus-yasam': {
         name: 'Lotus Yaşam',
-        tag: 'New residential project · Beylikdüzü, Istanbul',
+        tag: 'Marketing partner · Lotus Yapı Proje, Beylikdüzü',
         facts: ['21,000 m² land', 'Social amenities', 'Delivery 2028'],
       },
       'lotus-koru': {
         name: 'Lotus Koru',
-        tag: 'Residential project · Beylikdüzü, Istanbul',
+        tag: 'Marketing partner · Beylikdüzü, Istanbul',
         facts: ['Modern apartments', 'Delivered project'],
       },
     }),
     ar: items(projectImages, {
       'marmara-haven-villa': {
         name: 'فيلا Marmara Haven',
-        tag: 'فيلا خاصة · ساحل مرمرة',
+        tag: 'من تطوير حضارة · فيلا خاصة، ساحل مرمرة',
         facts: ['4 طوابق', '576 م²', '5 غرف نوم', '7 حمامات'],
       },
       'lotus-yasam': {
         name: 'Lotus Yaşam',
-        tag: 'مشروع سكني جديد · بيليكدوزو، إسطنبول',
+        tag: 'شريك تسويق · لوتس يابي بروجي، بيليكدوزو',
         facts: ['أرض 21,000 م²', 'مرافق اجتماعية', 'تسليم 2028'],
       },
       'lotus-koru': {
         name: 'Lotus Koru',
-        tag: 'مشروع سكني · بيليكدوزو، إسطنبول',
+        tag: 'شريك تسويق · بيليكدوزو، إسطنبول',
         facts: ['شقق عصرية', 'مشروع مُسلَّم'],
       },
     }),
     tr: items(projectImages, {
       'marmara-haven-villa': {
         name: 'Marmara Haven Villa',
-        tag: 'Özel villa · Marmara kıyısı',
+        tag: 'Kendi projesi · Özel villa, Marmara kıyısı',
         facts: ['4 kat', '576 m²', '5 yatak odası', '7 banyo'],
       },
       'lotus-yasam': {
         name: 'Lotus Yaşam',
-        tag: 'Yeni konut projesi · Beylikdüzü, İstanbul',
+        tag: 'Pazarlama ortağı · Lotus Yapı Proje, Beylikdüzü',
         facts: ['21.000 m² arsa', 'Sosyal olanaklar', '2028 teslim'],
       },
       'lotus-koru': {
         name: 'Lotus Koru',
-        tag: 'Konut projesi · Beylikdüzü, İstanbul',
+        tag: 'Pazarlama ortağı · Beylikdüzü, İstanbul',
         facts: ['Modern daireler', 'Teslim edilmiş proje'],
       },
     }),

@@ -4,7 +4,7 @@
 
 Corporate website of BYHADARA Group (Istanbul), the parent group of HADARA Real Estate and
 HADARA Hospitality. The owner communicates in Arabic; reply to them in Arabic and keep this
-file's prose in English so it stays easy to scan. Last updated 2026-10-08.
+file's prose in English so it stays easy to scan. Last updated 2026-10-10.
 
 ## Standing instructions from the owner
 
@@ -72,8 +72,13 @@ file's prose in English so it stays easy to scan. Last updated 2026-10-08.
   gold text on light backgrounds `#80632a` for contrast).
 - **HADARA Real Estate**: https://www.hadararealestate.com (repo
   `kerimalastal-source/hadararealestate`, Next.js; pages `/{en|ar|tr}/projects/{slug}`). Founded
-  2014, luxury villas and residential projects in Istanbul (Beylikdüzü). Projects shown here:
-  Marmara Haven Villa, Lotus Yaşam, Lotus Koru. Its contact form uses Resend.
+  2014 in Istanbul. **Its role, stated by the owner on 2026-10-10: it developed only Marmara Haven
+  Villa; every other project (Lotus Yaşam, Lotus Koru 1/2, Diamond Marin…) is developed by other
+  companies and HADARA Real Estate is their marketing partner.** Wording everywhere: "real estate
+  development & marketing partner" («التطوير والتسويق العقاري», "Gayrimenkul Geliştirme ve
+  Pazarlama"); never call it the developer of partner projects, and keep project cards tagged
+  "Own development" / "Marketing partner". The 10 partner projects are the other listings on the
+  real estate site. Projects shown here: Marmara Haven Villa, Lotus Yaşam, Lotus Koru.
 - **İkinci BYHADARA** (`kerimalastal-source/-kinci_BYHADARA`, Vite): the real estate site being
   built. Source of the six success partner logos (`public/partners/`), copied byte-identical.
 - **HADARA Hospitality**: https://www.hadarahospitality.com (repo
@@ -435,3 +440,5 @@ file's prose in English so it stays easy to scan. Last updated 2026-10-08.
 - PR #37: IndexNow after each production build (Bing, Yandex and other engines; not Google).
 - PR #38: more old Wix addresses redirected, Lotus Koru 1/2 fixed, Diamond Marin button to its page.
 - PR #39: four HADARA Hospitality guides and a "Guides and news" section on the company pages.
+- PR #40: HADARA Real Estate described as developer of Marmara Haven Villa and marketing partner
+  for other developers' projects, in all copy, search descriptions and articles.

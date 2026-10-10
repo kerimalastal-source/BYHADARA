@@ -22,12 +22,12 @@ export const seo: Record<Locale, Record<string, SeoEntry>> = {
     businesses: {
       title: 'Our Businesses – Real Estate & Hospitality | BYHADARA Group',
       description:
-        'Discover the BYHADARA Group businesses: HADARA Real Estate for property development in Türkiye and HADARA Hospitality for hotel textiles and supplies.',
+        'Discover the BYHADARA Group businesses: HADARA Real Estate for property development and marketing in Türkiye and HADARA Hospitality for hotel textiles and supplies.',
     },
     'businesses/real-estate': {
       title: 'HADARA Real Estate – Luxury Villas in Istanbul | BYHADARA Group',
       description:
-        'HADARA Real Estate, a BYHADARA Group company, has developed luxury villas and residential projects in Istanbul since 2014, including Lotus Yaşam and Lotus Koru.',
+        'HADARA Real Estate, a BYHADARA Group company founded in 2014: developer of Marmara Haven Villa and marketing partner for Istanbul projects such as Lotus Yaşam.',
     },
     'businesses/hospitality': {
       title: 'HADARA Hospitality – Hotel Textiles & Supplies | BYHADARA Group',
@@ -42,7 +42,7 @@ export const seo: Record<Locale, Record<string, SeoEntry>> = {
     'markets/turkiye': {
       title: 'Türkiye – Our Operating Base in Istanbul | BYHADARA Group',
       description:
-        'Istanbul is the headquarters and primary operating base of BYHADARA Group, supporting its real estate development and hospitality supply activities.',
+        'Istanbul is the headquarters and primary operating base of BYHADARA Group, supporting its real estate and hospitality supply activities.',
     },
     'markets/gcc': {
       title: 'GCC Markets – Hospitality Supply & Partnerships | BYHADARA Group',
@@ -98,7 +98,7 @@ export const seo: Record<Locale, Record<string, SeoEntry>> = {
     '': {
       title: 'مجموعة باي حضارة BYHADARA | استثمار وتطوير أعمال في إسطنبول',
       description:
-        'مجموعة باي حضارة مجموعة للاستثمار وتطوير الأعمال مقرها إسطنبول، تضم شركتين متخصصتين: حضارة العقارية للتطوير العقاري وحضارة للضيافة لتوريد مستلزمات الفنادق.',
+        'مجموعة باي حضارة مجموعة للاستثمار وتطوير الأعمال مقرها إسطنبول، تضم شركتين متخصصتين: حضارة العقارية للتطوير والتسويق العقاري وحضارة للضيافة لتوريد مستلزمات الفنادق.',
     },
     about: {
       title: 'عن مجموعة باي حضارة | مجموعة استثمار في إسطنبول',
@@ -108,12 +108,12 @@ export const seo: Record<Locale, Record<string, SeoEntry>> = {
     businesses: {
       title: 'شركاتنا: العقارات ومستلزمات الضيافة | مجموعة باي حضارة',
       description:
-        'اكتشف شركات مجموعة باي حضارة: حضارة العقارية للتطوير والاستثمار العقاري في تركيا، وحضارة للضيافة لتوريد المنسوجات الفندقية ومستلزمات الضيافة.',
+        'اكتشف شركات مجموعة باي حضارة: حضارة العقارية للتطوير والتسويق العقاري في تركيا، وحضارة للضيافة لتوريد المنسوجات الفندقية ومستلزمات الضيافة.',
     },
     'businesses/real-estate': {
       title: 'حضارة العقارية | فلل فاخرة ومشاريع سكنية في إسطنبول',
       description:
-        'حضارة العقارية، إحدى شركات مجموعة باي حضارة، تطوّر منذ 2014 فللاً فاخرة ومشاريع سكنية عالية الجودة في إسطنبول، منها Lotus Yaşam وLotus Koru.',
+        'حضارة العقارية، إحدى شركات مجموعة باي حضارة منذ 2014، طوّرت فيلا Marmara Haven، وهي شريك تسويق لمشاريع سكنية في إسطنبول مثل Lotus Yaşam.',
     },
     'businesses/hospitality': {
       title: 'حضارة للضيافة | منسوجات فندقية ومستلزمات ضيافة من تركيا',
@@ -128,7 +128,7 @@ export const seo: Record<Locale, Record<string, SeoEntry>> = {
     'markets/turkiye': {
       title: 'تركيا: مقر أعمالنا في إسطنبول | مجموعة باي حضارة',
       description:
-        'إسطنبول مقر مجموعة باي حضارة وقاعدة عملياتها الرئيسية، ومنها تنطلق أنشطة التطوير العقاري وتوريد مستلزمات الضيافة في تركيا.',
+        'إسطنبول مقر مجموعة باي حضارة وقاعدة عملياتها الرئيسية، ومنها تنطلق أنشطة العقارات وتوريد مستلزمات الضيافة في تركيا.',
     },
     'markets/gcc': {
       title: 'أسواق الخليج: توريد الضيافة والشراكات | مجموعة باي حضارة',
@@ -194,12 +194,12 @@ export const seo: Record<Locale, Record<string, SeoEntry>> = {
     businesses: {
       title: 'Şirketlerimiz – Gayrimenkul ve Otel Tedariki | BYHADARA Group',
       description:
-        'BYHADARA Group şirketleri: Türkiye’de gayrimenkul geliştirme için HADARA Real Estate, otel tekstili ve konaklama ürünleri için HADARA Hospitality.',
+        'BYHADARA Group şirketleri: Türkiye’de gayrimenkul geliştirme ve pazarlama için HADARA Real Estate, otel tekstili ve konaklama ürünleri için HADARA Hospitality.',
     },
     'businesses/real-estate': {
       title: 'HADARA Real Estate – İstanbul’da Lüks Villalar | BYHADARA Group',
       description:
-        'Bir BYHADARA Group şirketi olan HADARA Real Estate, 2014’ten bu yana İstanbul’da lüks villalar ve Lotus Yaşam, Lotus Koru gibi konut projeleri geliştirir.',
+        '2014’te kurulan bir BYHADARA Group şirketi olan HADARA Real Estate, Marmara Haven Villa’yı geliştirdi; Lotus Yaşam gibi İstanbul projelerinin pazarlama ortağıdır.',
     },
     'businesses/hospitality': {
       title: 'HADARA Hospitality – Otel Tekstili ve Tedarik | BYHADARA Group',
@@ -214,7 +214,7 @@ export const seo: Record<Locale, Record<string, SeoEntry>> = {
     'markets/turkiye': {
       title: 'Türkiye – İstanbul’daki Faaliyet Merkezimiz | BYHADARA Group',
       description:
-        'İstanbul, BYHADARA Group’un genel merkezi ve ana faaliyet üssüdür; Türkiye’deki gayrimenkul geliştirme ve otel tedariki faaliyetlerini destekler.',
+        'İstanbul, BYHADARA Group’un genel merkezi ve ana faaliyet üssüdür; Türkiye’deki gayrimenkul ve otel tedariki faaliyetlerini destekler.',
     },
     'markets/gcc': {
       title: 'Körfez Pazarları – Otel Tedariki ve Ortaklıklar | BYHADARA Group',

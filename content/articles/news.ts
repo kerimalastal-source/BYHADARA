@@ -26,9 +26,9 @@ export const news: Article[] = [
         title: 'Istanbul, one video call away: HADARA Real Estate launches private video tours',
         seoTitle: 'HADARA Real Estate launches private video tours',
         description:
-          'HADARA Real Estate now offers free, live video tours of its Istanbul projects: an advisor shows you the show apartment, the scale model and the project on site.',
+          'HADARA Real Estate now offers free, live video tours of Istanbul projects: an advisor shows you the show apartment, the scale model and the project on site.',
         body: [
-          'HADARA Real Estate, a BYHADARA Group company, has launched private video tours of its Istanbul projects: a live video call in which one of its advisors takes you through a project as if you were there, wherever you are in the world.',
+          'HADARA Real Estate, a BYHADARA Group company, has launched private video tours of the Istanbul projects it presents: a live video call in which one of its advisors takes you through a project as if you were there, wherever you are in the world.',
           'During the call, the advisor shows you the show apartment room by room, the scale model at the sales office and the project on site, with its views and construction progress, then introduces the neighbourhood: transport, schools, shopping and the distance to the sea and the airport.',
           'The tour is a full consultation, not just a video. You can ask about prices and available units, payment plans, delivery dates, eligibility for Turkish citizenship, the title deed and buying steps, and investment and rental income.',
           'Booking on the HADARA Real Estate website takes less than a minute: choose one or several projects, then a time between 9:00 and 19:00 Istanbul time, any day of the week, with each slot also shown in your own time zone, and receive an email confirmation. Your advisor calls you on WhatsApp, FaceTime, Zoom or Google Meet, so there is no new app to install, and your family can join the call.',
@@ -61,9 +61,9 @@ export const news: Article[] = [
         title: 'إسطنبول على بُعد مكالمة فيديو: حضارة العقارية تطلق الجولات الخاصة عبر الفيديو',
         seoTitle: 'حضارة العقارية تطلق جولات خاصة عبر الفيديو',
         description:
-          'أطلقت حضارة العقارية جولات خاصة ومباشرة عبر الفيديو في مشاريعها بإسطنبول: مستشار يريك الشقة النموذجية والمجسّم والمشروع على أرض الواقع، مجاناً ودون التزام.',
+          'أطلقت حضارة العقارية جولات خاصة ومباشرة عبر الفيديو في مشاريع بإسطنبول: مستشار يريك الشقة النموذجية والمجسّم والمشروع على أرض الواقع، مجاناً ودون التزام.',
         body: [
-          'أطلقت حضارة العقارية، إحدى شركات مجموعة باي حضارة، خدمة الجولات الخاصة عبر الفيديو في مشاريعها بإسطنبول: مكالمة فيديو مباشرة يرافقك فيها أحد مستشاري الشركة في المشروع كأنك تزوره بنفسك، أينما كنت في العالم.',
+          'أطلقت حضارة العقارية، إحدى شركات مجموعة باي حضارة، خدمة الجولات الخاصة عبر الفيديو في المشاريع التي تقدّمها في إسطنبول: مكالمة فيديو مباشرة يرافقك فيها أحد مستشاري الشركة في المشروع كأنك تزوره بنفسك، أينما كنت في العالم.',
           'خلال المكالمة، يريك المستشار الشقة النموذجية غرفةً غرفة، والمجسّم في مكتب المبيعات، والمشروع على أرض الواقع بإطلالاته ومراحل إنشائه، ثم يعرّفك بالحيّ المحيط: المواصلات والمدارس والأسواق والمسافة إلى البحر والمطار.',
           'والجولة جلسة استشارية كاملة لا مجرد عرض مصوَّر: يمكنك أن تسأل عن الأسعار والوحدات المتاحة، وخطط الدفع، ومواعيد التسليم، والأهلية للجنسية التركية، وسند الملكية وخطوات الشراء، والاستثمار والعائد الإيجاري.',
           'ويتم الحجز من موقع حضارة العقارية في أقل من دقيقة: تختار مشروعاً واحداً أو أكثر، ثم موعداً في أي يوم من الأسبوع من التاسعة صباحاً حتى السابعة مساءً بتوقيت إسطنبول، مع عرض كل موعد بتوقيت بلدك، ويصلك تأكيد على بريدك الإلكتروني. ثم يتصل بك مستشارك عبر واتساب أو فيس تايم أو زوم أو جوجل ميت، فلا حاجة إلى تثبيت أي برنامج جديد، ويمكن لأفراد عائلتك الانضمام إلى المكالمة.',
@@ -150,7 +150,7 @@ export const news: Article[] = [
         body: [
           'The team of HADARA Real Estate, a BYHADARA Group company, will visit Cityscape Qatar 2026, which returns to the Doha Exhibition and Convention Center (DECC) from 27 to 29 October 2026.',
           'Held under the theme “Where Vision Meets Investment”, the exhibition brings together developers from Qatar and international markets with more than 400 live projects, alongside the 4th Qatar Real Estate Forum. Some 16,000 visitors are expected.',
-          'During the visit, the team will follow the latest developments in Qatar’s property market and meet investors, developers and partners to introduce HADARA Real Estate’s residential projects in Istanbul, from Lotus Yaşam and Diamond Marin in Beylikdüzü to Marmara Haven Villa in Büyükçekmece.',
+          'During the visit, the team will follow the latest developments in Qatar’s property market and meet investors, developers and partners to introduce the residential projects HADARA Real Estate presents in Istanbul, from Marmara Haven Villa in Büyükçekmece, its own development, to Lotus Yaşam and Diamond Marin in Beylikdüzü, which it markets for their developers.',
           'For investors in Qatar and across the Gulf, it is a chance to talk face to face about owning property in Istanbul: choosing the right project, the purchase process through to the title deed, and the route to Turkish citizenship through real estate investment.',
           'Investors and partners who would like to meet the team in Doha during the exhibition are invited to get in touch in advance to arrange a time.',
         ],
@@ -177,7 +177,7 @@ export const news: Article[] = [
         body: [
           'يزور فريق حضارة العقارية، إحدى شركات مجموعة باي حضارة، معرض سيتي سكيب قطر 2026 (Cityscape Qatar)، الذي يعود إلى مركز الدوحة للمعارض والمؤتمرات من 27 إلى 29 أكتوبر 2026.',
           'ويجمع المعرض، الذي يُقام هذا العام تحت شعار «حيث تلتقي الرؤية بالاستثمار»، مطوّرين من قطر والأسواق الدولية يعرضون أكثر من 400 مشروع، إلى جانب النسخة الرابعة من منتدى قطر للعقارات، ويُتوقع أن يستقطب نحو 16 ألف زائر.',
-          'وخلال الزيارة، يطّلع الفريق على أحدث تطورات السوق العقارية في قطر، ويلتقي بالمستثمرين والمطوّرين والشركاء لتعريفهم بمشاريع حضارة العقارية السكنية في إسطنبول، من لوتس ياشام ودايموند مارين في بيليكدوزو إلى فيلا مرمرة هيفن في بيوكجكمجة.',
+          'وخلال الزيارة، يطّلع الفريق على أحدث تطورات السوق العقارية في قطر، ويلتقي بالمستثمرين والمطوّرين والشركاء لتعريفهم بالمشاريع السكنية التي تقدّمها حضارة العقارية في إسطنبول، من فيلا مرمرة هيفن التي طوّرتها في بيوكجكمجة إلى لوتس ياشام ودايموند مارين في بيليكدوزو، اللذين تتولى تسويقهما لمطوّريهما.',
           'وتمثل الزيارة للمستثمرين في قطر والخليج فرصة للحديث وجهاً لوجه عن تملّك العقار في إسطنبول: من اختيار المشروع المناسب، إلى خطوات الشراء حتى استلام سند الملكية، ومسار الحصول على الجنسية التركية عبر الاستثمار العقاري.',
           'ندعو المستثمرين والشركاء الراغبين في لقاء الفريق في الدوحة خلال المعرض إلى التواصل معنا مسبقاً لتحديد موعد.',
         ],
@@ -205,7 +205,7 @@ export const news: Article[] = [
         body: [
           'BYHADARA Group şirketlerinden HADARA Real Estate’in ekibi, 27–29 Ekim 2026 tarihlerinde Doha Sergi ve Kongre Merkezi’nde (DECC) düzenlenecek Cityscape Qatar 2026’yı ziyaret ediyor.',
           'Bu yıl “Where Vision Meets Investment” temasıyla düzenlenen fuar, Katar’dan ve uluslararası pazarlardan geliştiricileri 400’ü aşkın projeyle bir araya getiriyor; 4. Katar Gayrimenkul Forumu da fuar kapsamında yapılıyor. Yaklaşık 16.000 ziyaretçi bekleniyor.',
-          'Ekip ziyaret boyunca Katar gayrimenkul piyasasındaki gelişmeleri takip edecek; yatırımcılar, geliştiriciler ve iş ortaklarıyla görüşerek HADARA Real Estate’in İstanbul’daki konut projelerini, Beylikdüzü’ndeki Lotus Yaşam ve Diamond Marin’den Büyükçekmece’deki Marmara Haven Villa’ya kadar tanıtacak.',
+          'Ekip ziyaret boyunca Katar gayrimenkul piyasasındaki gelişmeleri takip edecek; yatırımcılar, geliştiriciler ve iş ortaklarıyla görüşerek HADARA Real Estate’in İstanbul’da sunduğu konut projelerini, Büyükçekmece’de kendi geliştirdiği Marmara Haven Villa’dan geliştiricileri adına pazarladığı Beylikdüzü’ndeki Lotus Yaşam ve Diamond Marin’e kadar tanıtacak.',
           'Katar ve Körfez’deki yatırımcılar için bu, İstanbul’da gayrimenkul sahibi olmayı yüz yüze konuşmak için bir fırsat: doğru projeyi seçmekten tapuya kadar satın alma sürecine ve gayrimenkul yatırımıyla Türk vatandaşlığı yoluna kadar.',
           'Fuar süresince ekiple Doha’da görüşmek isteyen yatırımcılar ve iş ortakları, randevu için önceden iletişime geçebilir.',
         ],
