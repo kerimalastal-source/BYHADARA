@@ -7,6 +7,8 @@ export type ShowcaseItem = {
   tag: string;
   facts: string[];
   image: string;
+  /** Company that developed a project HADARA Real Estate markets; absent for its own development. */
+  developer?: string;
 };
 
 /** Address of a page on a group company's own website, in the closest available language. */
@@ -31,11 +33,15 @@ export const companyHost = (id: CompanyId) =>
 export const showcaseUrl = (id: CompanyId, locale: Locale, slug: string) =>
   companyUrl(id, locale, `/${id === 'real-estate' ? 'projects' : 'products'}/${slug}`);
 
-const wix = (file: string) => `https://static.wixstatic.com/media/${file}`;
+/**
+ * Project images, self-hosted: HADARA Real Estate's own photograph of Marmara Haven Villa and the
+ * developers' visualisations of the projects it markets (see docs/ASSETS.md).
+ */
 const projectImages = {
-  'marmara-haven-villa': wix('3510f9_c4e14f77b98144a59013aca49d0e7c40~mv2.jpeg'),
-  'lotus-yasam': wix('3510f9_6e8795e3581c4582a0a197a6ab6dd4cd~mv2.jpg'),
-  'lotus-koru': wix('3510f9_ad7dc0dc93a74625a1542c2cad01ebcd~mv2.jpeg'),
+  'marmara-haven-villa': 'real-estate/marmara-haven-evening.jpg',
+  'lotus-yasam': 'insights/lotus-yasam-street.jpg',
+  'diamond-marin': 'insights/diamond-marin-facade.jpg',
+  'lotus-koru-2': 'real-estate/lotus-koru-2.jpg',
 };
 const productImages = {
   'hotel-bath-sheet-700-gsm': 'hospitality/hotel-bath-sheet.jpg',
@@ -43,7 +49,7 @@ const productImages = {
   'waterproof-pillow-protector': 'hospitality/pillow-protector.jpg',
   'hotel-blackout-curtains': 'hospitality/blackout-curtains.jpg',
 };
-type Copy = Record<string, { name: string; tag: string; facts?: string[] }>;
+type Copy = Record<string, { name: string; tag: string; facts?: string[]; developer?: string }>;
 const items = (images: Record<string, string>, copy: Copy): ShowcaseItem[] =>
   Object.entries(copy).map(([slug, c]) => ({ slug, facts: [], ...c, image: images[slug] }));
 
@@ -56,52 +62,76 @@ export const showcase: Record<CompanyId, Record<Locale, ShowcaseItem[]>> = {
     en: items(projectImages, {
       'marmara-haven-villa': {
         name: 'Marmara Haven Villa',
-        tag: 'Own development · Private villa, Marmara coast',
+        tag: 'Private villa · Büyükçekmece, Istanbul',
         facts: ['4 floors', '576 m²', '5 bedrooms', '7 bathrooms'],
       },
       'lotus-yasam': {
         name: 'Lotus Yaşam',
-        tag: 'Marketing partner · Lotus Yapı Proje, Beylikdüzü',
+        tag: 'New residential project · Beylikdüzü',
         facts: ['21,000 m² land', 'Social amenities', 'Delivery 2028'],
+        developer: 'Lotus Yapı Proje',
       },
-      'lotus-koru': {
-        name: 'Lotus Koru',
-        tag: 'Marketing partner · Beylikdüzü, Istanbul',
-        facts: ['Modern apartments', 'Delivered project'],
+      'diamond-marin': {
+        name: 'Diamond Marin',
+        tag: 'Boutique residential project · Beylikdüzü',
+        facts: ['58 apartments', '3+1', 'Delivery 2027'],
+        developer: 'Yıltaş × Lotus Yapı',
+      },
+      'lotus-koru-2': {
+        name: 'Lotus Koru 2',
+        tag: 'Delivered residential project · Beylikdüzü',
+        facts: ['204 apartments', '17,500 m² green areas'],
+        developer: 'Lotus Yapı Proje',
       },
     }),
     ar: items(projectImages, {
       'marmara-haven-villa': {
         name: 'فيلا Marmara Haven',
-        tag: 'من تطوير حضارة · فيلا خاصة، ساحل مرمرة',
+        tag: 'فيلا خاصة · بيوكجكمجة، إسطنبول',
         facts: ['4 طوابق', '576 م²', '5 غرف نوم', '7 حمامات'],
       },
       'lotus-yasam': {
         name: 'Lotus Yaşam',
-        tag: 'شريك تسويق · لوتس يابي بروجي، بيليكدوزو',
+        tag: 'مشروع سكني جديد · بيليكدوزو',
         facts: ['أرض 21,000 م²', 'مرافق اجتماعية', 'تسليم 2028'],
+        developer: 'لوتس يابي بروجي',
       },
-      'lotus-koru': {
-        name: 'Lotus Koru',
-        tag: 'شريك تسويق · بيليكدوزو، إسطنبول',
-        facts: ['شقق عصرية', 'مشروع مُسلَّم'],
+      'diamond-marin': {
+        name: 'Diamond Marin',
+        tag: 'مشروع سكني بوتيكي · بيليكدوزو',
+        facts: ['58 شقة', '⁦3+1⁩', 'تسليم 2027'],
+        developer: 'Yıltaş × Lotus Yapı',
+      },
+      'lotus-koru-2': {
+        name: 'Lotus Koru 2',
+        tag: 'مشروع سكني مُسلَّم · بيليكدوزو',
+        facts: ['204 شقة', 'مساحات خضراء 17,500 م²'],
+        developer: 'لوتس يابي بروجي',
       },
     }),
     tr: items(projectImages, {
       'marmara-haven-villa': {
         name: 'Marmara Haven Villa',
-        tag: 'Kendi projesi · Özel villa, Marmara kıyısı',
+        tag: 'Özel villa · Büyükçekmece, İstanbul',
         facts: ['4 kat', '576 m²', '5 yatak odası', '7 banyo'],
       },
       'lotus-yasam': {
         name: 'Lotus Yaşam',
-        tag: 'Pazarlama ortağı · Lotus Yapı Proje, Beylikdüzü',
+        tag: 'Yeni konut projesi · Beylikdüzü',
         facts: ['21.000 m² arsa', 'Sosyal olanaklar', '2028 teslim'],
+        developer: 'Lotus Yapı Proje',
       },
-      'lotus-koru': {
-        name: 'Lotus Koru',
-        tag: 'Pazarlama ortağı · Beylikdüzü, İstanbul',
-        facts: ['Modern daireler', 'Teslim edilmiş proje'],
+      'diamond-marin': {
+        name: 'Diamond Marin',
+        tag: 'Butik konut projesi · Beylikdüzü',
+        facts: ['58 daire', '3+1', '2027 teslim'],
+        developer: 'Yıltaş × Lotus Yapı',
+      },
+      'lotus-koru-2': {
+        name: 'Lotus Koru 2',
+        tag: 'Teslim edilmiş konut projesi · Beylikdüzü',
+        facts: ['204 daire', '17.500 m² yeşil alan'],
+        developer: 'Lotus Yapı Proje',
       },
     }),
   },

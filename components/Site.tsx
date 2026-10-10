@@ -174,7 +174,6 @@ export function Companies({ locale, heading = false }: { locale: Locale; heading
           </div>
         ))}
       </div>
-      <p className="image-note">{d.imageNote}</p>
     </>
   );
 }

@@ -360,10 +360,16 @@ file's prose in English so it stays easy to scan. Last updated 2026-10-10.
 
 ## Images
 
-- HADARA Real Estate imagery (since 2026-09-26) is real project visuals by Lotus Yapı Proje:
-  homepage panel `real-estate/lotus-manzara-villa.jpg`, company page
-  `insights/lotus-yasam-courtyard.jpg`, credited by `imageNote`. The panels read `panelImage`, the
-  company page `image`. Egypt is shown as a "market of interest" (no activity there yet).
+- HADARA Real Estate imagery (since 2026-10-10): its own photograph of Marmara Haven Villa at
+  dusk (`real-estate/marmara-haven-evening.jpg`) is the homepage panel (`panelImage`) and the
+  company page image (`image`). The company page's "Selected projects" shows "Developed by HADARA
+  Real Estate" (Marmara Haven Villa, a large card) above "Projects it markets for their developers"
+  (Lotus Yaşam, Diamond Marin, Lotus Koru 2, each with "Developer: …"); items in
+  `content/companies.ts` with a `developer` are marketed projects. All project images are
+  self-hosted; `imageNote` credits the partner visualisations under that grid. Developers, from
+  the real estate site: Lotus Yapı Proje (Lotus Yaşam, Lotus Koru 1 and 2, Lotus İstanbul…),
+  Yıltaş × Lotus Yapı (Diamond Marin), MH Grup İnşaat (Cadde Ispartakule). Egypt is shown as a
+  "market of interest" (no activity there yet).
 
 - Next's image optimizer cache cannot be invalidated: when an image's content changes, give it a
   new file name (why `istanbul.jpg` became `istanbul-bosphorus.jpg`).
@@ -450,3 +456,5 @@ file's prose in English so it stays easy to scan. Last updated 2026-10-10.
 - PR #40: HADARA Real Estate described as developer of Marmara Haven Villa and marketing partner
   for other developers' projects, in all copy, search descriptions and articles.
 - PR #41: Turkish switched off (content kept); `/tr/…` redirects to English.
+- PR #42: projects split into HADARA's own development and the projects it markets (with each
+  developer); Marmara Haven Villa photo as HADARA Real Estate's main image.

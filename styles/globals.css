@@ -76,13 +76,15 @@ textarea:focus-visible {
 h1,
 h2,
 h3,
+h4,
 p {
   margin: 0;
 }
 /* Light headings, chosen by the owner (2026-09-26) for a calmer, more refined look. */
 h1,
 h2,
-h3 {
+h3,
+h4 {
   color: var(--navy);
   font-weight: 300;
   line-height: 1.12;
@@ -1347,9 +1349,47 @@ html[lang='ar'] .showcase-tag {
   text-transform: uppercase;
   color: var(--muted);
 }
-.showcase-card h3 {
+.showcase-card h3,
+.showcase-card h4 {
   margin-top: 8px;
   font-size: 24px;
+}
+/* HADARA Real Estate: its own development, then the projects it markets for their developers. */
+.showcase-group {
+  margin: 0 0 24px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold-text);
+}
+html[lang='ar'] .showcase-group {
+  letter-spacing: 0;
+  font-size: 14px;
+}
+.showcase-feature + .showcase-group {
+  margin-top: 64px;
+}
+.showcase-feature .showcase-card {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 48px;
+  align-items: center;
+}
+.showcase-feature .photo {
+  aspect-ratio: 3 / 2;
+}
+.showcase-feature .showcase-tag {
+  margin-top: 0;
+}
+.showcase-feature h4 {
+  font-size: clamp(28px, 3vw, 40px);
+}
+.showcase-developer {
+  display: block;
+  margin-top: 8px;
+  font-size: 14px;
+  color: var(--navy);
 }
 .showcase-facts {
   display: block;
@@ -1494,6 +1534,16 @@ html[lang='ar'] .showcase-tag {
   }
   .showcase-grid {
     grid-template-columns: 1fr;
+  }
+  .showcase-feature .showcase-card {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+  .showcase-feature .showcase-tag {
+    margin-top: 20px;
+  }
+  .showcase-feature + .showcase-group {
+    margin-top: 48px;
   }
   .visit-band {
     padding-block: 64px;
