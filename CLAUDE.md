@@ -20,6 +20,10 @@ file's prose in English so it stays easy to scan. Last updated 2026-10-10.
   homepage.
 - Never invent facts. Company facts, projects, products and partners come from the group
   companies' own websites/repos (see "Sister sites"). Ask the owner for anything else.
+- **Scope** (owner, 2026-10-10): work only on this site (byhadara.com). The sister sites
+  (HADARA Real Estate, HADARA Hospitality) have their own sessions: read their repos for facts,
+  never change them. When they need a matching change, tell the owner and, if useful, give them
+  a ready prompt for that site's session.
 - **Mobile first** (owner, 2026-09-26): design and check every change on phones (320–430 px)
   first, then tablets (768–1180 px, portrait and landscape), then desktop. A change that is fine on
   desktop but poor on a phone is not done. The browser test "phones and tablets" checks no
@@ -458,3 +462,4 @@ file's prose in English so it stays easy to scan. Last updated 2026-10-10.
 - PR #41: Turkish switched off (content kept); `/tr/…` redirects to English.
 - PR #42: projects split into HADARA's own development and the projects it markets (with each
   developer); Marmara Haven Villa photo as HADARA Real Estate's main image.
+- PR #43: scope note (this site only; sister sites are read-only).
