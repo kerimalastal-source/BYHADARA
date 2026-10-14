@@ -66,7 +66,7 @@ const marketReading: Record<(typeof marketIds)[number], string[]> = {
     'western-istanbul-beylikduzu-buyukcekmece',
     'turkiye-hub-for-hotel-textiles',
   ],
-  gcc: ['hospitality-qatar-2026', 'cityscape-qatar-2026', 'video-tour-launch'],
+  gcc: ['hotel-restaurant-expo-makkah-2026', 'cityscape-qatar-2026', 'hospitality-qatar-2026'],
   egypt: [
     'video-tour-launch',
     'turkish-citizenship-through-real-estate',
