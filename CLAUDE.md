@@ -279,6 +279,12 @@ file's prose in English so it stays easy to scan. Last updated 2026-10-10.
   `/robes`, `/get-a-quote`). Images: illustrative product photos from that site (provenance in
   `docs/ASSETS.md`). Company pages now end with "Guides and news" (`companyArticles()`, the
   company's three latest articles). 19 articles, 108 pages, 105 sitemap URLs.
+- Added 2026-10-14 at the owner's request: news **HADARA Hospitality visits the Hotel & Restaurant
+  Equipment Expo in Makkah** (`hotel-restaurant-expo-makkah-2026`), **as visitors, not
+  exhibitors** (owner's answer; never mention a stand). Facts from the organiser's brochure
+  (hotelandrestaurant-expo.com): 8th edition, 16–18 November 2026, Makkah Chamber Exhibition &
+  Events Center, sectors incl. hotel operations & essentials, 120+ exhibitors from 10+ countries.
+  It leads the GCC market page's reading list. 20 articles, 74 pages, 72 sitemap URLs.
 - In Arabic text, number ranges render reversed ("100–109" shows as "109–100"): write them in
   words («بين 100 و109») or wrap them in U+2066/U+2069 isolates (fine outside `<select>`).
 
@@ -291,7 +297,7 @@ file's prose in English so it stays easy to scan. Last updated 2026-10-10.
   rendered with Playwright from an HTML file opened via `file://` (so local fonts and the photo
   load); re-render them the same way if the brand changes.
 - The insights index is `noindex` and outside the sitemap only while no article is published; the
-  thank-you page is always `noindex` and outside it. Sitemap: 70 URLs with 19 articles (English and Arabic).
+  thank-you page is always `noindex` and outside it. Sitemap: 72 URLs with 20 articles (English and Arabic).
 - Canonical origin is `https://www.byhadara.com` (default in `content/site.ts`, `SITE_URL`
   overrides), matching Vercel where the apex redirects to `www`. Keep the two in sync.
 - Google Search Console: Domain property verified by a DNS TXT record
@@ -386,7 +392,7 @@ file's prose in English so it stays easy to scan. Last updated 2026-10-10.
 ## Validation and sandbox notes
 
 - Checks: `pnpm typecheck`, `pnpm test` (50 tests), `pnpm build`, then `pnpm start` +
-  `node scripts/check-routes.mjs` (72 pages incl. the articles, links, SEO assertions, 503 from
+  `node scripts/check-routes.mjs` (74 pages incl. the articles, links, SEO assertions, 503 from
   both APIs while unconfigured) and the Playwright suite (16 tests incl. axe and the phone/tablet test). Prettier:
   `pnpm exec prettier --check components content lib app styles tests scripts docs *.md`.
 - The installed `@playwright/test` expects a newer browser than the sandbox has: run with a
@@ -463,3 +469,4 @@ file's prose in English so it stays easy to scan. Last updated 2026-10-10.
 - PR #42: projects split into HADARA's own development and the projects it markets (with each
   developer); Marmara Haven Villa photo as HADARA Real Estate's main image.
 - PR #43: scope note (this site only; sister sites are read-only).
+- PR #44: news of HADARA Hospitality visiting the Hotel & Restaurant Equipment Expo in Makkah.

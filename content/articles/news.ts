@@ -12,6 +12,101 @@ const diamondMarinPage = (arabic: boolean) =>
 /** Group and company news. Facts come from the companies' own pages and verified event sources. */
 export const news: Article[] = [
   {
+    // Event facts from the organiser's brochure (hotelandrestaurant-expo.com). The team visits as
+    // visitors, not exhibitors (owner, 2026-10-14): never mention a stand.
+    slug: 'hotel-restaurant-expo-makkah-2026',
+    category: 'corporate',
+    status: 'published',
+    approved: true,
+    publishedAt: '2026-10-14',
+    company: 'hospitality',
+    translations: {
+      en: {
+        title: 'HADARA Hospitality to visit the Hotel & Restaurant Equipment Expo in Makkah',
+        seoTitle: 'HADARA Hospitality visits Makkah hotel expo 2026',
+        description:
+          'The HADARA Hospitality team will visit the 8th Hotel & Restaurant Equipment Expo at the Makkah Chamber Exhibition & Events Center on 16–18 November 2026.',
+        body: [
+          'The team of HADARA Hospitality, a BYHADARA Group company, will visit the Hotel & Restaurant Equipment Expo 2026, which holds its 8th edition at the Makkah Chamber Exhibition & Events Center from 16 to 18 November 2026.',
+          'Over seven editions, the exhibition has become a meeting point for companies, suppliers and investors in Saudi Arabia’s hospitality sector. Its sectors range from kitchen and restaurant equipment to hotel operations and essentials, interior design and hospitality technology, with more than 120 local and international exhibitors from over ten countries.',
+          'The visit comes as the Kingdom’s hospitality sector grows rapidly. In Makkah, the team will meet hotel owners, operators and procurement managers to discuss bed linen, towels, bathrobes, pillows and duvets, protectors, curtains and guest amenities, sourced from manufacturing partners across Türkiye.',
+          'For HADARA Hospitality, which supplies 3★–5★ hotels across the Gulf, the three days are an opportunity to follow the market’s latest trends, talk through specifications, samples and supply programmes face to face, and build long-term relationships with hotels in the Kingdom.',
+          'Hotels and partners who would like to meet the team in Makkah during the exhibition are invited to get in touch in advance to arrange a time.',
+        ],
+        image: image('hotel-bed-linen'),
+        imageAlt: 'Hotel bed dressed with white linen',
+        imageCredit: 'Photo: Unsplash.',
+        facts: [
+          ['16–18 Nov 2026', 'Exhibition dates'],
+          ['Makkah', 'Makkah Chamber Exhibition & Events Center'],
+          ['8th', 'Edition of the exhibition'],
+        ],
+        cta: {
+          title: 'Meet us in Makkah',
+          text: 'Arrange a meeting with the HADARA Hospitality team in Makkah during the Hotel & Restaurant Equipment Expo.',
+          label: 'Request a meeting',
+          href: '/en/contact',
+        },
+      },
+      ar: {
+        title: 'فريق حضارة للضيافة يزور معرض تجهيزات الفنادق والمطاعم في مكة المكرمة',
+        seoTitle: 'حضارة للضيافة تزور معرض تجهيزات الفنادق بمكة',
+        description:
+          'يزور فريق حضارة للضيافة النسخة الثامنة من معرض تجهيزات الفنادق والمطاعم، في مركز غرفة مكة المكرمة للمعارض والفعاليات من 16 إلى 18 نوفمبر 2026.',
+        body: [
+          'يزور فريق حضارة للضيافة، إحدى شركات مجموعة باي حضارة، معرض تجهيزات الفنادق والمطاعم 2026 في نسخته الثامنة، الذي يقام في مركز غرفة مكة المكرمة للمعارض والفعاليات من 16 إلى 18 نوفمبر 2026.',
+          'على مدى سبع نسخ متتالية، رسّخ المعرض مكانته ملتقىً لأبرز الشركات والموردين والمستثمرين في قطاع الضيافة بالمملكة. وتمتد قطاعاته من معدات المطابخ وتجهيزات المطاعم إلى مستلزمات الفنادق والتشغيل والديكور وتقنيات الضيافة، بمشاركة أكثر من 120 شركة عارضة محلية ودولية من أكثر من عشر دول.',
+          'وتأتي الزيارة تماشياً مع النمو المتسارع لقطاع الضيافة في المملكة. ففي مكة المكرمة، يلتقي الفريق بملاك الفنادق ومشغليها ومديري المشتريات لبحث البياضات والمناشف وأرواب الحمّام والوسائد واللحف والواقيات والستائر ومستلزمات النزلاء، التي تورّدها الشركة من شركاء تصنيع في أنحاء تركيا.',
+          'وبالنسبة لحضارة للضيافة، التي تورّد لفنادق الثلاث إلى الخمس نجوم في أنحاء الخليج، تمثل أيام المعرض الثلاثة فرصة لمواكبة أحدث اتجاهات السوق، ومناقشة المواصفات والعيّنات وبرامج التوريد وجهاً لوجه، وبناء علاقات طويلة الأمد مع الفنادق في المملكة.',
+          'ندعو الفنادق والشركاء الراغبين في لقاء الفريق في مكة المكرمة خلال المعرض إلى التواصل معنا مسبقاً لتحديد موعد.',
+        ],
+        image: image('hotel-bed-linen'),
+        imageAlt: 'سرير فندقي ببياضات بيضاء',
+        imageCredit: 'الصورة: Unsplash.',
+        facts: [
+          // The isolate keeps the date range in reading order inside right-to-left text.
+          ['⁦16–18⁩ نوفمبر 2026', 'موعد المعرض'],
+          ['مكة المكرمة', 'مركز غرفة مكة المكرمة للمعارض والفعاليات'],
+          ['8', 'النسخة الثامنة للمعرض'],
+        ],
+        cta: {
+          title: 'نلتقي في مكة المكرمة',
+          text: 'حدد موعداً مع فريق حضارة للضيافة في مكة المكرمة خلال معرض تجهيزات الفنادق والمطاعم.',
+          label: 'اطلب موعداً',
+          href: '/ar/contact',
+        },
+      },
+      tr: {
+        title:
+          'HADARA Hospitality ekibi Mekke’deki Otel ve Restoran Ekipmanları Fuarı’nı ziyaret ediyor',
+        seoTitle: 'HADARA Hospitality, Mekke otel fuarında',
+        description:
+          'HADARA Hospitality ekibi, 16–18 Kasım 2026’da Mekke Ticaret Odası Fuar ve Etkinlik Merkezi’nde düzenlenecek 8. Otel ve Restoran Ekipmanları Fuarı’nı ziyaret ediyor.',
+        body: [
+          'BYHADARA Group şirketlerinden HADARA Hospitality’nin ekibi, 8. edisyonuyla 16–18 Kasım 2026 tarihlerinde Mekke Ticaret Odası Fuar ve Etkinlik Merkezi’nde düzenlenecek Otel ve Restoran Ekipmanları Fuarı 2026’yı ziyaret ediyor.',
+          'Yedi edisyon boyunca fuar, Suudi Arabistan’ın konaklama sektöründeki şirketlerin, tedarikçilerin ve yatırımcıların buluşma noktası haline geldi. Mutfak ve restoran ekipmanlarından otel işletme ürünlerine, iç tasarımdan konaklama teknolojilerine uzanan fuara on ülkeden fazla 120’yi aşkın yerli ve uluslararası katılımcı katılıyor.',
+          'Ziyaret, Krallık’taki konaklama sektörünün hızlı büyümesiyle aynı döneme denk geliyor. Ekip Mekke’de otel sahipleri, işletmecileri ve satın alma yöneticileriyle Türkiye genelindeki üretim ortaklarından tedarik edilen nevresim ve çarşaflar, havlular, bornozlar, yastık ve yorganlar, alezler, perdeler ve misafir ürünleri üzerine görüşecek.',
+          'Körfez genelinde 3–5 yıldızlı otellere tedarik sağlayan HADARA Hospitality için üç gün; pazarın son eğilimlerini takip etmek, ürün özelliklerini, numuneleri ve tedarik programlarını yüz yüze konuşmak ve Krallık’taki otellerle uzun vadeli ilişkiler kurmak için bir fırsat.',
+          'Fuar süresince ekiple Mekke’de görüşmek isteyen oteller ve iş ortakları, randevu için önceden iletişime geçebilir.',
+        ],
+        image: image('hotel-bed-linen'),
+        imageAlt: 'Beyaz nevresimle hazırlanmış otel yatağı',
+        imageCredit: 'Fotoğraf: Unsplash.',
+        facts: [
+          ['16–18 Kasım 2026', 'Fuar tarihleri'],
+          ['Mekke', 'Mekke Ticaret Odası Fuar ve Etkinlik Merkezi'],
+          ['8.', 'Fuar edisyonu'],
+        ],
+        cta: {
+          title: 'Mekke’de görüşelim',
+          text: 'Otel ve Restoran Ekipmanları Fuarı süresince HADARA Hospitality ekibiyle Mekke’de bir görüşme planlayın.',
+          label: 'Görüşme talep edin',
+          href: '/tr/contact',
+        },
+      },
+    },
+  },
+  {
     // Service facts from the HADARA Real Estate website (İkinci BYHADARA: `/video-tour`,
     // `videoTour.*` copy and its CLAUDE.md). Owner's rule there: no buying from a distance; the
     // tour prepares a visit to Istanbul, so never promise remote purchase or legal agency.
