@@ -92,6 +92,11 @@ file's prose in English so it stays easy to scan. Last updated 2026-10-10.
   real estate site. Projects shown here: Marmara Haven Villa, Lotus Yaşam, Lotus Koru.
 - **İkinci BYHADARA** (`kerimalastal-source/-kinci_BYHADARA`, Vite): the real estate site being
   built. Source of the six success partner logos (`public/partners/`), copied byte-identical.
+  Since 2026-10-15 (owner: «مش متساوي») the homepage row matches that site's 2026-10-13 fix:
+  logos trimmed to the drawing (`-trim` files), `partnerLogoSize()` in `content/partners.ts`
+  gives each about the same area (max 64 px high, 168 px wide), one `space-between` row on
+  desktop, 3 columns at ≤1000 px, 2 columns at 82% at ≤640 px. A new logo: trim it and record
+  its file size.
 - **HADARA Hospitality**: https://www.hadarahospitality.com (repo
   `kerimalastal-source/hadarahospitality`, Astro). Locales en (unprefixed), ar, fr, ru — no
   Turkish, so Turkish visitors are linked to English. Supplies hotel textiles to 3★–5★ hotels in
@@ -470,3 +475,4 @@ file's prose in English so it stays easy to scan. Last updated 2026-10-10.
   developer); Marmara Haven Villa photo as HADARA Real Estate's main image.
 - PR #43: scope note (this site only; sister sites are read-only).
 - PR #44: news of HADARA Hospitality visiting the Hotel & Restaurant Equipment Expo in Makkah.
+- PR #45: success partner logos with equal visual weight, as on the real estate site.

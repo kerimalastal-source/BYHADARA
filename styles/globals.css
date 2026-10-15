@@ -1119,12 +1119,14 @@ html[lang='ar'] .showcase-tag {
   letter-spacing: 0;
   font-size: 14px;
 }
-/* Success partners */
+/* Success partners: each logo's size comes from partnerLogoSize() so they all carry the same
+   visual weight; on wide screens one row with equal spacing and centres on one line. */
 .partners-grid {
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
+  display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  gap: 32px 48px;
+  justify-content: space-between;
+  gap: 40px 24px;
   margin: 56px 0 0;
   padding: 0;
   list-style: none;
@@ -1133,13 +1135,13 @@ html[lang='ar'] .showcase-tag {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 64px;
+  height: 72px;
 }
 .partner-logo img {
+  display: block;
+  width: var(--logo-w);
+  height: var(--logo-h);
   max-width: 100%;
-  max-height: 100%;
-  width: auto;
-  height: auto;
   object-fit: contain;
   filter: grayscale(1);
   opacity: 0.65;
@@ -1155,17 +1157,22 @@ html[lang='ar'] .showcase-tag {
 }
 @media (max-width: 1000px) {
   .partners-grid {
-    grid-template-columns: repeat(3, 1fr);
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
 @media (max-width: 640px) {
   .partners-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 28px 32px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 32px 24px;
     margin-top: 40px;
   }
   .partner-logo {
-    height: 52px;
+    height: 60px;
+  }
+  .partner-logo img {
+    width: calc(var(--logo-w) * 0.82);
+    height: calc(var(--logo-h) * 0.82);
   }
 }
 /* Company pages */
