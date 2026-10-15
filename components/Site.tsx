@@ -1,10 +1,10 @@
-import { Fragment } from 'react';
+import { Fragment, type CSSProperties } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Brand, Wordmark } from './Brand';
 import { LanguageLinks } from './LanguageLinks';
 import { latestNews, categoryIds, type Article } from '@/content/articles';
-import { partners } from '@/content/partners';
+import { partnerLogoSize, partners } from '@/content/partners';
 import { dictionary, navPaths, businessIds, marketIds, site, type Locale } from '@/content/site';
 export const Arrow = () => (
   <span className="arrow" aria-hidden="true">
@@ -195,17 +195,21 @@ export function Partners({ locale }: { locale: Locale }) {
           <p>{d.partnersText}</p>
         </div>
         <ul className="partners-grid">
-          {partners.map((p) => (
-            <li key={p.name} className="partner-logo">
-              <Image
-                src={`/images/${p.logo}`}
-                alt={p.name}
-                width={p.width}
-                height={p.height}
-                sizes="(max-width: 640px) 45vw, 200px"
-              />
-            </li>
-          ))}
+          {partners.map((p) => {
+            const { width, height } = partnerLogoSize(p);
+            const size = { '--logo-w': `${width}px`, '--logo-h': `${height}px` } as CSSProperties;
+            return (
+              <li key={p.name} className="partner-logo">
+                <Image
+                  src={`/images/${p.logo}`}
+                  alt={p.name}
+                  width={width}
+                  height={height}
+                  style={size}
+                />
+              </li>
+            );
+          })}
         </ul>
       </div>
     </section>
