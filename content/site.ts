@@ -31,6 +31,8 @@ export const site = {
   legalName: 'Hadara Investment İnşaat Sanayi ve Ticaret Anonim Şirketi',
   email: process.env.CONTACT_EMAIL || 'info@byhadara.com',
   phone: process.env.CONTACT_PHONE || '+90 531 930 92 14',
+  /** BYHADARA Group's company page on LinkedIn (created by the owner on 2026-10-15). */
+  linkedin: 'https://www.linkedin.com/company/146747112/',
 };
 export const dictionaries = {
   en: {
@@ -257,6 +259,7 @@ export const dictionaries = {
       'An Istanbul-based investment and business development group, connecting specialized businesses with a shared vision.',
     quickLinks: 'Explore',
     based: 'Istanbul, Türkiye',
+    linkedinLabel: 'BYHADARA Group on LinkedIn',
     legalIdentity: `Operated by ${site.legalName}, Istanbul.`,
     privacy: 'Privacy Policy',
     terms: 'Terms of Use',
@@ -628,6 +631,7 @@ export const dictionaries = {
     footer: 'مجموعة للاستثمار وتطوير الأعمال مقرها إسطنبول، تجمع شركات متخصصة برؤية مشتركة.',
     quickLinks: 'اكتشف',
     based: 'إسطنبول، تركيا',
+    linkedinLabel: 'مجموعة باي حضارة على LinkedIn',
     legalIdentity: `يُدار الموقع من قبل شركة ${site.legalName}، إسطنبول.`,
     privacy: 'سياسة الخصوصية',
     terms: 'شروط الاستخدام',
@@ -1001,6 +1005,7 @@ export const dictionaries = {
       'İstanbul merkezli, uzmanlaşmış işletmeleri ortak bir vizyonda buluşturan yatırım ve iş geliştirme grubu.',
     quickLinks: 'Keşfedin',
     based: 'İstanbul, Türkiye',
+    linkedinLabel: 'LinkedIn’de BYHADARA Group',
     legalIdentity: `Web sitesi ${site.legalName} (İstanbul) tarafından işletilmektedir.`,
     privacy: 'Gizlilik Politikası',
     terms: 'Kullanım Koşulları',
