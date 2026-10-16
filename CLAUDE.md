@@ -108,6 +108,12 @@ file's prose in English so it stays easy to scan. Last updated 2026-10-10.
   `lotus-yasam` → `beylikduzu-living`, `lotus-koru` → `lotus-koru-1`), so `companyUrl()` links
   still work; new links should use the new addresses directly.
 
+- **LinkedIn** (2026-10-15): company page "BYHADARA Group" created by the owner,
+  `site.linkedin` = `https://www.linkedin.com/company/146747112/` (the numeric address always
+  works; swap in the vanity address if the owner confirms it). Linked from the footer of every
+  page (`.footer-social`), the contact page's direct contact list and the Organization JSON-LD
+  (`sameAs`).
+
 ## Homepage and company pages
 
 - Home: hero (Bosphorus) → group section ("One group. Two specialized companies." with the
@@ -476,3 +482,4 @@ file's prose in English so it stays easy to scan. Last updated 2026-10-10.
 - PR #43: scope note (this site only; sister sites are read-only).
 - PR #44: news of HADARA Hospitality visiting the Hotel & Restaurant Equipment Expo in Makkah.
 - PR #45: success partner logos with equal visual weight, as on the real estate site.
+- PR #46: link to the BYHADARA Group LinkedIn page (footer, contact page, JSON-LD).

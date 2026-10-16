@@ -168,6 +168,7 @@ export function structuredData(locale: Locale, path: string) {
         telephone: site.phone,
         availableLanguage: ['English', 'Arabic', 'Turkish'],
       },
+      sameAs: [site.linkedin],
       subOrganization: businessIds.map((id) => ({ '@id': `${site.origin}/#${id}` })),
     },
     ...businessIds.map((id, i) => ({

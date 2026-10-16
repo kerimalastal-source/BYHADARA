@@ -504,6 +504,14 @@ export function Contact({ locale }: { locale: Locale }) {
               <dt>{d.locationLabel}</dt>
               <dd>{d.based}</dd>
             </div>
+            <div>
+              <dt>LinkedIn</dt>
+              <dd>
+                <a href={site.linkedin} target="_blank" rel="noopener" aria-label={d.linkedinLabel}>
+                  BYHADARA Group
+                </a>
+              </dd>
+            </div>
           </dl>
           <h3>{d.companySites}</h3>
           <div className="company-links">
