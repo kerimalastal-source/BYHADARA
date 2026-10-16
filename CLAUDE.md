@@ -81,6 +81,9 @@ file's prose in English so it stays easy to scan. Last updated 2026-10-10.
   Arabic included; only the rest of the header/footer mirrors in RTL (a browser test checks it);
   both companies share the gold H monogram (`public/images/hadara-mark.png`, gold `#c5a35d`,
   gold text on light backgrounds `#80632a` for contrast).
+  The monogram reads **"HE": HADARA (the company) + EMİROĞLU (the owner's family name)**,
+  stated by the owner on 2026-10-16; official files: `logo-light.png`/`logo-dark.png` on the real
+  estate site, `hadara-logo-gold.png`/`-black.png` on the hospitality site. Never redraw it.
 - **HADARA Real Estate**: https://www.hadararealestate.com (repo
   `kerimalastal-source/hadararealestate`, Next.js; pages `/{en|ar|tr}/projects/{slug}`). Founded
   2014 in Istanbul. **Its role, stated by the owner on 2026-10-10: it developed only Marmara Haven
