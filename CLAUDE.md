@@ -49,7 +49,7 @@ file's prose in English so it stays easy to scan. Last updated 2026-10-10.
   its Turkish copy, and the unit tests still check it) and `locales` (published: en, ar), which
   drives static params, the language links, the sitemap, hreflang and visitor tracking.
   `next.config.ts` sends every `/tr` and `/tr/…` address to the same path in English with a
-  temporary 307. To re-enable Turkish, add `'tr'` back to `locales` (and restore the Turkish paths
+  temporary 307 (owner confirmed on 2026-10-20: keep it temporary, Turkish may return). To re-enable Turkish, add `'tr'` back to `locales` (and restore the Turkish paths
   in `check-routes.mjs` and the browser tests).
 - **Key files**
   - `content/site.ts`: all EN/AR/TR copy (one dictionary per locale; unit tests require identical
