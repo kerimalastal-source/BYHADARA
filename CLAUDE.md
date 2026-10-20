@@ -81,6 +81,9 @@ file's prose in English so it stays easy to scan. Last updated 2026-10-10.
   Arabic included; only the rest of the header/footer mirrors in RTL (a browser test checks it);
   both companies share the gold H monogram (`public/images/hadara-mark.png`, gold `#c5a35d`,
   gold text on light backgrounds `#80632a` for contrast).
+  The monogram reads **"HE": HADARA (the company) + EMİROĞLU (the owner's family name)**,
+  stated by the owner on 2026-10-16; official files: `logo-light.png`/`logo-dark.png` on the real
+  estate site, `hadara-logo-gold.png`/`-black.png` on the hospitality site. Never redraw it.
 - **HADARA Real Estate**: https://www.hadararealestate.com (repo
   `kerimalastal-source/hadararealestate`, Next.js; pages `/{en|ar|tr}/projects/{slug}`). Founded
   2014 in Istanbul. **Its role, stated by the owner on 2026-10-10: it developed only Marmara Haven
@@ -330,6 +333,12 @@ file's prose in English so it stays easy to scan. Last updated 2026-10-10.
   `/contactus`, `/faq` (the real estate site's FAQ) and `/tr/post/…`. Lotus Koru 1 and Lotus
   Koru 2 are **two different projects** on the real estate site (`/projects/lotus-koru-1`, sold
   out; `/projects/lotus-koru-2`, delivered with units available).
+  The Coverage export of 2026-10-20 listed 14 more Wix addresses as 404 (`/letsconnect`,
+  `/iletisim-1`, `/about`, `/consultation`, `/live-investinturkey`, `/tr/turkishcitizenship`,
+  `/tr/projects/…`, `/projects1`, `/service-page/…`, `/accessibility-statement`, `/2025/…`) and
+  two Arabic posts on residence/citizenship (`/ar-sa/post/…`, now to the Arabic citizenship
+  guide); all redirected the same way. Most "Crawled – not indexed" and duplicate rows in that
+  export were crawled before the redirects existed and clear on the next crawl.
 - **Search performance** (Search Console export, 24 Sep–4 Oct 2026): 220 impressions, 10 clicks,
   average position about 8; 64% mobile; Türkiye 48% of impressions, then Saudi Arabia, Egypt,
   the US and India. Best pages: the Turkish news of Lotus Yaşam (57 impressions; query "lotus
@@ -483,3 +492,4 @@ file's prose in English so it stays easy to scan. Last updated 2026-10-10.
 - PR #44: news of HADARA Hospitality visiting the Hotel & Restaurant Equipment Expo in Makkah.
 - PR #45: success partner logos with equal visual weight, as on the real estate site.
 - PR #46: link to the BYHADARA Group LinkedIn page (footer, contact page, JSON-LD).
+- PR #47: Wix addresses from the 2026-10-20 Coverage export redirected; HE monogram note.

@@ -77,6 +77,15 @@ const oldAddresses = {
   '/projects/lotus-koru-2': 'https://www.hadararealestate.com/projects/lotus-koru-2',
   '/projects/unknown': '/en/businesses/real-estate',
   '/projects-1/Marmarahavenvilla': 'https://www.hadararealestate.com/projects/marmara-haven-villa',
+  // Reported as 404 by Search Console on 2026-10-20.
+  '/letsconnect': '/en/contact',
+  '/tr/turkishcitizenship': '/en/insights/turkish-citizenship-through-real-estate',
+  '/tr/projects/lotus-koru-2': 'https://www.hadararealestate.com/projects/lotus-koru-2',
+  '/service-page/proje-tan%C4%B1t%C4%B1m': '/en/businesses/real-estate',
+  '/ar-sa/post/%D8%A7%D9%84%D8%A5%D9%82%D8%A7%D9%85%D8%A9':
+    '/ar/insights/turkish-citizenship-through-real-estate',
+  '/ru-ru/live-investinturkey': '/en/markets/turkiye',
+  '/2025/02/17/hello-world': '/en',
 };
 for (const [from, to] of [
   ['/tr', '/en'],
