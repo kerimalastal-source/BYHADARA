@@ -4,7 +4,7 @@
 
 Corporate website of BYHADARA Group (Istanbul), the parent group of HADARA Real Estate and
 HADARA Hospitality. The owner communicates in Arabic; reply to them in Arabic and keep this
-file's prose in English so it stays easy to scan. Last updated 2026-10-10.
+file's prose in English so it stays easy to scan. Last updated 2026-10-20.
 
 ## Standing instructions from the owner
 
@@ -49,8 +49,9 @@ file's prose in English so it stays easy to scan. Last updated 2026-10-10.
   its Turkish copy, and the unit tests still check it) and `locales` (published: en, ar), which
   drives static params, the language links, the sitemap, hreflang and visitor tracking.
   `next.config.ts` sends every `/tr` and `/tr/…` address to the same path in English with a
-  temporary 307. To re-enable Turkish, add `'tr'` back to `locales` (and restore the Turkish paths
-  in `check-routes.mjs` and the browser tests).
+  temporary 307; the owner confirmed on 2026-10-20 to keep it temporary, since Turkish may
+  return. To re-enable Turkish, add `'tr'` back to `locales` (and restore the Turkish paths in
+  `check-routes.mjs` and the browser tests).
 - **Key files**
   - `content/site.ts`: all EN/AR/TR copy (one dictionary per locale; unit tests require identical
     keys), `site` (origin, company URLs, contact email/phone).
@@ -115,7 +116,23 @@ file's prose in English so it stays easy to scan. Last updated 2026-10-10.
   `site.linkedin` = `https://www.linkedin.com/company/146747112/` (the numeric address always
   works; swap in the vanity address if the owner confirms it). Linked from the footer of every
   page (`.footer-social`), the contact page's direct contact list and the Organization JSON-LD
-  (`sameAs`).
+  (`sameAs`). The owner was given ready prompts for the two sister-site sessions to link this page
+  from their own sites.
+
+## Social media and brand materials (2026-10-14 to 2026-10-19)
+
+- Made in the session scratchpad, not in this repo, and sent to the owner as files: LinkedIn
+  company page logo and cover, a LinkedIn posting calendar with images (posted natively in
+  LinkedIn: Taplio is connected but its plan does not include the API features), the "Two
+  Industries. One Vision." post image, a three-company launch campaign, two Makkah Expo images,
+  the brand film "Connected Worlds" (1920×1080, v2; the owner disliked the simpler v1 but liked
+  its music) and a motion reel without photos in 9:16 (Instagram/phones) and 4:5
+  (Facebook/LinkedIn feed), with post captions. All are canvas animations rendered frame by frame
+  with Playwright and encoded with ffmpeg (H.264 CRF 17, AAC, −16 LUFS); the music is synthesised
+  from scratch (numpy), so nothing needs a licence. The scratchpad is ephemeral: rebuild from the
+  source zips the owner received if a change is needed.
+- Owner's verdict on alternative logos (2026-10-16): «لا شعارنا احلا». Never propose redesigns of
+  the HE monogram; use the official files.
 
 ## Homepage and company pages
 
@@ -338,7 +355,10 @@ file's prose in English so it stays easy to scan. Last updated 2026-10-10.
   `/tr/projects/…`, `/projects1`, `/service-page/…`, `/accessibility-statement`, `/2025/…`) and
   two Arabic posts on residence/citizenship (`/ar-sa/post/…`, now to the Arabic citizenship
   guide); all redirected the same way. Most "Crawled – not indexed" and duplicate rows in that
-  export were crawled before the redirects existed and clear on the next crawl.
+  export were crawled before the redirects existed and clear on the next crawl. The owner was
+  asked to click «Düzeltmeyi doğrula» in the 404 and crawled-not-indexed reports and to request
+  indexing of the four new hospitality guides; a reminder on 2026-10-22 asks them for a fresh
+  Coverage export to confirm the errors are gone.
 - **Search performance** (Search Console export, 24 Sep–4 Oct 2026): 220 impressions, 10 clicks,
   average position about 8; 64% mobile; Türkiye 48% of impressions, then Saudi Arabia, Egypt,
   the US and India. Best pages: the Turkish news of Lotus Yaşam (57 impressions; query "lotus
@@ -493,3 +513,4 @@ file's prose in English so it stays easy to scan. Last updated 2026-10-10.
 - PR #45: success partner logos with equal visual weight, as on the real estate site.
 - PR #46: link to the BYHADARA Group LinkedIn page (footer, contact page, JSON-LD).
 - PR #47: Wix addresses from the 2026-10-20 Coverage export redirected; HE monogram note.
+- PR #48: context file update (Turkish redirect stays temporary, brand materials, GSC follow-up).
