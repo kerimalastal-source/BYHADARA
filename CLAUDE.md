@@ -316,6 +316,16 @@ file's prose in English so it stays easy to scan. Last updated 2026-10-20.
   (hotelandrestaurant-expo.com): 8th edition, 16–18 November 2026, Makkah Chamber Exhibition &
   Events Center, sectors incl. hotel operations & essentials, 120+ exhibitors from 10+ countries.
   It leads the GCC market page's reading list. 20 articles, 74 pages, 72 sitemap URLs.
+- Added 2026-10-22 at the owner's request (Search Console showed searches for "lotus koru 1",
+  "lotus koru 2 beylikdüzü"): guide **Lotus Koru 1 and Lotus Koru 2**
+  (`lotus-koru-1-and-2-beylikduzu`, in `real-estate.ts`, so not on the homepage news row). Facts
+  from İkinci BYHADARA (`projects.ts`, `projectsData`): two separate Lotus Yapı Proje projects,
+  HADARA Real Estate their marketing partner. Koru 1: Jan 2022–May 2024, 10,500 m² land (6,500
+  landscaped) + 7,000 m² municipal park in front, 10 blocks × 5 floors, 144 apartments, 27
+  shops, ~33,000 m², sold out. Koru 2: 2023–2025, 15,005 m² plot, 10,500 m² green + 7,000 m²
+  park, 13 blocks × 5 floors, 204 apartments, ~40,000 m², ready with units available. Call to
+  action: Lotus Koru 2's page (`/projects/lotus-koru-2`, `/ar/…`). Turkish copy is written but
+  unpublished while Turkish is off. 21 articles, 76 pages, 74 sitemap URLs.
 - In Arabic text, number ranges render reversed ("100–109" shows as "109–100"): write them in
   words («بين 100 و109») or wrap them in U+2066/U+2069 isolates (fine outside `<select>`).
 
@@ -328,7 +338,7 @@ file's prose in English so it stays easy to scan. Last updated 2026-10-20.
   rendered with Playwright from an HTML file opened via `file://` (so local fonts and the photo
   load); re-render them the same way if the brand changes.
 - The insights index is `noindex` and outside the sitemap only while no article is published; the
-  thank-you page is always `noindex` and outside it. Sitemap: 72 URLs with 20 articles (English and Arabic).
+  thank-you page is always `noindex` and outside it. Sitemap: 74 URLs with 21 articles (English and Arabic).
 - Canonical origin is `https://www.byhadara.com` (default in `content/site.ts`, `SITE_URL`
   overrides), matching Vercel where the apex redirects to `www`. Keep the two in sync.
 - Google Search Console: Domain property verified by a DNS TXT record
@@ -450,7 +460,7 @@ file's prose in English so it stays easy to scan. Last updated 2026-10-20.
 ## Validation and sandbox notes
 
 - Checks: `pnpm typecheck`, `pnpm test` (50 tests), `pnpm build`, then `pnpm start` +
-  `node scripts/check-routes.mjs` (74 pages incl. the articles, links, SEO assertions, 503 from
+  `node scripts/check-routes.mjs` (76 pages incl. the articles, links, SEO assertions, 503 from
   both APIs while unconfigured) and the Playwright suite (16 tests incl. axe and the phone/tablet test). Prettier:
   `pnpm exec prettier --check components content lib app styles tests scripts docs *.md`.
 - The installed `@playwright/test` expects a newer browser than the sandbox has: run with a
@@ -534,3 +544,4 @@ file's prose in English so it stays easy to scan. Last updated 2026-10-20.
 - PR #48: context file update (Turkish redirect stays temporary, brand materials, GSC follow-up).
 - PR #49: two more Wix addresses from the 2026-10-23 Coverage export redirected.
 - PR #50: `/turkishcitizenship` and a Russian Lotus Yaşam address redirected; second GSC export.
+- PR #51: guide "Lotus Koru 1 and Lotus Koru 2" (English and Arabic; Turkish kept).

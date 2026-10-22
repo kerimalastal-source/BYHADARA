@@ -1,6 +1,6 @@
 import type { Article } from '../articles';
 import { companyUrl } from '../companies';
-import type { Locale } from '../site';
+import { site, type Locale } from '../site';
 const image = (file: string) => `/images/insights/${file}.jpg`;
 const visitLabel = {
   en: 'Visit HADARA Real Estate',
@@ -14,6 +14,9 @@ const visit = (locale: Locale, title: string, text: string) => ({
   label: visitLabel[locale],
   href: companyUrl('real-estate', locale),
 });
+/** Lotus Koru 2's page on the real estate website (English without a prefix, no Turkish). */
+const lotusKoru2Page = (arabic: boolean) =>
+  `${site.realEstate}${arabic ? '/ar' : ''}/projects/lotus-koru-2`;
 const credit = {
   lotus: {
     en: 'Architectural visualisation: Lotus Yapı Proje.',
@@ -409,6 +412,121 @@ export const realEstate: Article[] = [
           'Yeni ve tamamlanmış projeleri karşılaştırın',
           'Güncel projelere HADARA Real Estate web sitesinden göz atın.',
         ),
+      },
+    },
+  },
+  {
+    // Project facts from the İkinci BYHADARA real estate site (projects.ts and i18n "projectsData",
+    // "lotus-koru-1" and "lotus-koru-2"). Two separate projects by Lotus Yapı Proje; HADARA Real
+    // Estate is their marketing partner, never their developer. Searchers look for both names.
+    slug: 'lotus-koru-1-and-2-beylikduzu',
+    category: 'real-estate',
+    status: 'published',
+    approved: true,
+    publishedAt: '2026-10-22',
+    company: 'real-estate',
+    translations: {
+      en: {
+        title: 'Lotus Koru 1 and Lotus Koru 2: two completed communities in Beylikdüzü',
+        seoTitle: 'Lotus Koru 1 and 2 in Beylikdüzü, Istanbul',
+        description:
+          'Lotus Koru 1 and Lotus Koru 2 are two completed low-rise communities by Lotus Yapı Proje in Beylikdüzü: 144 homes now sold out, and 204 homes ready to move in.',
+        body: [
+          'Lotus Koru 1 and Lotus Koru 2 are two separate residential communities developed by Lotus Yapı Proje in Beylikdüzü, on the western side of Istanbul. Both are complete, and HADARA Real Estate, a BYHADARA Group company, is their marketing partner.',
+          'Lotus Koru 1 was built between January 2022 and May 2024 on 10,500 m² of land, 6,500 m² of it landscaped, with a 7,000 m² municipal park in front of the project. Its 10 blocks of five floors hold 144 apartments and 27 shops in around 33,000 m² of construction. The community is fully sold.',
+          'Lotus Koru 2 followed between 2023 and 2025 on a 15,005 m² plot, with 10,500 m² of landscaped green space and a 7,000 m² public park directly in front. Its 13 blocks of five floors hold 204 apartments in about 40,000 m² of construction, and its central Beylikdüzü location gives easy access to the rest of Istanbul.',
+          'Residents of both communities share services that include separate swimming pools for men and women, a fitness centre, indoor parking, 24/7 security with camera surveillance and a backup generator.',
+          'For buyers the difference is simple: Lotus Koru 1 is sold out, while Lotus Koru 2 is ready to move in, with apartments still available. Buyers abroad can start with a private video tour by HADARA Real Estate before visiting Istanbul.',
+        ],
+        image: '/images/real-estate/lotus-koru-2.jpg',
+        imageAlt: 'Landscaped walkways and gardens between the residential blocks of Lotus Koru 2',
+        imageCredit: credit.lotus.en,
+        facts: [
+          ['144', 'Apartments in Lotus\u00a0Koru\u00a01, sold out'],
+          ['204', 'Apartments in Lotus\u00a0Koru\u00a02'],
+          ['5 floors', 'Low-rise blocks in both'],
+        ],
+        gallery: [
+          {
+            src: image('lotus-koru-1-sports-court'),
+            alt: 'Sports court, pool and walking path at Lotus Koru 1',
+          },
+          { src: image('lotus-koru-2-aerial'), alt: 'Aerial view of the Lotus Koru 2 blocks' },
+        ],
+        cta: {
+          title: 'Discover Lotus Koru 2',
+          text: 'Available apartments and viewing requests are on the HADARA Real Estate website.',
+          label: 'View the project',
+          href: lotusKoru2Page(false),
+        },
+      },
+      ar: {
+        title: 'لوتس كورو 1 ولوتس كورو 2: مجمّعان سكنيان مكتملان في بيليكدوزو',
+        seoTitle: 'لوتس كورو 1 و2 في بيليكدوزو بإسطنبول',
+        description:
+          'لوتس كورو 1 ولوتس كورو 2 مجمّعان سكنيان مكتملان من تطوير لوتس يابي بروجي في بيليكدوزو: 144 شقة بيعت بالكامل، و204 شقق جاهزة للسكن مع وحدات متاحة.',
+        body: [
+          'لوتس كورو 1 ولوتس كورو 2 (Lotus Koru) مجمّعان سكنيان منفصلان من تطوير شركة لوتس يابي بروجي في بيليكدوزو، على الجانب الغربي من إسطنبول. اكتمل إنشاء المشروعين، وحضارة العقارية، إحدى شركات مجموعة باي حضارة، هي شريكهما التسويقي.',
+          'شُيّد لوتس كورو 1 بين يناير 2022 ومايو 2024 على أرض مساحتها 10,500 م²، منها 6,500 م² مساحات خضراء منسّقة، وأمامه حديقة بلدية بمساحة 7,000 م². ويضم 10 مبانٍ من خمسة طوابق فيها 144 شقة و27 محلاً تجارياً، بمساحة بناء تبلغ نحو 33,000 م². وقد بيعت جميع وحداته.',
+          'وتلاه لوتس كورو 2، الذي شُيّد بين عامي 2023 و2025 على قطعة أرض مساحتها 15,005 م²، فيها 10,500 م² من المساحات الخضراء المنسّقة، وأمامه مباشرة حديقة عامة بمساحة 7,000 م². ويضم 13 مبنى من خمسة طوابق فيها 204 شقق، بمساحة بناء تبلغ نحو 40,000 م²، ويتيح موقعه المركزي في بيليكدوزو سهولة الوصول إلى بقية إسطنبول.',
+          'ويتشارك سكان المجمّعين خدمات تشمل مسابح منفصلة للرجال والنساء، وصالة رياضية، ومرآباً مغلقاً، وحراسة على مدار الساعة مع كاميرات مراقبة، ومولداً احتياطياً.',
+          'والفرق بالنسبة للمشتري واضح: لوتس كورو 1 بيع بالكامل، أما لوتس كورو 2 فجاهز للسكن ولا تزال فيه شقق متاحة. ويمكن للمشترين من خارج تركيا البدء بجولة فيديو خاصة مع حضارة العقارية قبل زيارة إسطنبول.',
+        ],
+        image: '/images/real-estate/lotus-koru-2.jpg',
+        imageAlt: 'ممرات وحدائق منسّقة بين المباني السكنية في لوتس كورو 2',
+        imageCredit: credit.lotus.ar,
+        facts: [
+          ['144', 'شقة في لوتس\u00a0كورو\u00a01، بيعت بالكامل'],
+          ['204', 'شقق في لوتس\u00a0كورو\u00a02'],
+          ['5 طوابق', 'مبانٍ منخفضة في المشروعين'],
+        ],
+        gallery: [
+          {
+            src: image('lotus-koru-1-sports-court'),
+            alt: 'ملعب رياضي ومسبح وممر مشي في لوتس كورو 1',
+          },
+          { src: image('lotus-koru-2-aerial'), alt: 'منظر جوي لمباني لوتس كورو 2' },
+        ],
+        cta: {
+          title: 'اكتشف لوتس كورو 2',
+          text: 'الشقق المتاحة وطلبات المعاينة على موقع حضارة العقارية.',
+          label: 'عرض المشروع',
+          href: lotusKoru2Page(true),
+        },
+      },
+      tr: {
+        title: 'Lotus Koru 1 ve Lotus Koru 2: Beylikdüzü’nde tamamlanan iki yaşam alanı',
+        seoTitle: 'Beylikdüzü’nde Lotus Koru 1 ve Lotus Koru 2',
+        description:
+          'Lotus Koru 1 ve Lotus Koru 2, Lotus Yapı Proje’nin Beylikdüzü’nde tamamladığı iki az katlı konut projesi: satışı biten 144 daire ve taşınmaya hazır 204 daire.',
+        body: [
+          'Lotus Koru 1 ve Lotus Koru 2, Lotus Yapı Proje’nin İstanbul’un batı yakasında, Beylikdüzü’nde geliştirdiği iki ayrı konut projesidir. Her ikisi de tamamlandı; BYHADARA Group şirketlerinden HADARA Real Estate projelerin pazarlama ortağıdır.',
+          'Lotus Koru 1, Ocak 2022 ile Mayıs 2024 arasında, 6.500 m²’si peyzaj alanı olan 10.500 m² arsa üzerinde inşa edildi; projenin önünde 7.000 m² belediye parkı bulunuyor. Beş katlı 10 blokta 144 daire ve 27 dükkân yer alıyor, toplam inşaat alanı yaklaşık 33.000 m². Projenin tüm daireleri satıldı.',
+          'Lotus Koru 2, 2023–2025 yılları arasında 15.005 m² arsa üzerinde yükseldi; 10.500 m² peyzajlı yeşil alanı ve hemen önünde 7.000 m² kamu parkı var. Beş katlı 13 blokta 204 daire bulunuyor, toplam inşaat alanı yaklaşık 40.000 m². Beylikdüzü’nün merkezindeki konumu İstanbul’un her yerine kolay ulaşım sağlıyor.',
+          'İki projenin sakinleri; kadınlar ve erkekler için ayrı yüzme havuzları, fitness merkezi, kapalı otopark, kamera sistemiyle desteklenen 7/24 güvenlik ve yedek jeneratör gibi ortak hizmetlerden yararlanıyor.',
+          'Alıcılar için fark açık: Lotus Koru 1’in satışı tamamlandı, Lotus Koru 2 ise taşınmaya hazır ve satılık daireleri bulunuyor. Yurt dışındaki alıcılar, İstanbul’a gelmeden önce HADARA Real Estate ile özel bir video turla başlayabilir.',
+        ],
+        image: '/images/real-estate/lotus-koru-2.jpg',
+        imageAlt: 'Lotus Koru 2 konut blokları arasındaki peyzajlı yürüyüş yolları ve bahçeler',
+        imageCredit: credit.lotus.tr,
+        facts: [
+          ['144', 'Lotus\u00a0Koru\u00a01’de daire, satışı tamamlandı'],
+          ['204', 'Lotus\u00a0Koru\u00a02’de daire'],
+          ['5 kat', 'İki projede de az katlı bloklar'],
+        ],
+        gallery: [
+          {
+            src: image('lotus-koru-1-sports-court'),
+            alt: 'Lotus Koru 1’de spor sahası, havuz ve yürüyüş yolu',
+          },
+          { src: image('lotus-koru-2-aerial'), alt: 'Lotus Koru 2 bloklarının havadan görünümü' },
+        ],
+        cta: {
+          title: 'Lotus Koru 2’yi keşfedin',
+          text: 'Satılık daireler ve ziyaret talepleri HADARA Real Estate web sitesinde.',
+          label: 'Projeyi görüntüleyin',
+          href: lotusKoru2Page(false),
+        },
       },
     },
   },

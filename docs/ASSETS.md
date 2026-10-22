@@ -57,6 +57,8 @@ Further insights visuals (2026-09-26), unmodified unless noted:
 | `quilted-pillow-protector.jpg`  | HADARA Hospitality repository `products/waterproof-pillow-protector/2.jpg` (Unsplash `_0xZUyAz8j4`)                              | Unsplash         |
 | `lotus-manzara-sea-view.jpg`    | İkinci BYHADARA `lotus-manzara-beylikduzu/aerial-sea-view.jpg`                                                                   | Lotus Yapı Proje |
 | `lotus-yasam-aerial.jpg`        | İkinci BYHADARA `beylikduzu-living/aerial-view.jpg` (commit `72f6951`, 2026-09-29)                                               | Lotus Yapı Proje |
+| `lotus-koru-1-sports-court.jpg` | İkinci BYHADARA `lotus-koru-1/sports-court.jpg` (commit `3c3706b`, 2026-10-22)                                                   | Lotus Yapı Proje |
+| `lotus-koru-2-aerial.jpg`       | İkinci BYHADARA `lotus-koru-2/residential-blocks.jpg` (commit `3c3706b`, 2026-10-22)                                             | Lotus Yapı Proje |
 
 Hospitality guide visuals (2026-10-08), from the HADARA Hospitality repository's product photos
 (`public/assets/products/`, commit `3709ecc`). They come from the owner's Drive photo set of
@@ -84,3 +86,6 @@ Typography: Inter and IBM Plex Sans Arabic, installed via Fontsource and served 
 Share images `public/og/byhadara-{en,ar,tr}.jpg` (1200×630) are original compositions of the cropped `istanbul-bosphorus.jpg` photograph with the text wordmark and a localized tagline set in Inter and IBM Plex Sans Arabic.
 
 No third-party analytics, advertising trackers or remote font requests are included. Turnstile is only loaded if online inquiries are fully configured and enabled.
+
+The Lotus Koru 1 and 2 article (2026-10-22) reuses `public/images/real-estate/lotus-koru-2.jpg` as
+its main image.
