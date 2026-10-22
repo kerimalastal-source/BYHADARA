@@ -85,6 +85,9 @@ const config: NextConfig = {
       to('/accessibility-statement', '/en'),
       to('/tr/accessibility-statement', `/${tr}`),
       to('/2025/:path*', '/en'),
+      // Two more Wix pages listed in the Coverage export of 2026-10-23.
+      to('/s-projects-side-by-side', '/en/businesses/real-estate'),
+      to('/book-online', '/en/contact'),
       // Both Arabic posts were about residence and citizenship through real estate.
       to('/ar-sa/post/:slug*', '/ar/insights/turkish-citizenship-through-real-estate'),
       to('/ru-ru/turkishcitizenship', guide('turkish-citizenship-through-real-estate')),

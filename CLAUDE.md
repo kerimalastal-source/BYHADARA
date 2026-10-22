@@ -359,6 +359,12 @@ file's prose in English so it stays easy to scan. Last updated 2026-10-20.
   asked to click «Düzeltmeyi doğrula» in the 404 and crawled-not-indexed reports and to request
   indexing of the four new hospitality guides; a reminder on 2026-10-22 asks them for a fresh
   Coverage export to confirm the errors are gone.
+  The export of 2026-10-23 still ended on 2026-10-16 (Search Console lags about a week), so it
+  showed the same 404s, all crawled before the fix; it added two Wix pages, `/book-online` (to
+  Contact) and `/s-projects-side-by-side` (to the real estate page). Validation of the 404,
+  redirect and duplicate reports had started; the earlier "Crawled – not indexed" validation
+  failed, as expected while old Wix addresses sit in it. Indexed pages: 157 (4 Oct) → 150
+  (16 Oct; the dip on 10 Oct is Turkish being switched off).
 - **Search performance** (Search Console export, 24 Sep–4 Oct 2026): 220 impressions, 10 clicks,
   average position about 8; 64% mobile; Türkiye 48% of impressions, then Saudi Arabia, Egypt,
   the US and India. Best pages: the Turkish news of Lotus Yaşam (57 impressions; query "lotus
@@ -514,3 +520,4 @@ file's prose in English so it stays easy to scan. Last updated 2026-10-20.
 - PR #46: link to the BYHADARA Group LinkedIn page (footer, contact page, JSON-LD).
 - PR #47: Wix addresses from the 2026-10-20 Coverage export redirected; HE monogram note.
 - PR #48: context file update (Turkish redirect stays temporary, brand materials, GSC follow-up).
+- PR #49: two more Wix addresses from the 2026-10-23 Coverage export redirected.
