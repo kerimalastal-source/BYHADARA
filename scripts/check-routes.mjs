@@ -87,6 +87,7 @@ const oldAddresses = {
   '/ru-ru/live-investinturkey': '/en/markets/turkiye',
   '/2025/02/17/hello-world': '/en',
   '/book-online': '/en/contact',
+  '/turkishcitizenship': '/en/insights/turkish-citizenship-through-real-estate',
 };
 for (const [from, to] of [
   ['/tr', '/en'],

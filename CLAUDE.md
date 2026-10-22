@@ -373,6 +373,18 @@ file's prose in English so it stays easy to scan. Last updated 2026-10-20.
   "lotus koru 1/2" (no article yet), the brand ("hadara", "who is hadara", position 5–7), hotel
   towels/bed linen guides (positions 5–7) and Turkish citizenship (positions 30–80, very
   competitive). An old Google Business Profile still links to the site with Wix UTM tags.
+  **Second export (24 Sep–20 Oct, received 2026-10-23)**: 595 impressions, 21 clicks, position
+  7.4. Per day, 24 Sep–4 Oct vs 5–20 Oct: impressions 20 → 23, position 8.0 → 7.0, clicks
+  steady (10 in 11 days, 11 in 16). Türkiye 57% of impressions and 19 of the 21 clicks; 12
+  clicks came from the Turkish Lotus Yaşam (166 impressions) and Diamond Marin (72) articles,
+  which have redirected to English since 10 Oct (owner keeps it temporary; watch whether those
+  clicks fade). The Google Business Profile link with Wix UTM tags drew 53 impressions and 2
+  clicks: the owner should change that profile's website to `https://www.byhadara.com/en`.
+  Brand query "hadara" sits at position 7.3. New hospitality guides rank 3.7–5.7 (pillows,
+  towels) without clicks yet. Five pages were "Discovered – not indexed" (never crawled): en/ar
+  off-plan guide, ar pillows guide, ar GCC market, en partnerships; the owner can request
+  indexing for them. `/turkishcitizenship` (position 2) and `/ru-ru/projects/yasam-beylikduzu`
+  were still 404/weak and now redirect.
 
 - **IndexNow** (2026-10-08, owner's request, same design as HADARA Hospitality and HADARA Real
   Estate): after every production build, new or changed pages go to Bing, Yandex and the other
@@ -521,3 +533,4 @@ file's prose in English so it stays easy to scan. Last updated 2026-10-20.
 - PR #47: Wix addresses from the 2026-10-20 Coverage export redirected; HE monogram note.
 - PR #48: context file update (Turkish redirect stays temporary, brand materials, GSC follow-up).
 - PR #49: two more Wix addresses from the 2026-10-23 Coverage export redirected.
+- PR #50: `/turkishcitizenship` and a Russian Lotus Yaşam address redirected; second GSC export.
