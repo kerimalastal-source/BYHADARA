@@ -129,8 +129,9 @@ file's prose in English so it stays easy to scan. Last updated 2026-10-24.
   `rsend` and `send`; both were fixed by hand. Google mail DKIM `google._domainkey` (2048-bit,
   authentication started) and `_dmarc` `v=DMARC1; p=none;` were added.
 - Checked by that session: the site opens on both hosts, and a mail from info@byhadara.com
-  ("BYHADARA Group") arrived in an inbox, mailed-by and signed-by byhadara.com. Receiving at
-  info@ was not yet confirmed. Google Workspace billing for info@ moved from Wix to Google (yearly,
+  ("BYHADARA Group") arrived in an inbox, mailed-by and signed-by byhadara.com. Confirmed by the
+  owner on 2026-10-24: mail sent to info@ arrives, and a contact form request arrived from
+  `website@byhadara.com`, mailed-by `rsend.byhadara.com`, signed-by byhadara.com, TLS. Google Workspace billing for info@ moved from Wix to Google (yearly,
   renews 8 January 2027); the owner may still need to add a card and review reseller access.
 - Next: a reminder on 2026-10-31 (hospitality session) raises `_dmarc` to `p=quarantine` after a
   header check shows SPF, DKIM and DMARC all PASS. Do not cancel any Wix plan (İşletme renews
