@@ -4,7 +4,7 @@
 
 Corporate website of BYHADARA Group (Istanbul), the parent group of HADARA Real Estate and
 HADARA Hospitality. The owner communicates in Arabic; reply to them in Arabic and keep this
-file's prose in English so it stays easy to scan. Last updated 2026-10-20.
+file's prose in English so it stays easy to scan. Last updated 2026-10-24.
 
 ## Standing instructions from the owner
 
@@ -35,7 +35,7 @@ file's prose in English so it stays easy to scan. Last updated 2026-10-20.
   TypeScript, custom CSS (`styles/globals.css`), zod, pnpm 11.19. Read
   `node_modules/next/dist/docs/` before using Next APIs (see AGENTS.md).
 - **Live**: https://www.byhadara.com is the Vercel primary domain; `byhadara.com` 308-redirects
-  to it (DNS on Wix nameservers pointing to Vercel). Also https://byhadara.vercel.app. Vercel project `byhadara`
+  to it (DNS on Cloudflare since 2026-10-24, see "Domain, DNS and email"). Also https://byhadara.vercel.app. Vercel project `byhadara`
   (`prj_bVxa8wH2w0Lo9KKyaRzgMvzFXIza`) in team `hadara1` (`team_QsY1Po5NrdwjnNTD0wqYTrNc`). The
   session's Vercel connector gets 403 on this team (it only sees `hadarahospitality`), so env vars
   and deployments of `byhadara` are handled by the owner in the Vercel dashboard. Preview
@@ -111,6 +111,30 @@ file's prose in English so it stays easy to scan. Last updated 2026-10-20.
   Its `vercel.json` redirects the old `/en/…` and `/tr/…` addresses (and the old slugs
   `lotus-yasam` → `beylikduzu-living`, `lotus-koru` → `lotus-koru-1`), so `companyUrl()` links
   still work; new links should use the new addresses directly.
+
+## Domain, DNS and email (moved from Wix to Cloudflare on 2026-10-24)
+
+- Done by the owner with the HADARA Hospitality session (documented in that repo's CLAUDE.md,
+  PR #313, section "DNS of byhadara.com moved from Wix to Cloudflare"; this site's session only
+  records it and never changes DNS or Wix). Registrar: **Natro** (Wix only ran the DNS on
+  `ns8/ns9.wixdns.net`); renewal about 116 days after 2026-10-24. DNS: **Cloudflare Free**, same
+  account as hadarahospitality.com (info@byhadara.com), nameservers `dorthy.ns.cloudflare.com` and
+  `salvador.ns.cloudflare.com`, Active.
+- 14 records, **all DNS only, never Proxied** (a proxy breaks Vercel and mail): A `@` 216.198.79.1
+  and CNAME `www` → `38d5884160afbef0.vercel-dns-017.com` (Vercel), 5 Google MX, SPF
+  `v=spf1 include:_spf.google.com ~all`, 3 `google-site-verification` TXT (Search Console's Domain
+  property depends on them: never remove them), and Resend's `resend._domainkey` TXT with CNAMEs
+  `rsend` → `rsend-apne1.forge.rmta.net` and `send` → `send.forge.rmta.net` (the contact form's
+  mail; if delivery fails, check these first). Cloudflare's import proxied A and `www` and missed
+  `rsend` and `send`; both were fixed by hand. Google mail DKIM `google._domainkey` (2048-bit,
+  authentication started) and `_dmarc` `v=DMARC1; p=none;` were added.
+- Checked by that session: the site opens on both hosts, and a mail from info@byhadara.com
+  ("BYHADARA Group") arrived in an inbox, mailed-by and signed-by byhadara.com. Receiving at
+  info@ was not yet confirmed. Google Workspace billing for info@ moved from Wix to Google (yearly,
+  renews 8 January 2027); the owner may still need to add a card and review reseller access.
+- Next: a reminder on 2026-10-31 (hospitality session) raises `_dmarc` to `p=quarantine` after a
+  header check shows SPF, DKIM and DMARC all PASS. Do not cancel any Wix plan (İşletme renews
+  16 December 2026) or delete the old Wix zone without the owner's explicit word.
 
 - **LinkedIn** (2026-10-15): company page "BYHADARA Group" created by the owner,
   `site.linkedin` = `https://www.linkedin.com/company/146747112/` (the numeric address always
@@ -344,7 +368,8 @@ file's prose in English so it stays easy to scan. Last updated 2026-10-20.
 - Google Search Console: Domain property verified by a DNS TXT record
   (`google-site-verification=…`) that the owner added in Wix DNS on 2026-09-25, and
   `https://www.byhadara.com/sitemap.xml` submitted (owner-reported). No meta tag is needed;
-  `GOOGLE_SITE_VERIFICATION` stays unset. Never remove that TXT record when editing DNS.
+  `GOOGLE_SITE_VERIFICATION` stays unset. Never remove that TXT record when editing DNS (it moved
+  to Cloudflare with the rest of the zone on 2026-10-24).
 - **Old Wix addresses** (2026-10-08): Search Console listed 21 URLs as "Crawled – currently not
   indexed" (`Tarandı – şu anda dizine eklenmemiş`); 18 were pages of the former Wix site
   (`/post/…`, `/blog/…`, `/projects/…`, `/projects-1/…`, `/en-us/…`, `/ru-ru/…`, `/ar-sa/…`) that
@@ -545,3 +570,4 @@ file's prose in English so it stays easy to scan. Last updated 2026-10-20.
 - PR #49: two more Wix addresses from the 2026-10-23 Coverage export redirected.
 - PR #50: `/turkishcitizenship` and a Russian Lotus Yaşam address redirected; second GSC export.
 - PR #51: guide "Lotus Koru 1 and Lotus Koru 2" (English and Arabic; Turkish kept).
+- PR #52: context note on the DNS move from Wix to Cloudflare (no site change).
