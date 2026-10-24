@@ -83,6 +83,36 @@ export function composeEmail(inquiry: Inquiry) {
   const text = `${rows.map(([label, value]) => `${label}: ${value}`).join('\n')}\n\nRequest:\n${inquiry.message}`;
   return { subject, html, text };
 }
+const topicLabelsAr = {
+  general: 'استفسار عام',
+  investment: 'فرصة استثمار',
+  partnership: 'شراكة استراتيجية',
+} as const;
+const languagesAr = { en: 'الإنجليزية', ar: 'العربية', tr: 'التركية' } as const;
+/** Keeps a left-to-right value (phone, email, address) whole inside an Arabic line. */
+const ltr = (value: string) => `\u2066${escapeHtml(value)}\u2069`;
+/**
+ * The Telegram alert the team receives for one request (Arabic, parse_mode HTML). Telegram links
+ * only http(s) addresses, so the phone and email stay plain text, which its apps make tappable.
+ */
+export function composeTelegram(inquiry: Inquiry) {
+  const code = dialCode(inquiry.country)!;
+  const country = new Intl.DisplayNames(['ar'], { type: 'region' }).of(inquiry.country);
+  const request =
+    inquiry.message.length > 1500 ? `${inquiry.message.slice(0, 1500)}…` : inquiry.message;
+  const details = [
+    `📩 <b>طلب جديد من الموقع: ${topicLabelsAr[inquiry.topic]}</b>`,
+    `👤 ${escapeHtml(inquiry.name)}`,
+    inquiry.company ? `🏢 ${escapeHtml(inquiry.company)}` : '',
+    `📧 ${ltr(inquiry.email)}`,
+    `📞 ${ltr(`${code} ${inquiry.phone}`)} (${escapeHtml(country ?? inquiry.country)})`,
+    `💬 <a href="https://wa.me/${internationalNumber(inquiry)}">مراسلة عبر واتساب</a>`,
+    inquiry.website ? `🔗 ${ltr(inquiry.website)}` : '',
+    `🗣️ لغة الموقع: ${languagesAr[inquiry.locale]}`,
+    `✉️ رسائل التسويق: ${inquiry.marketing ? 'وافق على استلامها' : 'لم يطلبها'}`,
+  ].filter(Boolean);
+  return `${details.join('\n')}\n\n📝 ${escapeHtml(request)}`;
+}
 /** Sends one request by email through the Resend API and returns the provider's message ID. */
 export async function sendInquiry(inquiry: Inquiry) {
   const { subject, html, text } = composeEmail(inquiry);

@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { inquirySchema, normalizeWebsite } from '../lib/inquiry-schema';
 import { invalidFields } from '../lib/inquiry-rules';
 import { POST } from '../app/api/inquiries/route';
-import { composeEmail, rateLimit, sendInquiry } from '../lib/inquiry-service';
+import { composeEmail, composeTelegram, rateLimit, sendInquiry } from '../lib/inquiry-service';
 import { resetHubspotSchema, saveToHubspot } from '../lib/hubspot';
 import { countryOptions, dialCode } from '../content/countries';
 const originalFetch = globalThis.fetch;
@@ -25,10 +25,12 @@ const valid = {
   startedAt: Date.now() - 10000,
 };
 function configure(extra: Record<string, string> = {}) {
-  Object.assign(process.env, { RESEND_API_KEY: 'test-only', ...extra });
   delete process.env.CONTACT_TO_EMAIL;
   delete process.env.UPSTASH_REDIS_REST_URL;
   delete process.env.HUBSPOT_ACCESS_TOKEN;
+  delete process.env.TELEGRAM_BOT_TOKEN;
+  delete process.env.TELEGRAM_CHAT_ID;
+  Object.assign(process.env, { RESEND_API_KEY: 'test-only', ...extra });
 }
 function request(
   values: Record<string, unknown> = valid,
@@ -104,6 +106,42 @@ test('email lists every field, escapes input and adds call and WhatsApp links', 
   assert.ok(text.includes('Site language: AR'));
   assert.ok(html.includes('href="mailto:test.person@example.com"'));
   assert.ok(text.includes('Email updates: Not requested'));
+});
+test('Telegram alert carries the request in Arabic, escaped, with a WhatsApp link', () => {
+  const data = inquirySchema.parse({ ...valid, company: '<b>Co</b>', marketing: 'yes' });
+  const message = composeTelegram(data);
+  assert.ok(message.startsWith('📩 <b>طلب جديد من الموقع: فرصة استثمار</b>'));
+  assert.ok(message.includes('🏢 &lt;b&gt;Co&lt;/b&gt;') && !message.includes('<b>Co</b>'));
+  assert.ok(message.includes('\u2066+966 050 000 0000\u2069'));
+  assert.ok(message.includes('<a href="https://wa.me/966500000000">'));
+  assert.ok(message.includes('لغة الموقع: العربية'));
+  assert.ok(message.includes('رسائل التسويق: وافق على استلامها'));
+  assert.ok(message.endsWith(`\n\n📝 ${valid.message}`));
+  // Optional fields left empty leave no empty lines, and long requests are shortened.
+  const bare = composeTelegram(
+    inquirySchema.parse({ ...valid, company: '', website: '', message: 'x'.repeat(3000) }),
+  );
+  assert.ok(!bare.includes('🏢') && !bare.includes('🔗'));
+  assert.ok(bare.endsWith(`📝 ${'x'.repeat(1500)}…`) && bare.length < 4096);
+});
+test('an accepted request also reaches the team on Telegram after the email', async () => {
+  configure({ TELEGRAM_BOT_TOKEN: 'test-token', TELEGRAM_CHAT_ID: '42' });
+  const calls: string[] = [];
+  let telegramBody: Record<string, unknown> = {};
+  globalThis.fetch = async (input, init) => {
+    const url = String(input);
+    calls.push(url.includes('telegram') ? 'telegram' : url);
+    if (url.includes('telegram')) {
+      telegramBody = JSON.parse(String(init?.body));
+      return Response.json({ ok: true, result: { message_id: 7 } });
+    }
+    return Response.json({ id: 'email-001' });
+  };
+  assert.equal((await POST(request())).status, 200);
+  await new Promise((resolve) => setTimeout(resolve, 0));
+  assert.deepEqual(calls, ['https://api.resend.com/emails', 'telegram']);
+  assert.equal(telegramBody.chat_id, '42');
+  assert.match(String(telegramBody.text), /فرصة استثمار/);
 });
 test('unconfigured backend is unavailable and does not contact services', async () => {
   delete process.env.RESEND_API_KEY;

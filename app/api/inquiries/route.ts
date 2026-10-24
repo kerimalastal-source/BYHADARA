@@ -2,7 +2,8 @@ import { inquiriesEnabled, rateLimitConfigured } from '@/lib/inquiry-config';
 import { hubspotConfigured, saveToHubspot } from '@/lib/hubspot';
 import { afterResponse, allowedOrigin, readBody } from '@/lib/http';
 import { inquirySchema, MAX_BODY_BYTES } from '@/lib/inquiry-schema';
-import { rateLimit, sendInquiry } from '@/lib/inquiry-service';
+import { composeTelegram, rateLimit, sendInquiry } from '@/lib/inquiry-service';
+import { sendTelegramMessage, telegramConfigured } from '@/lib/telegram';
 export const runtime = 'nodejs';
 export const maxDuration = 30;
 const reply = (status: number, code: string, extra: Record<string, unknown> = {}) =>
@@ -51,6 +52,12 @@ export async function POST(request: Request) {
     }
     await sendInquiry(parsed.data);
     const inquiry = parsed.data;
+    // The team's Telegram gets the request too, as on HADARA Hospitality; it never affects the reply.
+    if (telegramConfigured())
+      afterResponse(
+        () => sendTelegramMessage(composeTelegram(inquiry)),
+        'Telegram request alert failed.',
+      );
     if (hubspotConfigured())
       afterResponse(
         async () => console.info(`HubSpot sync saved contact ${await saveToHubspot(inquiry)}.`),

@@ -202,6 +202,14 @@ file's prose in English so it stays easy to scan. Last updated 2026-10-24.
   `CONTACT_FROM_EMAIL=BYHADARA Website <website@byhadara.com>` to Production in the `byhadara`
   Vercel project; a test request reached info@byhadara.com, so delivery works. If sending ever
   fails, Resend → Emails/Logs shows why.
+- **Telegram alert for each request** (owner's request, 2026-10-24, as on HADARA Hospitality): after
+  the email is sent, `composeTelegram()` (`lib/inquiry-service.ts`) sends the request in Arabic
+  through the same bot as the visitor alerts (`📩 طلب جديد من الموقع: <topic>`, name, company,
+  email, phone with country, a `wa.me` link, website, site language, consent, the request cut at
+  1,500 characters), with `afterResponse()`, so it never delays or fails the visitor's request.
+  Phone and email are wrapped in U+2066/U+2069 and left as plain text (Telegram links only
+  http(s)). Vercel logs show `Telegram request alert failed. …` if Telegram refuses it. The
+  privacy notice (all three languages) says requests also reach the team through Telegram.
 - **HubSpot** (owner's CRM, chosen 2026-09-25): with `HUBSPOT_ACCESS_TOKEN` set, `lib/hubspot.ts`
   saves each accepted request after the response (`after`): contact matched by email (new ones as
   `lead`), a note with the request, and custom properties in the group "BYHADARA website"
@@ -485,7 +493,7 @@ file's prose in English so it stays easy to scan. Last updated 2026-10-24.
 
 ## Validation and sandbox notes
 
-- Checks: `pnpm typecheck`, `pnpm test` (50 tests), `pnpm build`, then `pnpm start` +
+- Checks: `pnpm typecheck`, `pnpm test` (52 tests), `pnpm build`, then `pnpm start` +
   `node scripts/check-routes.mjs` (76 pages incl. the articles, links, SEO assertions, 503 from
   both APIs while unconfigured) and the Playwright suite (16 tests incl. axe and the phone/tablet test). Prettier:
   `pnpm exec prettier --check components content lib app styles tests scripts docs *.md`.
@@ -572,3 +580,4 @@ file's prose in English so it stays easy to scan. Last updated 2026-10-24.
 - PR #50: `/turkishcitizenship` and a Russian Lotus Yaşam address redirected; second GSC export.
 - PR #51: guide "Lotus Koru 1 and Lotus Koru 2" (English and Arabic; Turkish kept).
 - PR #52: context note on the DNS move from Wix to Cloudflare (no site change).
+- PR #53: each contact form request also sent to the team's Telegram; privacy notice updated.
