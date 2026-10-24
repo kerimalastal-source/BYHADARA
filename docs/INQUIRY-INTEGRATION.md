@@ -13,7 +13,8 @@ The route (`app/api/inquiries/route.ts`):
 5. Applies the shared Upstash rate limit (5 per IP per 15 minutes, HMAC-hashed IPs) when `UPSTASH_REDIS_REST_URL`, `UPSTASH_REDIS_REST_TOKEN` and `RATE_LIMIT_SALT` are set; a limiter failure blocks the request.
 6. Emails the request through the Resend API (`lib/inquiry-service.ts`) to `CONTACT_TO_EMAIL` (default `info@byhadara.com`) from `CONTACT_FROM_EMAIL`. The email contains every field, the full international phone number with `tel:` and WhatsApp links, the topic, the site language and whether the visitor agreed to email updates, and its reply-to address is the visitor's email. All values are HTML-escaped.
 7. Returns 200 `{ accepted: true }` only after Resend confirms the message with an ID; any provider error returns 502 and the form keeps the visitor's input so they can retry. The browser then opens `/{locale}/contact/thank-you`.
-8. When `HUBSPOT_ACCESS_TOKEN` is set, saves the request in HubSpot after the response has been sent (`lib/hubspot.ts`, via Next.js `after`), so HubSpot can never delay or fail a request.
+8. When `TELEGRAM_BOT_TOKEN` and `TELEGRAM_CHAT_ID` are set (the bot "BYHADARA Alerts", already used for visitor alerts), sends the request in Arabic to the team's Telegram after the response (`composeTelegram()` in `lib/inquiry-service.ts`): topic, name, company, email, phone with country, a WhatsApp link, website, site language, email-updates consent and the request (first 1,500 characters). Telegram links only http(s) addresses, so the phone and email are plain text, which its apps make tappable. A failure is logged as `Telegram request alert failed. …` and never affects the visitor or the email.
+9. When `HUBSPOT_ACCESS_TOKEN` is set, saves the request in HubSpot after the response has been sent (`lib/hubspot.ts`, via Next.js `after`), so HubSpot can never delay or fail a request.
 
 ## HubSpot
 

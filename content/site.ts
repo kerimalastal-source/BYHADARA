@@ -362,7 +362,7 @@ export const dictionaries = {
       ],
       [
         'How requests are handled',
-        `Your request is emailed to ${site.email} through our email delivery provider (Resend) and saved in our customer relationship management system (HubSpot), so that our team and, where relevant, the group company concerned can answer and follow it up. These providers may store data on servers outside Türkiye. Your details are never sold.`,
+        `Your request is emailed to ${site.email} through our email delivery provider (Resend), sent with its details to our team through Telegram, and saved in our customer relationship management system (HubSpot), so that our team and, where relevant, the group company concerned can answer and follow it up. These providers may store data on servers outside Türkiye. Your details are never sold.`,
       ],
       [
         'Email updates',
@@ -727,7 +727,7 @@ export const dictionaries = {
       ],
       [
         'كيف نتعامل مع الطلبات',
-        `يُرسَل طلبك بالبريد الإلكتروني إلى ${site.email} عبر مزوّد خدمة إرسال البريد (Resend)، ويُحفَظ في نظام إدارة علاقات العملاء لدينا (HubSpot)، ليتمكن فريقنا، وشركة المجموعة المعنية عند الحاجة، من الرد عليه ومتابعته. قد يخزّن هؤلاء المزوّدون البيانات على خوادم خارج تركيا. لا نبيع بياناتك أبداً.`,
+        `يُرسَل طلبك بالبريد الإلكتروني إلى ${site.email} عبر مزوّد خدمة إرسال البريد (Resend)، ويصل بتفاصيله إلى فريقنا عبر Telegram، ويُحفَظ في نظام إدارة علاقات العملاء لدينا (HubSpot)، ليتمكن فريقنا، وشركة المجموعة المعنية عند الحاجة، من الرد عليه ومتابعته. قد يخزّن هؤلاء المزوّدون البيانات على خوادم خارج تركيا. لا نبيع بياناتك أبداً.`,
       ],
       [
         'الرسائل الإخبارية',
@@ -1108,7 +1108,7 @@ export const dictionaries = {
       ],
       [
         'Taleplerin işlenmesi',
-        `Talebiniz, e-posta gönderim sağlayıcımız (Resend) aracılığıyla ${site.email} adresine iletilir ve müşteri ilişkileri yönetim sistemimize (HubSpot) kaydedilir; böylece ekibimiz ve gerektiğinde ilgili grup şirketi talebinizi yanıtlayıp takip edebilir. Bu sağlayıcılar verileri Türkiye dışındaki sunucularda saklayabilir. Bilgileriniz hiçbir zaman satılmaz.`,
+        `Talebiniz, e-posta gönderim sağlayıcımız (Resend) aracılığıyla ${site.email} adresine iletilir, ayrıntılarıyla birlikte Telegram üzerinden ekibimize gönderilir ve müşteri ilişkileri yönetim sistemimize (HubSpot) kaydedilir; böylece ekibimiz ve gerektiğinde ilgili grup şirketi talebinizi yanıtlayıp takip edebilir. Bu sağlayıcılar verileri Türkiye dışındaki sunucularda saklayabilir. Bilgileriniz hiçbir zaman satılmaz.`,
       ],
       [
         'E-posta ile haber ve duyurular',
