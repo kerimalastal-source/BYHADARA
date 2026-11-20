@@ -2,7 +2,8 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { allLocales, locales, dictionary, paths } from '../content/site';
 import { articles, publishedArticles } from '../content/articles';
-import { existsSync } from 'node:fs';
+import { existsSync, readFileSync } from 'node:fs';
+import { createHash } from 'node:crypto';
 import { metadataFor, pageSeo, structuredData, breadcrumbs } from '../lib/seo';
 import { seo } from '../content/seo';
 test('Turkish is switched off but its copy is kept', () => {
@@ -102,4 +103,17 @@ test('the thank-you page stays out of search results and sits under Contact', ()
     breadcrumbs('ar', 'contact/thank-you').map((c) => c.name),
     [dictionary('ar').contact, dictionary('ar').thanksLabel],
   );
+});
+test('Thmanyah Sans files are the unchanged originals (the licence forbids any change)', () => {
+  const originals = {
+    Light: '79bcb61f004600088363b40c3feea4add5a0883c326d767b0994fe1b76044c72',
+    Regular: '5bb4fa412273ca31d5c7a165191568b099069cb74bf1fc1dfcdc6a3c2a97552e',
+    Medium: '490bf85c58c82b5989a557ed18cd6c6e5a7518b8a440032acf946b5cb7de2850',
+    Bold: '90f7c5b4c796e102eee70e20a9346fe680c8bfe38289932b5e94290d9f150fb7',
+    Black: '77e81ed0e4a199c29b22fe59b05ee5efb21c09775e5127abdcb2dd7938c82b3a',
+  };
+  for (const [weight, sha] of Object.entries(originals)) {
+    const file = readFileSync(`public/fonts/thmanyah/thmanyahsans-${weight}.woff2`);
+    assert.equal(createHash('sha256').update(file).digest('hex'), sha, weight);
+  }
 });

@@ -12,21 +12,20 @@
     "test:e2e": "playwright test"
   },
   "dependencies": {
+    "@fontsource/inter": "^5.2.8",
     "@neondatabase/serverless": "^1.1.0",
     "next": "16.3.5",
     "react": "19.3.0",
     "react-dom": "19.3.0",
-    "zod": "^4.3.6",
-    "@fontsource/inter": "^5.2.8",
-    "@fontsource/ibm-plex-sans-arabic": "^5.2.7"
+    "zod": "^4.3.6"
   },
   "devDependencies": {
-    "typescript": "^5.9.3",
+    "@axe-core/playwright": "^4.11.1",
+    "@playwright/test": "^1.58.2",
     "@types/node": "^24.10.0",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
     "tsx": "^4.21.0",
-    "@playwright/test": "^1.58.2",
-    "@axe-core/playwright": "^4.11.1"
+    "typescript": "^5.9.3"
   }
 }
