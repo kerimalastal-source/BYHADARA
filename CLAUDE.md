@@ -4,7 +4,7 @@
 
 Corporate website of BYHADARA Group (Istanbul), the parent group of HADARA Real Estate and
 HADARA Hospitality. The owner communicates in Arabic; reply to them in Arabic and keep this
-file's prose in English so it stays easy to scan. Last updated 2026-10-24.
+file's prose in English so it stays easy to scan. Last updated 2026-11-20.
 
 ## Standing instructions from the owner
 
@@ -74,8 +74,18 @@ file's prose in English so it stays easy to scan. Last updated 2026-10-24.
   Şirketi**, Istanbul (`site.legalName`): data controller in the privacy notice, operator in the
   terms, `legalName` in the Organization JSON-LD.
 - Arabic names: group «مجموعة باي حضارة», companies «حضارة العقارية» and «حضارة للضيافة».
-- Typography (owner's choice, 2026-09-26): Inter + IBM Plex Sans Arabic as on the sister sites,
-  with light headings (h1–h3 weight 300, letter-spacing -0.035em; small labels keep their weights).
+- Typography (owner's choice, 2026-09-26): Inter, with light headings (h1–h3 weight 300,
+  letter-spacing -0.035em; small labels keep their weights). **Arabic: Thmanyah Sans** since
+  2026-11-20 (owner's request, as on HADARA Hospitality; it replaced IBM Plex Sans Arabic). Licence:
+  written permission from thmanyah, **ticket 504537** (2026-11-20, reply to the owner's request
+  from info@byhadara.com naming all three group sites): the files may be hosted on our server and
+  used to display our text with no further approval, as long as use stays on our sites and the
+  files are not offered for download or redistribution. Never modify, subset or rename them (a
+  test checks their SHA-256). Files: `public/fonts/thmanyah/thmanyahsans-*.woff2` (300, 400, 500,
+  700, 900; no 600, so 600 shows as 700); `@font-face` in `styles/globals.css` with an Arabic-only
+  `unicode-range`, so Latin text keeps Inter/Arial; Arabic pages preload the Regular file
+  (`preload()` in `app/[locale]/layout.tsx`). It reads a little larger than IBM Plex: the Arabic
+  hero text takes one more line on phones.
 - Brand: parent is navy `#14283d` with the text wordmark "BYHADARA. GROUP" (no official logo yet);
   owner's rule (2026-09-26): the wordmark (`components/Brand.tsx`) is never translated, always in
   Inter, reads left to right, and sits at the far left of the header and footer in every locale,
@@ -493,7 +503,7 @@ file's prose in English so it stays easy to scan. Last updated 2026-10-24.
 
 ## Validation and sandbox notes
 
-- Checks: `pnpm typecheck`, `pnpm test` (52 tests), `pnpm build`, then `pnpm start` +
+- Checks: `pnpm typecheck`, `pnpm test` (53 tests), `pnpm build`, then `pnpm start` +
   `node scripts/check-routes.mjs` (76 pages incl. the articles, links, SEO assertions, 503 from
   both APIs while unconfigured) and the Playwright suite (16 tests incl. axe and the phone/tablet test). Prettier:
   `pnpm exec prettier --check components content lib app styles tests scripts docs *.md`.
@@ -581,3 +591,4 @@ file's prose in English so it stays easy to scan. Last updated 2026-10-24.
 - PR #51: guide "Lotus Koru 1 and Lotus Koru 2" (English and Arabic; Turkish kept).
 - PR #52: context note on the DNS move from Wix to Cloudflare (no site change).
 - PR #53: each contact form request also sent to the team's Telegram; privacy notice updated.
+- PR #54: Arabic text in Thmanyah Sans (thmanyah's written permission, ticket 504537).

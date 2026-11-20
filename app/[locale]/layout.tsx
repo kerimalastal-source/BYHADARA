@@ -1,5 +1,6 @@
 import type { Viewport } from 'next';
 import { notFound } from 'next/navigation';
+import { preload } from 'react-dom';
 import { isLocale, dictionary } from '@/content/site';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Site';
@@ -17,6 +18,13 @@ export default async function Layout({
   const { locale } = await params;
   if (!isLocale(locale)) notFound();
   const d = dictionary(locale);
+  // Arabic pages start loading the body weight of Thmanyah Sans with the HTML.
+  if (locale === 'ar')
+    preload('/fonts/thmanyah/thmanyahsans-Regular.woff2', {
+      as: 'font',
+      type: 'font/woff2',
+      crossOrigin: 'anonymous',
+    });
   return (
     <html lang={locale} dir={locale === 'ar' ? 'rtl' : 'ltr'}>
       <body>
