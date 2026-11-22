@@ -91,6 +91,11 @@ const config: NextConfig = {
       // From the performance export of 2026-10-23 (impressions on Wix addresses).
       to('/turkishcitizenship', guide('turkish-citizenship-through-real-estate')),
       to('/ru-ru/projects/yasam-beylikduzu', `${realEstate}/projects/beylikduzu-living`),
+      // From the performance export of 2026-11-22.
+      to('/privacy-policy', '/en/privacy'),
+      to('/tr/privacy-policy', `/${tr}/privacy`),
+      to('/ru-ru/projects/marmara-haven-villa', villa),
+      to('/ar-sa/projects/marmara-haven-villa', `${realEstate}/ar/projects/marmara-haven-villa`),
       // Both Arabic posts were about residence and citizenship through real estate.
       to('/ar-sa/post/:slug*', '/ar/insights/turkish-citizenship-through-real-estate'),
       to('/ru-ru/turkishcitizenship', guide('turkish-citizenship-through-real-estate')),
