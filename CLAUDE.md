@@ -368,6 +368,18 @@ file's prose in English so it stays easy to scan. Last updated 2026-11-22.
   action: Lotus Koru 2's page (`/projects/lotus-koru-2`, `/ar/…`). Turkish copy is written but
   unpublished while Turkish was off (live since 2026-11-22). 21 articles, 76 pages, 74 sitemap URLs
   at the time.
+- **Weekday blog writer** (owner's request 2026-11-22, «متل موقع العقار»): five articles a week,
+  Monday to Friday, published **without waiting for approval** (as on the real estate site; the
+  owner is told after each one). Scheduled task `trig_01MnzbKkLG1Z26uR9UxC539f` ("BYHADARA weekday
+  blog writer", `CRON_TZ=Europe/Istanbul 7 10 * * 1-5`) fires into this session
+  (`session_013nwCwAnxswdUWaA68yHcUx`, which can push), which follows `scripts/blog/README.md`:
+  Mon/Wed/Fri the next real estate topic, Tue/Thu the next hospitality one from
+  `scripts/blog/topics.json` (33 topics on 2026-11-22: profiles of 21 projects HADARA Real Estate
+  markets, Marmara Haven Villa first, and 12 hospitality guides not yet covered, rewritten from
+  that site), one article in en/ar/tr, images copied unchanged, all checks, PR, merge, Arabic
+  note to the owner. When the queue runs out it asks for a new list. Article paragraphs that
+  start with `## ` render as subheadings (`.article-heading`; a test keeps them aligned across
+  languages). To stop it: disable that scheduled task.
 - In Arabic text, number ranges render reversed ("100–109" shows as "109–100"): write them in
   words («بين 100 و109») or wrap them in U+2066/U+2069 isolates (fine outside `<select>`).
 
@@ -514,7 +526,7 @@ file's prose in English so it stays easy to scan. Last updated 2026-11-22.
 
 ## Validation and sandbox notes
 
-- Checks: `pnpm typecheck`, `pnpm test` (53 tests), `pnpm build`, then `pnpm start` +
+- Checks: `pnpm typecheck`, `pnpm test` (54 tests), `pnpm build`, then `pnpm start` +
   `node scripts/check-routes.mjs` (114 pages incl. the articles, links, SEO assertions, 503 from
   both APIs while unconfigured) and the Playwright suite (18 tests incl. axe and the phone/tablet test). Prettier:
   `pnpm exec prettier --check components content lib app styles tests scripts docs *.md`.
@@ -605,3 +617,4 @@ file's prose in English so it stays easy to scan. Last updated 2026-11-22.
 - PR #54: Arabic text in Thmanyah Sans (thmanyah's written permission, ticket 504537).
 - PR #55: third Search Console export; `/privacy-policy` and old Marmara Haven addresses redirected.
 - PR #56: Turkish published again (51 pages + articles, 111 sitemap URLs).
+- PR #57: weekday blog writer (instructions, topic queue, article subheadings).

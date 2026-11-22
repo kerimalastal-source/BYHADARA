@@ -117,3 +117,17 @@ test('Thmanyah Sans files are the unchanged originals (the licence forbids any c
     assert.equal(createHash('sha256').update(file).digest('hex'), sha, weight);
   }
 });
+test('article subheadings never open an article and are never empty', () => {
+  for (const a of publishedArticles())
+    for (const locale of allLocales) {
+      const body = a.translations[locale].body;
+      assert.ok(!body[0].startsWith('## '), `${locale}/${a.slug} starts with a subheading`);
+      for (const p of body) assert.ok(!p.startsWith('## ') || p.slice(3).trim(), a.slug);
+      // Every language has its subheadings in the same places.
+      assert.deepEqual(
+        body.map((p) => p.startsWith('## ')),
+        a.translations.en.body.map((p) => p.startsWith('## ')),
+        `${locale}/${a.slug} subheadings`,
+      );
+    }
+});

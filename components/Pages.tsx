@@ -759,9 +759,16 @@ export function ArticlePage({ locale, slug }: { locale: Locale; slug: string }) 
             ))}
           </dl>
         )}
-        {body.map((p, i) => (
-          <p key={i}>{p}</p>
-        ))}
+        {body.map((p, i) =>
+          // A paragraph starting with "## " is a subheading.
+          p.startsWith('## ') ? (
+            <h2 key={i} className="article-heading">
+              {p.slice(3)}
+            </h2>
+          ) : (
+            <p key={i}>{p}</p>
+          ),
+        )}
         {t.gallery && (
           <div className="article-gallery">
             {t.gallery.map((g) => (
