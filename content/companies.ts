@@ -22,15 +22,17 @@ export function companyUrl(id: CompanyId, locale: Locale, path = '') {
 }
 
 /**
- * Tags a link to the HADARA Real Estate website with where on this site it was clicked, so that
- * site counts the visit as coming from BYHADARA Group (owner's request, 2026-11-22). `campaign` is
- * lower-case letters, digits and hyphens (`businesses`, `article-<slug>`, `company-links`…).
- * Never `utm_medium=paid`: that site counts it as advertising. Other URLs pass through unchanged.
+ * Tags a link to a group company's website (HADARA Real Estate, HADARA Hospitality) with where on
+ * this site it was clicked, so that site counts the visit as coming from BYHADARA Group (owner's
+ * request, 2026-11-22). `campaign` is lower-case letters, digits and hyphens (`businesses`,
+ * `article-<slug>`, `company-links`…). Never `utm_medium=paid`: both sites count it as
+ * advertising (HADARA Hospitality also reads a source without a medium as paid). Other URLs pass
+ * through unchanged.
  */
 export function referral(url: string, campaign: string) {
   if (!/^[a-z0-9-]+$/.test(campaign)) throw new Error(`Invalid campaign "${campaign}"`);
   const link = new URL(url);
-  if (link.host !== new URL(site.realEstate).host) return url;
+  if (![site.realEstate, site.hospitality].some((s) => new URL(s).host === link.host)) return url;
   link.searchParams.set('utm_source', 'byhadara');
   link.searchParams.set('utm_medium', 'referral');
   link.searchParams.set('utm_campaign', campaign);

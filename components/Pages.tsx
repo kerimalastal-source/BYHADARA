@@ -128,8 +128,8 @@ export function BusinessIndex({ locale }: { locale: Locale }) {
   );
 }
 /**
- * A link to a group company's website in a new tab. Links to the real estate site carry where on
- * this site they were clicked (`campaign`, see `referral()`); group sites keep the referrer.
+ * A link to a group company's website in a new tab, carrying where on this site it was clicked
+ * (`campaign`, see `referral()`); group sites keep the referrer.
  */
 const groupLink = (href: string, campaign: string) => ({
   href: referral(href, campaign),
