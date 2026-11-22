@@ -1,0 +1,238 @@
+{
+  "_comment": "Queue for the weekday blog writer (scripts/blog/README.md). Mon/Wed/Fri take the next real-estate topic, Tue/Thu the next hospitality one; a topic is done once its slug exists in content/articles/.",
+  "topics": [
+    {
+      "slug": "marmara-haven-villa-buyukcekmece",
+      "company": "real-estate",
+      "category": "real-estate",
+      "source": "-kinci_BYHADARA: src/data/projects.ts 'marmara-haven-villa', src/i18n/{en,ar}.json projectsData.marmara-haven-villa, images public/images/projects/marmara-haven-villa/",
+      "cta": "https://www.hadararealestate.com/projects/marmara-haven-villa",
+      "note": "HADARA Real Estate's own development: describe it as such."
+    },
+    {
+      "slug": "lotus-sisli",
+      "company": "real-estate",
+      "category": "real-estate",
+      "source": "-kinci_BYHADARA: src/data/projects.ts 'lotus-sisli', src/i18n/{en,ar}.json projectsData.lotus-sisli, images public/images/projects/lotus-sisli/",
+      "cta": "https://www.hadararealestate.com/projects/lotus-sisli"
+    },
+    {
+      "slug": "sea-pearl-atakoy",
+      "company": "real-estate",
+      "category": "real-estate",
+      "source": "-kinci_BYHADARA: src/data/projects.ts 'sea-pearl-atakoy', src/i18n/{en,ar}.json projectsData.sea-pearl-atakoy, images public/images/projects/sea-pearl-atakoy/",
+      "cta": "https://www.hadararealestate.com/projects/sea-pearl-atakoy"
+    },
+    {
+      "slug": "buyukyali-zeytinburnu",
+      "company": "real-estate",
+      "category": "real-estate",
+      "source": "-kinci_BYHADARA: src/data/projects.ts 'buyukyali', src/i18n/{en,ar}.json projectsData.buyukyali, images public/images/projects/buyukyali/",
+      "cta": "https://www.hadararealestate.com/projects/buyukyali",
+      "note": "Fişekhane facts only as the real estate site states them."
+    },
+    {
+      "slug": "referans-besiktas",
+      "company": "real-estate",
+      "category": "real-estate",
+      "source": "-kinci_BYHADARA: src/data/projects.ts 'referans-besiktas', src/i18n/{en,ar}.json projectsData.referans-besiktas, images public/images/projects/referans-besiktas/",
+      "cta": "https://www.hadararealestate.com/projects/referans-besiktas"
+    },
+    {
+      "slug": "vadi-panorama-basaksehir",
+      "company": "real-estate",
+      "category": "real-estate",
+      "source": "-kinci_BYHADARA: src/data/projects.ts 'vadi-panorama', src/i18n/{en,ar}.json projectsData.vadi-panorama, images public/images/projects/vadi-panorama/",
+      "cta": "https://www.hadararealestate.com/projects/vadi-panorama"
+    },
+    {
+      "slug": "casablu-vadi-beylikduzu",
+      "company": "real-estate",
+      "category": "real-estate",
+      "source": "-kinci_BYHADARA: src/data/projects.ts 'casablu-vadi', src/i18n/{en,ar}.json projectsData.casablu-vadi, images public/images/projects/casablu-vadi/",
+      "cta": "https://www.hadararealestate.com/projects/casablu-vadi"
+    },
+    {
+      "slug": "lotus-manzara-beylikduzu",
+      "company": "real-estate",
+      "category": "real-estate",
+      "source": "-kinci_BYHADARA: src/data/projects.ts 'lotus-manzara-beylikduzu', src/i18n/{en,ar}.json projectsData.lotus-manzara-beylikduzu, images public/images/projects/lotus-manzara-beylikduzu/",
+      "cta": "https://www.hadararealestate.com/projects/lotus-manzara-beylikduzu"
+    },
+    {
+      "slug": "lotus-yali-buyukcekmece",
+      "company": "real-estate",
+      "category": "real-estate",
+      "source": "-kinci_BYHADARA: src/data/projects.ts 'lotus-yali', src/i18n/{en,ar}.json projectsData.lotus-yali, images public/images/projects/lotus-yali/",
+      "cta": "https://www.hadararealestate.com/projects/lotus-yali"
+    },
+    {
+      "slug": "lotus-manzara-guzelce",
+      "company": "real-estate",
+      "category": "real-estate",
+      "source": "-kinci_BYHADARA: src/data/projects.ts 'lotus-manzara-guzelce', src/i18n/{en,ar}.json projectsData.lotus-manzara-guzelce, images public/images/projects/lotus-manzara-guzelce/",
+      "cta": "https://www.hadararealestate.com/projects/lotus-manzara-guzelce"
+    },
+    {
+      "slug": "referans-beylikduzu",
+      "company": "real-estate",
+      "category": "real-estate",
+      "source": "-kinci_BYHADARA: src/data/projects.ts 'referans-beylikduzu', src/i18n/{en,ar}.json projectsData.referans-beylikduzu, images public/images/projects/referans-beylikduzu/",
+      "cta": "https://www.hadararealestate.com/projects/referans-beylikduzu"
+    },
+    {
+      "slug": "tual-comfort-ispartakule",
+      "company": "real-estate",
+      "category": "real-estate",
+      "source": "-kinci_BYHADARA: src/data/projects.ts 'tual-comfort', src/i18n/{en,ar}.json projectsData.tual-comfort, images public/images/projects/tual-comfort/",
+      "cta": "https://www.hadararealestate.com/projects/tual-comfort"
+    },
+    {
+      "slug": "cadde-ispartakule",
+      "company": "real-estate",
+      "category": "real-estate",
+      "source": "-kinci_BYHADARA: src/data/projects.ts 'cadde-ispartakule', src/i18n/{en,ar}.json projectsData.cadde-ispartakule, images public/images/projects/cadde-ispartakule/",
+      "cta": "https://www.hadararealestate.com/projects/cadde-ispartakule"
+    },
+    {
+      "slug": "mesa-yenikent-basaksehir",
+      "company": "real-estate",
+      "category": "real-estate",
+      "source": "-kinci_BYHADARA: src/data/projects.ts 'mesa-yenikent', src/i18n/{en,ar}.json projectsData.mesa-yenikent, images public/images/projects/mesa-yenikent/",
+      "cta": "https://www.hadararealestate.com/projects/mesa-yenikent"
+    },
+    {
+      "slug": "hayat-flora-kucukcekmece",
+      "company": "real-estate",
+      "category": "real-estate",
+      "source": "-kinci_BYHADARA: src/data/projects.ts 'hayat-flora', src/i18n/{en,ar}.json projectsData.hayat-flora, images public/images/projects/hayat-flora/",
+      "cta": "https://www.hadararealestate.com/projects/hayat-flora"
+    },
+    {
+      "slug": "gokturk-kemer-evleri",
+      "company": "real-estate",
+      "category": "real-estate",
+      "source": "-kinci_BYHADARA: src/data/projects.ts 'gokturk-kemer-evleri', src/i18n/{en,ar}.json projectsData.gokturk-kemer-evleri, images public/images/projects/gokturk-kemer-evleri/",
+      "cta": "https://www.hadararealestate.com/projects/gokturk-kemer-evleri"
+    },
+    {
+      "slug": "alya-city-veliefendi",
+      "company": "real-estate",
+      "category": "real-estate",
+      "source": "-kinci_BYHADARA: src/data/projects.ts 'alya-city-veliefendi', src/i18n/{en,ar}.json projectsData.alya-city-veliefendi, images public/images/projects/alya-city-veliefendi/",
+      "cta": "https://www.hadararealestate.com/projects/alya-city-veliefendi"
+    },
+    {
+      "slug": "alya-konutlari-merkezefendi",
+      "company": "real-estate",
+      "category": "real-estate",
+      "source": "-kinci_BYHADARA: src/data/projects.ts 'alya-konutlari-merkezefendi', src/i18n/{en,ar}.json projectsData.alya-konutlari-merkezefendi, images public/images/projects/alya-konutlari-merkezefendi/",
+      "cta": "https://www.hadararealestate.com/projects/alya-konutlari-merkezefendi"
+    },
+    {
+      "slug": "referans-pendik",
+      "company": "real-estate",
+      "category": "real-estate",
+      "source": "-kinci_BYHADARA: src/data/projects.ts 'referans-pendik', src/i18n/{en,ar}.json projectsData.referans-pendik, images public/images/projects/referans-pendik/",
+      "cta": "https://www.hadararealestate.com/projects/referans-pendik"
+    },
+    {
+      "slug": "dragos-maltepe",
+      "company": "real-estate",
+      "category": "real-estate",
+      "source": "-kinci_BYHADARA: src/data/projects.ts 'dragos', src/i18n/{en,ar}.json projectsData.dragos, images public/images/projects/dragos/",
+      "cta": "https://www.hadararealestate.com/projects/dragos"
+    },
+    {
+      "slug": "bizim-evler-12-ispartakule",
+      "company": "real-estate",
+      "category": "real-estate",
+      "source": "-kinci_BYHADARA: src/data/projects.ts 'bizim-evler-12', src/i18n/{en,ar}.json projectsData.bizim-evler-12, images public/images/projects/bizim-evler-12/",
+      "cta": "https://www.hadararealestate.com/projects/bizim-evler-12"
+    },
+    {
+      "slug": "hotel-guest-room-amenities",
+      "company": "hospitality",
+      "category": "hospitality",
+      "source": "hadarahospitality: src/data/blog.ts 'guest-room-amenities-that-elevate-the-stay', related src/data/collections.ts and src/data/products.ts, images public/assets/products/ or public/assets/photos/",
+      "cta": "https://www.hadarahospitality.com/collections/amenities"
+    },
+    {
+      "slug": "hotel-curtains-buying-guide",
+      "company": "hospitality",
+      "category": "hospitality",
+      "source": "hadarahospitality: src/data/blog.ts 'hotel-curtains-buying-guide', related src/data/collections.ts and src/data/products.ts, images public/assets/products/ or public/assets/photos/",
+      "cta": "https://www.hadarahospitality.com/collections/curtains"
+    },
+    {
+      "slug": "hotel-textile-procurement-gulf",
+      "company": "hospitality",
+      "category": "gcc",
+      "source": "hadarahospitality: src/data/blog.ts 'hotel-textile-procurement-in-the-gulf', related src/data/collections.ts and src/data/products.ts, images public/assets/products/ or public/assets/photos/",
+      "cta": "https://www.hadarahospitality.com/hotel-textiles-for-the-gulf"
+    },
+    {
+      "slug": "hotel-bathrobes-and-slippers",
+      "company": "hospitality",
+      "category": "hospitality",
+      "source": "hadarahospitality: src/data/blog.ts 'hotel-bathrobes-and-slippers-consistent-guest-experience', related src/data/collections.ts and src/data/products.ts, images public/assets/products/ or public/assets/photos/",
+      "cta": "https://www.hadarahospitality.com/collections/robes"
+    },
+    {
+      "slug": "hotel-pool-and-beach-towels",
+      "company": "hospitality",
+      "category": "hospitality",
+      "source": "hadarahospitality: src/data/blog.ts 'hotel-pool-and-beach-towels-sourcing-guide', related src/data/collections.ts and src/data/products.ts, images public/assets/products/ or public/assets/photos/",
+      "cta": "https://www.hadarahospitality.com/collections/towels"
+    },
+    {
+      "slug": "private-label-hotel-textiles",
+      "company": "hospitality",
+      "category": "hospitality",
+      "source": "hadarahospitality: src/data/blog.ts 'private-labeling-and-custom-branding', related src/data/collections.ts and src/data/products.ts, images public/assets/products/ or public/assets/photos/",
+      "cta": "https://www.hadarahospitality.com/get-a-quote"
+    },
+    {
+      "slug": "hotel-mattress-protectors",
+      "company": "hospitality",
+      "category": "hospitality",
+      "source": "hadarahospitality: src/data/blog.ts 'hotel-mattress-protectors-fit-care-performance', related src/data/collections.ts and src/data/products.ts, images public/assets/products/ or public/assets/photos/",
+      "cta": "https://www.hadarahospitality.com/collections/protectors"
+    },
+    {
+      "slug": "hotel-textiles-ramadan-eid-hajj",
+      "company": "hospitality",
+      "category": "gcc",
+      "source": "hadarahospitality: src/data/blog.ts 'hotel-textile-planning-before-ramadan-eid-hajj', related src/data/collections.ts and src/data/products.ts, images public/assets/products/ or public/assets/photos/",
+      "cta": "https://www.hadarahospitality.com/hotel-textiles-for-the-gulf"
+    },
+    {
+      "slug": "hotel-linen-replacement-planning",
+      "company": "hospitality",
+      "category": "hospitality",
+      "source": "hadarahospitality: src/data/blog.ts 'hotel-textile-replacement-planning', related src/data/collections.ts and src/data/products.ts, images public/assets/products/ or public/assets/photos/",
+      "cta": "https://www.hadarahospitality.com/get-a-quote"
+    },
+    {
+      "slug": "housekeeping-hotel-linen-choice",
+      "company": "hospitality",
+      "category": "hospitality",
+      "source": "hadarahospitality: src/data/blog.ts 'how-housekeeping-teams-choose-hotel-linen', related src/data/collections.ts and src/data/products.ts, images public/assets/products/ or public/assets/photos/",
+      "cta": "https://www.hadarahospitality.com/collections/bed-linen"
+    },
+    {
+      "slug": "hotel-textile-procurement-balkans",
+      "company": "hospitality",
+      "category": "trade",
+      "source": "hadarahospitality: src/data/blog.ts 'hotel-textile-procurement-in-the-balkans', related src/data/collections.ts and src/data/products.ts, images public/assets/products/ or public/assets/photos/",
+      "cta": "https://www.hadarahospitality.com/get-a-quote"
+    },
+    {
+      "slug": "cost-of-low-quality-hotel-bedding",
+      "company": "hospitality",
+      "category": "hospitality",
+      "source": "hadarahospitality: src/data/blog.ts 'the-real-cost-of-low-quality-hotel-bedding', related src/data/collections.ts and src/data/products.ts, images public/assets/products/ or public/assets/photos/",
+      "cta": "https://www.hadarahospitality.com/collections/bed-linen"
+    }
+  ]
+}
