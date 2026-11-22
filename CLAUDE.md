@@ -468,7 +468,12 @@ file's prose in English so it stays easy to scan. Last updated 2026-11-22.
   Coverage summary: validation failed for redirects (63; expected, a redirect never "passes"),
   404 (11) and crawled-not-indexed (30); the drilldowns were not sent, so those URLs are
   unknown. Lotus Koru guide: en 56 impressions at position 10, ar 1 click. `/privacy-policy`
-  (404) and the `ar-sa`/`ru-ru` Marmara Haven addresses now redirect.
+  (404) and the `ar-sa`/`ru-ru` Marmara Haven addresses now redirect. The redirect drilldown of the
+  same day (63 URLs) held no errors: apex and `http` variants, Turkish pages crawled while
+  Turkish was off, and old Wix pages; the Wix `ru-ru`/`en-us`/`ar-sa` copies of about, contact,
+  consultation, privacy, blog, FAQ and projects now lead to the matching page instead of the
+  home page (one `flatMap` in `next.config.ts`). The 404 (11) and crawled-not-indexed (30)
+  drilldowns were still not sent.
 
 - **IndexNow** (2026-10-08, owner's request, same design as HADARA Hospitality and HADARA Real
   Estate): after every production build, new or changed pages go to Bing, Yandex and the other
@@ -626,3 +631,4 @@ file's prose in English so it stays easy to scan. Last updated 2026-11-22.
 - PR #56: Turkish published again (51 pages + articles, 111 sitemap URLs).
 - PR #57: weekday blog writer (instructions, topic queue, article subheadings).
 - PR #58: related projects/products under every article, linking to the company sites.
+- PR #59: old Wix ru-ru/en-us/ar-sa page copies redirected to the matching pages.

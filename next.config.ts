@@ -99,6 +99,24 @@ const config: NextConfig = {
       // Both Arabic posts were about residence and citizenship through real estate.
       to('/ar-sa/post/:slug*', '/ar/insights/turkish-citizenship-through-real-estate'),
       to('/ru-ru/turkishcitizenship', guide('turkish-citizenship-through-real-estate')),
+      // The old Wix site's Russian, English and Arabic copies of its pages (Coverage, 2026-11-22).
+      ...(
+        [
+          ['ru-ru', 'en'],
+          ['en-us', 'en'],
+          ['ar-sa', 'ar'],
+        ] as const
+      ).flatMap(([wix, lang]) => [
+        to(`/${wix}/aboutus`, `/${lang}/about`),
+        to(`/${wix}/contactus`, `/${lang}/contact`),
+        to(`/${wix}/consultation`, `/${lang}/inquiries/investment`),
+        to(`/${wix}/privacy-policy`, `/${lang}/privacy`),
+        to(`/${wix}/blog`, `/${lang}/insights`),
+        to(`/${wix}/faq`, `${realEstate}${lang === 'ar' ? '/ar' : ''}/faq`),
+        to(`/${wix}/projects/lotus-koru-1`, `${realEstate}/projects/lotus-koru-1`),
+        to(`/${wix}/projects/lotus-koru-2`, `${realEstate}/projects/lotus-koru-2`),
+        to(`/${wix}/projects/:slug*`, `/${lang}/businesses/real-estate`),
+      ]),
       to('/ru-ru/:path*', '/en'),
       to('/en-us/:path*', '/en'),
       to('/ar-sa/:path*', '/ar'),

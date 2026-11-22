@@ -88,6 +88,9 @@ const oldAddresses = {
   '/book-online': '/en/contact',
   '/turkishcitizenship': '/en/insights/turkish-citizenship-through-real-estate',
   '/privacy-policy': '/en/privacy',
+  '/ru-ru/contactus': '/en/contact',
+  '/ar-sa/aboutus': '/ar/about',
+  '/ru-ru/projects/lotus-koru-1': 'https://www.hadararealestate.com/projects/lotus-koru-1',
   '/ar-sa/projects/marmara-haven-villa':
     'https://www.hadararealestate.com/ar/projects/marmara-haven-villa',
 };
