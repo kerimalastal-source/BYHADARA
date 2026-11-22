@@ -88,6 +88,9 @@ const oldAddresses = {
   '/2025/02/17/hello-world': '/en',
   '/book-online': '/en/contact',
   '/turkishcitizenship': '/en/insights/turkish-citizenship-through-real-estate',
+  '/privacy-policy': '/en/privacy',
+  '/ar-sa/projects/marmara-haven-villa':
+    'https://www.hadararealestate.com/ar/projects/marmara-haven-villa',
 };
 for (const [from, to] of [
   ['/tr', '/en'],

@@ -4,7 +4,7 @@
 
 Corporate website of BYHADARA Group (Istanbul), the parent group of HADARA Real Estate and
 HADARA Hospitality. The owner communicates in Arabic; reply to them in Arabic and keep this
-file's prose in English so it stays easy to scan. Last updated 2026-11-20.
+file's prose in English so it stays easy to scan. Last updated 2026-11-22.
 
 ## Standing instructions from the owner
 
@@ -439,6 +439,16 @@ file's prose in English so it stays easy to scan. Last updated 2026-11-20.
   off-plan guide, ar pillows guide, ar GCC market, en partnerships; the owner can request
   indexing for them. `/turkishcitizenship` (position 2) and `/ru-ru/projects/yasam-beylikduzu`
   were still 404/weak and now redirect.
+  **Third export (to 20 Nov, received 2026-11-22)**: 1,227 impressions, 35 clicks, position
+  7.6. Per day: 20 (24 Sep–4 Oct), 23 (5–20 Oct), 28 (21 Oct–4 Nov), then **13.5 from 5 Nov**
+  with 3 clicks in 16 days. Indexed pages fell 150 → 125 on 24 Oct and 119 by 16 Nov: Google
+  is dropping the Turkish pages, which have redirected to English since 10 Oct. Turkish pages
+  still brought 25 of 36 page clicks and 630 of 1,462 impressions (Lotus Yaşam 300/10, Diamond
+  Marin 186/9); Türkiye 29 of 35 clicks. Put to the owner on 2026-11-22: re-enable Turkish.
+  Coverage summary: validation failed for redirects (63; expected, a redirect never "passes"),
+  404 (11) and crawled-not-indexed (30); the drilldowns were not sent, so those URLs are
+  unknown. Lotus Koru guide: en 56 impressions at position 10, ar 1 click. `/privacy-policy`
+  (404) and the `ar-sa`/`ru-ru` Marmara Haven addresses now redirect.
 
 - **IndexNow** (2026-10-08, owner's request, same design as HADARA Hospitality and HADARA Real
   Estate): after every production build, new or changed pages go to Bing, Yandex and the other
@@ -592,3 +602,4 @@ file's prose in English so it stays easy to scan. Last updated 2026-11-20.
 - PR #52: context note on the DNS move from Wix to Cloudflare (no site change).
 - PR #53: each contact form request also sent to the team's Telegram; privacy notice updated.
 - PR #54: Arabic text in Thmanyah Sans (thmanyah's written permission, ticket 504537).
+- PR #55: third Search Console export; `/privacy-policy` and old Marmara Haven addresses redirected.
