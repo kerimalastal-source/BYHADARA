@@ -208,8 +208,7 @@ test('only public pages of the website are counted', () => {
   assert.equal(publicPageLocale('/en'), 'en');
   assert.equal(publicPageLocale('/ar/businesses/real-estate'), 'ar');
   assert.equal(publicPageLocale('/ar/contact/thank-you'), 'ar');
-  // Turkish is switched off, so its old addresses are not pages any more.
-  assert.equal(publicPageLocale('/tr/contact'), null);
+  assert.equal(publicPageLocale('/tr/contact'), 'tr');
   const article = publishedArticles()[0];
   assert.equal(publicPageLocale(`/en/insights/${article.slug}`), 'en');
   for (const path of [

@@ -26,8 +26,7 @@ const pages = [];
 const links = new Set();
 const titles = new Set();
 let indexable = 0;
-// Published languages; Turkish is switched off (content/locales.ts) and redirects to English.
-for (const lang of ['en', 'ar'])
+for (const lang of ['en', 'ar', 'tr'])
   for (const p of paths) {
     const path = `/${lang}${p ? '/' + p : ''}`;
     const r = await fetch('http://localhost:3000' + path);
@@ -72,14 +71,14 @@ const oldAddresses = {
   '/ru-ru': '/en',
   '/ar-sa': '/ar',
   '/aboutus': '/en/about',
-  '/tr/beylikduzuliving': '/en/insights/lotus-yasam-launch',
-  '/tr/post/l%C3%BCks-villalar': '/en/insights',
+  '/tr/beylikduzuliving': '/tr/insights/lotus-yasam-launch',
+  '/tr/post/l%C3%BCks-villalar': '/tr/insights',
   '/projects/lotus-koru-2': 'https://www.hadararealestate.com/projects/lotus-koru-2',
   '/projects/unknown': '/en/businesses/real-estate',
   '/projects-1/Marmarahavenvilla': 'https://www.hadararealestate.com/projects/marmara-haven-villa',
   // Reported as 404 by Search Console on 2026-10-20.
   '/letsconnect': '/en/contact',
-  '/tr/turkishcitizenship': '/en/insights/turkish-citizenship-through-real-estate',
+  '/tr/turkishcitizenship': '/tr/insights/turkish-citizenship-through-real-estate',
   '/tr/projects/lotus-koru-2': 'https://www.hadararealestate.com/projects/lotus-koru-2',
   '/service-page/proje-tan%C4%B1t%C4%B1m': '/en/businesses/real-estate',
   '/ar-sa/post/%D8%A7%D9%84%D8%A5%D9%82%D8%A7%D9%85%D8%A9':
@@ -92,19 +91,6 @@ const oldAddresses = {
   '/ar-sa/projects/marmara-haven-villa':
     'https://www.hadararealestate.com/ar/projects/marmara-haven-villa',
 };
-for (const [from, to] of [
-  ['/tr', '/en'],
-  ['/tr/about', '/en/about'],
-  ['/tr/insights/diamond-marin-launch', '/en/insights/diamond-marin-launch'],
-]) {
-  const response = await fetch('http://localhost:3000' + from, { redirect: 'manual' });
-  assert.equal(response.status, 307, from);
-  assert.equal(
-    new URL(response.headers.get('location'), 'http://localhost:3000').pathname,
-    to,
-    from,
-  );
-}
 for (const [from, to] of Object.entries(oldAddresses)) {
   const response = await fetch('http://localhost:3000' + from, { redirect: 'manual' });
   assert.equal(response.status, 308, from);
@@ -131,6 +117,5 @@ console.log(
     notFound: 'passed',
     unconfiguredAPIs: 503,
     oldAddresses: 'redirected',
-    turkish: 'switched off, redirects to English',
   }),
 );
