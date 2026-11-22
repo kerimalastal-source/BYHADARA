@@ -8,6 +8,15 @@ file's prose in English so it stays easy to scan. Last updated 2026-11-22 (eveni
 
 ## Standing instructions from the owner
 
+- **The site's purpose** (owner, 2026-11-22): BYHADARA Group is the parent wing of a premium,
+  institutional, coherent group with three wings: the group on top, HADARA Real Estate and HADARA
+  Hospitality side by side below it. This site exists **to strengthen the two companies**: bring
+  them visitors, potential clients and leads, and send every reader on to the right project or
+  product page on their sites (tagged links, related cards, calls to action). Content alternates
+  between the two fields (real estate one day, hospitality the next), and every topic, image and
+  sentence must match a premium group's standard: calm, confident, factual, never cheap or
+  generic. Judge every change by whether it helps the companies win visitors and clients while
+  keeping the group's image.
 - **Always merge and deploy yourself** (asked explicitly: «ادمج وانشر انت دايما»). Flow: commit on
   the session branch → push → open a PR to `main` → wait for the `validate` check to pass → merge
   with a merge commit → Vercel deploys `main` automatically. Then fast-forward the branch to
@@ -662,3 +671,4 @@ file's prose in English so it stays easy to scan. Last updated 2026-11-22 (eveni
 - PR #60: `/tr/blog`, `/blank-2` and `/ru-ru/beylikduzuliving` redirected (404 drilldown).
 - PR #61: links to the real estate site tagged with UTM by place; group links keep the referrer.
 - PR #62: the same UTM tags on links to HADARA Hospitality.
+- PR #63: context update. PR #64: the site's purpose (the parent wing that supports both companies).

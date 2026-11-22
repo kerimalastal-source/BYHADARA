@@ -7,6 +7,15 @@ fires into the main BYHADARA session every weekday at 10:07 Istanbul time; that 
 Vercel) and tells the owner in Arabic. As on the real estate site, articles go live **without
 waiting for approval**; the owner is told after each one and can say stop at any time.
 
+## Purpose and voice
+
+This site is the parent wing of a premium group (owner, 2026-11-22): its articles exist to bring
+the two companies visitors and clients. Every article must make the reader want to open the
+project or product page (the related cards and the call to action), and read like a premium,
+institutional group: calm and confident, precise, elegant wording, no hype, no exclamation marks,
+no filler or generic advice. Choose the topic's most distinctive facts, and lead with what a
+serious buyer or hotel decision-maker wants to know.
+
 ## Which topic
 
 - Monday, Wednesday, Friday: the first `real-estate` topic in `topics.json` whose `slug` is not
