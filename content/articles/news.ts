@@ -463,7 +463,7 @@ export const news: Article[] = [
           title: 'Discover Lotus Yaşam',
           text: 'Project details and viewing requests are on the HADARA Real Estate website.',
           label: 'View the project',
-          href: showcaseUrl('real-estate', 'en', 'lotus-yasam'),
+          href: showcaseUrl('real-estate', 'en', 'beylikduzu-living'),
         },
       },
       ar: {
@@ -498,7 +498,7 @@ export const news: Article[] = [
           title: 'اكتشف لوتس ياشام',
           text: 'تفاصيل المشروع وطلبات المعاينة على موقع حضارة العقارية.',
           label: 'عرض المشروع',
-          href: showcaseUrl('real-estate', 'ar', 'lotus-yasam'),
+          href: showcaseUrl('real-estate', 'ar', 'beylikduzu-living'),
         },
       },
       tr: {
@@ -533,7 +533,7 @@ export const news: Article[] = [
           title: 'Lotus Yaşam’ı keşfedin',
           text: 'Proje detayları ve ziyaret talepleri HADARA Real Estate web sitesinde.',
           label: 'Projeyi görüntüleyin',
-          href: showcaseUrl('real-estate', 'tr', 'lotus-yasam'),
+          href: showcaseUrl('real-estate', 'tr', 'beylikduzu-living'),
         },
       },
     },
