@@ -6,11 +6,11 @@ import { existsSync, readFileSync } from 'node:fs';
 import { createHash } from 'node:crypto';
 import { metadataFor, pageSeo, structuredData, breadcrumbs } from '../lib/seo';
 import { seo } from '../content/seo';
-test('Turkish is switched off but its copy is kept', () => {
-  assert.deepEqual(locales, ['en', 'ar']);
+test('every written language is published, Turkish included', () => {
+  assert.deepEqual(locales, ['en', 'ar', 'tr']);
   assert.deepEqual(allLocales, ['en', 'ar', 'tr']);
 });
-test('all 34 published corporate pages have localized metadata and equivalent alternates', () => {
+test('all 51 published corporate pages have localized metadata and equivalent alternates', () => {
   for (const locale of locales)
     for (const path of paths) {
       const m = metadataFor(locale, path);
@@ -19,7 +19,7 @@ test('all 34 published corporate pages have localized metadata and equivalent al
       assert.ok(String(m.alternates?.canonical).includes(`/${locale}`));
       assert.equal(Object.keys(m.alternates?.languages || {}).length, locales.length + 1);
     }
-  assert.equal(locales.length * paths.length, 34);
+  assert.equal(locales.length * paths.length, 51);
 });
 test('translations preserve the complete dictionary structure', () => {
   const keys = Object.keys(dictionary('en')).sort();

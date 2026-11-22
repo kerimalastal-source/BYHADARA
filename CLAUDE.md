@@ -42,16 +42,14 @@ file's prose in English so it stays easy to scan. Last updated 2026-11-22.
   deployments are off for `claude/**` branches (`vercel.json`, `git.deploymentEnabled`, owner's
   choice 2026-09-28, to save the daily build limit); other branches still get
   `byhadara-git-<branch>-hadara1.vercel.app`.
-- **Locales**: `en` and `ar` (RTL) published; 17 routes × 2 = 34 pages plus 2 per published
-  article, all static. `/` 308-redirects to `/en`. **Turkish is switched off, not deleted**
-  (owner, 2026-10-10, after being told the Turkish pages brought most of the search clicks):
-  `content/locales.ts` has `allLocales` (en, ar, tr: every dictionary, SEO entry and article keeps
-  its Turkish copy, and the unit tests still check it) and `locales` (published: en, ar), which
-  drives static params, the language links, the sitemap, hreflang and visitor tracking.
-  `next.config.ts` sends every `/tr` and `/tr/…` address to the same path in English with a
-  temporary 307; the owner confirmed on 2026-10-20 to keep it temporary, since Turkish may
-  return. To re-enable Turkish, add `'tr'` back to `locales` (and restore the Turkish paths in
-  `check-routes.mjs` and the browser tests).
+- **Locales**: `en`, `ar` (RTL) and `tr` published; 17 routes × 3 = 51 pages plus 3 per published
+  article, all static. `/` 308-redirects to `/en`. **Turkish was switched off from 2026-10-10
+  to 2026-11-22** and is back at the owner's request («نعم رجّع التركي»), after the third Search
+  Console export showed Google dropping the redirected Turkish pages while they still brought
+  most clicks. `content/locales.ts` keeps the switch: `allLocales` (every written language) and
+  `locales` (published), which drives static params, the language links, the sitemap, hreflang
+  and visitor tracking; a language left out of `locales` keeps its copy and `next.config.ts`
+  sends `/xx/…` to English with a temporary 307.
 - **Key files**
   - `content/site.ts`: all EN/AR/TR copy (one dictionary per locale; unit tests require identical
     keys), `site` (origin, company URLs, contact email/phone).
@@ -368,7 +366,8 @@ file's prose in English so it stays easy to scan. Last updated 2026-11-22.
   shops, ~33,000 m², sold out. Koru 2: 2023–2025, 15,005 m² plot, 10,500 m² green + 7,000 m²
   park, 13 blocks × 5 floors, 204 apartments, ~40,000 m², ready with units available. Call to
   action: Lotus Koru 2's page (`/projects/lotus-koru-2`, `/ar/…`). Turkish copy is written but
-  unpublished while Turkish is off. 21 articles, 76 pages, 74 sitemap URLs.
+  unpublished while Turkish was off (live since 2026-11-22). 21 articles, 76 pages, 74 sitemap URLs
+  at the time.
 - In Arabic text, number ranges render reversed ("100–109" shows as "109–100"): write them in
   words («بين 100 و109») or wrap them in U+2066/U+2069 isolates (fine outside `<select>`).
 
@@ -381,7 +380,8 @@ file's prose in English so it stays easy to scan. Last updated 2026-11-22.
   rendered with Playwright from an HTML file opened via `file://` (so local fonts and the photo
   load); re-render them the same way if the brand changes.
 - The insights index is `noindex` and outside the sitemap only while no article is published; the
-  thank-you page is always `noindex` and outside it. Sitemap: 74 URLs with 21 articles (English and Arabic).
+  thank-you page is always `noindex` and outside it. Sitemap: 111 URLs with 21 articles in three
+  languages (since Turkish returned on 2026-11-22).
 - Canonical origin is `https://www.byhadara.com` (default in `content/site.ts`, `SITE_URL`
   overrides), matching Vercel where the apex redirects to `www`. Keep the two in sync.
 - Google Search Console: Domain property verified by a DNS TXT record
@@ -444,7 +444,8 @@ file's prose in English so it stays easy to scan. Last updated 2026-11-22.
   with 3 clicks in 16 days. Indexed pages fell 150 → 125 on 24 Oct and 119 by 16 Nov: Google
   is dropping the Turkish pages, which have redirected to English since 10 Oct. Turkish pages
   still brought 25 of 36 page clicks and 630 of 1,462 impressions (Lotus Yaşam 300/10, Diamond
-  Marin 186/9); Türkiye 29 of 35 clicks. Put to the owner on 2026-11-22: re-enable Turkish.
+  Marin 186/9); Türkiye 29 of 35 clicks. **Turkish re-enabled the same day** (owner's word):
+  compare the next export's Turkish impressions and indexed pages with these numbers.
   Coverage summary: validation failed for redirects (63; expected, a redirect never "passes"),
   404 (11) and crawled-not-indexed (30); the drilldowns were not sent, so those URLs are
   unknown. Lotus Koru guide: en 56 impressions at position 10, ar 1 click. `/privacy-policy`
@@ -514,8 +515,8 @@ file's prose in English so it stays easy to scan. Last updated 2026-11-22.
 ## Validation and sandbox notes
 
 - Checks: `pnpm typecheck`, `pnpm test` (53 tests), `pnpm build`, then `pnpm start` +
-  `node scripts/check-routes.mjs` (76 pages incl. the articles, links, SEO assertions, 503 from
-  both APIs while unconfigured) and the Playwright suite (16 tests incl. axe and the phone/tablet test). Prettier:
+  `node scripts/check-routes.mjs` (114 pages incl. the articles, links, SEO assertions, 503 from
+  both APIs while unconfigured) and the Playwright suite (18 tests incl. axe and the phone/tablet test). Prettier:
   `pnpm exec prettier --check components content lib app styles tests scripts docs *.md`.
 - The installed `@playwright/test` expects a newer browser than the sandbox has: run with a
   temporary config that sets `launchOptions.executablePath: '/opt/pw-browsers/chromium'` and
@@ -603,3 +604,4 @@ file's prose in English so it stays easy to scan. Last updated 2026-11-22.
 - PR #53: each contact form request also sent to the team's Telegram; privacy notice updated.
 - PR #54: Arabic text in Thmanyah Sans (thmanyah's written permission, ticket 504537).
 - PR #55: third Search Console export; `/privacy-policy` and old Marmara Haven addresses redirected.
+- PR #56: Turkish published again (51 pages + articles, 111 sitemap URLs).

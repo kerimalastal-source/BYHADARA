@@ -3,9 +3,10 @@
 export const allLocales = ['en', 'ar', 'tr'] as const;
 export type Locale = (typeof allLocales)[number];
 /**
- * Languages published on the site. Turkish is switched off but kept (owner, 2026-10-10): its
- * pages are not built and `/tr/…` redirects to English. Add 'tr' back here to re-enable it.
+ * Languages published on the site. Turkish was switched off from 2026-10-10 to 2026-11-22 and is
+ * back at the owner's request; leaving a language out here keeps its copy and sends `/xx/…` to
+ * English.
  */
-export const locales: readonly Locale[] = ['en', 'ar'];
+export const locales: readonly Locale[] = ['en', 'ar', 'tr'];
 export const isLocale = (v: string): v is Locale => locales.includes(v as Locale);
 export const navPaths = ['', 'about', 'businesses', 'markets', 'partnerships', 'insights'];
