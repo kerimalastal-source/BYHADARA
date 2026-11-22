@@ -42,6 +42,7 @@ export const realEstate: Article[] = [
     approved: true,
     publishedAt: '2026-09-26',
     company: 'real-estate',
+    related: ['marmara-haven-villa', 'beylikduzu-living', 'diamond-marin'],
     translations: {
       en: {
         title: 'Buying property in Türkiye: from reservation to title deed',
@@ -118,6 +119,7 @@ export const realEstate: Article[] = [
     approved: true,
     publishedAt: '2026-09-26',
     company: 'real-estate',
+    related: ['marmara-haven-villa', 'beylikduzu-living', 'lotus-koru-2'],
     translations: {
       en: {
         title: 'Turkish citizenship through real estate: how the route works',
@@ -194,6 +196,7 @@ export const realEstate: Article[] = [
     approved: true,
     publishedAt: '2026-09-26',
     company: 'real-estate',
+    related: ['marmara-haven-villa', 'beylikduzu-living', 'lotus-koru-2'],
     translations: {
       en: {
         title: 'Western Istanbul: why Beylikdüzü and Büyükçekmece draw families and investors',
@@ -270,6 +273,7 @@ export const realEstate: Article[] = [
     approved: true,
     publishedAt: '2026-09-26',
     company: 'real-estate',
+    related: ['beylikduzu-living', 'diamond-marin', 'marmara-haven-villa'],
     translations: {
       en: {
         title: 'What homebuyers around the world expect from a new home today',
@@ -346,6 +350,7 @@ export const realEstate: Article[] = [
     approved: true,
     publishedAt: '2026-09-26',
     company: 'real-estate',
+    related: ['beylikduzu-living', 'diamond-marin', 'lotus-koru-2'],
     translations: {
       en: {
         title: 'Off-plan or ready to move in? How to judge a new residential project',
@@ -425,6 +430,7 @@ export const realEstate: Article[] = [
     approved: true,
     publishedAt: '2026-10-22',
     company: 'real-estate',
+    related: ['lotus-koru-2', 'beylikduzu-living', 'diamond-marin'],
     translations: {
       en: {
         title: 'Lotus Koru 1 and Lotus Koru 2: two completed communities in Beylikdüzü',

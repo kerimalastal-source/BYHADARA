@@ -34,6 +34,7 @@ import { getFormText } from '@/content/forms';
 import { Insights } from './Insights';
 import { inquiriesEnabled } from '@/lib/inquiry-config';
 import { breadcrumbs } from '@/lib/seo';
+import { relatedItems, relatedUrl } from '@/content/related';
 import { notFound } from 'next/navigation';
 export function About({ locale }: { locale: Locale }) {
   const d = dictionary(locale);
@@ -707,6 +708,47 @@ export function InsightIndex({ locale }: { locale: Locale }) {
     </>
   );
 }
+/** The article's projects or products, each opening its page on the company website. */
+function RelatedLinks({
+  locale,
+  company,
+  slugs,
+}: {
+  locale: Locale;
+  company: (typeof businessIds)[number];
+  slugs: string[];
+}) {
+  const d = dictionary(locale),
+    cta = d.business[businessIds.indexOf(company)].showcaseCta;
+  return (
+    <section className="article-related">
+      <h2>{company === 'real-estate' ? d.relatedProjects : d.relatedProducts}</h2>
+      <div className="related-grid">
+        {slugs.map((slug) => {
+          const item = relatedItems[company][slug];
+          return (
+            <a
+              key={slug}
+              className="related-card"
+              href={relatedUrl(company, locale, slug)}
+              {...external}
+            >
+              <Photo name={item.image} alt="" sizes="(max-width: 640px) 120px, 260px" />
+              <span className="related-body">
+                <span className="related-name">{item.name[locale]}</span>
+                <span className="company-cta">
+                  {cta}
+                  <Arrow />
+                </span>
+              </span>
+              <span className="sr-only"> {d.newTab}</span>
+            </a>
+          );
+        })}
+      </div>
+    </section>
+  );
+}
 export function ArticlePage({ locale, slug }: { locale: Locale; slug: string }) {
   const a = findArticle(slug);
   if (!a) notFound();
@@ -780,6 +822,9 @@ export function ArticlePage({ locale, slug }: { locale: Locale; slug: string }) 
               />
             ))}
           </div>
+        )}
+        {a.company && a.related && a.related.length > 0 && (
+          <RelatedLinks locale={locale} company={a.company} slugs={a.related} />
         )}
         {company && (
           <section className="article-about">

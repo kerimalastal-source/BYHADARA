@@ -380,6 +380,13 @@ file's prose in English so it stays easy to scan. Last updated 2026-11-22.
   note to the owner. When the queue runs out it asks for a new list. Article paragraphs that
   start with `## ` render as subheadings (`.article-heading`; a test keeps them aligned across
   languages). To stop it: disable that scheduled task.
+- **Related projects / products under every article** (owner's request 2026-11-22, to send readers
+  to the company sites): each article lists `related` slugs (2–3; the writer always uses 3),
+  rendered after the text as cards with image, name and "View project/product" opening
+  `relatedUrl()` (`/projects/<slug>` on hadararealestate.com, `/products/<slug>` on
+  hadarahospitality.com; `/ar/…` in Arabic, English for Turkish). Names and images live in
+  `content/related.ts` (4 projects, 13 products on 2026-11-22); labels `relatedProjects` /
+  `relatedProducts` plus each company's `showcaseCta`. A test requires them on every article.
 - In Arabic text, number ranges render reversed ("100–109" shows as "109–100"): write them in
   words («بين 100 و109») or wrap them in U+2066/U+2069 isolates (fine outside `<select>`).
 
@@ -526,7 +533,7 @@ file's prose in English so it stays easy to scan. Last updated 2026-11-22.
 
 ## Validation and sandbox notes
 
-- Checks: `pnpm typecheck`, `pnpm test` (54 tests), `pnpm build`, then `pnpm start` +
+- Checks: `pnpm typecheck`, `pnpm test` (55 tests), `pnpm build`, then `pnpm start` +
   `node scripts/check-routes.mjs` (114 pages incl. the articles, links, SEO assertions, 503 from
   both APIs while unconfigured) and the Playwright suite (18 tests incl. axe and the phone/tablet test). Prettier:
   `pnpm exec prettier --check components content lib app styles tests scripts docs *.md`.
@@ -618,3 +625,4 @@ file's prose in English so it stays easy to scan. Last updated 2026-11-22.
 - PR #55: third Search Console export; `/privacy-policy` and old Marmara Haven addresses redirected.
 - PR #56: Turkish published again (51 pages + articles, 111 sitemap URLs).
 - PR #57: weekday blog writer (instructions, topic queue, article subheadings).
+- PR #58: related projects/products under every article, linking to the company sites.

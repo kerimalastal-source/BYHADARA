@@ -39,6 +39,16 @@ waiting for approval**; the owner is told after each one and can say stop at any
      profile, the product or question for a hospitality guide.
    - End with one short paragraph that points to the company website. No links, HTML or emoji
      inside the text.
+   - **`related`: always three slugs** (owner's rule, 2026-11-22: readers must be able to click
+     through to the project or product page). Real estate: the profiled project first, then two
+     available projects that fit (same district or same kind of home; never `soldOut`).
+     Hospitality: three products the guide is about, from the hospitality site's
+     `src/data/products.ts`. Each slug must exist in `content/related.ts`; add a missing one there
+     with its name (projects: the same name in every language; products: English and Arabic from
+     `products.ts` / `products.i18n.ts`, Turkish translated) and one image copied unchanged into
+     `public/images/related/<slug>.jpg` (the project's cover or the product's `main` image, after
+     checking it shows no third-party branding). A test checks that every article has two or three
+     known items with existing images.
 5. Images: copy them **unchanged** from the source repository into `public/images/insights/`
    with a new descriptive name (`<project>-<view>.jpg`), never reusing a name with different
    content. Look at each one first: no third-party branding or watermarks. Add a row to

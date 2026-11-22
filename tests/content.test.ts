@@ -4,6 +4,7 @@ import { allLocales, locales, dictionary, paths } from '../content/site';
 import { articles, publishedArticles } from '../content/articles';
 import { existsSync, readFileSync } from 'node:fs';
 import { createHash } from 'node:crypto';
+import { relatedItems, relatedUrl } from '../content/related';
 import { metadataFor, pageSeo, structuredData, breadcrumbs } from '../lib/seo';
 import { seo } from '../content/seo';
 test('every written language is published, Turkish included', () => {
@@ -130,4 +131,26 @@ test('article subheadings never open an article and are never empty', () => {
         `${locale}/${a.slug} subheadings`,
       );
     }
+});
+test('every article links to two or three of its company projects or products', () => {
+  for (const a of publishedArticles()) {
+    assert.ok(a.company, `${a.slug} has a company`);
+    const slugs = a.related ?? [];
+    assert.ok(slugs.length >= 2 && slugs.length <= 3, `${a.slug} related count`);
+    assert.equal(new Set(slugs).size, slugs.length, `${a.slug} related repeats`);
+    for (const slug of slugs) {
+      const item = relatedItems[a.company!][slug];
+      assert.ok(item, `${a.slug}: unknown ${a.company} item ${slug}`);
+      assert.ok(existsSync(`public/images/${item.image}`), item.image);
+      for (const locale of allLocales) assert.ok(item.name[locale], `${slug} ${locale} name`);
+    }
+  }
+  assert.equal(
+    relatedUrl('real-estate', 'ar', 'diamond-marin'),
+    'https://www.hadararealestate.com/ar/projects/diamond-marin',
+  );
+  assert.equal(
+    relatedUrl('hospitality', 'tr', 'hotel-bath-towel'),
+    'https://www.hadarahospitality.com/products/hotel-bath-towel',
+  );
 });
