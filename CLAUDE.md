@@ -315,7 +315,7 @@ file's prose in English so it stays easy to scan. Last updated 2026-11-22 (eveni
   the landing page also sends the link's `utm_source`, `utm_medium`, `utm_campaign`; they are
   saved as `campaign` (`source/medium/campaign`, safe characters only, lower case; null without a
   source) in a new column added by the code itself (`ALTER TABLE visitor_events ADD COLUMN IF NOT
- EXISTS campaign text`, run on the first save that hits 42703 in `neon-coquelicot-lighthouse`;
+EXISTS campaign text`, run on the first save that hits 42703 in `neon-coquelicot-lighthouse`;
   nothing removed; checked on PGlite), and the alert gets `🏷 الرابط: instagram · owner-bio`. The
   bare domain now redirects in `next.config.ts` (`/` → `/en`), which keeps the query; the old
   `permanentRedirect` page dropped it. Owner's bio link:
