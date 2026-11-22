@@ -20,6 +20,7 @@ export const news: Article[] = [
     approved: true,
     publishedAt: '2026-10-14',
     company: 'hospitality',
+    related: ['hotel-bath-towel', 'satin-stripe-bed-linen-set', 'hotel-blackout-curtains'],
     translations: {
       en: {
         title: 'HADARA Hospitality to visit the Hotel & Restaurant Equipment Expo in Makkah',
@@ -116,6 +117,7 @@ export const news: Article[] = [
     approved: true,
     publishedAt: '2026-09-29',
     company: 'real-estate',
+    related: ['marmara-haven-villa', 'beylikduzu-living', 'diamond-marin'],
     translations: {
       en: {
         title: 'Istanbul, one video call away: HADARA Real Estate launches private video tours',
@@ -236,6 +238,7 @@ export const news: Article[] = [
     approved: true,
     publishedAt: '2026-09-26',
     company: 'real-estate',
+    related: ['marmara-haven-villa', 'beylikduzu-living', 'diamond-marin'],
     translations: {
       en: {
         title: 'HADARA Real Estate to visit Cityscape Qatar 2026 in Doha',
@@ -332,6 +335,7 @@ export const news: Article[] = [
     approved: true,
     publishedAt: '2026-09-26',
     company: 'hospitality',
+    related: ['hotel-bath-towel', 'satin-stripe-bed-linen-set', 'hotel-blackout-curtains'],
     translations: {
       en: {
         title: 'HADARA Hospitality to visit Hospitality Qatar 2026 in Doha',
@@ -425,6 +429,7 @@ export const news: Article[] = [
     approved: true,
     publishedAt: '2026-09-26',
     company: 'real-estate',
+    related: ['diamond-marin', 'lotus-koru-2', 'marmara-haven-villa'],
     translations: {
       en: {
         title: 'Lotus Yaşam: a new residential community takes shape in Beylikdüzü',
@@ -542,6 +547,7 @@ export const news: Article[] = [
     approved: true,
     publishedAt: '2026-09-26',
     company: 'real-estate',
+    related: ['beylikduzu-living', 'lotus-koru-2', 'marmara-haven-villa'],
     translations: {
       en: {
         title: 'Diamond Marin: boutique living minutes from West Istanbul Marina',

@@ -143,6 +143,7 @@ export const hospitality: Article[] = [
     approved: true,
     publishedAt: '2026-09-26',
     company: 'hospitality',
+    related: ['hotel-bath-towel', 'satin-stripe-bed-linen-set', 'luxury-hotel-slippers'],
     translations: {
       en: {
         title: 'The textiles guests remember: how bed and bath shape a hotel stay',
@@ -208,6 +209,7 @@ export const hospitality: Article[] = [
     approved: true,
     publishedAt: '2026-09-26',
     company: 'hospitality',
+    related: ['satin-stripe-bed-linen-set', 'hotel-duvet-cover', 'hotel-fitted-sheet'],
     translations: {
       en: {
         title: 'Hotel bed linen: looking beyond thread count',
@@ -283,6 +285,7 @@ export const hospitality: Article[] = [
     approved: true,
     publishedAt: '2026-09-26',
     company: 'hospitality',
+    related: ['hotel-bath-towel', 'hotel-bath-sheet', 'hotel-hand-towel'],
     translations: {
       en: {
         title: 'Hotel towels: matching weight to the property',
@@ -359,6 +362,7 @@ export const hospitality: Article[] = [
     approved: true,
     publishedAt: '2026-09-26',
     company: 'hospitality',
+    related: ['hotel-bath-towel', 'satin-stripe-bed-linen-set', 'hotel-blackout-curtains'],
     translations: {
       en: {
         title: 'Why Türkiye remains a hub for hotel textiles',
@@ -418,6 +422,7 @@ export const hospitality: Article[] = [
     approved: true,
     publishedAt: '2026-09-26',
     company: 'hospitality',
+    related: ['hotel-bath-towel', 'hotel-fitted-sheet', 'waterproof-mattress-protector'],
     translations: {
       en: {
         title: 'Durability: the most practical form of sustainability in hotel textiles',
@@ -479,6 +484,7 @@ export const hospitality: Article[] = [
     approved: true,
     publishedAt: '2026-10-08',
     company: 'hospitality',
+    related: ['satin-stripe-bed-linen-set', 'hotel-duvet-cover', 'goose-down-hotel-duvet'],
     translations: {
       en: {
         title: 'Hotel bed linen for 3, 4 and 5-star hotels',
@@ -552,6 +558,7 @@ export const hospitality: Article[] = [
     approved: true,
     publishedAt: '2026-10-08',
     company: 'hospitality',
+    related: ['goose-down-hotel-pillow', 'goose-down-hotel-duvet', 'waterproof-pillow-protector'],
     translations: {
       en: {
         title: 'Hotel pillows and duvets: firmness, fill and weight',
@@ -626,6 +633,7 @@ export const hospitality: Article[] = [
     approved: true,
     publishedAt: '2026-10-08',
     company: 'hospitality',
+    related: ['hotel-spa-towel', 'luxury-hotel-slippers', 'hotel-bath-sheet'],
     translations: {
       en: {
         title: 'Spa bathrobes and towels that last',
@@ -696,6 +704,7 @@ export const hospitality: Article[] = [
     approved: true,
     publishedAt: '2026-10-08',
     company: 'hospitality',
+    related: ['hotel-bath-towel', 'satin-stripe-bed-linen-set', 'goose-down-hotel-pillow'],
     translations: {
       en: {
         title: 'Ordering hotel textiles: from inquiry to delivery',

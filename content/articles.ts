@@ -32,6 +32,8 @@ export type Article = {
   approved: boolean;
   /** Group company the article is about, introduced at the end of the article. */
   company?: CompanyId;
+  /** Up to three of that company's projects or products (`content/related.ts`), shown under the text. */
+  related?: string[];
   translations: Record<Locale, ArticleTranslation>;
 };
 /**

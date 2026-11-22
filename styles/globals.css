@@ -1006,6 +1006,66 @@ html[dir='rtl'] .footer-top > div:first-child {
 .related-title {
   margin-bottom: 36px;
 }
+/* Projects or products under an article, linking to their pages on the company website. */
+.article-related {
+  margin-top: 60px;
+  padding-top: 40px;
+  border-top: 1px solid var(--line);
+}
+.article-related h2 {
+  font-size: 30px;
+  margin: 0 0 28px;
+}
+.related-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+.related-card {
+  display: block;
+  color: var(--navy);
+}
+.related-card .photo {
+  aspect-ratio: 4 / 3;
+  min-height: 0;
+  background: var(--line);
+}
+.related-card .photo img {
+  transition: transform 0.6s;
+}
+.related-card:hover .photo img {
+  transform: scale(1.035);
+}
+.related-name {
+  display: block;
+  margin-top: 14px;
+  font-size: 20px;
+  line-height: 1.35;
+}
+.related-card .company-cta {
+  margin-top: 12px;
+  border-color: #97a6af;
+}
+@media (max-width: 640px) {
+  .related-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .related-card {
+    display: grid;
+    grid-template-columns: 112px 1fr;
+    gap: 16px;
+    align-items: center;
+  }
+  .related-name {
+    margin-top: 0;
+    font-size: 18px;
+  }
+  .related-card .company-cta {
+    margin-top: 8px;
+    gap: 12px;
+  }
+}
 .all-insights {
   margin-top: 40px;
 }
