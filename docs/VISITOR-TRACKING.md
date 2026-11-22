@@ -12,6 +12,11 @@ What the website records, how the Telegram alert works, and how to set both up i
   cookie, one per tab, gone when the tab closes.
 - `referrer` is sent only for the landing page and the server keeps only its origin
   (`https://www.google.com`, never the path or query).
+- `utm` (added 2026-11-22, owner's request, to tell visitors from a link in a bio or a post apart):
+  on the landing page only, the link's `utm_source`, `utm_medium` and `utm_campaign`. The server
+  keeps them as `campaign` = `source/medium/campaign` when `utm_source` is present, each part only
+  if it is 1–40 letters, digits, dots, `_` or `-` (lower-cased), and the alert adds a line
+  `🏷 الرابط: instagram · owner-bio`. Tags name where a link was placed, not a person.
 - `app/api/visit/route.ts` accepts same-origin JSON beacons of at most 2 KB, ignores crawlers and
   automated browsers, and counts only public pages of this website (`publicPageLocale` in
   `lib/visits.ts`): API, `_next`, admin and portal paths, unknown pages and unpublished articles
@@ -63,12 +68,15 @@ CREATE TABLE IF NOT EXISTS visitor_events (
   path text NOT NULL,
   locale text,
   referrer text,
+  campaign text,
   country text,
   city text,
   created_at timestamp with time zone DEFAULT now() NOT NULL
 );
 CREATE INDEX IF NOT EXISTS visitor_events_session_id_idx ON visitor_events USING btree (session_id);
 CREATE INDEX IF NOT EXISTS visitor_events_created_at_idx ON visitor_events USING btree (created_at);
+-- Added 2026-11-22; runs by itself on the first save that finds the column missing (42703).
+ALTER TABLE visitor_events ADD COLUMN IF NOT EXISTS campaign text;
 CREATE TABLE IF NOT EXISTS visitor_alerts (
   session_id text PRIMARY KEY NOT NULL,
   message_id bigint NOT NULL,
@@ -100,6 +108,6 @@ CREATE TABLE IF NOT EXISTS visitor_alerts (
   (Start was not pressed in the bot, or the chat id is wrong), `Visitor tracking failed. …`
   (database), `Visitor cleanup failed. …`. None of them contains visit details or secrets.
 - Neon → SQL editor on the `byhadara` database:
-  `SELECT path, locale, referrer, country, city, created_at FROM visitor_events ORDER BY created_at DESC LIMIT 20;`
+  `SELECT path, locale, referrer, campaign, country, city, created_at FROM visitor_events ORDER BY created_at DESC LIMIT 20;`
 - Preview deployments never count visits, so testing happens on https://www.byhadara.com in a new
   tab or private window (each new tab is a new session).

@@ -15,6 +15,12 @@ export type Visit = {
   locale: Locale;
   /** Origin of the referring website (scheme and host only), or null for a direct visit. */
   referrer: string | null;
+  /**
+   * The landing link's campaign tags as "source/medium/campaign" (for example
+   * "instagram/social/owner-bio"), or null when the link carried none. Not personal data: the
+   * tags name where a shared link was placed.
+   */
+  campaign: string | null;
   /** ISO 3166-1 alpha-2 code. */
   country: string | null;
   city: string | null;
@@ -50,6 +56,18 @@ export function referrerOrigin(value: unknown) {
     return null;
   }
 }
+/** A campaign tag kept only in a safe shape: lower-case letters, digits, dots, `_` and `-`. */
+const tagValue = (value: unknown) =>
+  typeof value === 'string' && /^[a-z0-9._-]{1,40}$/i.test(value.trim())
+    ? value.trim().toLowerCase()
+    : '';
+/** The landing link's `utm_source`, `utm_medium` and `utm_campaign`, or null without a source. */
+export function campaignTags(value: unknown) {
+  if (typeof value !== 'object' || value === null || Array.isArray(value)) return null;
+  const { source, medium, campaign } = value as Record<string, unknown>;
+  const tags = [tagValue(source), tagValue(medium), tagValue(campaign)];
+  return tags[0] ? tags.join('/') : null;
+}
 /** Approximate place from Vercel's geolocation headers; the city arrives URL-encoded. */
 export function visitorPlace(headers: Headers) {
   const country = headers.get('x-vercel-ip-country')?.trim().toUpperCase() ?? '';
@@ -72,7 +90,7 @@ export function visitorPlace(headers: Headers) {
  */
 export function parseVisit(body: unknown, headers: Headers): Visit | null | undefined {
   if (typeof body !== 'object' || body === null || Array.isArray(body)) return undefined;
-  const { sessionId, path, locale, referrer } = body as Record<string, unknown>;
+  const { sessionId, path, locale, referrer, utm } = body as Record<string, unknown>;
   if (typeof sessionId !== 'string' || !UUID.test(sessionId)) return undefined;
   if (typeof path !== 'string' || !path.startsWith('/') || path.length > 300) return undefined;
   const pageLocale = publicPageLocale(path);
@@ -83,6 +101,7 @@ export function parseVisit(body: unknown, headers: Headers): Visit | null | unde
     path,
     locale: pageLocale,
     referrer: referrerOrigin(referrer),
+    campaign: campaignTags(utm),
     ...visitorPlace(headers),
   };
 }
@@ -100,6 +119,8 @@ export const visitorEventsSchema = [
 )`,
   'CREATE INDEX IF NOT EXISTS visitor_events_session_id_idx ON visitor_events USING btree (session_id)',
   'CREATE INDEX IF NOT EXISTS visitor_events_created_at_idx ON visitor_events USING btree (created_at)',
+  // Added 2026-11-22: the landing link's campaign tags (an added column, nothing removed).
+  'ALTER TABLE visitor_events ADD COLUMN IF NOT EXISTS campaign text',
   // The Telegram message of each session, so later pages update it instead of sending new ones.
   `CREATE TABLE IF NOT EXISTS visitor_alerts (
   session_id text PRIMARY KEY NOT NULL,
@@ -147,7 +168,7 @@ export async function recordVisit(visit: Visit): Promise<VisitState> {
       FROM visitor_events WHERE session_id = ${id}
     ),
     landing AS (
-      SELECT path, locale, referrer, country, city FROM visitor_events
+      SELECT path, locale, referrer, campaign, country, city FROM visitor_events
       WHERE session_id = ${id} ORDER BY created_at LIMIT 1
     ),
     recent AS (
@@ -166,15 +187,16 @@ export async function recordVisit(visit: Visit): Promise<VisitState> {
           AND coalesce((SELECT started FROM prior), now()) + interval '10 seconds'
     ),
     saved AS (
-      INSERT INTO visitor_events (session_id, path, locale, referrer, country, city)
-      VALUES (${id}, ${visit.path}, ${visit.locale}, ${visit.referrer}, ${visit.country},
-        ${visit.city})
+      INSERT INTO visitor_events (session_id, path, locale, referrer, campaign, country, city)
+      VALUES (${id}, ${visit.path}, ${visit.locale}, ${visit.referrer}, ${visit.campaign},
+        ${visit.country}, ${visit.city})
       RETURNING created_at
     )
     SELECT prior.pages, prior.seen,
       coalesce(extract(epoch FROM saved.created_at - prior.started), 0)::int AS seconds,
       extract(epoch FROM saved.created_at)::float8 AS at, recent.views,
-      landing.path, landing.locale, landing.referrer, landing.country, landing.city,
+      landing.path, landing.locale, landing.referrer, landing.campaign, landing.country,
+      landing.city,
       alert.message_id, burst.others AS burst
     FROM saved CROSS JOIN prior CROSS JOIN recent CROSS JOIN burst LEFT JOIN landing ON true
       LEFT JOIN alert ON true`;
@@ -182,8 +204,9 @@ export async function recordVisit(visit: Visit): Promise<VisitState> {
   try {
     rows = await save();
   } catch (error) {
-    // 42P01: a table does not exist yet (a new database, or one from before visitor_alerts).
-    if ((error as { code?: string }).code !== '42P01') throw error;
+    // 42P01: a table does not exist yet (a new database, or one from before visitor_alerts);
+    // 42703: a column does not exist yet (a database from before the campaign column).
+    if (!['42P01', '42703'].includes((error as { code?: string }).code ?? '')) throw error;
     await sql
       .transaction(visitorEventsSchema.map((statement) => sql.query(statement)))
       .catch(() => {
@@ -216,6 +239,7 @@ export async function recordVisit(visit: Visit): Promise<VisitState> {
             path: text(row.path)!,
             locale: landingLocale && isLocale(landingLocale) ? landingLocale : visit.locale,
             referrer: text(row.referrer),
+            campaign: text(row.campaign),
             country: text(row.country),
             city: text(row.city),
           },
@@ -295,6 +319,12 @@ function place(visit: Visit) {
 }
 const source = (visit: Visit) =>
   escapeHtml(visit.referrer ? new URL(visit.referrer).host.replace(/^www\./, '') : 'مباشر');
+/** The landing link's tags, e.g. "instagram · owner-bio", as an extra alert line when present. */
+const campaignLine = (visit: Visit) => {
+  if (!visit.campaign) return [];
+  const [tagSource, , tagCampaign] = visit.campaign.split('/');
+  return [`🏷 الرابط: ${escapeHtml([tagSource, tagCampaign].filter(Boolean).join(' · '))}`];
+};
 /** Visit length in Arabic, in whole minutes. */
 export function visitLength(seconds: number) {
   const minutes = Math.floor(seconds / 60);
@@ -313,6 +343,7 @@ export function newVisitorMessage(visit: Visit) {
     `📄 الصفحة: ${shownPath(visit.path)}`,
     `🗣 اللغة: ${languages[visit.locale]}`,
     `↩️ المصدر: ${source(visit)}`,
+    ...campaignLine(visit),
   ].join('\n');
 }
 /** "And N pages" in Arabic, for the pages a long visit's alert leaves out. */
@@ -341,6 +372,7 @@ export function visitUpdateMessage(visit: Visit, state: VisitState) {
     `📍 من: ${place(landing)}`,
     `🗣 اللغة: ${languages[landing.locale]}`,
     `↩️ المصدر: ${source(landing)}`,
+    ...campaignLine(landing),
     `🔢 عدد الصفحات: ${state.pages} · مدة الزيارة: ${visitLength(state.seconds)}`,
     '🧭 مسار الزيارة:',
     ...(hiddenPages > 0 ? [`… ${earlierPages(hiddenPages)} قبلها`] : []),
