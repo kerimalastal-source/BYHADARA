@@ -30,6 +30,9 @@ const config: NextConfig = {
     const tr = locales.includes('tr') ? 'tr' : 'en';
     const off = allLocales.filter((l) => !locales.includes(l));
     return [
+      // The bare domain opens English. Done here rather than only in app/(entry) so the address's
+      // query (campaign tags of a link in a bio or a post) reaches /en with it.
+      to('/', '/en'),
       to('/post/why-invest-in-real-estate-in-turkey', guide('buying-property-in-turkiye')),
       to('/post/property-taxes-and-fees-in-turkey', guide('buying-property-in-turkiye')),
       to(

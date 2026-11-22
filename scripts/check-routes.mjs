@@ -72,6 +72,15 @@ assert.equal((sitemap.match(/<loc>/g) || []).length, indexable);
 const robots = await (await fetch('http://localhost:3000/robots.txt')).text();
 assert.ok(robots.includes('Disallow: /api/'));
 assert.equal((await fetch('http://localhost:3000/', { redirect: 'manual' })).status, 308);
+// The bare domain keeps a link's campaign tags on its way to /en.
+assert.equal(
+  (
+    await fetch('http://localhost:3000/?utm_source=instagram&utm_campaign=owner-bio', {
+      redirect: 'manual',
+    })
+  ).headers.get('location'),
+  '/en?utm_source=instagram&utm_campaign=owner-bio',
+);
 // Addresses of the former Wix site that Google still crawls (Search Console, 2026-10-08).
 const oldAddresses = {
   '/post/why-invest-in-real-estate-in-turkey': '/en/insights/buying-property-in-turkiye',

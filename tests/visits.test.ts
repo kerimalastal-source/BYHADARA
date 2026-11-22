@@ -11,6 +11,7 @@ import {
   publicPageLocale,
   pageTime,
   referrerOrigin,
+  campaignTags,
   visitLength,
   visitUpdateMessage,
   visitorPlace,
@@ -37,6 +38,7 @@ const visit: Visit = {
   path: '/ar/businesses/real-estate',
   locale: 'ar',
   referrer: 'https://www.google.com',
+  campaign: null,
   country: 'TR',
   city: 'Istanbul',
 };
@@ -74,7 +76,7 @@ function beacon(
  * development), and returns the Telegram calls and SQL statements it received. `clock.now` is the
  * database time in milliseconds.
  */
-function services({ table = true, database = true, editStatus = 200 } = {}) {
+function services({ table = true, database = true, editStatus = 200, missing = '42P01' } = {}) {
   const rows: { session_id: string; values: unknown[]; at: number }[] = [];
   const alerts = new Map<string, number>();
   const statements: string[] = [];
@@ -107,7 +109,7 @@ function services({ table = true, database = true, editStatus = 200 } = {}) {
     statements.push(body.query);
     if (!table)
       return Response.json(
-        { message: 'relation "visitor_alerts" does not exist', code: '42P01' },
+        { message: 'relation or column does not exist', code: missing },
         { status: 400 },
       );
     // Other sessions that opened `path` within 10 seconds of `start`.
@@ -119,8 +121,9 @@ function services({ table = true, database = true, editStatus = 200 } = {}) {
           .map((r) => r.session_id),
       ).size;
     if (body.query.includes('INSERT INTO visitor_events')) {
-      // The inserted row is the last six parameters: session id, path, locale, referrer, country, city.
-      const values = body.params.slice(-6);
+      // The inserted row is the last seven parameters: session id, path, locale, referrer,
+      // campaign, country, city.
+      const values = body.params.slice(-7);
       const prior = rows.filter((r) => r.session_id === values[0]);
       const burst = othersNear(
         values[0],
@@ -128,7 +131,7 @@ function services({ table = true, database = true, editStatus = 200 } = {}) {
         prior[0]?.at ?? clock.now,
       );
       rows.push({ session_id: values[0], values: values.slice(1), at: clock.now });
-      const landing = prior[0]?.values ?? [null, null, null, null, null];
+      const landing = prior[0]?.values ?? [null, null, null, null, null, null];
       const field = (name: string, dataTypeID: number) => ({ name, dataTypeID });
       return Response.json({
         fields: [
@@ -137,7 +140,7 @@ function services({ table = true, database = true, editStatus = 200 } = {}) {
           field('seconds', 23),
           field('at', 701),
           field('views', 114),
-          ...['path', 'locale', 'referrer', 'country', 'city', 'message_id'].map((n) =>
+          ...['path', 'locale', 'referrer', 'campaign', 'country', 'city', 'message_id'].map((n) =>
             field(n, 25),
           ),
           field('burst', 23),
@@ -243,6 +246,7 @@ test('beacons are validated and keep no personal details', () => {
       path: '/ar/contact',
       locale: 'ar',
       referrer: 'https://www.google.com',
+      campaign: null,
       country: 'SA',
       city: 'Riyadh',
     },
@@ -257,6 +261,33 @@ test('beacons are validated and keep no personal details', () => {
   assert.equal(referrerOrigin('android-app://com.google.android.gm/'), null);
   assert.equal(referrerOrigin('not a url'), null);
   assert.equal(referrerOrigin(''), null);
+});
+test('the landing link campaign tags are kept in a safe shape and shown in the alert', () => {
+  const headers = new Headers();
+  const tagged = parseVisit(
+    {
+      sessionId,
+      path: '/ar',
+      locale: 'ar',
+      referrer: 'https://l.instagram.com/',
+      utm: { source: 'Instagram', medium: 'social', campaign: 'owner-bio' },
+    },
+    headers,
+  );
+  assert.equal(tagged?.campaign, 'instagram/social/owner-bio');
+  assert.equal(
+    campaignTags({ source: 'instagram', campaign: 'owner-bio' }),
+    'instagram//owner-bio',
+  );
+  assert.equal(campaignTags({ medium: 'social' }), null);
+  assert.equal(campaignTags({ source: '<b>x</b>' }), null);
+  assert.equal(campaignTags({ source: 'a', campaign: 'a b' }), 'a//');
+  assert.equal(campaignTags('instagram'), null);
+  assert.match(
+    newVisitorMessage({ ...visit, campaign: 'instagram/social/owner-bio' }),
+    /↩️ المصدر: google\.com\n🏷 الرابط: instagram · owner-bio$/,
+  );
+  assert.ok(!newVisitorMessage(visit).includes('🏷'));
 });
 test('the city header is decoded and the country checked', () => {
   const place = (country: string, city: string) =>
@@ -371,7 +402,13 @@ test('the first page sends the alert; later pages update it without a new messag
   Math.random = () => 0.5;
   const { rows, alerts, messages, sent, edits, clock } = services();
   const first = await POST(
-    beacon({ sessionId, path: '/ar', locale: 'ar', referrer: 'https://l.instagram.com/?u=x' }),
+    beacon({
+      sessionId,
+      path: '/ar',
+      locale: 'ar',
+      referrer: 'https://l.instagram.com/?u=x',
+      utm: { source: 'instagram', medium: 'social', campaign: 'owner-bio' },
+    }),
   );
   assert.equal(first.status, 204);
   assert.equal(first.headers.get('cache-control'), 'no-store');
@@ -382,8 +419,8 @@ test('the first page sends the alert; later pages update it without a new messag
   assert.deepEqual(
     rows.map((r) => r.values),
     [
-      ['/ar', 'ar', 'https://l.instagram.com', 'TR', 'Istanbul'],
-      ['/ar/about', 'ar', null, 'TR', 'Istanbul'],
+      ['/ar', 'ar', 'https://l.instagram.com', 'instagram/social/owner-bio', 'TR', 'Istanbul'],
+      ['/ar/about', 'ar', null, null, 'TR', 'Istanbul'],
     ],
   );
   assert.equal(sent().length, 1);
@@ -396,6 +433,7 @@ test('the first page sends the alert; later pages update it without a new messag
       '📄 الصفحة: \u200E/ar',
       '🗣 اللغة: العربية',
       '↩️ المصدر: l.instagram.com',
+      '🏷 الرابط: instagram · owner-bio',
     ].join('\n'),
   );
   assert.equal(alerts.get(sessionId), 100);
@@ -409,6 +447,7 @@ test('the first page sends the alert; later pages update it without a new messag
       '📍 من: Istanbul، تركيا',
       '🗣 اللغة: العربية',
       '↩️ المصدر: l.instagram.com',
+      '🏷 الرابط: instagram · owner-bio',
       '🔢 عدد الصفحات: 2 · مدة الزيارة: 3 دقائق',
       '🧭 مسار الزيارة:',
       '1. \u200E/ar · 3 د',
@@ -567,6 +606,19 @@ test('the table is created in a new database, and old events are cleaned up now 
       table,
     );
   assert.deepEqual(messages, []);
+});
+test('a database from before the campaign column gets the column added, nothing removed', async () => {
+  configure({ telegram: false });
+  const { rows, statements } = services({ table: false, missing: '42703' });
+  assert.equal((await POST(beacon())).status, 204);
+  await settle();
+  assert.equal(rows.length, 1);
+  assert.ok(
+    statements.includes('ALTER TABLE visitor_events ADD COLUMN IF NOT EXISTS campaign text'),
+  );
+  assert.ok(
+    !statements.some((s) => /DROP|DELETE FROM visitor_events WHERE (?!created_at)/.test(s)),
+  );
 });
 test('a database or cleanup failure is logged without visit details', async () => {
   configure();
