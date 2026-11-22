@@ -4,6 +4,8 @@ import {
   companyHost,
   companyUrl,
   designServicePath,
+  newTabLink,
+  referral,
   showcase,
   showcaseUrl,
 } from '@/content/companies';
@@ -125,7 +127,14 @@ export function BusinessIndex({ locale }: { locale: Locale }) {
     </>
   );
 }
-const external = { target: '_blank', rel: 'noopener noreferrer' } as const;
+/**
+ * A link to a group company's website in a new tab. Links to the real estate site carry where on
+ * this site they were clicked (`campaign`, see `referral()`); group sites keep the referrer.
+ */
+const groupLink = (href: string, campaign: string) => ({
+  href: referral(href, campaign),
+  ...newTabLink(href),
+});
 export function BusinessDetail({ locale, id }: { locale: Locale; id: string }) {
   const index = businessIds.indexOf(id as (typeof businessIds)[number]);
   if (index < 0) notFound();
@@ -145,8 +154,7 @@ export function BusinessDetail({ locale, id }: { locale: Locale; id: string }) {
     <a
       key={item.slug}
       className="showcase-card"
-      href={showcaseUrl(company, locale, item.slug)}
-      {...external}
+      {...groupLink(showcaseUrl(company, locale, item.slug), 'businesses')}
     >
       <Photo name={item.image} alt="" sizes="(max-width: 640px) 100vw, 50vw" />
       <span className="showcase-body">
@@ -177,7 +185,7 @@ export function BusinessDetail({ locale, id }: { locale: Locale; id: string }) {
         <h1>{b.name}</h1>
         <p className="company-sector">{b.sector}</p>
         <p className="company-intro">{b.desc}</p>
-        <a className="text-link" href={url} {...external}>
+        <a className="text-link" {...groupLink(url, 'businesses')}>
           {b.visit}
           <Arrow />
           {newTab}
@@ -219,7 +227,7 @@ export function BusinessDetail({ locale, id }: { locale: Locale; id: string }) {
         <div className="container">
           <div className="section-head">
             <h2>{b.showcaseTitle}</h2>
-            <a className="text-link" href={url} {...external}>
+            <a className="text-link" {...groupLink(url, 'businesses')}>
               <bdi>{companyHost(company)}</bdi>
               <Arrow />
               {newTab}
@@ -254,7 +262,7 @@ export function BusinessDetail({ locale, id }: { locale: Locale; id: string }) {
           <HadaraMark className="visit-mark" />
           <h2>{b.visit}</h2>
           <p>{b.visitText}</p>
-          <a className="button light" href={url} {...external}>
+          <a className="button light" {...groupLink(url, 'businesses')}>
             <bdi>{companyHost(company)}</bdi>
             <Arrow />
             {newTab}
@@ -300,7 +308,7 @@ function DesignService({ locale }: { locale: Locale }) {
             <div className="design-actions">
               {page ? (
                 <>
-                  <a className="button design-button" href={page} {...external}>
+                  <a className="button design-button" {...groupLink(page, 'businesses')}>
                     {t.explore}
                     <Arrow />
                     <span className="sr-only"> {d.newTab}</span>
@@ -520,9 +528,7 @@ export function Contact({ locale }: { locale: Locale }) {
               <a
                 key={id}
                 className="text-link"
-                href={companyUrl(id, locale)}
-                target="_blank"
-                rel="noopener noreferrer"
+                {...groupLink(companyUrl(id, locale), 'company-links')}
               >
                 {d.business[i].name}
                 <Arrow />
@@ -659,12 +665,7 @@ export function ThankYou({ locale }: { locale: Locale }) {
             <ul className="thanks-links">
               {businessIds.map((id, i) => (
                 <li key={id}>
-                  <a
-                    className="text-link"
-                    href={companyUrl(id, locale)}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
+                  <a className="text-link" {...groupLink(companyUrl(id, locale), 'thank-you')}>
                     {d.business[i].name}
                     <Arrow />
                     <span className="sr-only"> {d.newTab}</span>
@@ -711,10 +712,12 @@ export function InsightIndex({ locale }: { locale: Locale }) {
 /** The article's projects or products, each opening its page on the company website. */
 function RelatedLinks({
   locale,
+  article,
   company,
   slugs,
 }: {
   locale: Locale;
+  article: string;
   company: (typeof businessIds)[number];
   slugs: string[];
 }) {
@@ -730,8 +733,7 @@ function RelatedLinks({
             <a
               key={slug}
               className="related-card"
-              href={relatedUrl(company, locale, slug)}
-              {...external}
+              {...groupLink(relatedUrl(company, locale, slug), `article-${article}`)}
             >
               <Photo name={item.image} alt="" sizes="(max-width: 640px) 120px, 260px" />
               <span className="related-body">
@@ -824,7 +826,7 @@ export function ArticlePage({ locale, slug }: { locale: Locale; slug: string }) 
           </div>
         )}
         {a.company && a.related && a.related.length > 0 && (
-          <RelatedLinks locale={locale} company={a.company} slugs={a.related} />
+          <RelatedLinks locale={locale} article={a.slug} company={a.company} slugs={a.related} />
         )}
         {company && (
           <section className="article-about">
@@ -850,7 +852,7 @@ export function ArticlePage({ locale, slug }: { locale: Locale; slug: string }) 
                 <Arrow />
               </Link>
             ) : (
-              <a className="button light" href={t.cta.href} {...external}>
+              <a className="button light" {...groupLink(t.cta.href, `article-${a.slug}`)}>
                 {t.cta.label}
                 <Arrow />
                 <span className="sr-only"> {d.newTab}</span>

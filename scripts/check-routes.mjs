@@ -24,6 +24,9 @@ for (const [, slug] of index.matchAll(/href="\/en\/insights\/([^"/?#]+)"/g))
   if (!paths.includes(`insights/${slug}`)) paths.push(`insights/${slug}`);
 const pages = [];
 const links = new Set();
+// Links to the real estate site carry where they were clicked; group sites keep the referrer.
+const referralTag = /^\?utm_source=byhadara&utm_medium=referral&utm_campaign=[a-z0-9-]+$/;
+let realEstateLinks = 0;
 const titles = new Set();
 let indexable = 0;
 for (const lang of ['en', 'ar', 'tr'])
@@ -45,6 +48,16 @@ for (const lang of ['en', 'ar', 'tr'])
     if (!/<meta name="robots" content="[^"]*noindex/.test(html)) indexable++;
     for (const m of html.matchAll(/href="(\/(?:en|ar|tr)(?:\/[^"?#]*)?)(?:[?#][^"]*)?"/g))
       links.add(m[1]);
+    for (const [tag] of html.matchAll(/<a\b[^>]*>/g)) {
+      const href = tag.match(/href="([^"]+)"/)?.[1]?.replace(/&amp;/g, '&');
+      if (!href || !/^https:\/\/www\.(hadararealestate|hadarahospitality)\.com/.test(href))
+        continue;
+      assert.ok(!/noreferrer/.test(tag), `${path}: ${href} drops the referrer`);
+      if (!href.includes('hadararealestate')) continue;
+      realEstateLinks++;
+      assert.match(new URL(href).search, referralTag, `${path}: ${href}`);
+      assert.ok(!href.includes('/en/') && !href.includes('/tr/'), `${path}: old address ${href}`);
+    }
     pages.push(path);
   }
 for (const path of links) {
@@ -104,7 +117,9 @@ for (const [from, to] of Object.entries(oldAddresses)) {
       'http://localhost:3000',
       '',
     ),
-    to,
+    to.startsWith('https://www.hadararealestate.com')
+      ? `${to}?utm_source=byhadara&utm_medium=referral&utm_campaign=old-wix-redirect`
+      : to,
     from,
   );
   if (to.startsWith('/')) assert.equal((await fetch('http://localhost:3000' + to)).status, 200, to);
@@ -122,5 +137,6 @@ console.log(
     notFound: 'passed',
     unconfiguredAPIs: 503,
     oldAddresses: 'redirected',
+    realEstateLinks: `${realEstateLinks} tagged`,
   }),
 );

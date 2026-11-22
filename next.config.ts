@@ -15,7 +15,17 @@ const config: NextConfig = {
     const guide = (slug: string) => `/en/insights/${slug}`;
     const realEstate = 'https://www.hadararealestate.com';
     const villa = `${realEstate}/projects/marmara-haven-villa`;
-    const to = (source: string, destination: string) => ({ source, destination, permanent: true });
+    // Old Wix addresses that lead to the real estate site carry their own campaign, so that site
+    // counts these visitors from old search results apart from links on this site.
+    const tagged = (destination: string) =>
+      destination.startsWith(realEstate)
+        ? `${destination}?utm_source=byhadara&utm_medium=referral&utm_campaign=old-wix-redirect`
+        : destination;
+    const to = (source: string, destination: string) => ({
+      source,
+      destination: tagged(destination),
+      permanent: true,
+    });
     // Turkish addresses lead to English while Turkish is switched off (content/locales.ts).
     const tr = locales.includes('tr') ? 'tr' : 'en';
     const off = allLocales.filter((l) => !locales.includes(l));

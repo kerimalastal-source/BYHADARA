@@ -152,6 +152,22 @@ file's prose in English so it stays easy to scan. Last updated 2026-11-22.
   (`sameAs`). The owner was given ready prompts for the two sister-site sessions to link this page
   from their own sites.
 
+- **Visits sent to the real estate site** (owner's request 2026-11-22, so hadararealestate.com
+  can count visitors from this site and see which page sent them): every link there passes
+  through `referral(url, campaign)` in `content/companies.ts`, which adds
+  `utm_source=byhadara&utm_medium=referral&utm_campaign=<place>` (with `&` after an existing
+  query). Places: `businesses` (company page: hero link, showcase cards, visit band, design
+  button), `article-<slug>` (related cards and the article's button), `company-links` (contact
+  page), `thank-you` (thank-you page); the home page, header and footer have no direct links.
+  Old Wix redirects to that site (`next.config.ts`) carry `utm_campaign=old-wix-redirect`.
+  **Never `utm_medium=paid`** (that site counts it as ads). Links to the two group sites use
+  `rel="noopener"` only (`newTabLink()`), so the referrer reaches them too; other sites keep
+  `noopener noreferrer`. `companyUrl()` now builds the real estate site's current addresses
+  (English without a prefix, `/ar`, English for Turkish) instead of the old `/en`, `/tr` ones, and
+  the showcase uses Lotus Yaşam's slug there, `beylikduzu-living`. `check-routes.mjs` fails on any
+  untagged real estate link, an old `/en/` or `/tr/` address, or `noreferrer` on a group link (141
+  tagged links on 2026-11-22); unit tests cover `referral()`.
+
 ## Social media and brand materials (2026-10-14 to 2026-10-19)
 
 - Made in the session scratchpad, not in this repo, and sent to the owner as files: LinkedIn
@@ -541,7 +557,7 @@ file's prose in English so it stays easy to scan. Last updated 2026-11-22.
 
 ## Validation and sandbox notes
 
-- Checks: `pnpm typecheck`, `pnpm test` (55 tests), `pnpm build`, then `pnpm start` +
+- Checks: `pnpm typecheck`, `pnpm test` (56 tests), `pnpm build`, then `pnpm start` +
   `node scripts/check-routes.mjs` (114 pages incl. the articles, links, SEO assertions, 503 from
   both APIs while unconfigured) and the Playwright suite (18 tests incl. axe and the phone/tablet test). Prettier:
   `pnpm exec prettier --check components content lib app styles tests scripts docs *.md`.
@@ -636,3 +652,4 @@ file's prose in English so it stays easy to scan. Last updated 2026-11-22.
 - PR #58: related projects/products under every article, linking to the company sites.
 - PR #59: old Wix ru-ru/en-us/ar-sa page copies redirected to the matching pages.
 - PR #60: `/tr/blog`, `/blank-2` and `/ru-ru/beylikduzuliving` redirected (404 drilldown).
+- PR #61: links to the real estate site tagged with UTM by place; group links keep the referrer.

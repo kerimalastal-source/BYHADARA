@@ -11,11 +11,41 @@ export type ShowcaseItem = {
   developer?: string;
 };
 
-/** Address of a page on a group company's own website, in the closest available language. */
+/**
+ * Address of a page on a group company's own website, in the closest available language. Both
+ * sites publish English without a prefix and Arabic under /ar, and neither has Turkish. The real
+ * estate site's old /en and /tr addresses redirect, so links use the current ones directly.
+ */
 export function companyUrl(id: CompanyId, locale: Locale, path = '') {
-  if (id === 'real-estate') return `${site.realEstate}/${locale}${path}`;
-  // HADARA Hospitality publishes English without a prefix and has no Turkish edition.
-  return `${site.hospitality}${locale === 'ar' ? '/ar' : ''}${path}`;
+  const base = id === 'real-estate' ? site.realEstate : site.hospitality;
+  return `${base}${locale === 'ar' ? '/ar' : ''}${path}`;
+}
+
+/**
+ * Tags a link to the HADARA Real Estate website with where on this site it was clicked, so that
+ * site counts the visit as coming from BYHADARA Group (owner's request, 2026-11-22). `campaign` is
+ * lower-case letters, digits and hyphens (`businesses`, `article-<slug>`, `company-links`…).
+ * Never `utm_medium=paid`: that site counts it as advertising. Other URLs pass through unchanged.
+ */
+export function referral(url: string, campaign: string) {
+  if (!/^[a-z0-9-]+$/.test(campaign)) throw new Error(`Invalid campaign "${campaign}"`);
+  const link = new URL(url);
+  if (link.host !== new URL(site.realEstate).host) return url;
+  link.searchParams.set('utm_source', 'byhadara');
+  link.searchParams.set('utm_medium', 'referral');
+  link.searchParams.set('utm_campaign', campaign);
+  return link.toString();
+}
+
+/**
+ * Link attributes for a new tab. The group's own sites keep the referrer (only `noopener`), so
+ * they still see the visit came from byhadara.com if the UTM tags are lost; other sites get
+ * `noreferrer` as well.
+ */
+export function newTabLink(url: string) {
+  const host = new URL(url).host;
+  const group = [site.realEstate, site.hospitality].some((s) => new URL(s).host === host);
+  return { target: '_blank', rel: group ? 'noopener' : 'noopener noreferrer' } as const;
 }
 
 /**
@@ -39,7 +69,7 @@ export const showcaseUrl = (id: CompanyId, locale: Locale, slug: string) =>
  */
 const projectImages = {
   'marmara-haven-villa': 'real-estate/marmara-haven-evening.jpg',
-  'lotus-yasam': 'insights/lotus-yasam-street.jpg',
+  'beylikduzu-living': 'insights/lotus-yasam-street.jpg',
   'diamond-marin': 'insights/diamond-marin-facade.jpg',
   'lotus-koru-2': 'real-estate/lotus-koru-2.jpg',
 };
@@ -65,7 +95,7 @@ export const showcase: Record<CompanyId, Record<Locale, ShowcaseItem[]>> = {
         tag: 'Private villa · Büyükçekmece, Istanbul',
         facts: ['4 floors', '576 m²', '5 bedrooms', '7 bathrooms'],
       },
-      'lotus-yasam': {
+      'beylikduzu-living': {
         name: 'Lotus Yaşam',
         tag: 'New residential project · Beylikdüzü',
         facts: ['21,000 m² land', 'Social amenities', 'Delivery 2028'],
@@ -90,7 +120,7 @@ export const showcase: Record<CompanyId, Record<Locale, ShowcaseItem[]>> = {
         tag: 'فيلا خاصة · بيوكجكمجة، إسطنبول',
         facts: ['4 طوابق', '576 م²', '5 غرف نوم', '7 حمامات'],
       },
-      'lotus-yasam': {
+      'beylikduzu-living': {
         name: 'Lotus Yaşam',
         tag: 'مشروع سكني جديد · بيليكدوزو',
         facts: ['أرض 21,000 م²', 'مرافق اجتماعية', 'تسليم 2028'],
@@ -115,7 +145,7 @@ export const showcase: Record<CompanyId, Record<Locale, ShowcaseItem[]>> = {
         tag: 'Özel villa · Büyükçekmece, İstanbul',
         facts: ['4 kat', '576 m²', '5 yatak odası', '7 banyo'],
       },
-      'lotus-yasam': {
+      'beylikduzu-living': {
         name: 'Lotus Yaşam',
         tag: 'Yeni konut projesi · Beylikdüzü',
         facts: ['21.000 m² arsa', 'Sosyal olanaklar', '2028 teslim'],

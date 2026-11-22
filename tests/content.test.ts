@@ -5,6 +5,7 @@ import { articles, publishedArticles } from '../content/articles';
 import { existsSync, readFileSync } from 'node:fs';
 import { createHash } from 'node:crypto';
 import { relatedItems, relatedUrl } from '../content/related';
+import { companyUrl, newTabLink, referral } from '../content/companies';
 import { metadataFor, pageSeo, structuredData, breadcrumbs } from '../lib/seo';
 import { seo } from '../content/seo';
 test('every written language is published, Turkish included', () => {
@@ -153,4 +154,24 @@ test('every article links to two or three of its company projects or products', 
     relatedUrl('hospitality', 'tr', 'hotel-bath-towel'),
     'https://www.hadarahospitality.com/products/hotel-bath-towel',
   );
+});
+test('links to the real estate site say where they were clicked, never as paid traffic', () => {
+  assert.equal(
+    referral('https://www.hadararealestate.com/ar/projects/diamond-marin', 'article-x'),
+    'https://www.hadararealestate.com/ar/projects/diamond-marin?utm_source=byhadara&utm_medium=referral&utm_campaign=article-x',
+  );
+  // An address that already has a query keeps it and gets the tags with "&".
+  assert.equal(
+    referral('https://www.hadararealestate.com/video-tour?project=a', 'home'),
+    'https://www.hadararealestate.com/video-tour?project=a&utm_source=byhadara&utm_medium=referral&utm_campaign=home',
+  );
+  assert.equal(
+    referral(companyUrl('real-estate', 'tr'), 'businesses'),
+    'https://www.hadararealestate.com/?utm_source=byhadara&utm_medium=referral&utm_campaign=businesses',
+  );
+  const hospitality = 'https://www.hadarahospitality.com/products/hotel-bath-towel';
+  assert.equal(referral(hospitality, 'article-x'), hospitality);
+  assert.throws(() => referral(hospitality, 'Article X'));
+  assert.equal(newTabLink(hospitality).rel, 'noopener');
+  assert.equal(newTabLink('https://www.linkedin.com/company/1/').rel, 'noopener noreferrer');
 });
