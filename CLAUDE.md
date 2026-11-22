@@ -4,7 +4,7 @@
 
 Corporate website of BYHADARA Group (Istanbul), the parent group of HADARA Real Estate and
 HADARA Hospitality. The owner communicates in Arabic; reply to them in Arabic and keep this
-file's prose in English so it stays easy to scan. Last updated 2026-11-22.
+file's prose in English so it stays easy to scan. Last updated 2026-11-22 (evening).
 
 ## Standing instructions from the owner
 
@@ -100,8 +100,8 @@ file's prose in English so it stays easy to scan. Last updated 2026-11-22.
   companies and HADARA Real Estate is their marketing partner.** Wording everywhere: "real estate
   development & marketing partner" («التطوير والتسويق العقاري», "Gayrimenkul Geliştirme ve
   Pazarlama"); never call it the developer of partner projects, and keep project cards tagged
-  "Own development" / "Marketing partner". The 10 partner projects are the other listings on the
-  real estate site. Projects shown here: Marmara Haven Villa, Lotus Yaşam, Lotus Koru.
+  "Own development" / "Marketing partner". The partner projects are the other listings on the
+  real estate site (25 on 2026-11-22; Lotus İstanbul and Lotus Koru 1 are sold out).
 - **İkinci BYHADARA** (`kerimalastal-source/-kinci_BYHADARA`, Vite): the real estate site being
   built. Source of the six success partner logos (`public/partners/`), copied byte-identical.
   Since 2026-10-15 (owner: «مش متساوي») the homepage row matches that site's 2026-10-13 fix:
@@ -169,7 +169,9 @@ file's prose in English so it stays easy to scan. Last updated 2026-11-22.
   (English without a prefix, `/ar`, English for Turkish) instead of the old `/en`, `/tr` ones, and
   the showcase uses Lotus Yaşam's slug there, `beylikduzu-living`. `check-routes.mjs` fails on any
   untagged group link, an old `/en/` or `/tr/` address, or `noreferrer` on a group link (294
-  tagged links on 2026-11-22); unit tests cover `referral()`.
+  tagged links on 2026-11-22); unit tests cover `referral()`. **Confirmed live by the owner the
+  same day**: the Telegram alerts of both sites showed «جاء من: موقع حضارة الأم (BYHADARA Group)
+  · businesses» and byhadara.com as the source (the real estate side deployed its own change).
 
 ## Social media and brand materials (2026-10-14 to 2026-10-19)
 
@@ -483,7 +485,10 @@ file's prose in English so it stays easy to scan. Last updated 2026-11-22.
   is dropping the Turkish pages, which have redirected to English since 10 Oct. Turkish pages
   still brought 25 of 36 page clicks and 630 of 1,462 impressions (Lotus Yaşam 300/10, Diamond
   Marin 186/9); Türkiye 29 of 35 clicks. **Turkish re-enabled the same day** (owner's word):
-  compare the next export's Turkish impressions and indexed pages with these numbers.
+  compare the next export's Turkish impressions and indexed pages with these numbers. The owner
+  was asked to resubmit the sitemap and request indexing of the main Turkish articles. Reminder
+  `trig_01SvDxgAWBumiHfuJfhxezmT` (this session, 2026-12-13 10:00 Istanbul) asks for the next
+  Performance and Coverage exports with their drilldowns.
   Coverage summary: validation failed for redirects (63; expected, a redirect never "passes"),
   404 (11) and crawled-not-indexed (30); the drilldowns were not sent, so those URLs are
   unknown. Lotus Koru guide: en 56 impressions at position 10, ar 1 click. `/privacy-policy`
@@ -554,9 +559,8 @@ file's prose in English so it stays easy to scan. Last updated 2026-11-22.
   new file name (why `istanbul.jpg` became `istanbul-bosphorus.jpg`).
 - The hero photo is cropped to remove third-party developer signage (EMLAK KONUT). Check stock
   photos for other companies' branding before using them.
-- Project photos load from `static.wixstatic.com` (allowed in `next.config.ts`), as on the real
-  estate site. That host is blocked in this sandbox, so they 403 locally but work on Vercel. If
-  the owner allows the host, self-host them (Wix may be cancelled later).
+- Every image is self-hosted; nothing loads from `static.wixstatic.com` any more (its entry in
+  `images.remotePatterns` in `next.config.ts` is unused and can go with the next code change).
 
 ## Validation and sandbox notes
 
@@ -593,7 +597,8 @@ file's prose in English so it stays easy to scan. Last updated 2026-11-22.
 
 - Real product photography for HADARA Hospitality; an official BYHADARA logo.
 - A WhatsApp button on the contact page.
-- Self-hosting the project photos (needs `static.wixstatic.com` allowed in the environment).
+- The Google Business Profile still links to the site with Wix UTM tags: its website should be
+  `https://www.byhadara.com/en` (owner's action, asked on 2026-10-23 and 2026-11-22).
 
 ## History
 
