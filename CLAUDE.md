@@ -152,8 +152,10 @@ file's prose in English so it stays easy to scan. Last updated 2026-11-22.
   (`sameAs`). The owner was given ready prompts for the two sister-site sessions to link this page
   from their own sites.
 
-- **Visits sent to the real estate site** (owner's request 2026-11-22, so hadararealestate.com
-  can count visitors from this site and see which page sent them): every link there passes
+- **Visits sent to the group sites** (owner's request 2026-11-22, first for the real estate site,
+  then the same for HADARA Hospitality, so each site can count visitors from this one and see
+  which page sent them; hospitality's `src/lib/attribution.ts` reads them as a `referral` from
+  `byhadara` with the campaign, and reads a source without a medium as paid): every link passes
   through `referral(url, campaign)` in `content/companies.ts`, which adds
   `utm_source=byhadara&utm_medium=referral&utm_campaign=<place>` (with `&` after an existing
   query). Places: `businesses` (company page: hero link, showcase cards, visit band, design
@@ -162,10 +164,11 @@ file's prose in English so it stays easy to scan. Last updated 2026-11-22.
   Old Wix redirects to that site (`next.config.ts`) carry `utm_campaign=old-wix-redirect`.
   **Never `utm_medium=paid`** (that site counts it as ads). Links to the two group sites use
   `rel="noopener"` only (`newTabLink()`), so the referrer reaches them too; other sites keep
-  `noopener noreferrer`. `companyUrl()` now builds the real estate site's current addresses
+  `noopener noreferrer`. Hospitality links get the same tags and campaigns (153 on 2026-11-22;
+  no old Wix redirect leads there). `companyUrl()` now builds the real estate site's current addresses
   (English without a prefix, `/ar`, English for Turkish) instead of the old `/en`, `/tr` ones, and
   the showcase uses Lotus Yaşam's slug there, `beylikduzu-living`. `check-routes.mjs` fails on any
-  untagged real estate link, an old `/en/` or `/tr/` address, or `noreferrer` on a group link (141
+  untagged group link, an old `/en/` or `/tr/` address, or `noreferrer` on a group link (294
   tagged links on 2026-11-22); unit tests cover `referral()`.
 
 ## Social media and brand materials (2026-10-14 to 2026-10-19)
@@ -653,3 +656,4 @@ file's prose in English so it stays easy to scan. Last updated 2026-11-22.
 - PR #59: old Wix ru-ru/en-us/ar-sa page copies redirected to the matching pages.
 - PR #60: `/tr/blog`, `/blank-2` and `/ru-ru/beylikduzuliving` redirected (404 drilldown).
 - PR #61: links to the real estate site tagged with UTM by place; group links keep the referrer.
+- PR #62: the same UTM tags on links to HADARA Hospitality.

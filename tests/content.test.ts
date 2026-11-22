@@ -155,7 +155,7 @@ test('every article links to two or three of its company projects or products', 
     'https://www.hadarahospitality.com/products/hotel-bath-towel',
   );
 });
-test('links to the real estate site say where they were clicked, never as paid traffic', () => {
+test('links to the group sites say where they were clicked, never as paid traffic', () => {
   assert.equal(
     referral('https://www.hadararealestate.com/ar/projects/diamond-marin', 'article-x'),
     'https://www.hadararealestate.com/ar/projects/diamond-marin?utm_source=byhadara&utm_medium=referral&utm_campaign=article-x',
@@ -169,8 +169,13 @@ test('links to the real estate site say where they were clicked, never as paid t
     referral(companyUrl('real-estate', 'tr'), 'businesses'),
     'https://www.hadararealestate.com/?utm_source=byhadara&utm_medium=referral&utm_campaign=businesses',
   );
-  const hospitality = 'https://www.hadarahospitality.com/products/hotel-bath-towel';
-  assert.equal(referral(hospitality, 'article-x'), hospitality);
+  const hospitality = 'https://www.hadarahospitality.com/ar/products/hotel-bath-towel';
+  assert.equal(
+    referral(hospitality, 'article-x'),
+    `${hospitality}?utm_source=byhadara&utm_medium=referral&utm_campaign=article-x`,
+  );
+  const other = 'https://www.linkedin.com/company/1/';
+  assert.equal(referral(other, 'article-x'), other);
   assert.throws(() => referral(hospitality, 'Article X'));
   assert.equal(newTabLink(hospitality).rel, 'noopener');
   assert.equal(newTabLink('https://www.linkedin.com/company/1/').rel, 'noopener noreferrer');
