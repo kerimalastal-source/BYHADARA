@@ -472,8 +472,11 @@ file's prose in English so it stays easy to scan. Last updated 2026-11-22.
   same day (63 URLs) held no errors: apex and `http` variants, Turkish pages crawled while
   Turkish was off, and old Wix pages; the Wix `ru-ru`/`en-us`/`ar-sa` copies of about, contact,
   consultation, privacy, blog, FAQ and projects now lead to the matching page instead of the
-  home page (one `flatMap` in `next.config.ts`). The 404 (11) and crawled-not-indexed (30)
-  drilldowns were still not sent.
+  home page (one `flatMap` in `next.config.ts`). The 404 drilldown (11) had two new addresses,
+  `/tr/blog` (to the Turkish insights) and `/blank-2` (to `/en`), the rest crawled before their
+  October fixes; the crawled-not-indexed one (30) was all old Wix addresses crawled before the
+  redirects, plus `/tr` and `/sitemap.xml`. `/ru-ru/beylikduzuliving` now opens the project.
+  Every URL in the four exports of 2026-11-22 ends on a 200 page or a company site.
 
 - **IndexNow** (2026-10-08, owner's request, same design as HADARA Hospitality and HADARA Real
   Estate): after every production build, new or changed pages go to Bing, Yandex and the other
@@ -632,3 +635,4 @@ file's prose in English so it stays easy to scan. Last updated 2026-11-22.
 - PR #57: weekday blog writer (instructions, topic queue, article subheadings).
 - PR #58: related projects/products under every article, linking to the company sites.
 - PR #59: old Wix ru-ru/en-us/ar-sa page copies redirected to the matching pages.
+- PR #60: `/tr/blog`, `/blank-2` and `/ru-ru/beylikduzuliving` redirected (404 drilldown).
