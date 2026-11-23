@@ -14,10 +14,17 @@ const visit = (locale: Locale, title: string, text: string) => ({
   label: visitLabel[locale],
   href: companyUrl('real-estate', locale),
 });
-/** Lotus Koru 2's page on the real estate website (English without a prefix, no Turkish). */
-const lotusKoru2Page = (arabic: boolean) =>
-  `${site.realEstate}${arabic ? '/ar' : ''}/projects/lotus-koru-2`;
+/** A project's page on the real estate website (English without a prefix, no Turkish). */
+const projectPage = (slug: string, arabic: boolean) =>
+  `${site.realEstate}${arabic ? '/ar' : ''}/projects/${slug}`;
+const lotusKoru2Page = (arabic: boolean) => projectPage('lotus-koru-2', arabic);
+const marmaraHavenPage = (arabic: boolean) => projectPage('marmara-haven-villa', arabic);
 const credit = {
+  hadara: {
+    en: 'Photograph: HADARA Real Estate.',
+    ar: 'تصوير: حضارة العقارية.',
+    tr: 'Fotoğraf: HADARA Real Estate.',
+  },
   lotus: {
     en: 'Architectural visualisation: Lotus Yapı Proje.',
     ar: 'تصميم معماري: لوتس يابي بروجي.',
@@ -532,6 +539,146 @@ export const realEstate: Article[] = [
           text: 'Satılık daireler ve ziyaret talepleri HADARA Real Estate web sitesinde.',
           label: 'Projeyi görüntüleyin',
           href: lotusKoru2Page(false),
+        },
+      },
+    },
+  },
+  {
+    slug: 'marmara-haven-villa-buyukcekmece',
+    category: 'real-estate',
+    status: 'published',
+    approved: true,
+    publishedAt: '2026-11-23',
+    company: 'real-estate',
+    related: ['marmara-haven-villa', 'lotus-yali', 'lotus-manzara-guzelce'],
+    translations: {
+      en: {
+        title: 'Marmara Haven Villa: a private residence above the sea in Büyükçekmece',
+        seoTitle: 'Marmara Haven Villa in Büyükçekmece, Istanbul',
+        description:
+          'Marmara Haven Villa, HADARA Real Estate’s own development in Büyükçekmece: 576.63 m² over four levels, a private pool, five bedrooms and Marmara Sea views.',
+        body: [
+          'Marmara Haven Villa is a private residence in Büyükçekmece, on the western shore of Istanbul, and the one project that HADARA Real Estate, a BYHADARA Group company, has developed itself. Set on a 637 m² plot, it offers 576.63 m² of gross living space over four levels, complete privacy, a private pool and panoramic views of the Sea of Marmara. Built between 2024 and 2026, the villa is complete and ready to move in.',
+          'Because the villa is its own development, HADARA Real Estate is both the developer and the buyer’s single point of contact, from the first conversation to the handover of the keys. The company describes the house simply: a private sanctuary with panoramic views of the Marmara Sea.',
+          '## A home arranged around the sea',
+          'The ground floor opens through a main entrance with a marble floor and a storage room onto a 53 m² living room and a 24.70 m² kitchen. Both lead out to a 29.50 m² garden terrace and a 26 m² private swimming pool, so daily life moves easily between the house and the garden.',
+          'The first floor holds four bedrooms and four bathrooms, a dressing room for the master suite, three balconies and a laundry room. Above it, the rooftop level adds a fifth bedroom with its own bathroom, a 34.88 m² living room with kitchen and a 24.49 m² roof terrace with open views over the Sea of Marmara: a second living space for quiet evenings and for receiving guests.',
+          'The basement adapts to the owner’s way of life. It can be divided into rooms or a studio, or fitted out as a home cinema or gym, and it includes two spacious storage rooms, water and rainwater tanks and a bathroom. In all, the villa has five bedrooms and seven bathrooms.',
+          '## Comfort built into the house',
+          'An elevator serves every floor, and an integrated smart-home system controls lighting, heating and security from a phone. Underfloor heating, a modern high-efficiency fireplace and a private water well 220 metres deep complete the comfort. The villa was built with premium materials and luxury finishes, to the 2018 Turkish Earthquake Code, with a soil survey report and certificates.',
+          '## Documents and location',
+          'The villa has an independent title deed (müstakil tapu), a building permit issued by Büyükçekmece Municipality and its occupancy permit (iskan). It carries no encumbrance, a warranty is provided, the area is open to foreign residents’ registration, and the property may be eligible for Turkish citizenship under the programme’s conditions. The Marmara swimming coast is five minutes away, the E-5 highway three minutes and the E-80 (TEM) seven, while Istanbul Airport is about 37 minutes by road, First Avenue Mall 18 minutes and Mall of Istanbul 40.',
+          'The project page on the HADARA Real Estate website presents the villa’s photographs, floor plans and a video tour that shows its spaces, its finishes and its view over the sea. Buyers abroad can begin with a private video tour with an advisor, then arrange a viewing in Istanbul, directly with the team that built the villa.',
+        ],
+        image: image('marmara-haven-villa-aerial'),
+        imageAlt: 'Marmara Haven Villa seen from the air, with its private pool and timber terrace',
+        imageCredit: credit.hadara.en,
+        facts: [
+          ['576.63 m²', 'Gross living space over four levels'],
+          ['5 bedrooms', 'And seven bathrooms, with a master suite'],
+          ['26 m²', 'Private pool beside a garden terrace'],
+        ],
+        gallery: [
+          {
+            src: image('marmara-haven-villa-living-room'),
+            alt: 'Living room of Marmara Haven Villa opening onto the terrace, with the sea beyond',
+          },
+          {
+            src: image('marmara-haven-villa-balcony-pool'),
+            alt: 'The private pool and the Sea of Marmara seen from a balcony of the villa',
+          },
+        ],
+        cta: {
+          title: 'Discover Marmara Haven Villa',
+          text: 'Photographs, floor plans, the video tour and viewing requests are on the HADARA Real Estate website.',
+          label: 'View the project',
+          href: marmaraHavenPage(false),
+        },
+      },
+      ar: {
+        title: 'فيلا مرمرة هيفن: مسكن خاص يطل على البحر في بيوكجكمجة',
+        seoTitle: 'فيلا مرمرة هيفن في بيوكجكمجة بإسطنبول',
+        description:
+          'فيلا مرمرة هيفن من تطوير حضارة العقارية في بيوكجكمجة: 576.63 م² على أربعة طوابق، ومسبح خاص، وخمس غرف نوم، وإطلالة بانورامية على بحر مرمرة.',
+        body: [
+          'فيلا مرمرة هيفن (Marmara Haven Villa) مسكن خاص في بيوكجكمجة على الساحل الغربي لإسطنبول، وهي المشروع الوحيد الذي طوّرته حضارة العقارية، إحدى شركات مجموعة باي حضارة، بنفسها. تقوم الفيلا على أرض مساحتها 637 م²، بمساحة معيشة إجمالية تبلغ 576.63 م² موزّعة على أربعة طوابق، مع خصوصية كاملة ومسبح خاص وإطلالة بانورامية على بحر مرمرة. شُيّدت بين عامي 2024 و2026، واكتمل إنشاؤها وأصبحت جاهزة للسكن.',
+          'ولأن الفيلا من تطويرها، فإن حضارة العقارية هي المطوّر وجهة التواصل الوحيدة للمشتري في آنٍ معاً، من أول حديث حتى تسليم المفاتيح. وتصف الشركة الفيلا بعبارة واحدة: ملاذ خاص بإطلالة بانورامية على بحر مرمرة.',
+          '## منزل يتمحور حول البحر',
+          'يستقبلك الطابق الأرضي بمدخل رئيسي بأرضية من الرخام ومخزن، وصالون بمساحة 53 م² ومطبخ بمساحة 24.70 م²، ينفتحان على تراس أرضي بمساحة 29.50 م² ومسبح خاص بمساحة 26 م²، فتنساب الحياة اليومية بين البيت والحديقة.',
+          'ويضم الطابق الأول أربع غرف نوم وأربعة حمّامات، وغرفة ملابس للجناح الرئيسي، وثلاث شرفات وغرفة غسيل. وفوقه يضيف طابق السطح غرفة نوم خامسة بحمّامها، وصالوناً مع مطبخ بمساحة 34.88 م²، وتراس سطح بمساحة 24.49 م² بإطلالة مفتوحة على بحر مرمرة: مساحة معيشة ثانية للأمسيات الهادئة واستقبال الضيوف.',
+          'ويتكيّف الطابق السفلي مع أسلوب حياة المالك؛ إذ يمكن تقسيمه إلى غرف أو استوديو، أو تخصيصه كغرفة سينما أو صالة رياضية، وهو يضم مستودعين واسعين وخزانات مياه ومياه أمطار وحمّاماً. وفي المجمل، تضم الفيلا خمس غرف نوم وسبعة حمّامات.',
+          '## راحة مدمجة في تصميم المنزل',
+          'يخدم مصعد جميع الطوابق، ويتيح نظام المنزل الذكي المتكامل التحكم بالإضاءة والتدفئة والأمن عبر الهاتف. وتكتمل الراحة بالتدفئة الأرضية ومدفأة حديثة عالية الكفاءة وبئر مياه خاص بعمق 220 متراً. وقد شُيّدت الفيلا بمواد عالية الجودة وتشطيبات فاخرة، وفق لائحة الزلازل التركية لعام 2018، مع تقرير فحص التربة والشهادات اللازمة.',
+          '## الوثائق والموقع',
+          'تتمتع الفيلا بسند ملكية مستقل (Müstakil Tapu)، ورخصة بناء صادرة عن بلدية بيوكجكمجة، وإذن الإشغال (إسكان). ولا يترتب عليها أي رهن أو قيد، وتتوفر لها ضمانة، والحي مفتوح لتسجيل إقامة الأجانب، وقد تكون مؤهلة للحصول على الجنسية التركية وفق شروط البرنامج. ويقع ساحل السباحة على بحر مرمرة على بُعد خمس دقائق، وطريق E-5 السريع على بُعد ثلاث دقائق، وطريق E-80 (TEM) على بُعد سبع دقائق، فيما يبعد مطار إسطنبول نحو 37 دقيقة بالسيارة، وفيرست أفينيو مول 18 دقيقة، ومول أوف إسطنبول 40 دقيقة.',
+          'تعرض صفحة المشروع على موقع حضارة العقارية صور الفيلا ومخططاتها وجولة فيديو تعرض مساحاتها وتشطيباتها وإطلالتها على البحر. ويمكن للمشترين من خارج تركيا البدء بجولة فيديو خاصة مع أحد المستشارين، ثم ترتيب موعد للمعاينة في إسطنبول مباشرة مع الفريق الذي شيّد الفيلا.',
+        ],
+        image: image('marmara-haven-villa-aerial'),
+        imageAlt: 'فيلا مرمرة هيفن من الجو مع مسبحها الخاص وتراسها الخشبي',
+        imageCredit: credit.hadara.ar,
+        facts: [
+          ['576.63 م²', 'مساحة معيشة إجمالية على أربعة طوابق'],
+          ['5 غرف نوم', 'وسبعة حمّامات، منها جناح رئيسي'],
+          ['26 م²', 'مسبح خاص بجوار تراس الحديقة'],
+        ],
+        gallery: [
+          {
+            src: image('marmara-haven-villa-living-room'),
+            alt: 'صالون فيلا مرمرة هيفن ينفتح على التراس والبحر في الأفق',
+          },
+          {
+            src: image('marmara-haven-villa-balcony-pool'),
+            alt: 'المسبح الخاص وبحر مرمرة من إحدى شرفات الفيلا',
+          },
+        ],
+        cta: {
+          title: 'اكتشف فيلا مرمرة هيفن',
+          text: 'الصور والمخططات وجولة الفيديو وطلبات المعاينة على موقع حضارة العقارية.',
+          label: 'عرض المشروع',
+          href: marmaraHavenPage(true),
+        },
+      },
+      tr: {
+        title: 'Marmara Haven Villa: Büyükçekmece’de denize bakan özel bir konut',
+        seoTitle: 'Marmara Haven Villa, Büyükçekmece, İstanbul',
+        description:
+          'Marmara Haven Villa, HADARA Real Estate’in Büyükçekmece’deki kendi projesi: dört katta 576,63 m², özel havuz, beş yatak odası ve Marmara Denizi manzarası.',
+        body: [
+          'Marmara Haven Villa, İstanbul’un batı kıyısında, Büyükçekmece’de yer alan özel bir konut ve BYHADARA Group şirketlerinden HADARA Real Estate’in bizzat geliştirdiği tek projedir. 637 m² arsa üzerinde, dört katta 576,63 m² brüt yaşam alanı sunan villa; tam mahremiyet, özel havuz ve Marmara Denizi’ne panoramik manzara bir araya getiriyor. 2024–2026 yılları arasında inşa edilen villa tamamlandı ve taşınmaya hazır.',
+          'Villa kendi projesi olduğu için HADARA Real Estate, ilk görüşmeden anahtar teslimine kadar hem geliştirici hem de alıcının tek muhatabıdır. Şirket villayı tek cümleyle anlatıyor: Marmara Denizi’ne panoramik manzaralı özel bir sığınak.',
+          '## Denize göre kurgulanmış bir ev',
+          'Zemin kat, mermer zeminli ve depolu ana girişten 53 m² salona ve 24,70 m² mutfağa açılıyor. Her ikisi de 29,50 m² bahçe terasına ve 26 m² özel yüzme havuzuna uzanıyor; böylece gündelik yaşam ev ile bahçe arasında rahatça akıyor.',
+          'Birinci katta dört yatak odası ve dört banyo, ebeveyn süiti için giyinme odası, üç balkon ve çamaşır odası bulunuyor. Çatı katı ise kendi banyosu olan beşinci bir yatak odası, 34,88 m² mutfaklı salon ve Marmara Denizi’ne açık manzaralı 24,49 m² çatı terası ekliyor: sakin akşamlar ve misafir ağırlamak için ikinci bir yaşam alanı.',
+          'Bodrum kat, sahibinin yaşam tarzına uyum sağlıyor. Odalara ya da bir stüdyoya bölünebilir veya ev sineması ya da spor salonu olarak düzenlenebilir; iki geniş depo, su ve yağmur suyu tankları ile bir banyo içeriyor. Villada toplam beş yatak odası ve yedi banyo bulunuyor.',
+          '## Evin içine yerleşmiş konfor',
+          'Asansör tüm katlara hizmet veriyor; entegre akıllı ev sistemi aydınlatma, ısıtma ve güvenliği telefondan yönetmeyi sağlıyor. Yerden ısıtma, modern ve yüksek verimli şömine ve 220 metre derinliğinde özel su kuyusu konforu tamamlıyor. Villa, birinci sınıf malzemeler ve lüks işçilikle, 2018 Türkiye Bina Deprem Yönetmeliği’ne uygun olarak, zemin etüdü raporu ve sertifikalarıyla inşa edildi.',
+          '## Belgeler ve konum',
+          'Villanın müstakil tapusu, Büyükçekmece Belediyesi’nce verilmiş yapı ruhsatı ve iskânı bulunuyor. Üzerinde herhangi bir takyidat yok, garanti sağlanıyor, bölge yabancıların ikamet kaydına açık ve mülk, program koşulları çerçevesinde Türk vatandaşlığına uygun olabilir. Marmara Denizi’ndeki yüzme sahili beş dakika, E-5 karayolu üç dakika, E-80 (TEM) yedi dakika uzaklıkta; İstanbul Havalimanı karayoluyla yaklaşık 37 dakika, First Avenue AVM 18 dakika, Mall of Istanbul ise 40 dakika.',
+          'HADARA Real Estate web sitesindeki proje sayfası villanın fotoğraflarını, kat planlarını ve mekânlarını, işçiliğini ve deniz manzarasını gösteren video turunu sunuyor. Yurt dışındaki alıcılar bir danışmanla özel video turla başlayabilir, ardından İstanbul’da villayı inşa eden ekiple doğrudan yerinde görme randevusu ayarlayabilir.',
+        ],
+        image: image('marmara-haven-villa-aerial'),
+        imageAlt: 'Marmara Haven Villa’nın özel havuzu ve ahşap terasıyla havadan görünümü',
+        imageCredit: credit.hadara.tr,
+        facts: [
+          ['576,63 m²', 'Dört katta brüt yaşam alanı'],
+          ['5 yatak odası', 'Ve ebeveyn süitiyle yedi banyo'],
+          ['26 m²', 'Bahçe terasının yanında özel havuz'],
+        ],
+        gallery: [
+          {
+            src: image('marmara-haven-villa-living-room'),
+            alt: 'Marmara Haven Villa’nın terasa ve denize açılan salonu',
+          },
+          {
+            src: image('marmara-haven-villa-balcony-pool'),
+            alt: 'Villanın bir balkonundan özel havuz ve Marmara Denizi',
+          },
+        ],
+        cta: {
+          title: 'Marmara Haven Villa’yı keşfedin',
+          text: 'Fotoğraflar, kat planları, video tur ve görme talepleri HADARA Real Estate web sitesinde.',
+          label: 'Projeyi görüntüleyin',
+          href: marmaraHavenPage(false),
         },
       },
     },

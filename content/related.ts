@@ -19,6 +19,11 @@ export const relatedItems: Record<CompanyId, Record<string, RelatedItem>> = {
     'beylikduzu-living': { name: same('Lotus Yaşam'), image: 'insights/lotus-yasam-street.jpg' },
     'diamond-marin': { name: same('Diamond Marin'), image: 'insights/diamond-marin-facade.jpg' },
     'lotus-koru-2': { name: same('Lotus Koru 2'), image: 'real-estate/lotus-koru-2.jpg' },
+    'lotus-yali': { name: same('Lotus Yalı'), image: 'related/lotus-yali.jpg' },
+    'lotus-manzara-guzelce': {
+      name: same('Lotus Manzara Güzelce'),
+      image: 'related/lotus-manzara-guzelce.jpg',
+    },
   },
   hospitality: {
     'hotel-bath-towel': {
