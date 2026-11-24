@@ -114,6 +114,23 @@ const robes: Record<Locale, Cta> = {
     label: 'Bornozları inceleyin',
   },
 };
+const amenities: Record<Locale, Cta> = {
+  en: {
+    title: 'Guest room amenities at HADARA Hospitality',
+    text: 'Welcome, dental, sewing and shoe-shine kits, shower caps, hangers and more, with options and quotations.',
+    label: 'View amenities',
+  },
+  ar: {
+    title: 'مستلزمات النزلاء لدى حضارة للضيافة',
+    text: 'أطقم ترحيب وعناية بالأسنان وخياطة وتلميع أحذية، وأغطية استحمام، وعلّاقات وغيرها، مع الخيارات وعروض الأسعار.',
+    label: 'تصفّح المستلزمات',
+  },
+  tr: {
+    title: 'HADARA Hospitality’de buklet ürünleri',
+    text: 'Karşılama, diş bakım, dikiş ve ayakkabı boyama setleri, duş boneleri, askılar ve daha fazlası; seçenekler ve tekliflerle.',
+    label: 'Buklet ürünlerini inceleyin',
+  },
+};
 const quote: Record<Locale, Cta> = {
   en: {
     title: 'Request a quotation',
@@ -769,6 +786,131 @@ export const hospitality: Article[] = [
           ['Önce numune', 'Toplu siparişten önce denenir'],
         ],
         cta: page('tr', '/get-a-quote', quote),
+      },
+    },
+  },
+  {
+    slug: 'hotel-guest-room-amenities',
+    category: 'hospitality',
+    status: 'published',
+    approved: true,
+    publishedAt: '2026-11-24',
+    company: 'hospitality',
+    related: ['guest-dental-kit', 'guest-sewing-kit', 'guest-shower-cap'],
+    translations: {
+      en: {
+        title: 'Hotel guest room amenities: the details guests remember',
+        seoTitle: 'Hotel guest room amenities: what to stock',
+        description:
+          'Guest room amenities are a touchpoint a hotel fully controls. Which items matter, why consistency beats novelty, and how to brief an amenity programme.',
+        body: [
+          'Guest room amenities are among the few parts of a stay that a hotel controls completely. Guests rarely comment on the items that work exactly as expected, yet they remember, and mention in reviews, the ones that do not. A missing sewing kit or a shower cap that tears on first use costs far more in guest perception than it ever saved in unit price.',
+          '## Practical before decorative',
+          'The amenities that move satisfaction scores tend to be practical rather than decorative: a dental kit that is genuinely useful, a laundry bag that is easy to find and use, a hook or hanger that keeps the robe and the bathroom tidy between uses. Guests read these small operational details as a sign of the property’s overall standards.',
+          'A complete programme covers the bathroom, the wardrobe and the small moments when something goes wrong. HADARA Hospitality’s amenity collection reflects that range: welcome, dental, sewing and shoe-shine kits, shower caps, laundry bags, hangers and ironing board covers.',
+          'Each item carries its own decisions. A dental kit usually pairs a toothbrush with a small tube of toothpaste in a printed box, with a longer brush as an option. A standard sewing kit holds thread in six colours, a needle, a button and a safety pin, while an extended version adds more needles and buttons in a small plastic box. Shoe care ranges from a polish sponge to a round polish case or a cleaning cloth, with matching shoehorns, and wooden hangers with an anti-theft ring hook keep the wardrobe in order. Even the ironing board cover belongs on the list: it is sized for standard hotel boards with a working surface of about 110 by 33 cm, and other sizes are available on request.',
+          '## Consistency over novelty',
+          'A consistent, clearly labelled amenity set in every room does more for a brand than a rotating selection of novelty items. It also simplifies restocking for housekeeping and lowers the risk of an empty amenity tray reaching a guest room.',
+          'Packaging is part of that consistency. A shower cap, for example, can come in a printed box, an envelope, a foil or PE sachet, or a kraft pack, and most packs can carry the hotel’s logo, while the cap’s film type and thickness are confirmed in the quotation. Sewing, dental and shoe-shine kits offer the same choice of printed boxes, envelopes and sachets. Choosing one style and applying it across the range gives every room the same calm, ordered impression.',
+          '## Briefing an amenity programme',
+          'A useful brief answers four questions: which items each room category needs, the packaging style and logo, the contents of each kit, and the quantity per product with a target delivery date. HADARA Hospitality sources guest amenities through its network of supply partners in Türkiye; contents, packaging and branding are agreed for each project and confirmed in the quotation, with a minimum order of 100 pieces per product.',
+          'The complete amenity collection, with the options for each item and a quotation request, is on the HADARA Hospitality website.',
+        ],
+        image: image('insights/hotel-amenity-tray'),
+        imageAlt: 'Bathroom amenity bottles arranged on a round tray in a hotel room',
+        imageCredit: illustration.en,
+        facts: [
+          ['100 pieces', 'Minimum order per product'],
+          ['4 kits', 'Welcome, dental, sewing and shoe-shine'],
+          ['6 colours', 'Of thread in a standard sewing kit'],
+        ],
+        gallery: [
+          {
+            src: image('insights/hotel-shoe-shine-kit'),
+            alt: 'Shoe-shine kit with polish sponge, case and cleaning cloth',
+          },
+          {
+            src: image('insights/hotel-robe-hooks'),
+            alt: 'Bathrobe on a wall hook beside a towel bar in a hotel bathroom',
+          },
+        ],
+        cta: page('en', '/collections/amenities', amenities),
+      },
+      ar: {
+        title: 'مستلزمات غرف النزلاء في الفنادق: تفاصيل يتذكرها الضيف',
+        seoTitle: 'مستلزمات غرف الفنادق: ماذا تختار ولماذا',
+        description:
+          'مستلزمات غرف النزلاء من التفاصيل القليلة التي يتحكم بها الفندق بالكامل. أي المستلزمات أهم، ولماذا يتفوق الثبات على التجديد، وكيف تُعدّ طلب التوريد.',
+        body: [
+          'مستلزمات غرف النزلاء من الجوانب القليلة في الإقامة التي يتحكم بها الفندق تحكماً كاملاً. ونادراً ما يعلّق الضيوف على المستلزمات التي أدّت دورها كما يُتوقع، لكنهم يتذكرون تلك التي لم تفعل، ويذكرونها في تقييماتهم. فطقم خياطة مفقود أو غطاء استحمام يتمزق عند أول استخدام يكلّف في انطباع الضيف أكثر بكثير مما وفّره في سعر الوحدة.',
+          '## العملي قبل الزخرفي',
+          'المستلزمات التي ترفع مؤشرات رضا الضيوف عملية في الغالب لا زخرفية: طقم أسنان مفيد فعلاً، وكيس غسيل سهل الإيجاد والاستخدام، وعلّاقة أو خطّاف يحفظ الروب والحمّام مرتّبين بين استخدام وآخر. ويقرأ الضيوف هذه التفاصيل التشغيلية الصغيرة دليلاً على مستوى المنشأة ككل.',
+          'ويغطي البرنامج المتكامل الحمّام وخزانة الملابس واللحظات الصغيرة التي يطرأ فيها ما لم يكن في الحسبان. وتعكس مجموعة مستلزمات النزلاء لدى حضارة للضيافة هذا النطاق: أطقم ترحيب وعناية بالأسنان وخياطة وتلميع أحذية، وأغطية استحمام، وأكياس غسيل، وعلّاقات، وأغطية طاولات كيّ.',
+          'ولكل منتج قراراته الخاصة. فطقم الأسنان يجمع عادةً فرشاة أسنان وأنبوباً صغيراً من معجون الأسنان في علبة مطبوعة، مع فرشاة أطول كخيار إضافي. ويضم طقم الخياطة القياسي خيوطاً بستة ألوان وإبرة وزراً ودبوس أمان، فيما تضيف النسخة الموسّعة مزيداً من الإبر والأزرار في علبة بلاستيكية صغيرة. وتتنوع العناية بالأحذية بين إسفنجة تلميع وعلبة تلميع دائرية وقطعة قماش للتنظيف، مع لباسات أحذية مطابقة، فيما تحفظ العلّاقات الخشبية ذات الحلقة المانعة للسرقة ترتيب الخزانة. وحتى غطاء طاولة الكيّ له مكانه في القائمة: فهو مصمَّم لطاولات الكيّ الفندقية القياسية التي يبلغ سطح عملها نحو 110 في 33 سم، مع مقاسات أخرى عند الطلب.',
+          '## الثبات قبل التجديد',
+          'إن طقم مستلزمات ثابتاً وواضح التعريف في كل غرفة يخدم العلامة التجارية أكثر من تشكيلة متغيرة من المنتجات الجديدة. كما يسهّل على فريق التدبير الفندقي إعادة التزويد، ويقلل احتمال وصول صينية مستلزمات فارغة إلى غرفة ضيف.',
+          'والتغليف جزء من هذا الثبات. فغطاء الاستحمام مثلاً قد يأتي في علبة مطبوعة أو مغلف أو كيس من الرقائق المعدنية أو البولي إيثيلين أو عبوة كرافت، ويمكن أن تحمل معظم العبوات شعار الفندق، فيما يُؤكَّد نوع الغشاء وسماكته ضمن عرض السعر. وتتيح أطقم الخياطة والأسنان وتلميع الأحذية الخيارات نفسها من العلب المطبوعة والمغلفات والأكياس. واختيار نمط واحد وتطبيقه على المجموعة كلها يمنح كل غرفة الانطباع الهادئ والمنظّم نفسه.',
+          '## إعداد طلب توريد المستلزمات',
+          'يجيب الطلب الجيد عن أربعة أسئلة: ما المستلزمات التي تحتاجها كل فئة من الغرف، ونمط التغليف والشعار، ومحتويات كل طقم، والكمية لكل منتج مع موعد التسليم المطلوب. وتورّد حضارة للضيافة مستلزمات النزلاء عبر شبكة شركائها من الموردين في تركيا، ويُتفق على المحتويات والتغليف والعلامة التجارية لكل مشروع وتُؤكَّد ضمن عرض السعر، والحد الأدنى للطلب 100 قطعة من كل منتج.',
+          'تجدون مجموعة مستلزمات النزلاء كاملة، مع خيارات كل منتج وطلب عرض السعر، على موقع حضارة للضيافة.',
+        ],
+        image: image('insights/hotel-amenity-tray'),
+        imageAlt: 'عبوات مستلزمات الحمّام مرتبة على صينية دائرية في غرفة فندقية',
+        imageCredit: illustration.ar,
+        facts: [
+          ['100 قطعة', 'الحد الأدنى للطلب من كل منتج'],
+          ['4 أطقم', 'ترحيب وأسنان وخياطة وتلميع أحذية'],
+          ['6 ألوان', 'من الخيوط في طقم الخياطة القياسي'],
+        ],
+        gallery: [
+          {
+            src: image('insights/hotel-shoe-shine-kit'),
+            alt: 'طقم تلميع أحذية بإسفنجة وعلبة وقطعة قماش للتنظيف',
+          },
+          {
+            src: image('insights/hotel-robe-hooks'),
+            alt: 'روب حمّام على خطّاف بجانب حامل مناشف في حمّام فندقي',
+          },
+        ],
+        cta: page('ar', '/collections/amenities', amenities),
+      },
+      tr: {
+        title: 'Otel buklet ürünleri: misafirin hatırladığı ayrıntılar',
+        seoTitle: 'Otel buklet ürünleri: ne seçmeli, neden',
+        description:
+          'Buklet ürünleri, otelin tamamen kontrol ettiği nadir temas noktalarından biridir. Hangi ürünler önemli, tutarlılık neden önde ve buklet talebi nasıl hazırlanır.',
+        body: [
+          'Oda buklet ürünleri, konaklamanın otelin tamamen kontrol ettiği az sayıdaki parçasından biridir. Misafirler beklendiği gibi işleyen ürünlerden pek söz etmez; ama işlemeyenleri hatırlar ve yorumlarında anar. Eksik bir dikiş seti ya da ilk kullanımda yırtılan bir duş bonesi, birim fiyatta sağladığı tasarruftan çok daha fazlasını misafir algısında kaybettirir.',
+          '## Önce işlevsellik',
+          'Misafir memnuniyetini yükselten ürünler genellikle süsleyici değil işlevseldir: gerçekten kullanışlı bir diş bakım seti, kolay bulunan ve kullanılan bir çamaşır torbası, bornozu ve banyoyu kullanımlar arasında düzenli tutan bir askı ya da kanca. Misafirler bu küçük operasyonel ayrıntıları tesisin genel standardının bir işareti olarak okur.',
+          'Eksiksiz bir program banyoyu, gardırobu ve bir şeylerin ters gittiği küçük anları kapsar. HADARA Hospitality’nin buklet koleksiyonu bu yelpazeyi yansıtır: karşılama, diş bakım, dikiş ve ayakkabı boyama setleri, duş boneleri, çamaşır torbaları, askılar ve ütü masası kılıfları.',
+          'Her ürünün kendi kararları vardır. Diş bakım seti genellikle basılı bir kutuda diş fırçası ve küçük bir tüp diş macunundan oluşur; daha uzun fırçalı bir seçenek de bulunur. Standart dikiş setinde altı renk iplik, bir iğne, bir düğme ve bir çengelli iğne yer alır; genişletilmiş versiyon küçük plastik bir kutuda daha fazla iğne ve düğme ekler. Ayakkabı bakımı, boyama süngerinden yuvarlak cila kutusuna ve temizlik bezine uzanır, uyumlu kerata seçenekleriyle birlikte; hırsızlığa karşı halkalı kancalı ahşap askılar ise gardırobu düzenli tutar. Ütü masası kılıfı da listede yer alır: yaklaşık 110 x 33 cm çalışma yüzeyli standart otel ütü masalarına göre ölçülendirilir, talep üzerine başka ölçüler de mümkündür.',
+          '## Yenilikten önce tutarlılık',
+          'Her odada tutarlı ve açıkça etiketlenmiş bir buklet seti, sürekli değişen yenilik ürünlerinden çok daha fazlasını markaya kazandırır. Ayrıca kat hizmetleri için ikmali kolaylaştırır ve boş bir buklet tepsisinin misafir odasına ulaşma riskini azaltır.',
+          'Ambalaj da bu tutarlılığın parçasıdır. Örneğin bir duş bonesi basılı kutu, zarf, folyo ya da PE poşet veya kraft ambalajla gelebilir ve ambalajların çoğu otelin logosunu taşıyabilir; film tipi ve kalınlığı teklifte teyit edilir. Dikiş, diş bakım ve ayakkabı boyama setleri de aynı basılı kutu, zarf ve poşet seçeneklerini sunar. Tek bir stil seçip tüm ürünlere uygulamak, her odaya aynı sakin ve düzenli izlenimi verir.',
+          '## Buklet talebini hazırlamak',
+          'İyi bir talep dört soruyu yanıtlar: her oda kategorisinin hangi ürünlere ihtiyaç duyduğu, ambalaj stili ve logo, her setin içeriği ve hedef teslim tarihiyle birlikte ürün başına miktar. HADARA Hospitality buklet ürünlerini Türkiye’deki tedarik ortakları ağı üzerinden sağlar; içerik, ambalaj ve markalama her proje için belirlenir ve teklifte teyit edilir; minimum sipariş ürün başına 100 adettir.',
+          'Her ürünün seçenekleri ve teklif talebiyle birlikte buklet koleksiyonunun tamamı HADARA Hospitality web sitesinde.',
+        ],
+        image: image('insights/hotel-amenity-tray'),
+        imageAlt: 'Otel odasında yuvarlak bir tepside dizili banyo buklet şişeleri',
+        imageCredit: illustration.tr,
+        facts: [
+          ['100 adet', 'Ürün başına minimum sipariş'],
+          ['4 set', 'Karşılama, diş bakım, dikiş ve ayakkabı boyama'],
+          ['6 renk', 'Standart dikiş setinde iplik'],
+        ],
+        gallery: [
+          {
+            src: image('insights/hotel-shoe-shine-kit'),
+            alt: 'Boyama süngeri, kutu ve temizlik bezinden oluşan ayakkabı boyama seti',
+          },
+          {
+            src: image('insights/hotel-robe-hooks'),
+            alt: 'Otel banyosunda havluluğun yanında kancaya asılı bornoz',
+          },
+        ],
+        cta: page('tr', '/collections/amenities', amenities),
       },
     },
   },
