@@ -94,6 +94,18 @@ export const relatedItems: Record<CompanyId, Record<string, RelatedItem>> = {
       name: { en: 'Hotel Blackout Curtain', ar: 'ستارة تعتيم فندقية', tr: 'Otel Karartma Perdesi' },
       image: 'hospitality/blackout-curtains.jpg',
     },
+    'guest-dental-kit': {
+      name: { en: 'Hotel Dental Kit', ar: 'طقم عناية بالأسنان فندقي', tr: 'Otel Diş Bakım Seti' },
+      image: 'related/guest-dental-kit.jpg',
+    },
+    'guest-sewing-kit': {
+      name: { en: 'Hotel Sewing Kit', ar: 'طقم خياطة فندقي', tr: 'Otel Dikiş Seti' },
+      image: 'related/guest-sewing-kit.jpg',
+    },
+    'guest-shower-cap': {
+      name: { en: 'Hotel Shower Cap', ar: 'غطاء شعر للاستحمام فندقي', tr: 'Otel Duş Bonesi' },
+      image: 'related/guest-shower-cap.jpg',
+    },
     'luxury-hotel-slippers': {
       name: { en: 'Hotel Slippers', ar: 'شباشب فندقية', tr: 'Otel Terliği' },
       image: 'related/luxury-hotel-slippers.jpg',
