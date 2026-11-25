@@ -19,6 +19,7 @@ const projectPage = (slug: string, arabic: boolean) =>
   `${site.realEstate}${arabic ? '/ar' : ''}/projects/${slug}`;
 const lotusKoru2Page = (arabic: boolean) => projectPage('lotus-koru-2', arabic);
 const marmaraHavenPage = (arabic: boolean) => projectPage('marmara-haven-villa', arabic);
+const lotusSisliPage = (arabic: boolean) => projectPage('lotus-sisli', arabic);
 const credit = {
   hadara: {
     en: 'Photograph: HADARA Real Estate.',
@@ -679,6 +680,146 @@ export const realEstate: Article[] = [
           text: 'Fotoğraflar, kat planları, video tur ve görme talepleri HADARA Real Estate web sitesinde.',
           label: 'Projeyi görüntüleyin',
           href: marmaraHavenPage(false),
+        },
+      },
+    },
+  },
+  {
+    slug: 'lotus-sisli',
+    category: 'real-estate',
+    status: 'published',
+    approved: true,
+    publishedAt: '2026-11-25',
+    company: 'real-estate',
+    related: ['lotus-sisli', 'referans-besiktas', 'buyukyali'],
+    translations: {
+      en: {
+        title: 'Lotus Şişli: home offices and residences in the heart of Şişli',
+        seoTitle: 'Lotus Şişli: home offices in Şişli, Istanbul',
+        description:
+          'Lotus Şişli by Lotus Yapı Proje: 320 home offices, apartments, penthouses and shops in two 18-storey towers on Piyalepaşa Boulevard, delivery planned for 2026.',
+        body: [
+          'Lotus Şişli is a mixed-use project rising on Piyalepaşa Boulevard, in the business heart of Şişli on Istanbul’s European side. Developed by Lotus Yapı Proje and designed by the architect Hakan Saçık, it brings together 320 home offices, apartments, penthouses and street-front shops in two towers of 18 storeys. HADARA Real Estate, a BYHADARA Group company, is its marketing partner.',
+          'The developer presents Lotus Şişli as an innovative mixed-use landmark in the heart of Istanbul, set to become one of the most prestigious addresses in the district. Its address is Kaptan Paşa Mahallesi, on Piyalepaşa Boulevard at Okmeydanı Caddesi. The project covers 35,342 m² of construction, and the two towers share a retail podium at their entrance. Work began in December 2024; the project is under construction, units are currently on sale, and according to the developer delivery is scheduled for December 2026.',
+          '## A home, an office, or both',
+          'The home offices are designed to serve as a workplace, a home or both. They come as 1+1 and 2+1 apartments, or as closed or open-plan offices of the same sizes. A 1+1 measures 57.56 m² gross and 43.41 m² net, with a saleable area of 75.97 m²; a 2+1 measures 83.75 m² gross, 63.16 m² net and 110.53 m² saleable. Reading the three figures together gives the clearest picture of the space itself. The arrangement suits owners who want to live and work at the same address, or to keep the freedom to change how the unit is used later.',
+          'The penthouses crown the towers with generous terraces over the city, and three street-front shops occupy the ground floor. A flex space concept lets owners add extra space to their home only when they need it, with no charge while it is unused.',
+          '## Services within the building',
+          'Residents have a concierge service and a lounge, an indoor swimming pool, a fitness centre, a reformer Pilates studio and a spa with a Turkish bath, a sauna, a Finnish bath and massage rooms. Meeting rooms, a café and vitamin bar, a private cinema room and a PlayStation room complete the shared spaces, alongside ample parking, private security and camera systems, so much of daily life and work can stay within the building.',
+          '## At the centre of the city',
+          'The towers stand steps from the metro, the Metrobüs and the E-5 highway, surrounded by hospitals, hotels, the Istanbul Courthouse and shopping centres. Memorial Şişli Hospital is 100 m away, Okmeydanı Training and Research Hospital 280 m, the Perpa Business Centre 500 m and the Darülaceze–Perpa Metrobüs stop 540 m. The Istanbul Courthouse is 880 m away, Çağlayan Metro 1 km and Cevahir Mall 1.5 km, while Nişantaşı is 2 km away, Taksim 2.9 km and Zorlu Center 4.1 km.',
+          'The developer offers a payment plan with a 30% down payment and the balance over 30 months. Buyers abroad can begin with a private video tour with HADARA Real Estate, then visit Istanbul to see the project and choose their unit.',
+          'Floor plans, current availability and viewing requests for Lotus Şişli are on the HADARA Real Estate website.',
+        ],
+        image: image('lotus-sisli-towers'),
+        imageAlt: 'The Lotus Şişli towers at dusk above their street-front shops',
+        imageCredit: credit.lotus.en,
+        facts: [
+          ['320', 'Home offices, with apartments, penthouses and shops'],
+          ['2 × 18', 'Two towers of 18 storeys'],
+          ['Dec 2026', 'Scheduled delivery, according to the developer'],
+        ],
+        gallery: [
+          {
+            src: image('lotus-sisli-living-room'),
+            alt: 'Living room and open kitchen of a Lotus Şişli apartment',
+          },
+          {
+            src: image('lotus-sisli-penthouse-terrace'),
+            alt: 'Penthouse terrace at Lotus Şişli overlooking the city',
+          },
+        ],
+        cta: {
+          title: 'Discover Lotus Şişli',
+          text: 'Floor plans, availability and viewing requests are on the HADARA Real Estate website.',
+          label: 'View the project',
+          href: lotusSisliPage(false),
+        },
+      },
+      ar: {
+        title: 'لوتس شيشلي: مكاتب منزلية ومساكن في قلب شيشلي',
+        seoTitle: 'لوتس شيشلي: مكاتب منزلية في شيشلي بإسطنبول',
+        description:
+          'لوتس شيشلي من تطوير لوتس يابي بروجي: 320 مكتباً منزلياً وشقق وبنتهاوس ومحلات في برجين من 18 طابقاً على جادة بيالة باشا، والتسليم مقرر في 2026.',
+        body: [
+          'لوتس شيشلي (Lotus Şişli) مشروع متعدد الاستخدامات يرتفع على جادة بيالة باشا، في قلب منطقة الأعمال بشيشلي على الجانب الأوروبي من إسطنبول. طوّرته شركة لوتس يابي بروجي وصمّمه المعماري حقان صاتشيك، ويجمع 320 مكتباً منزلياً وشققاً سكنية وبنتهاوس ومحلات تجارية على الشارع في برجين من 18 طابقاً. وحضارة العقارية، إحدى شركات مجموعة باي حضارة، هي شريكه التسويقي.',
+          'ويقدّم المطوّر لوتس شيشلي معلماً متعدد الاستخدامات ومبتكراً في قلب إسطنبول، يستعد ليكون واحداً من أرقى العناوين في المنطقة. يقع المشروع في حي قبطان باشا، على جادة بيالة باشا عند شارع أوكميداني. وتبلغ مساحة البناء الإجمالية فيه 35,342 م²، ويتشارك البرجان منصة تجارية عند مدخلهما. بدأ العمل فيه في ديسمبر 2024، وهو قيد الإنشاء حالياً والبيع مستمر فيه، والتسليم مقرر بحسب المطوّر في ديسمبر 2026.',
+          '## منزل أو مكتب أو الاثنان معاً',
+          'صُمّمت المكاتب المنزلية لتكون مكاناً للعمل أو للسكن أو للاثنين معاً، وهي متاحة كشقق 1+1 و2+1، أو كمكاتب مغلقة أو مفتوحة بالمساحات نفسها. تبلغ المساحة الإجمالية لشقة 1+1 نحو 57.56 م² والصافية 43.41 م²، فيما تبلغ مساحتها البيعية 75.97 م²؛ أما شقة 2+1 فمساحتها الإجمالية 83.75 م² والصافية 63.16 م² والبيعية 110.53 م². وقراءة الأرقام الثلاثة معاً تعطي الصورة الأوضح عن المساحة الفعلية. ويناسب هذا الترتيب المالكين الراغبين في السكن والعمل في العنوان نفسه، أو في الاحتفاظ بحرية تغيير طريقة استخدام الوحدة لاحقاً.',
+          'وتتوّج وحدات البنتهاوس البرجين بتراسات واسعة مطلة على المدينة، فيما تشغل ثلاثة محلات تجارية الطابق الأرضي على الشارع. ويتيح مفهوم «المساحة المرنة» للمالكين إضافة مساحة إلى منازلهم عند الحاجة فقط، دون أي رسوم خلال فترة عدم استخدامها.',
+          '## خدمات داخل المبنى',
+          'يتمتع السكان بخدمة كونسيرج وصالة استقبال، ومسبح داخلي، وصالة رياضية، واستوديو بيلاتس ريفورمر، ومركز سبا يضم حماماً تركياً وساونا وحماماً فنلندياً وغرف مساج. وتكتمل المساحات المشتركة بقاعات اجتماعات وكافيه وبار فيتامين وغرفة سينما خاصة وغرفة بلايستيشن، إلى جانب مواقف سيارات واسعة وحراسة خاصة وأنظمة كاميرات، بحيث يبقى جزء كبير من الحياة اليومية والعمل داخل المبنى.',
+          '## في قلب المدينة',
+          'يقع البرجان على بُعد خطوات من المترو والمتروبوس وطريق E-5، وتحيط بهما المستشفيات والفنادق وقصر العدل في إسطنبول ومراكز التسوق. يبعد مستشفى ميموريال شيشلي 100 م، ومستشفى أوكميداني للتعليم والأبحاث 280 م، ومركز بيربا للأعمال 500 م، ومحطة متروبوس دارالعجزة – بيربا 540 م. ويبعد قصر العدل في إسطنبول 880 م، ومترو تشاغليان 1 كم، وجواهر مول 1.5 كم، فيما تبعد نيشانتاشي 2 كم، وتقسيم 2.9 كم، وزورلو سنتر 4.1 كم.',
+          'ويقدّم المطوّر خطة سداد بدفعة أولى بنسبة ⁦30%⁩ والباقي على 30 شهراً. ويمكن للمشترين من خارج تركيا البدء بجولة فيديو خاصة مع حضارة العقارية، ثم زيارة إسطنبول لمعاينة المشروع واختيار وحدتهم.',
+          'المخططات والوحدات المتاحة حالياً وطلبات المعاينة الخاصة بلوتس شيشلي على موقع حضارة العقارية.',
+        ],
+        image: image('lotus-sisli-towers'),
+        imageAlt: 'برجا لوتس شيشلي عند الغروب فوق المحلات التجارية على الشارع',
+        imageCredit: credit.lotus.ar,
+        facts: [
+          ['320', 'مكتباً منزلياً، مع شقق وبنتهاوس ومحلات'],
+          ['⁦2 × 18⁩', 'برجان من 18 طابقاً'],
+          ['ديسمبر 2026', 'موعد التسليم المقرر بحسب المطوّر'],
+        ],
+        gallery: [
+          {
+            src: image('lotus-sisli-living-room'),
+            alt: 'صالون ومطبخ مفتوح في إحدى شقق لوتس شيشلي',
+          },
+          {
+            src: image('lotus-sisli-penthouse-terrace'),
+            alt: 'تراس بنتهاوس في لوتس شيشلي مطل على المدينة',
+          },
+        ],
+        cta: {
+          title: 'اكتشف لوتس شيشلي',
+          text: 'المخططات والوحدات المتاحة وطلبات المعاينة على موقع حضارة العقارية.',
+          label: 'عرض المشروع',
+          href: lotusSisliPage(true),
+        },
+      },
+      tr: {
+        title: 'Lotus Şişli: Şişli’nin merkezinde ev-ofis ve konutlar',
+        seoTitle: 'Lotus Şişli: Şişli’de ev-ofis ve daireler',
+        description:
+          'Lotus Yapı Proje’nin Lotus Şişli projesi: Piyalepaşa Bulvarı’nda 18 katlı iki kulede 320 ev-ofis, daire, çatı dubleksi ve dükkân; teslim 2026’da planlanıyor.',
+        body: [
+          'Lotus Şişli, İstanbul’un Avrupa yakasında, Şişli’nin iş merkezinde Piyalepaşa Bulvarı üzerinde yükselen karma kullanımlı bir projedir. Lotus Yapı Proje tarafından geliştirilen ve mimar Hakan Saçık’ın tasarladığı proje, 18 katlı iki kulede 320 ev-ofis, daire, çatı dubleksi ve cadde dükkânlarını bir araya getiriyor. BYHADARA Group şirketlerinden HADARA Real Estate projenin pazarlama ortağıdır.',
+          'Geliştirici, Lotus Şişli’yi İstanbul’un kalbinde yenilikçi, karma kullanımlı bir simge yapı ve bölgenin en prestijli adreslerinden biri olmaya aday bir proje olarak tanımlıyor. Adresi Kaptan Paşa Mahallesi, Piyalepaşa Bulvarı, Okmeydanı Caddesi. Projenin toplam inşaat alanı 35.342 m²; iki kule girişte ortak bir ticari podyumu paylaşıyor. Çalışmalar Aralık 2024’te başladı; proje inşaat aşamasında, daireler satışta ve geliştiriciye göre teslim Aralık 2026’da planlanıyor.',
+          '## Ev, ofis ya da ikisi birden',
+          'Ev-ofisler iş yeri, konut ya da her ikisi olarak kullanılmak üzere tasarlandı. 1+1 ve 2+1 daire olarak ya da aynı büyüklükte kapalı veya açık ofis olarak sunuluyor. 1+1 birimler 57,56 m² brüt ve 43,41 m² net olup satışa esas alanı 75,97 m²; 2+1 birimler ise 83,75 m² brüt, 63,16 m² net ve 110,53 m² satışa esas alana sahip. Üç rakamı birlikte okumak, alanın kendisine dair en net resmi verir. Bu düzen, aynı adreste hem yaşamak hem çalışmak isteyen ya da birimin kullanım şeklini ileride değiştirme özgürlüğünü korumak isteyen sahiplere uygundur.',
+          'Çatı dubleksleri, kuleleri şehre bakan geniş teraslarla taçlandırıyor; zemin katta üç cadde dükkânı yer alıyor. Esnek alan konsepti, sahiplerin evlerine yalnızca ihtiyaç duyduklarında ek alan eklemesine imkân tanıyor; kullanılmadığı sürece ücret alınmıyor.',
+          '## Bina içindeki hizmetler',
+          'Sakinler konsiyerj hizmeti ve dinlenme salonu, kapalı yüzme havuzu, fitness merkezi, reformer pilates stüdyosu ve Türk hamamı, sauna, Fin hamamı ile masaj odalarından oluşan bir spadan yararlanıyor. Toplantı odaları, kafe ve vitamin bar, özel sinema odası ve PlayStation odası ortak alanları tamamlarken geniş otopark, özel güvenlik ve kamera sistemleri de bulunuyor; böylece gündelik yaşamın ve işin büyük bölümü bina içinde kalabiliyor.',
+          '## Şehrin tam merkezinde',
+          'Kuleler metroya, metrobüse ve E-5 karayoluna birkaç adım mesafede; çevresinde hastaneler, oteller, İstanbul Adliyesi ve alışveriş merkezleri bulunuyor. Memorial Şişli Hastanesi 100 m, Okmeydanı Eğitim ve Araştırma Hastanesi 280 m, Perpa Ticaret Merkezi 500 m, Darülaceze–Perpa metrobüs durağı 540 m uzaklıkta. İstanbul Adliyesi 880 m, Çağlayan metrosu 1 km, Cevahir AVM 1,5 km; Nişantaşı 2 km, Taksim 2,9 km ve Zorlu Center 4,1 km mesafede.',
+          'Geliştirici, %30 peşinat ve kalanı 30 ayda ödenen bir ödeme planı sunuyor. Yurt dışındaki alıcılar HADARA Real Estate ile özel bir video turla başlayabilir, ardından projeyi görmek ve dairesini seçmek için İstanbul’a gelebilir.',
+          'Lotus Şişli’nin kat planları, güncel satılık birimleri ve ziyaret talepleri HADARA Real Estate web sitesinde.',
+        ],
+        image: image('lotus-sisli-towers'),
+        imageAlt: 'Cadde dükkânlarının üzerinde alacakaranlıkta Lotus Şişli kuleleri',
+        imageCredit: credit.lotus.tr,
+        facts: [
+          ['320', 'Ev-ofis; ayrıca daire, çatı dubleksi ve dükkân'],
+          ['2 × 18', '18 katlı iki kule'],
+          ['Aralık 2026', 'Geliştiriciye göre planlanan teslim'],
+        ],
+        gallery: [
+          {
+            src: image('lotus-sisli-living-room'),
+            alt: 'Bir Lotus Şişli dairesinde salon ve açık mutfak',
+          },
+          {
+            src: image('lotus-sisli-penthouse-terrace'),
+            alt: 'Lotus Şişli’de şehre bakan çatı dubleksi terası',
+          },
+        ],
+        cta: {
+          title: 'Lotus Şişli’yi keşfedin',
+          text: 'Kat planları, satılık birimler ve ziyaret talepleri HADARA Real Estate web sitesinde.',
+          label: 'Projeyi görüntüleyin',
+          href: lotusSisliPage(false),
         },
       },
     },
