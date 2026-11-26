@@ -112,6 +112,18 @@ export const relatedItems: Record<CompanyId, Record<string, RelatedItem>> = {
       name: { en: 'Hotel Shower Cap', ar: 'غطاء شعر للاستحمام فندقي', tr: 'Otel Duş Bonesi' },
       image: 'related/guest-shower-cap.jpg',
     },
+    'decorative-cushion': {
+      name: { en: 'Decorative Cushion', ar: 'وسادة زخرفية', tr: 'Dekoratif Yastık' },
+      image: 'related/decorative-cushion.jpg',
+    },
+    'hotel-upholstery-fabric': {
+      name: {
+        en: 'Hospitality Upholstery Fabric',
+        ar: 'أقمشة تنجيد للضيافة',
+        tr: 'Otel Döşemelik Kumaşı',
+      },
+      image: 'related/hotel-upholstery-fabric.jpg',
+    },
     'luxury-hotel-slippers': {
       name: { en: 'Hotel Slippers', ar: 'شباشب فندقية', tr: 'Otel Terliği' },
       image: 'related/luxury-hotel-slippers.jpg',
