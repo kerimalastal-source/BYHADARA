@@ -131,6 +131,23 @@ const amenities: Record<Locale, Cta> = {
     label: 'Buklet ürünlerini inceleyin',
   },
 };
+const curtains: Record<Locale, Cta> = {
+  en: {
+    title: 'Hotel curtains at HADARA Hospitality',
+    text: 'Blackout curtains, decorative cushions and upholstery fabric for rooms and public areas, with quotations.',
+    label: 'View curtains',
+  },
+  ar: {
+    title: 'ستائر الفنادق لدى حضارة للضيافة',
+    text: 'ستائر تعتيم ووسائد زينة وأقمشة تنجيد للغرف والمناطق العامة، مع عروض الأسعار.',
+    label: 'تصفّح الستائر',
+  },
+  tr: {
+    title: 'HADARA Hospitality’de otel perdeleri',
+    text: 'Odalar ve ortak alanlar için karartma perdeleri, dekoratif yastıklar ve döşemelik kumaşlar; tekliflerle.',
+    label: 'Perdeleri inceleyin',
+  },
+};
 const quote: Record<Locale, Cta> = {
   en: {
     title: 'Request a quotation',
@@ -911,6 +928,131 @@ export const hospitality: Article[] = [
           },
         ],
         cta: page('tr', '/collections/amenities', amenities),
+      },
+    },
+  },
+  {
+    slug: 'hotel-curtains-buying-guide',
+    category: 'hospitality',
+    status: 'published',
+    approved: true,
+    publishedAt: '2026-11-26',
+    company: 'hospitality',
+    related: ['hotel-blackout-curtains', 'decorative-cushion', 'hotel-upholstery-fabric'],
+    translations: {
+      en: {
+        title: 'Hotel curtains: a guide to blackout, sizing and fire safety',
+        seoTitle: 'Hotel curtains: blackout, sizing, fire safety',
+        description:
+          'How to specify hotel curtains: blackout, dim-out or sheer, closing light gaps, measuring and fullness, fire standards, cleaning and approving fabric samples.',
+        body: [
+          'Curtains are often among the last items ordered for a hotel, yet guests judge them every night. They decide how dark the room becomes, how private it feels and how the window looks from the bed, and in most countries they also fall under fire-safety rules. Settling a few questions early makes the request for a quotation precise and the result predictable.',
+          '## Darkness, privacy and the edges of the window',
+          'There are three broad options. A blackout curtain blocks almost all light, either through a coated or multi-layer blackout fabric or through a decorative fabric with a blackout lining sewn behind it. A dim-out fabric softens the light without stopping it. Many hotel rooms combine the two needs on a double track: a sheer for daytime privacy and a blackout curtain for sleep.',
+          'Each choice has consequences. A single blackout fabric means fewer pieces to wash and hang. A decorative fabric with a lining allows more freedom in colour and texture, provided the way the lining is attached and cleaned is checked before approval.',
+          'Even a perfect fabric leaves a bright room if light passes around it. Panels wide enough to overlap at the centre, a track that extends beyond the window frame, returns that bring the curtain back to the wall at each side, and a ceiling-mounted track or a pelmet at the top all close the gaps.',
+          '## Measuring and fullness',
+          'Width is measured from the track, not from the window. Fullness, the ratio of fabric width to track length, is commonly around twice the track length for pleated and wave headings. As starting points, many designers mount the track 10 to 15 cm above the frame, extend it 15 to 25 cm beyond each side and finish the drop 1 to 2 cm above the floor, then confirm each window type. A useful window list gives each type’s width and height, its distance from the frame to the ceiling and to the floor, the number of windows of each type rather than the number of rooms, and whether tracks, hooks and installation are included.',
+          '## Fire safety, cleaning and approval',
+          'Fire performance comes first, and the standard depends on where the hotel is: examples include the M1 classification in France, BS\u00a05867 in the United Kingdom, NFPA\u00a0701 in the United States and EN\u00a013773 in several European countries. The local authority, insurer or fire consultant decides which one applies. Ask for a test report from an accredited laboratory for the exact fabric quoted, ask whether the fabric is inherently flame-retardant or treated after weaving, since a treatment can weaken with washing, and keep the report on file for inspections.',
+          'Curtains are cleaned far less often than bed linen, but they must survive it. Coated blackout fabrics often limit washing temperature and dry cleaning, so the care instructions and expected shrinkage belong in the approval, with an allowance in the drop and a small reserve of each fabric for repairs, since a later dye lot may not match. Colour on a screen rarely matches the room: view the swatches in the room’s own morning and evening light, and keep the approved swatch as the reference for the order and any repeat.',
+          'HADARA Hospitality sources curtains and soft furnishings for hotel projects through a selected network of manufacturing partners in Türkiye, with a minimum order of 100 pieces per product, or 100 metres per upholstery fabric. Fabric, blackout level, sizes and finishing are confirmed in the quotation; the curtains collection and the quotation form are on its website.',
+        ],
+        image: image('hospitality/blackout-curtains'),
+        imageAlt: 'Hotel room window with full-length curtains over a sheer layer',
+        imageCredit: photo.en,
+        facts: [
+          ['2 layers', 'Sheer by day, blackout at night'],
+          ['About 2×', 'Common fullness for pleated and wave headings'],
+          ['100 pieces', 'Minimum order per product'],
+        ],
+        gallery: [
+          {
+            src: image('insights/curtain-fabric-texture'),
+            alt: 'Close-up of a woven curtain fabric',
+          },
+          {
+            src: image('insights/hotel-guest-room'),
+            alt: 'Hotel guest room with curtains framing the window',
+          },
+        ],
+        cta: page('en', '/collections/curtains', curtains),
+      },
+      ar: {
+        title: 'ستائر الفنادق: دليل التعتيم والمقاسات والسلامة من الحريق',
+        seoTitle: 'ستائر الفنادق: التعتيم والمقاسات والسلامة',
+        description:
+          'كيف تحدد مواصفات ستائر الفنادق: التعتيم الكامل أو الجزئي أو الشفاف، وسدّ منافذ الضوء، والقياس والكثافة، ومعايير الحريق، والتنظيف واعتماد عينات القماش.',
+        body: [
+          'كثيراً ما تكون الستائر من آخر ما يُطلب في مشروع فندقي، ومع ذلك يحكم عليها الضيف كل ليلة. فهي تحدد مدى عتمة الغرفة، ودرجة الخصوصية فيها، وكيف تبدو النافذة من السرير، وتخضع في معظم البلدان لقواعد السلامة من الحريق. وحسم بعض المسائل مبكراً يجعل طلب عرض السعر دقيقاً والنتيجة متوقعة.',
+          '## العتمة والخصوصية وأطراف النافذة',
+          'ثمة ثلاثة خيارات رئيسية. فستارة التعتيم تحجب الضوء كله تقريباً، إما بقماش تعتيم مطلي أو متعدد الطبقات، وإما بقماش زخرفي تُخاط خلفه بطانة تعتيم مستقلة. أما قماش التعتيم الجزئي فيخفف الضوء دون أن يمنعه. وتجمع غرف فندقية كثيرة بين الحاجتين على سكة مزدوجة: ستارة شفافة للخصوصية نهاراً وستارة تعتيم للنوم.',
+          'ولكل خيار تبعاته. فقماش التعتيم الواحد يعني قطعاً أقل للغسيل والتعليق. أما القماش الزخرفي ذو البطانة فيتيح حرية أكبر في اللون والملمس، بشرط التحقق قبل الاعتماد من طريقة تثبيت البطانة وتنظيفها.',
+          'وحتى أفضل قماش يترك الغرفة مضيئة إذا تسلل الضوء من حوله. فالألواح العريضة بما يكفي لتتداخل في الوسط، والسكة التي تمتد إلى ما بعد إطار النافذة، والأطراف المرتدّة التي تعيد الستارة إلى الجدار من الجانبين، والسكة المثبتة في السقف أو الكورنيش من الأعلى، كلها تسدّ هذه المنافذ.',
+          '## القياس والكثافة',
+          'يُقاس العرض من السكة لا من النافذة. والكثافة هي نسبة عرض القماش إلى طول السكة، وتبلغ عادةً نحو ضعف طول السكة في رؤوس الستائر ذات الطيّات والموجية. وكنقطة انطلاق، يثبّت كثير من المصممين السكة على ارتفاع يتراوح بين 10 و15 سم فوق الإطار، ويمدّونها بين 15 و25 سم بعد كل جانب، وينهون طول الستارة على ارتفاع سنتيمتر أو اثنين فوق الأرض، ثم يؤكدون ذلك لكل نوع من النوافذ. وقائمة النوافذ المفيدة تذكر عرض كل نوع وارتفاعه، والمسافة من الإطار إلى السقف وإلى الأرض، وعدد النوافذ من كل نوع لا عدد الغرف، وما إذا كانت السكك والخطافات والتركيب مشمولة.',
+          '## السلامة من الحريق والتنظيف والاعتماد',
+          'تأتي مقاومة الحريق أولاً، ويتوقف المعيار المطلوب على موقع الفندق: ومن أمثلته تصنيف M1 في فرنسا، وBS\u00a05867 في المملكة المتحدة، وNFPA\u00a0701 في الولايات المتحدة، وEN\u00a013773 في عدد من البلدان الأوروبية. والسلطة المحلية أو شركة التأمين أو استشاري الحريق هو من يحدد المعيار المطبّق. اطلبوا تقرير اختبار صادراً عن مختبر معتمد للقماش المعروض نفسه، واسألوا إن كان القماش مقاوماً للهب بطبيعته أم معالجاً بعد النسج، لأن المعالجة قد تضعف مع الغسيل، واحتفظوا بالتقرير لعمليات التفتيش.',
+          'تُنظَّف الستائر أقل بكثير من مفروشات الأسرّة، لكن عليها أن تتحمل ذلك. فأقمشة التعتيم المطلية كثيراً ما تقيّد درجة حرارة الغسيل والتنظيف الجاف، لذا تدخل تعليمات العناية والانكماش المتوقع في الاعتماد، مع هامش في طول الستارة واحتياطي صغير من كل قماش للإصلاح، لأن دفعة صباغة لاحقة قد لا تطابق تماماً. واللون على الشاشة نادراً ما يطابق الغرفة: انظروا إلى العينات في ضوء الغرفة نفسها صباحاً ومساءً، واحتفظوا بالعينة المعتمدة مرجعاً للطلب ولأي طلب متكرر.',
+          'تورّد حضارة للضيافة الستائر والمفروشات لمشاريع الفنادق عبر شبكة مختارة من شركائها المصنّعين في تركيا، والحد الأدنى للطلب 100 قطعة من كل منتج، أو 100 متر من كل قماش تنجيد. ويُؤكَّد القماش ودرجة التعتيم والمقاسات والتشطيب ضمن عرض السعر، وتجدون مجموعة الستائر ونموذج طلب عرض السعر على موقعها.',
+        ],
+        image: image('hospitality/blackout-curtains'),
+        imageAlt: 'نافذة غرفة فندقية بستائر طويلة فوق طبقة شفافة',
+        imageCredit: photo.ar,
+        facts: [
+          ['طبقتان', 'شفافة نهاراً وتعتيم ليلاً'],
+          ['نحو الضعف', 'الكثافة الشائعة لرؤوس الطيّات والموجية'],
+          ['100 قطعة', 'الحد الأدنى للطلب من كل منتج'],
+        ],
+        gallery: [
+          {
+            src: image('insights/curtain-fabric-texture'),
+            alt: 'لقطة قريبة لقماش ستائر منسوج',
+          },
+          {
+            src: image('insights/hotel-guest-room'),
+            alt: 'غرفة فندقية بستائر تؤطّر النافذة',
+          },
+        ],
+        cta: page('ar', '/collections/curtains', curtains),
+      },
+      tr: {
+        title: 'Otel perdeleri: karartma, ölçü ve yangın güvenliği rehberi',
+        seoTitle: 'Otel perdeleri: karartma, ölçü, yangın güvenliği',
+        description:
+          'Otel perdesi nasıl belirlenir: karartma, yarı karartma ya da tül, ışık sızıntılarını önlemek, ölçü ve pile oranı, yangın standartları, temizlik ve numune onayı.',
+        body: [
+          'Perdeler çoğu zaman bir otel projesinde en son sipariş edilen kalemler arasındadır; oysa misafir onları her gece değerlendirir. Odanın ne kadar karanlık olacağını, ne kadar mahrem hissettireceğini ve pencerenin yataktan nasıl göründüğünü belirlerler; çoğu ülkede yangın güvenliği kurallarına da tabidirler. Birkaç soruyu erkenden netleştirmek, teklif talebini kesin, sonucu öngörülebilir kılar.',
+          '## Karanlık, mahremiyet ve pencerenin kenarları',
+          'Üç temel seçenek vardır. Karartma perdesi ışığın neredeyse tamamını keser; bunu ya kaplamalı veya çok katmanlı bir karartma kumaşıyla ya da arkasına ayrı bir karartma astarı dikilmiş dekoratif bir kumaşla yapar. Yarı karartma (dim-out) kumaşı ışığı durdurmadan yumuşatır. Pek çok otel odası iki ihtiyacı çift raylı bir sistemde birleştirir: gündüz mahremiyeti için tül, uyku için karartma perdesi.',
+          'Her seçimin bir sonucu vardır. Tek bir karartma kumaşı, yıkanacak ve asılacak daha az parça demektir. Astarlı dekoratif kumaş renk ve dokuda daha fazla özgürlük tanır; ancak astarın nasıl tutturulduğu ve temizlendiği onaydan önce kontrol edilmelidir.',
+          'Kusursuz bir kumaş bile, ışık etrafından sızıyorsa odayı aydınlık bırakır. Ortada üst üste binecek genişlikte paneller, pencere çerçevesinin ötesine uzanan bir ray, perdeyi iki yanda duvara döndüren dönüşler ve üstte tavana monte ray ya da korniş bu boşlukları kapatır.',
+          '## Ölçü ve pile oranı',
+          'Genişlik pencereden değil, raydan ölçülür. Pile oranı, kumaş genişliğinin ray uzunluğuna oranıdır ve pileli ile dalgalı (wave) başlıklarda genellikle ray uzunluğunun yaklaşık iki katıdır. Başlangıç noktası olarak birçok tasarımcı rayı çerçevenin 10 ila 15 cm üstüne monte eder, her iki yanda 15 ila 25 cm uzatır ve perde boyunu yerden 1 ila 2 cm yukarıda bitirir; ardından her pencere tipi için teyit eder. İyi bir pencere listesi her tipin genişliğini ve yüksekliğini, çerçeveden tavana ve yere olan mesafeyi, oda sayısını değil her tipten pencere sayısını ve ray, kanca ile montajın dahil olup olmadığını belirtir.',
+          '## Yangın güvenliği, temizlik ve onay',
+          'Yangın performansı önce gelir ve geçerli standart otelin bulunduğu yere bağlıdır: örnekler arasında Fransa’da M1 sınıfı, Birleşik Krallık’ta BS\u00a05867, ABD’de NFPA\u00a0701 ve birçok Avrupa ülkesinde EN\u00a013773 sayılabilir. Hangisinin geçerli olduğuna yerel makam, sigortacı ya da yangın danışmanı karar verir. Teklif edilen kumaşın kendisi için akredite bir laboratuvardan test raporu isteyin; kumaşın doğal olarak mı alev geciktirici olduğunu yoksa dokumadan sonra mı işlendiğini sorun, çünkü işlem yıkamayla zayıflayabilir; raporu denetimler için saklayın.',
+          'Perdeler nevresimlerden çok daha seyrek temizlenir, ama buna dayanmaları gerekir. Kaplamalı karartma kumaşları çoğu zaman yıkama sıcaklığını ve kuru temizlemeyi sınırlar; bu nedenle bakım talimatı ve beklenen çekme oranı onaya dahil edilmeli, boyda pay bırakılmalı ve onarım için her kumaştan küçük bir yedek ayrılmalıdır, çünkü sonraki bir boya partisi tam eşleşmeyebilir. Ekrandaki renk odadakiyle nadiren aynıdır: numuneleri odanın kendi sabah ve akşam ışığında inceleyin ve onaylanan numuneyi sipariş ve tekrar siparişler için referans olarak saklayın.',
+          'HADARA Hospitality, otel projeleri için perde ve döşeme ürünlerini Türkiye’deki seçkin üretim ortakları ağı üzerinden tedarik eder; minimum sipariş ürün başına 100 adet, döşemelik kumaşta 100 metredir. Kumaş, karartma seviyesi, ölçüler ve son işlemler teklifte teyit edilir; perde koleksiyonu ve teklif formu web sitesindedir.',
+        ],
+        image: image('hospitality/blackout-curtains'),
+        imageAlt: 'Tül katmanının üzerinde boydan perdeleri olan otel odası penceresi',
+        imageCredit: photo.tr,
+        facts: [
+          ['2 katman', 'Gündüz tül, gece karartma'],
+          ['Yaklaşık 2 kat', 'Pileli ve dalgalı başlıklarda yaygın oran'],
+          ['100 adet', 'Ürün başına minimum sipariş'],
+        ],
+        gallery: [
+          {
+            src: image('insights/curtain-fabric-texture'),
+            alt: 'Dokuma perde kumaşına yakın plan',
+          },
+          {
+            src: image('insights/hotel-guest-room'),
+            alt: 'Pencereyi perdelerle çerçeveleyen otel odası',
+          },
+        ],
+        cta: page('tr', '/collections/curtains', curtains),
       },
     },
   },
