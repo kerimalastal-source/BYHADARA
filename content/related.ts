@@ -25,6 +25,11 @@ export const relatedItems: Record<CompanyId, Record<string, RelatedItem>> = {
       image: 'related/referans-besiktas.jpg',
     },
     buyukyali: { name: same('Büyükyalı'), image: 'related/buyukyali.jpg' },
+    'sea-pearl-atakoy': {
+      name: same('Sea Pearl Ataköy'),
+      image: 'insights/sea-pearl-atakoy-coast.jpg',
+    },
+    'hayat-flora': { name: same('Hayat Flora'), image: 'related/hayat-flora.jpg' },
     'lotus-yali': { name: same('Lotus Yalı'), image: 'related/lotus-yali.jpg' },
     'lotus-manzara-guzelce': {
       name: same('Lotus Manzara Güzelce'),
