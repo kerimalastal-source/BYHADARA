@@ -20,6 +20,7 @@ const projectPage = (slug: string, arabic: boolean) =>
 const lotusKoru2Page = (arabic: boolean) => projectPage('lotus-koru-2', arabic);
 const marmaraHavenPage = (arabic: boolean) => projectPage('marmara-haven-villa', arabic);
 const lotusSisliPage = (arabic: boolean) => projectPage('lotus-sisli', arabic);
+const seaPearlPage = (arabic: boolean) => projectPage('sea-pearl-atakoy', arabic);
 const credit = {
   hadara: {
     en: 'Photograph: HADARA Real Estate.',
@@ -30,6 +31,11 @@ const credit = {
     en: 'Architectural visualisation: Lotus Yapı Proje.',
     ar: 'تصميم معماري: لوتس يابي بروجي.',
     tr: 'Mimari görselleştirme: Lotus Yapı Proje.',
+  },
+  kuzu: {
+    en: 'Images: Kuzu İnşaat.',
+    ar: 'الصور: Kuzu İnşaat.',
+    tr: 'Görseller: Kuzu İnşaat.',
   },
   mh: {
     en: 'Architectural visualisation: MH Grup İnşaat.',
@@ -820,6 +826,146 @@ export const realEstate: Article[] = [
           text: 'Kat planları, satılık birimler ve ziyaret talepleri HADARA Real Estate web sitesinde.',
           label: 'Projeyi görüntüleyin',
           href: lotusSisliPage(false),
+        },
+      },
+    },
+  },
+  {
+    slug: 'sea-pearl-atakoy',
+    category: 'real-estate',
+    status: 'published',
+    approved: true,
+    publishedAt: '2026-11-27',
+    company: 'real-estate',
+    related: ['sea-pearl-atakoy', 'buyukyali', 'hayat-flora'],
+    translations: {
+      en: {
+        title: 'Sea Pearl Ataköy: seafront living in Ataköy, Istanbul',
+        seoTitle: 'Sea Pearl Ataköy: seafront homes in Istanbul',
+        description:
+          'Sea Pearl Ataköy by Kuzu İnşaat: 631 apartments in four 20-storey blocks, a 1.2 km seafront for residents and Ottoman-style gardens. Complete and ready to move in.',
+        body: [
+          'Sea Pearl Ataköy is a seafront residential community in Ataköy, in the Bakırköy district on the European shore of the Sea of Marmara. It was developed by Kuzu İnşaat, a company known for major real estate and construction projects in Türkiye and for its work on infrastructure. The project is complete and ready to move in, and HADARA Real Estate, a BYHADARA Group company, is its marketing partner.',
+          'Its defining feature is the shore itself: a 1.2 km seafront reserved for residents. Residents can also use yacht mooring and sea transport towards Ataköy Marina, about 1 km away. The developer sums up the project in one line: a residents-only seafront, Ottoman-style gardens and sea views in Ataköy. Its address is Zeytinlik Mahallesi, Rauf Orbay Caddesi, on the Ataköy coast road.',
+          '## Gardens between the towers and the sea',
+          'The site covers about 55,000 m², and around 60% of it, some 33,000 m², is given over to green space. The landscaping is inspired by Ottoman palace gardens, with a carefully chosen selection of plants and roses imported from Japan, and an artificial lake adds quiet places to rest between the buildings and the water. At night the gardens and the lake are lit, and the lawns lead the eye from the towers down to the shore.',
+          '## Residences and services',
+          'Four blocks of 20 floors, each with two entrances and its own residents’ gym, hold 631 apartments. Layouts range from 1+1 to 4.5+1, with gross areas from 88 m² to 398 m²: 1+1 homes of 88 to 104 m², 2+1 homes of 117 to 270 m², 3+1 homes of 193 to 204 m², 3.5+1 homes of 235 to 277 m², 4+1 homes of 237 to 276 m² and 4.5+1 homes of 248 to 398 m². Around 200 apartments with direct sea views are currently available.',
+          'Residents also benefit from special offers and reduced annual fees for some services of the JW Marriott hotel. Given its seafront setting, the project was built to modern construction standards and in line with Türkiye’s seismic code, and according to the developer it may be eligible for Turkish citizenship under the programme’s conditions.',
+          '## Ataköy and its surroundings',
+          'Ataköy is one of Istanbul’s most refined and sought-after residential districts, popular with Turkish residents and with the city’s elite. A Plus mall is a minute away, Galleria about 3 minutes and the Florya shopping centre about 10. Medicana hospital, built by the same construction company, stands right next to the project, and Acıbadem hospital is about 6 minutes away. The Eurasia Tunnel is about 5 minutes away, and the Marmaray and M9 metro stations are about a 10-minute walk.',
+          'Buyers abroad can begin with a private video tour with HADARA Real Estate to compare views, floors and layouts among the available sea-view apartments, then visit Istanbul to see the apartments in person. Because the project is complete, buyers see the finished apartments, the gardens and the shore before they decide.',
+          'Available apartments, layouts and viewing requests for Sea Pearl Ataköy are on the HADARA Real Estate website.',
+        ],
+        image: image('sea-pearl-atakoy-coast'),
+        imageAlt: 'Sea Pearl Ataköy towers and gardens on the Marmara shore at dusk',
+        imageCredit: credit.kuzu.en,
+        facts: [
+          ['1.2 km', 'Seafront reserved for residents'],
+          ['631', 'Apartments in four 20-storey blocks'],
+          ['33,000 m²', 'Gardens, about 60% of the site'],
+        ],
+        gallery: [
+          {
+            src: image('sea-pearl-atakoy-gardens'),
+            alt: 'Ottoman-style gardens between the Sea Pearl Ataköy towers, opening onto the sea',
+          },
+          {
+            src: image('sea-pearl-atakoy-terrace'),
+            alt: 'Garden terrace of a Sea Pearl Ataköy apartment above the Sea of Marmara',
+          },
+        ],
+        cta: {
+          title: 'Discover Sea Pearl Ataköy',
+          text: 'Available apartments, layouts and viewing requests are on the HADARA Real Estate website.',
+          label: 'View the project',
+          href: seaPearlPage(false),
+        },
+      },
+      ar: {
+        title: 'سي بيرل أتاكوي: سكن على الواجهة البحرية في أتاكوي بإسطنبول',
+        seoTitle: 'سي بيرل أتاكوي: شقق على البحر في إسطنبول',
+        description:
+          'سي بيرل أتاكوي من تطوير Kuzu İnşaat: 631 شقة في أربعة مبانٍ من 20 طابقاً، وواجهة بحرية بطول 1.2 كم للسكان، وحدائق على الطراز العثماني. مكتمل وجاهز للسكن.',
+        body: [
+          'سي بيرل أتاكوي (Sea Pearl Ataköy) مجمّع سكني على الواجهة البحرية في أتاكوي، ضمن بلدية باكركوي على الساحل الأوروبي لبحر مرمرة. طوّرته شركة Kuzu İnşaat المعروفة بتنفيذ المشاريع العقارية والإنشائية الكبرى في تركيا وبمشاركتها في مشاريع البنية التحتية. والمشروع مكتمل وجاهز للسكن، وحضارة العقارية، إحدى شركات مجموعة باي حضارة، هي شريكه التسويقي.',
+          'وأبرز ما يميّزه الساحل نفسه: واجهة بحرية تمتد 1.2 كم مخصّصة لسكانه. كما يمكن للسكان الاستفادة من خدمات رسوّ اليخوت والتنقل البحري باتجاه مارينا أتاكوي التي تبعد نحو كيلومتر واحد. ويلخّص المطوّر المشروع في سطر واحد: واجهة بحرية خاصة بالسكان، وحدائق على الطراز العثماني، وإطلالات على البحر في أتاكوي. ويقع المشروع في حي زيتونلك، على شارع رؤوف أورباي، على طريق أتاكوي الساحلي.',
+          '## حدائق بين الأبراج والبحر',
+          'يمتد المشروع على مساحة تقارب 55,000 م²، خُصّص نحو ⁦60%⁩ منها، أي قرابة 33,000 م²، للمساحات الخضراء. ويستوحي تنسيقها الحدائق العثمانية، مع مجموعة مختارة بعناية من النباتات والورود المستوردة من اليابان، فيما تضيف بحيرة صناعية مساحات هادئة للاسترخاء بين المباني والماء. وفي المساء تُضاء الحدائق والبحيرة، وتقود المروج النظر من الأبراج نزولاً إلى الشاطئ.',
+          '## الشقق والخدمات',
+          'يتألف المشروع من أربعة مبانٍ من 20 طابقاً، لكلٍّ منها مدخلان وصالة رياضية مخصّصة للمقيمين، وتضم 631 شقة. وتتراوح أنماطها بين 1+1 و4.5+1 بمساحات إجمالية من 88 إلى 398 م²: شقق 1+1 بين 88 و104 م²، وشقق 2+1 بين 117 و270 م²، وشقق 3+1 بين 193 و204 م²، وشقق 3.5+1 بين 235 و277 م²، وشقق 4+1 بين 237 و276 م²، وشقق 4.5+1 بين 248 و398 م². وتتوفر حالياً نحو 200 شقة بإطلالات بحرية مباشرة.',
+          'ويستفيد السكان أيضاً من عروض خاصة ورسوم سنوية مخفّضة لبعض خدمات فندق JW Marriott. ونظراً إلى موقعه الساحلي، شُيّد المشروع وفق معايير بناء حديثة ووفق الكود الزلزالي المعتمد في تركيا، وقد يكون مؤهلاً للحصول على الجنسية التركية وفق شروط البرنامج بحسب المطوّر.',
+          '## أتاكوي ومحيطها',
+          'تُعدّ أتاكوي من أرقى المناطق السكنية في إسطنبول وأكثرها طلباً، وتحظى بإقبال كبير من السكان الأتراك ونخبة المدينة. يبعد مول A Plus دقيقة واحدة، ومول Galleria نحو 3 دقائق، ومركز Florya التجاري نحو 10 دقائق. ويقع مستشفى Medicana، الذي نفّذته الشركة الإنشائية ذاتها، بجوار المشروع مباشرة، ويبعد مستشفى Acıbadem نحو 6 دقائق. أما نفق أوراسيا فيبعد نحو 5 دقائق، ومحطتا مرمراي ومترو M9 نحو 10 دقائق سيراً على الأقدام.',
+          'ويمكن للمشترين من خارج تركيا البدء بجولة فيديو خاصة مع حضارة العقارية للمقارنة بين الإطلالات والطوابق والمخططات في الشقق المتاحة المطلة على البحر، ثم زيارة إسطنبول لمعاينة الشقق على أرض الواقع. ولأن المشروع مكتمل، يرى المشتري الشقق المنجزة والحدائق والشاطئ قبل أن يقرر.',
+          'الشقق المتاحة والمخططات وطلبات المعاينة الخاصة بسي بيرل أتاكوي على موقع حضارة العقارية.',
+        ],
+        image: image('sea-pearl-atakoy-coast'),
+        imageAlt: 'أبراج سي بيرل أتاكوي وحدائقه على ساحل مرمرة عند الغروب',
+        imageCredit: credit.kuzu.ar,
+        facts: [
+          ['1.2 كم', 'واجهة بحرية مخصّصة للسكان'],
+          ['631', 'شقة في أربعة مبانٍ من 20 طابقاً'],
+          ['33,000 م²', 'حدائق، نحو ⁦60%⁩ من المساحة'],
+        ],
+        gallery: [
+          {
+            src: image('sea-pearl-atakoy-gardens'),
+            alt: 'حدائق على الطراز العثماني بين أبراج سي بيرل أتاكوي تنفتح على البحر',
+          },
+          {
+            src: image('sea-pearl-atakoy-terrace'),
+            alt: 'تراس حديقة في إحدى شقق سي بيرل أتاكوي فوق بحر مرمرة',
+          },
+        ],
+        cta: {
+          title: 'اكتشف سي بيرل أتاكوي',
+          text: 'الشقق المتاحة والمخططات وطلبات المعاينة على موقع حضارة العقارية.',
+          label: 'عرض المشروع',
+          href: seaPearlPage(true),
+        },
+      },
+      tr: {
+        title: 'Sea Pearl Ataköy: Ataköy’de denize sıfır yaşam',
+        seoTitle: 'Sea Pearl Ataköy: denize sıfır daireler',
+        description:
+          'Kuzu İnşaat’ın Sea Pearl Ataköy projesi: 20 katlı dört blokta 631 daire, sakinlere özel 1,2 km sahil ve Osmanlı tarzı bahçeler. Tamamlandı, taşınmaya hazır.',
+        body: [
+          'Sea Pearl Ataköy, Marmara Denizi’nin Avrupa kıyısında, Bakırköy ilçesine bağlı Ataköy’de denize sıfır bir konut projesidir. Türkiye’de büyük gayrimenkul ve inşaat projeleri ile altyapı çalışmalarıyla tanınan Kuzu İnşaat tarafından geliştirildi. Proje tamamlandı ve taşınmaya hazır; BYHADARA Group şirketlerinden HADARA Real Estate projenin pazarlama ortağıdır.',
+          'Projeyi asıl ayıran kıyının kendisidir: sakinlere ayrılmış 1,2 km’lik bir sahil. Sakinler ayrıca yat bağlama imkânından ve yaklaşık 1 km uzaklıktaki Ataköy Marina’ya deniz ulaşımından yararlanabiliyor. Geliştirici projeyi tek cümleyle özetliyor: sakinlere özel sahil, Osmanlı tarzı bahçeler ve Ataköy’de deniz manzarası. Adresi Zeytinlik Mahallesi, Rauf Orbay Caddesi, Ataköy Sahil Yolu.',
+          '## Kuleler ile deniz arasında bahçeler',
+          'Proje yaklaşık 55.000 m² alana yayılıyor ve bunun yaklaşık %60’ı, yani 33.000 m² civarı yeşil alana ayrılmış. Peyzaj Osmanlı saray bahçelerinden ilham alıyor; özenle seçilmiş bitkiler ve Japonya’dan getirilen güller kullanılmış. Yapay bir göl ise binalar ile deniz arasında sakin dinlenme alanları sunuyor. Akşamları bahçeler ve göl aydınlatılıyor; çimenler bakışı kulelerden kıyıya doğru taşıyor.',
+          '## Daireler ve hizmetler',
+          'Her biri iki girişli ve sakinlere özel spor salonuna sahip 20 katlı dört blokta 631 daire bulunuyor. Daire tipleri 1+1’den 4,5+1’e, brüt alanlar 88 m²’den 398 m²’ye uzanıyor: 1+1 daireler 88–104 m², 2+1 daireler 117–270 m², 3+1 daireler 193–204 m², 3,5+1 daireler 235–277 m², 4+1 daireler 237–276 m², 4,5+1 daireler ise 248–398 m². Şu anda doğrudan deniz manzaralı yaklaşık 200 daire satışta.',
+          'Sakinler ayrıca JW Marriott otelinin bazı hizmetlerinde özel tekliflerden ve indirimli yıllık ücretlerden yararlanıyor. Kıyıdaki konumu nedeniyle proje modern yapı standartlarına ve Türkiye deprem yönetmeliğine uygun inşa edildi; geliştiriciye göre program koşulları çerçevesinde Türk vatandaşlığına uygun olabilir.',
+          '## Ataköy ve çevresi',
+          'Ataköy, İstanbul’un en seçkin ve en çok tercih edilen konut bölgelerinden biridir; Türk sakinlerin ve şehrin seçkinlerinin gözdesidir. A Plus AVM bir dakika, Galleria yaklaşık 3 dakika, Florya alışveriş merkezi yaklaşık 10 dakika uzaklıkta. Aynı inşaat şirketinin yaptığı Medicana Hastanesi projenin hemen yanında, Acıbadem Hastanesi ise yaklaşık 6 dakika mesafede. Avrasya Tüneli yaklaşık 5 dakika, Marmaray ve M9 metro istasyonları yaklaşık 10 dakikalık yürüme mesafesinde.',
+          'Yurt dışındaki alıcılar satıştaki deniz manzaralı dairelerin manzaralarını, katlarını ve planlarını karşılaştırmak için HADARA Real Estate ile özel bir video turla başlayabilir, ardından daireleri yerinde görmek için İstanbul’a gelebilir. Proje tamamlandığı için alıcılar karar vermeden önce bitmiş daireleri, bahçeleri ve sahili görebiliyor.',
+          'Sea Pearl Ataköy’ün satılık daireleri, planları ve ziyaret talepleri HADARA Real Estate web sitesinde.',
+        ],
+        image: image('sea-pearl-atakoy-coast'),
+        imageAlt: 'Alacakaranlıkta Marmara kıyısında Sea Pearl Ataköy kuleleri ve bahçeleri',
+        imageCredit: credit.kuzu.tr,
+        facts: [
+          ['1,2 km', 'Sakinlere ayrılmış sahil'],
+          ['631', '20 katlı dört blokta daire'],
+          ['33.000 m²', 'Bahçe, alanın yaklaşık %60’ı'],
+        ],
+        gallery: [
+          {
+            src: image('sea-pearl-atakoy-gardens'),
+            alt: 'Sea Pearl Ataköy kuleleri arasında denize açılan Osmanlı tarzı bahçeler',
+          },
+          {
+            src: image('sea-pearl-atakoy-terrace'),
+            alt: 'Marmara Denizi’ne bakan bir Sea Pearl Ataköy dairesinin bahçe terası',
+          },
+        ],
+        cta: {
+          title: 'Sea Pearl Ataköy’ü keşfedin',
+          text: 'Satılık daireler, planlar ve ziyaret talepleri HADARA Real Estate web sitesinde.',
+          label: 'Projeyi görüntüleyin',
+          href: seaPearlPage(false),
         },
       },
     },
